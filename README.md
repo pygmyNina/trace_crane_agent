@@ -35,6 +35,60 @@ NEW system where CLAUDE learns to read YOUR schematics:
 
 ---
 
+## 🤖 Crane Mechanic AI Copilot System (6 Phases)
+
+The ultimate goal is a **complete AI copilot for crane mechanics**. Here's the roadmap:
+
+### Phase 1: Agent Training ✅ COMPLETE
+Train Claude to read YOUR crane schematics
+- Ground truth labeling system
+- Training data builder
+- Fine-tuning dataset generation
+- **Status**: Operational
+
+### Phase 2: Database Builder ✅ COMPLETE
+Build searchable component database
+- Extract training data into searchable database
+- Component registry with locations
+- Connection graph (wire connections)
+- **Status**: Operational
+- **Use**: `python3 scripts/build_database.py`
+- **Guide**: [DATABASE_BUILDER_GUIDE.md](DATABASE_BUILDER_GUIDE.md)
+
+### Phase 3: Wire Path Tracer ⏳ NEXT
+Follow electrical paths through schematics
+- Power path tracing
+- Signal path tracing
+- Multi-hop connection following
+- Visual path diagrams
+- **Status**: Planned
+
+### Phase 4: Search & Query Interface ⏳
+Natural language component search
+- "Find the slave in cabinet E11"
+- "Show me all HVC components"
+- "What connects to Slave 23?"
+- **Status**: Planned
+
+### Phase 5: Troubleshooting Copilot AI ⏳
+AI-powered troubleshooting assistant
+- Symptom analysis
+- Diagnostic suggestions
+- Component health checking
+- Repair recommendations
+- **Status**: Planned
+
+### Phase 6: Interactive Chat Interface ⏳
+Conversational copilot for mechanics
+- Natural language chat
+- "Why isn't HVC3 getting power?"
+- "Trace the signal from sensor X to module Y"
+- **Status**: Planned
+
+**Current Status**: Phase 2 complete. Database ready for wire tracing and search capabilities.
+
+---
+
 ## Features
 
 ### 1. **PDF Processing System**
@@ -216,23 +270,53 @@ The system covers these categories:
 
 ```
 trace_crane_agent/
-├── main.py                      # Main entry point
-├── requirements.txt             # Python dependencies
-├── .env.example                 # Example environment config
-├── README.md                    # This file
-├── src/
-│   ├── knowledge_base.py        # Foundation knowledge management
-│   ├── storage.py               # Local storage system
-│   ├── pdf_processor.py         # PDF processing utilities
-│   ├── correction_logger.py     # Correction tracking
-│   └── training_interface.py    # AI training interface
+├── main.py                          # Main entry point (Human Training)
+├── requirements.txt                 # Python dependencies
+├── .env.example                     # Example environment config
+├── README.md                        # This file
+├── COPILOT_ARCHITECTURE.md          # Complete copilot system design
+├── GROUND_TRUTH_TRAINING.md         # Phase 1 guide
+├── DATABASE_BUILDER_GUIDE.md        # Phase 2 guide
+│
+├── src/                             # Core system modules
+│   ├── knowledge_base.py            # Foundation knowledge management
+│   ├── storage.py                   # Local storage system
+│   ├── pdf_processor.py             # PDF processing utilities
+│   ├── correction_logger.py         # Correction tracking
+│   ├── training_interface.py        # AI training interface (human)
+│   │
+│   ├── schematic_analyzer.py        # Claude Vision schematic analysis
+│   ├── correction_interface.py      # Interactive correction UI
+│   ├── ground_truth_labeler.py      # Ground truth labeling system
+│   ├── training_data_builder.py     # Training dataset builder
+│   ├── database_schema.py           # Component database schema (Phase 2)
+│   └── database_builder.py          # Database population (Phase 2)
+│
+├── scripts/                         # Executable scripts
+│   ├── train_agent.py               # Correction-based agent training
+│   ├── train_agent_with_ground_truth.py  # Ground truth training (recommended)
+│   ├── catalog_pdfs.py              # PDF library cataloging
+│   ├── train_with_section.py        # Section-based training
+│   └── build_database.py            # Build searchable database (Phase 2)
+│
 ├── data/
-│   ├── training_sessions/       # Session data
-│   ├── corrections/             # Correction logs
-│   ├── knowledge_base/          # Foundation knowledge
-│   ├── pdfs/                    # Uploaded PDFs
-│   └── training.db              # SQLite database
-└── tests/                       # Test files
+│   ├── training_sessions/           # Human training session data
+│   ├── corrections/                 # Correction logs
+│   ├── knowledge_base/              # Foundation knowledge
+│   ├── pdfs/                        # Crane schematic PDFs
+│   │   ├── section_61/              # Section 61 PDFs
+│   │   ├── section_10/              # Section 10 PDFs
+│   │   └── catalog.json             # PDF metadata catalog
+│   ├── ground_truth/                # Ground truth labels (Phase 1)
+│   ├── training_data/               # Training datasets for Claude
+│   │   ├── training_examples.jsonl  # Training examples
+│   │   ├── learned_knowledge.json   # Learned patterns
+│   │   └── finetuning_dataset.jsonl # Fine-tuning data
+│   ├── copilot/                     # Copilot system data (Phase 2+)
+│   │   └── schematic_knowledge.db   # Searchable component database
+│   └── training.db                  # Human training SQLite database
+│
+└── tests/                           # Test files
 ```
 
 ## How It Works
