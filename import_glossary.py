@@ -69,6 +69,31 @@ class GlossaryImporter:
         if created:
             print(f"✓ Created sections: {', '.join(created)}")
 
+    def _add_definition(self, code, definition, source):
+        """Add a definition to the appropriate section based on code format"""
+        if code.startswith('='):
+            # System Group (e.g., =10, =61)
+            self.knowledge["system_groups"][code] = {
+                "code": code,
+                "definition": definition,
+                "source": source,
+                "added": datetime.now().isoformat()
+            }
+            return "system_group"
+        elif code.startswith('-'):
+            # Terminal (e.g., -X10, -X11)
+            self.knowledge["terminals"][code] = {
+                "code": code,
+                "terminal_type": definition,
+                "source": source,
+                "added": datetime.now().isoformat()
+            }
+            return "terminal"
+        else:
+            # Unknown format
+            print(f"  ⚠ Unknown format: {code} (expected = or - prefix)")
+            return None
+
     def import_from_docx(self, doc_path):
         """Import glossary from Word document (.docx format)"""
         if not DOCX_AVAILABLE:
@@ -88,57 +113,69 @@ class GlossaryImporter:
             print("   3. Run this script again")
             return False
 
-        # Look for tables in document
-        if not doc.tables:
-            print(f"✗ No tables found in {doc_path}")
-            return False
-
         print(f"\n📄 Reading {doc_path}...")
-        print(f"   Found {len(doc.tables)} table(s)\n")
 
         self._ensure_glossary_sections()
 
         system_groups_added = 0
         terminals_added = 0
 
-        # Process ALL tables in the document
-        for table_num, table in enumerate(doc.tables, start=1):
-            print(f"\n--- Processing Table {table_num} ---")
+        # Check if document has tables
+        if doc.tables:
+            print(f"   Found {len(doc.tables)} table(s)\n")
+            # Process ALL tables in the document
+            for table_num, table in enumerate(doc.tables, start=1):
+                print(f"\n--- Processing Table {table_num} ---")
 
-            # Skip header row, process data rows
-            for i, row in enumerate(table.rows[1:], start=1):
-                cells = row.cells
-                if len(cells) >= 2:
-                    code = cells[0].text.strip()
-                    definition = cells[1].text.strip()
+                # Skip header row, process data rows
+                for i, row in enumerate(table.rows[1:], start=1):
+                    cells = row.cells
+                    if len(cells) >= 2:
+                        code = cells[0].text.strip()
+                        definition = cells[1].text.strip()
+
+                        if code and definition:
+                            added = self._add_definition(code, definition, doc_path)
+                            if added == "system_group":
+                                system_groups_added += 1
+                                print(f"  ✓ System Group: {code:10} → {definition}")
+                            elif added == "terminal":
+                                terminals_added += 1
+                                print(f"  ✓ Terminal:     {code:10} → {definition}")
+        else:
+            # No tables found - try reading as plain text with spacing
+            print("   No tables found - reading as plain text\n")
+
+            for para in doc.paragraphs:
+                text = para.text.strip()
+                if not text:
+                    continue
+
+                # Skip header lines
+                if text.lower().startswith('system') or text.lower().startswith('terminal'):
+                    print(f"\n--- {text} ---")
+                    continue
+
+                # Try to parse line with multiple spaces/tabs between code and definition
+                # Split on 2+ spaces or tabs
+                import re
+                parts = re.split(r'\s{2,}|\t+', text, maxsplit=1)
+
+                if len(parts) >= 2:
+                    code = parts[0].strip()
+                    definition = parts[1].strip()
 
                     if code and definition:
-                        # Detect which type based on code format
-                        if code.startswith('='):
-                            # System Group (e.g., =10, =61)
-                            self.knowledge["system_groups"][code] = {
-                                "code": code,
-                                "definition": definition,
-                                "source": os.path.basename(doc_path),
-                                "added": datetime.now().isoformat()
-                            }
+                        added = self._add_definition(code, definition, doc_path)
+                        if added == "system_group":
                             system_groups_added += 1
                             print(f"  ✓ System Group: {code:10} → {definition}")
-
-                        elif code.startswith('-'):
-                            # Terminal (e.g., -X10, -X11)
-                            self.knowledge["terminals"][code] = {
-                                "code": code,
-                                "terminal_type": definition,
-                                "source": os.path.basename(doc_path),
-                                "added": datetime.now().isoformat()
-                            }
+                        elif added == "terminal":
                             terminals_added += 1
                             print(f"  ✓ Terminal:     {code:10} → {definition}")
-
-                        else:
-                            # Unknown format - show warning but continue
-                            print(f"  ⚠ Unknown format: {code} (expected = or - prefix)")
+                elif text.startswith('=') or text.startswith('-'):
+                    # Single word entries or malformed - show warning
+                    print(f"  ⚠ Could not parse: {text[:50]}")
 
         self._save_knowledge()
         print(f"\n{'='*60}")
