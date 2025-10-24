@@ -1,0 +1,16 @@
+{
+  "session_id": "session_20251024_000206",
+  "start_time": "2025-10-24T00:02:06.524059",
+  "pdf_file": null,
+  "questions": [
+    {
+      "timestamp": "2025-10-24T00:02:06.533006",
+      "question": "What is =61/102.8?",
+      "user_answer": "=61/102.8.0",
+      "correct_answer": "=61/102.0.8",
+      "is_correct": false,
+      "category": "index_format"
+    }
+  ],
+  "corrections": []
+}

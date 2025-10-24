@@ -1,0 +1,24 @@
+{
+  "session_id": "session_20251024_000208",
+  "start_time": "2025-10-24T00:02:08.766911",
+  "pdf_file": null,
+  "questions": [
+    {
+      "timestamp": "2025-10-24T00:02:08.774991",
+      "question": "Q1",
+      "user_answer": "A1",
+      "correct_answer": "A1",
+      "is_correct": true,
+      "category": "general"
+    },
+    {
+      "timestamp": "2025-10-24T00:02:08.782944",
+      "question": "Q2",
+      "user_answer": "Wrong",
+      "correct_answer": "Right",
+      "is_correct": false,
+      "category": "general"
+    }
+  ],
+  "corrections": []
+}

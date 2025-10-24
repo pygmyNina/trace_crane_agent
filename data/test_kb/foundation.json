@@ -1,0 +1,77 @@
+{
+  "version": "1.0",
+  "created": "2025-10-24T00:01:41.748847",
+  "last_updated": "2025-10-24T00:01:41.748859",
+  "index_format": {
+    "description": "Crane schematic index format",
+    "format": "=XX/YY.Y.Z",
+    "components": {
+      "XX": "Section number (2 digits)",
+      "YY.Y": "Sheet number (2 digits + 1 decimal digit)",
+      "Z": "Column number (1 digit)"
+    },
+    "shorthand": {
+      "description": "When column is in first major section (.0), it can be omitted",
+      "example": "=61/102.8 means =61/102.0.8",
+      "full_form": "=XX/YY.Y.Z",
+      "short_form": "=XX/YY.Z (when Y decimal = 0)"
+    }
+  },
+  "wire_tracing": {
+    "rules": [
+      {
+        "rule": "Dots indicate connections",
+        "description": "When wires cross with a dot, they are electrically connected"
+      },
+      {
+        "rule": "Perpendicular crossings without dots are NOT connections",
+        "description": "When wires cross at 90 degrees without a dot, they pass over/under without connecting"
+      }
+    ]
+  },
+  "slave_sequence": {
+    "description": "Slave sequence is non-chronological",
+    "sequence": [
+      22,
+      23,
+      60,
+      24,
+      61,
+      20
+    ],
+    "note": "Do NOT assume slaves are numbered sequentially"
+  },
+  "component_examples": {
+    "slave_22": {
+      "location": "Cabinet E11",
+      "modules": {
+        "total": 45,
+        "breakdown": {
+          "IM151": 1,
+          "PM": 1,
+          "DI": 40,
+          "RTD": 3
+        }
+      }
+    },
+    "components": [
+      {
+        "name": "HVC3",
+        "index": "=10/103.0.7",
+        "type": "Component"
+      },
+      {
+        "name": "Main Transformer",
+        "index": "=10/102.0.3",
+        "type": "Component"
+      }
+    ]
+  },
+  "training_tips": [
+    "Always verify the full index format, including section, sheet, and column",
+    "Pay attention to shorthand notation - missing .Y means it's .0",
+    "When tracing wires, look carefully for connection dots",
+    "Remember slave sequence is non-chronological: 22,23,60,24,61,20",
+    "Count modules carefully - verify total against expected configuration"
+  ]
+}
