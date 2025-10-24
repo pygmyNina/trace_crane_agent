@@ -14,6 +14,12 @@ try:
 except ImportError:
     ANTHROPIC_AVAILABLE = False
 
+try:
+    from dotenv import load_dotenv
+    DOTENV_AVAILABLE = True
+except ImportError:
+    DOTENV_AVAILABLE = False
+
 
 class VisionAnalyzer:
     """Analyzes schematic images using Claude Vision API"""
@@ -25,6 +31,10 @@ class VisionAnalyzer:
         Args:
             api_key: Anthropic API key (or set ANTHROPIC_API_KEY env var)
         """
+        # Load .env file if available
+        if DOTENV_AVAILABLE:
+            load_dotenv()
+
         if not ANTHROPIC_AVAILABLE:
             print("⚠ anthropic library not installed. Run: pip install anthropic")
             self.client = None

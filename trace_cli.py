@@ -6,6 +6,14 @@ Command-line interface with Vision API integration for image-based schematics
 
 import sys
 import os
+
+# Load .env file if available
+try:
+    from dotenv import load_dotenv
+    load_dotenv()
+except ImportError:
+    pass
+
 from trace.knowledge_base import KnowledgeBase
 from trace.training_interface import TrainingInterface
 from trace.section_manager import SectionManager
