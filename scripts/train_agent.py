@@ -17,6 +17,7 @@ from schematic_analyzer import SchematicAnalyzer
 from correction_interface import CorrectionInterface
 from training_data_builder import TrainingDataBuilder
 from pdf_processor import SchematicPDFProcessor
+from ground_truth_labeler import GroundTruthLabeler
 from rich.console import Console
 from rich.panel import Panel
 from rich.prompt import Prompt, Confirm
@@ -33,6 +34,7 @@ class AgentTrainer:
         self.analyzer = SchematicAnalyzer()
         self.correction_interface = CorrectionInterface()
         self.training_builder = TrainingDataBuilder()
+        self.ground_truth_labeler = GroundTruthLabeler()
 
     def show_banner(self):
         """Display welcome banner"""
@@ -45,16 +47,24 @@ class AgentTrainer:
 ║                                                              ║
 ╚══════════════════════════════════════════════════════════════╝[/bold cyan]
 
-[yellow]How this works:[/yellow]
-1. Claude analyzes your schematic with Vision AI
-2. You review and correct Claude's analysis
-3. System learns from your corrections
-4. Builds training data for future improvement
+[yellow]Two Training Modes:[/yellow]
 
-[green]Your corrections will:[/green]
-✓ Improve future analysis prompts
-✓ Build a fine-tuning dataset
-✓ Create a knowledge base for your schematics
+[bold]Mode 1: Ground Truth Labeling[/bold] (Recommended)
+1. YOU label everything in the schematic first (ground truth)
+2. Claude analyzes the same schematic
+3. System compares Claude vs your labels
+4. Shows precision/recall metrics
+5. Uses YOUR labels as training data
+
+[bold]Mode 2: Correction-Based[/bold]
+1. Claude analyzes your schematic first
+2. You correct Claude's mistakes
+3. System learns from corrections
+
+[green]Both modes create:[/green]
+✓ High-quality training dataset
+✓ Fine-tuning examples
+✓ Knowledge base for your schematics
 """
         self.console.print(banner)
 

@@ -15,11 +15,21 @@ The original TRACE system where YOU learn to read crane schematics:
 
 ### 2. **Agent Training** (Claude learns from YOU) 🆕
 NEW system where CLAUDE learns to read YOUR schematics:
-- Claude analyzes your schematics with Vision AI
+
+**Two Training Modes:**
+
+**A) Ground Truth Labeling** ⭐ (Recommended)
+- YOU label everything comprehensively first
+- Claude analyzes same schematic
+- Compare Claude vs your labels
+- **Use**: `python3 scripts/train_agent_with_ground_truth.py --section 61`
+- **Guide**: [GROUND_TRUTH_TRAINING.md](GROUND_TRUTH_TRAINING.md)
+
+**B) Correction-Based**
+- Claude analyzes first
 - You correct Claude's mistakes
-- System builds training dataset
 - **Use**: `python3 scripts/train_agent.py --section 61`
-- **Guide**: See [AGENT_TRAINING_GUIDE.md](AGENT_TRAINING_GUIDE.md)
+- **Guide**: [AGENT_TRAINING_GUIDE.md](AGENT_TRAINING_GUIDE.md)
 
 **Most users will want the Agent Training system** to teach Claude about their specific crane schematics.
 
