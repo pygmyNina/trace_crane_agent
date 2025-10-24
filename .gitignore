@@ -7,9 +7,21 @@ env/
 venv/
 ENV/
 .venv
-*.pdf
-.env
 *.db
 *.sqlite
 .DS_Store
 *.log
+
+# API Keys - NEVER commit
+.env
+
+# PDF Cache - Regenerate on each computer
+.trace_cache/
+
+# Original PDFs - Too large, keep locally
+# Users should manually copy PDFs to schematics/ directory
+schematics/**/*.pdf
+
+# Keep these for syncing:
+# trace_knowledge.json - Manual training
+# schematic_registry.json - PDF indexes
