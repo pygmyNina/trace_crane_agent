@@ -146,6 +146,2673 @@
           }
         },
         "indexed_at": "2025-10-24T08:03:26.950298"
+      },
+      "61.pdf": {
+        "path": "schematics/electrical/61.pdf",
+        "total_pages": 76,
+        "loaded_at": "2025-10-24T09:41:27.248477",
+        "indexed": true,
+        "pages": {
+          "1": {
+            "references": [
+              "=B1/1.1"
+            ],
+            "components": [
+              "SIMATIC S7 PS",
+              "DI PLC",
+              "-RECP1",
+              "ADRESSBYTE ET 200S"
+            ],
+            "cabinets": [
+              "-D1",
+              "-D2",
+              "-D3",
+              "-D4",
+              "-D6",
+              "-D7"
+            ],
+            "terminals": [
+              "L1",
+              "N",
+              "PE"
+            ],
+            "wire_numbers": [
+              "/3.3-4224/R-485",
+              "/3.3-4224/R-484",
+              "/3.3-4224/R-483"
+            ],
+            "connections": [
+              "Power supply connections to -RECP1",
+              "Digital input 16x120V AC to base modules"
+            ],
+            "summary": "This schematic shows a PLC system configuration with a SIMATIC S7 power supply, ET200S addressing module, and digital input modules. The page includes power distribution and communication wiring for a container crane control system.",
+            "page_number": 1,
+            "indexed_with": "claude-vision"
+          },
+          "2": {
+            "references": [
+              "=10/1.7",
+              "=57.2",
+              "=57.4",
+              "=75.2"
+            ],
+            "components": [
+              "Operation PLC",
+              "Monitoring PLC",
+              "Plug 1",
+              "Plug 2"
+            ],
+            "cabinets": [],
+            "terminals": [
+              "A",
+              "B"
+            ],
+            "wire_numbers": [
+              "L2-0102-L12",
+              "L2-0105",
+              "L20-0126-412",
+              "L20-0106",
+              "L2-040W1"
+            ],
+            "connections": [
+              "Plug 1 to Operation PLC",
+              "Plug 1 to Monitoring PLC",
+              "Plug 2 to spreading cable reel"
+            ],
+            "summary": "This schematic shows PLC connections for a container crane control system, including operation PLC, monitoring PLC, and spreading cable reel terminations. The drawing is from NOELL PLC/CMS system for Maersk Pacific USA.",
+            "page_number": 2,
+            "indexed_with": "claude-vision"
+          },
+          "3": {
+            "references": [
+              "=63/14",
+              "=63/24",
+              "=63/37"
+            ],
+            "components": [
+              "SIGMA Computer",
+              "RECP11",
+              "UPS1",
+              "PRINTER",
+              "PROFIBUS DP-SH",
+              "ETHERNET S Com-PROFIL",
+              "ETHERNET S Com-PROFIL"
+            ],
+            "cabinets": [
+              "-A1",
+              "-A1-X1"
+            ],
+            "terminals": [
+              "X11"
+            ],
+            "wire_numbers": [
+              "W2105",
+              "3x14 AWG",
+              "12/175.4",
+              "12/175.5",
+              "MPL/12"
+            ],
+            "connections": [
+              "RECP11 to UPS1",
+              "UPS1 to Computer via PROFIBUS",
+              "Computer to ETHERNET modules via RJ45",
+              "PRINTER to Computer"
+            ],
+            "summary": "This is a PLC/CMS circuit diagram for a Maersk Pacific USA container crane in Los Angeles, showing the connections between a SIGMA computer system, UPS, printer, and communication modules including PROFIBUS and Ethernet components.",
+            "page_number": 3,
+            "indexed_with": "claude-vision"
+          },
+          "4": {
+            "references": [],
+            "components": [
+              "W2117 3x12 AWG",
+              "PB11"
+            ],
+            "cabinets": [],
+            "terminals": [
+              "RD",
+              "BK",
+              "XT11"
+            ],
+            "wire_numbers": [
+              "black"
+            ],
+            "connections": [
+              "120V 60Hz power supply connection",
+              "W2117 to PB11",
+              "PB11 connection through RD and XT11"
+            ],
+            "summary": "This is a circuit diagram showing a portion of a container crane PLC/CMS control system for Maersk Pacific USA in Los Angeles, CA. The page details a basic electrical connection including a wire harness W2117 and pushbutton PB11 with associated terminal connections.",
+            "page_number": 4,
+            "indexed_with": "claude-vision"
+          },
+          "5": {
+            "references": [
+              "=10/70.1.5",
+              "=10/70.1.4",
+              "=17/23.1.5",
+              "=17/23.1.4",
+              "=17/23.1.3",
+              "=17/23.1.2",
+              "=17/70.6.8"
+            ],
+            "components": [
+              "-W12P1",
+              "-W12P2",
+              "-XT1"
+            ],
+            "cabinets": [
+              "E.10",
+              "E.11",
+              "E.12",
+              "E.13",
+              "E.14",
+              "E.15",
+              "E.16",
+              "E.17"
+            ],
+            "terminals": [
+              "27",
+              "28",
+              "29",
+              "30",
+              "31",
+              "32",
+              "33",
+              "34",
+              "37",
+              "40",
+              "41",
+              "42",
+              "43",
+              "44",
+              "45",
+              "46"
+            ],
+            "wire_numbers": [
+              "3x14 AWG",
+              "-W12P1",
+              "-W12P2"
+            ],
+            "connections": [
+              "UPS1 120V 60Hz bus connections across multiple cabinets",
+              "Bus 2 connections through phase monitoring and supply sections"
+            ],
+            "summary": "This is a power distribution schematic for a container crane showing UPS and bus connections across multiple cabinets including phase monitoring, 480V supply, 24V supply, and 480V supply sections for trolley cabin and electrical room components.",
+            "page_number": 5,
+            "indexed_with": "claude-vision"
+          },
+          "6": {
+            "references": [
+              "=12/611",
+              "=12/612",
+              "=12/613",
+              "=12/614",
+              "=12/615",
+              "=12/616",
+              "=12/617"
+            ],
+            "components": [
+              "PB10 green",
+              "PB11 red",
+              "PB12 black",
+              "SS13 key switch",
+              "SS14 key switch",
+              "PB10 green"
+            ],
+            "cabinets": [],
+            "terminals": [
+              "X1",
+              "X2",
+              "13",
+              "14",
+              "21",
+              "22"
+            ],
+            "wire_numbers": [
+              "W14029 12x14 AWG TC1",
+              "BU",
+              "RD",
+              "BK",
+              "OG",
+              "YE",
+              "BN",
+              "GN"
+            ],
+            "connections": [
+              "PB10 to PB11",
+              "PB11 to PB12",
+              "PB12 to SS13",
+              "SS13 to SS14",
+              "SS14 to PB10"
+            ],
+            "summary": "24V DC control circuit schematic for container crane showing pushbuttons and key switches for control on/off, reset, bypass anti-collision, and reset emergency stop functions.",
+            "page_number": 6,
+            "indexed_with": "claude-vision"
+          },
+          "7": {
+            "references": [
+              "/15.1"
+            ],
+            "components": [
+              "IM151",
+              "ET 200S",
+              "W7003 PROFIBUS",
+              "Digital Input 4x24V (4 modules)",
+              "Power Module"
+            ],
+            "cabinets": [
+              "E11-GB-B",
+              "E11-GA-B"
+            ],
+            "terminals": [
+              "24V",
+              "H",
+              "AUX1"
+            ],
+            "wire_numbers": [
+              "I36.0",
+              "I36.1",
+              "I36.2",
+              "I36.3",
+              "I36.4",
+              "I36.5",
+              "I36.6",
+              "I36.7",
+              "I40.0",
+              "I40.1",
+              "I40.2",
+              "I40.3",
+              "I41.0",
+              "I41.1",
+              "I41.2",
+              "I41.3"
+            ],
+            "connections": [
+              "PROFIBUS termination to address bytes 36-41",
+              "Power Module to Digital Input modules"
+            ],
+            "summary": "This is a PLC/CMS circuit diagram for a Container Crane at Maersk Pacific USA, showing PROFIBUS connections to ET200S digital input modules with addressing and power distribution.",
+            "page_number": 7,
+            "indexed_with": "claude-vision"
+          },
+          "8": {
+            "references": [],
+            "components": [
+              "ADRESSBYTE 41",
+              "ADRESSBYTE 42",
+              "ADRESSBYTE 43",
+              "ADRESSBYTE 44",
+              "ADRESSBYTE 45",
+              "ADRESSBYTE 46",
+              "DI1.5",
+              "DI1.6",
+              "DI1.7",
+              "DI1.8",
+              "DI1.9",
+              "DI1.10",
+              "DI1.11",
+              "DI1.12"
+            ],
+            "cabinets": [],
+            "terminals": [],
+            "wire_numbers": [],
+            "connections": [],
+            "summary": "This appears to be a PLC/CMS digital input wiring diagram for a Maersk Pacific USA container crane in Los Angeles, CA. It shows 8 digital input modules (4x24V) with their corresponding address bytes and DI channel assignments from DI1.5 through DI1.12.",
+            "page_number": 8,
+            "indexed_with": "claude-vision"
+          },
+          "9": {
+            "references": [
+              "-DI1.13",
+              "-DI1.14",
+              "-DI1.15",
+              "-DI1.16",
+              "-DI1.17",
+              "-DI1.18",
+              "-DI1.19",
+              "-DI1.20"
+            ],
+            "components": [
+              "ADRESSBYTE 46",
+              "ADRESSBYTE 48",
+              "ADRESSBYTE 48",
+              "ADRESSBYTE 49",
+              "ADRESSBYTE 50",
+              "ADRESSBYTE 50",
+              "ADRESSBYTE 56",
+              "ADRESSBYTE 56"
+            ],
+            "cabinets": [],
+            "terminals": [],
+            "wire_numbers": [
+              "D0/24V",
+              "D1/24V",
+              "D2/24V",
+              "D3/24V"
+            ],
+            "connections": [],
+            "summary": "This is a PLC/CMS circuit diagram for a Maersk Pacific USA Container Crane in Los Angeles, CA. It shows digital input configurations (4x24V) with multiple address bytes and their corresponding signal assignments.",
+            "page_number": 9,
+            "indexed_with": "claude-vision"
+          },
+          "10": {
+            "references": [],
+            "components": [
+              "ADRESSBYTE 57",
+              "ADRESSBYTE 58",
+              "ADRESSBYTE 59",
+              "ADRESSBYTE 60",
+              "-DI1.21",
+              "-DI1.22",
+              "-DI1.23",
+              "-DI1.24",
+              "-DI1.25",
+              "-DI1.26",
+              "-DI1.27",
+              "-DI1.28"
+            ],
+            "cabinets": [],
+            "terminals": [],
+            "wire_numbers": [
+              "D0/24V",
+              "D1/24V",
+              "D2/24V",
+              "D3/24V"
+            ],
+            "connections": [
+              "Digital Input 4x24V to ADRESSBYTE modules",
+              "Multiple D0-D3 24V connections to each ADRESSBYTE"
+            ],
+            "summary": "This is an electrical schematic page for a Maersk Pacific USA container crane PLC/CMS system in Los Angeles, CA. It shows 8 ADRESSBYTE modules (57-60) with digital input connections, each handling 4 channels of 24V signals.",
+            "page_number": 10,
+            "indexed_with": "claude-vision"
+          },
+          "11": {
+            "references": [],
+            "components": [],
+            "cabinets": [
+              "DI1.29",
+              "DI1.30",
+              "DI1.31",
+              "DI1.32",
+              "DI1.33",
+              "DI1.34",
+              "DI1.35",
+              "DI1.36"
+            ],
+            "terminals": [],
+            "wire_numbers": [],
+            "connections": [],
+            "summary": "This is an I/O addressing sheet for a Maersk Pacific USA container crane PLC/CMS system in Los Angeles, CA. It shows 8 address byte groups (61-66) from ET 2005, each containing 4 digital inputs configured for 24V DC signals.",
+            "page_number": 11,
+            "indexed_with": "claude-vision"
+          },
+          "12": {
+            "references": [
+              "-DI1.37",
+              "-DI1.38",
+              "-DI1.39",
+              "-DI1.40",
+              "-AI1.1",
+              "-AI1.2",
+              "-AI1.3"
+            ],
+            "components": [
+              "ADRESSBYTE 67",
+              "ADRESSBYTE 68",
+              "ADRESSBYTE 70",
+              "ADRESSBYTE 79",
+              "ADRESSBYTE 548",
+              "ADRESSBYTE 552",
+              "ADRESSBYTE 556"
+            ],
+            "cabinets": [],
+            "terminals": [],
+            "wire_numbers": [],
+            "connections": [
+              "Digital Input 4x24V to -DI1.37",
+              "Digital Input 4x24V to -DI1.38",
+              "Digital Input 4x24V to -DI1.39",
+              "Digital Input 4x24V to -DI1.40",
+              "Analog Input RTD 2xPT100 to -AI1.1",
+              "Analog Input RTD 2xPT100 to -AI1.2",
+              "Analog Input RTD 2xPT100 to -AI1.3"
+            ],
+            "summary": "This schematic page shows digital and analog input configurations for a container crane PLC/CMS system, with address byte mappings for both 4x24V digital inputs and 2xPT100 RTD analog inputs.",
+            "page_number": 12,
+            "indexed_with": "claude-vision"
+          },
+          "13": {
+            "references": [
+              "=27/2.2"
+            ],
+            "components": [
+              "Power Module",
+              "Digital Output 4x24V",
+              "Digital Output 4x24V",
+              "ET 200S",
+              "IM151",
+              "-W7004 PROFIBUS",
+              "-DI0.1",
+              "-DI2.1",
+              "-DI2.2"
+            ],
+            "cabinets": [],
+            "terminals": [
+              "Q 36.0",
+              "Q 36.1",
+              "Q 36.2",
+              "Q 36.3",
+              "Q 36.4",
+              "Q 36.5",
+              "Q 36.6",
+              "Q 36.7"
+            ],
+            "wire_numbers": [
+              "DO0/M",
+              "DO1/M",
+              "DO2/M",
+              "DO3/M"
+            ],
+            "connections": [
+              "PROFIBUS connection to termination off node 23",
+              "ET 200S modules connected in sequence"
+            ],
+            "summary": "This page shows a PROFIBUS network connection to an ET 200S distributed I/O system with IM151 interface module and digital output modules. The system operates on 24V DC power.",
+            "page_number": 13,
+            "indexed_with": "claude-vision"
+          },
+          "14": {
+            "references": [],
+            "components": [
+              "ADRESSBYTE 40",
+              "ADRESSBYTE 41",
+              "ADRESSBYTE 42",
+              "ADRESSBYTE 44",
+              "ADRESSBYTE 45",
+              "ADRESSBYTE 46",
+              "ADRESSBYTE 48",
+              "Digital Output 4x24V"
+            ],
+            "cabinets": [
+              "ET 2005"
+            ],
+            "terminals": [],
+            "wire_numbers": [
+              "D40.0",
+              "D40.1",
+              "D40.2",
+              "D40.3",
+              "D41.0",
+              "D41.1",
+              "D41.2",
+              "D41.3",
+              "D42.0",
+              "D42.1",
+              "D42.2",
+              "D42.3",
+              "D44.0",
+              "D44.1",
+              "D44.2",
+              "D44.3",
+              "D45.0",
+              "D45.1",
+              "D45.2",
+              "D45.3",
+              "D46.0",
+              "D46.1",
+              "D46.2",
+              "D46.3",
+              "D48.0",
+              "D48.1",
+              "D48.2",
+              "D48.3"
+            ],
+            "connections": [],
+            "summary": "This is a PLC/CMS circuit diagram for a Maersk Pacific USA container crane in Los Angeles, CA. It shows the digital output addressing scheme with 8 address bytes (40-48) and their corresponding 4x24V digital outputs.",
+            "page_number": 14,
+            "indexed_with": "claude-vision"
+          },
+          "15": {
+            "references": [],
+            "components": [
+              "Digital Output 4x24V (8 instances)",
+              "EM 1558 Module",
+              "PLC/CMS"
+            ],
+            "cabinets": [],
+            "terminals": [],
+            "wire_numbers": [],
+            "connections": [
+              "ADRESSBYTE 56 to ET 2005",
+              "ADRESSBYTE 57 to ET 2005",
+              "ADRESSBYTE 58 to ET 2005",
+              "ADRESSBYTE 59 to ET 2005",
+              "ADRESSBYTE 520 to ProfiSus"
+            ],
+            "summary": "This is a PLC/CMS circuit diagram for a Maersk Pacific USA container crane in Los Angeles, CA. It shows the layout of multiple digital output modules (4x24V) with their corresponding address bytes and ET 2005 connections.",
+            "page_number": 15,
+            "indexed_with": "claude-vision"
+          },
+          "16": {
+            "references": [
+              "=23/17.1"
+            ],
+            "components": [
+              "IH151",
+              "ET 200S",
+              "ADRESSBYTE 400",
+              "ADRESSBYTE 401",
+              "ADRESSBYTE 404",
+              "ADRESSBYTE 444",
+              "W1911",
+              "IP54x2 AWG PROFIBUS"
+            ],
+            "cabinets": [],
+            "terminals": [],
+            "wire_numbers": [
+              "E11-GB-Br",
+              "E11-GA-Br",
+              "E11-GB-Br",
+              "E11-GA-Br"
+            ],
+            "connections": [
+              "PROFIBUS to termination connector 60",
+              "Digital inputs connected to ADRESSBYTE modules"
+            ],
+            "summary": "This page shows a PLC/CMS monitoring system schematic for a container crane, featuring PROFIBUS communications, multiple ADRESSBYTE modules, and digital input configurations for 24V signals. The drawing is from Maersk Pacific USA in Los Angeles.",
+            "page_number": 16,
+            "indexed_with": "claude-vision"
+          },
+          "17": {
+            "references": [],
+            "components": [
+              "ADRESSBYTE 408",
+              "ADRESSBYTE 409",
+              "ADRESSBYTE 410",
+              "ADRESSBYTE 411",
+              "ADRESSBYTE 760"
+            ],
+            "cabinets": [
+              "ET 2005"
+            ],
+            "terminals": [
+              "DI0/24V",
+              "DI1/24V",
+              "DI2/24V",
+              "DI3/24V",
+              "AUX1"
+            ],
+            "wire_numbers": [],
+            "connections": [
+              "Digital input 4x24V to multiple ADRESSBYTE units",
+              "Analog Input 2x\u00b110V to ADRESSBYTE 760"
+            ],
+            "summary": "This is a PLC/CMS circuit diagram for a Maersk Pacific USA Container Crane in Los Angeles, CA, showing digital and analog input connections to multiple ADRESSBYTE modules. The schematic includes monitoring PLC connections with various 24V digital inputs and one analog input section.",
+            "page_number": 17,
+            "indexed_with": "claude-vision"
+          },
+          "18": {
+            "references": [],
+            "components": [
+              "Power Module -DX112",
+              "Digital Output -D112.1",
+              "Digital Output -D112.2",
+              "Digital Output -D112.3",
+              "Digital Output -D112.4",
+              "Digital Output -D112.5",
+              "Digital Output -D112.6",
+              "Digital Output -D112.7",
+              "Digital Output -D112.8"
+            ],
+            "cabinets": [
+              "ET 2005"
+            ],
+            "terminals": [],
+            "wire_numbers": [
+              "Q 400.1",
+              "Q 400.2",
+              "Q 400.3",
+              "Q 402.1",
+              "Q 402.2",
+              "Q 402.3",
+              "Q 404.1",
+              "Q 404.2",
+              "Q 404.3",
+              "Q 406.1",
+              "Q 406.2",
+              "Q 406.3",
+              "Q 408.1",
+              "Q 408.2",
+              "Q 408.3",
+              "Q 410.1",
+              "Q 410.2",
+              "Q 410.3",
+              "Q 412.1",
+              "Q 412.2",
+              "Q 412.3",
+              "Q 414.1",
+              "Q 414.2",
+              "Q 414.3"
+            ],
+            "connections": [],
+            "summary": "This is a monitoring PLC schematic for a Container Crane showing a power module and 8 digital output modules (4x24V) with their corresponding address bytes and wire numbers. The drawing is for Maersk Pacific USA in Los Angeles, CA.",
+            "page_number": 18,
+            "indexed_with": "claude-vision"
+          },
+          "19": {
+            "references": [],
+            "components": [
+              "ADRESSBYTE 68",
+              "ADRESSBYTE 68",
+              "ADRESSBYTE 69",
+              "ADRESSBYTE 72",
+              "Power Module",
+              "Digital Input 4x24V"
+            ],
+            "cabinets": [],
+            "terminals": [
+              "X12",
+              "Pack",
+              "Slot",
+              "24V",
+              "M",
+              "AUX1"
+            ],
+            "wire_numbers": [
+              "W7002",
+              "E12-GR-BP-/25.1",
+              "E12-GE-BP-/25.1",
+              "E12-GF-BP-/25.1",
+              "E12-GG-BP-/25.1",
+              "E12-GA-BP-/25.1"
+            ],
+            "connections": [
+              "W7002 1Px22 AWG to termination off",
+              "X12 to multiple E12-xx-BP connections"
+            ],
+            "summary": "This page shows a PLC/CMS circuit diagram for a container crane system, featuring digital input modules, address bytes, and power module connections. The drawing is from Maersk Pacific USA and includes 24V DC power distribution and termination details.",
+            "page_number": 19,
+            "indexed_with": "claude-vision"
+          },
+          "20": {
+            "references": [],
+            "components": [
+              "ADRESSBYTE 72 ET 2005",
+              "ADRESSBYTE 73 ET 2005",
+              "ADRESSBYTE 74 ET 2005",
+              "ADRESSBYTE 75 ET 2005",
+              "ADRESSBYTE 76 ET 2005",
+              "ADRESSBYTE 77 ET 2005",
+              "ADRESSBYTE 78 ET 2005",
+              "ADRESSBYTE 79 ET 2005"
+            ],
+            "cabinets": [],
+            "terminals": [],
+            "wire_numbers": [],
+            "connections": [
+              "Digital Input 4x24V to DI21.5",
+              "Digital Input 4x24V to DI21.6",
+              "Digital Input 4x24V to DI21.7",
+              "Digital Input 4x24V to DI21.8",
+              "Digital Input 4x24V to DI21.9",
+              "Digital Input 4x24V to DI21.10",
+              "Digital Input 4x24V to DI21.11",
+              "Digital Input 4x24V to DI21.12"
+            ],
+            "summary": "This is a PLC/CMS circuit diagram for a Maersk Pacific USA Container Crane in Los Angeles, CA. It shows 8 digital input modules (4x24V) with their corresponding address bytes and connection points to DI21.5 through DI21.12.",
+            "page_number": 20,
+            "indexed_with": "claude-vision"
+          },
+          "21": {
+            "references": [
+              "=DZI.13",
+              "=DZI.14",
+              "=DZI.15",
+              "=DZI.16",
+              "=DZI.17",
+              "=DZI.18",
+              "=DZI.19",
+              "=DZI.20"
+            ],
+            "components": [
+              "ADRESSBYTE 76",
+              "ADRESSBYTE 77",
+              "ADRESSBYTE 77",
+              "ADRESSBYTE 78",
+              "ADRESSBYTE 78",
+              "ADRESSBYTE 84",
+              "ADRESSBYTE 84",
+              "ADRESSBYTE 84"
+            ],
+            "cabinets": [],
+            "terminals": [],
+            "wire_numbers": [],
+            "connections": [],
+            "summary": "This appears to be a PLC/CMS circuit diagram for a Maersk Pacific USA Container Crane in Los Angeles, CA. The page shows digital input addresses (4x24V) with multiple address bytes and their corresponding reference designations.",
+            "page_number": 21,
+            "indexed_with": "claude-vision"
+          },
+          "22": {
+            "references": [],
+            "components": [
+              "ADRESSBYTE 85",
+              "ADRESSBYTE 88",
+              "ADRESSBYTE 88",
+              "ADRESSBYTE 89",
+              "ADRESSBYTE 89",
+              "ADRESSBYTE 90"
+            ],
+            "cabinets": [],
+            "terminals": [],
+            "wire_numbers": [
+              "D0/24V",
+              "D1/24V",
+              "D2/24V",
+              "D3/24V"
+            ],
+            "connections": [],
+            "summary": "This is a PLC/CMS circuit diagram for a Maersk Pacific USA Container Crane in Los Angeles, CA. It shows digital input configurations for 4x24V signals across multiple address bytes (85-90) dated ET 2005.",
+            "page_number": 22,
+            "indexed_with": "claude-vision"
+          },
+          "23": {
+            "references": [],
+            "components": [],
+            "cabinets": [],
+            "terminals": [],
+            "wire_numbers": [],
+            "connections": [],
+            "summary": "This appears to be a blank electrical schematic template page for a container crane at Maersk Pacific USA in Los Angeles, CA. The page is labeled as 'spare' and contains no electrical components or connections. Drawing number 786905700-61, sheet 22.",
+            "page_number": 23,
+            "indexed_with": "claude-vision"
+          },
+          "24": {
+            "references": [],
+            "components": [
+              "Power Module",
+              "Digital Output 4x24V (Multiple instances labeled -D22.1 through -D22.8)",
+              "ADRESSBYTE 68 through ADRESSBYTE 74"
+            ],
+            "cabinets": [
+              "ET 2005"
+            ],
+            "terminals": [],
+            "wire_numbers": [
+              "D 68.0",
+              "D 68.1",
+              "D 68.2",
+              "D 68.3",
+              "D 69.0",
+              "D 69.1",
+              "D 69.2",
+              "D 69.3",
+              "D 70.0",
+              "D 70.1",
+              "D 70.2",
+              "D 70.3",
+              "D 71.0",
+              "D 71.1",
+              "D 71.2",
+              "D 71.3",
+              "D 72.0",
+              "D 72.1",
+              "D 72.2",
+              "D 72.3",
+              "D 73.0",
+              "D 73.1",
+              "D 73.2",
+              "D 73.3",
+              "D 74.0",
+              "D 74.1",
+              "D 74.2",
+              "D 74.3"
+            ],
+            "connections": [
+              "Power Module to Digital Output modules via address bytes"
+            ],
+            "summary": "This schematic shows a PLC/CMS system for a container crane with a power module connected to 8 digital output modules (4x24V). Each digital output module has associated address bytes and connection points. The system appears to be part of Maersk Pacific USA's equipment in Los Angeles, CA.",
+            "page_number": 24,
+            "indexed_with": "claude-vision"
+          },
+          "25": {
+            "references": [],
+            "components": [
+              "ADRESSBYTE 80",
+              "ADRESSBYTE 88",
+              "ADRESSBYTE 88"
+            ],
+            "cabinets": [],
+            "terminals": [
+              "D80.0",
+              "D80.1",
+              "D80.2",
+              "D80.3",
+              "D88.0",
+              "D88.1",
+              "D88.2",
+              "D88.3",
+              "D88.4",
+              "D88.5",
+              "D88.6",
+              "D88.7"
+            ],
+            "wire_numbers": [],
+            "connections": [
+              "Digital Output 4x24V (3 instances)"
+            ],
+            "summary": "This appears to be a PLC/CMS circuit diagram for a Maersk Pacific USA container crane in Los Angeles, CA. It shows three identical digital output sections with address bytes and associated data points, each configured for 24V output.",
+            "page_number": 25,
+            "indexed_with": "claude-vision"
+          },
+          "26": {
+            "references": [
+              "=15/46.5",
+              "=26.1",
+              "=46.41",
+              "=46.62",
+              "=46.63",
+              "=46.64",
+              "=46.65",
+              "=46.66",
+              "=46.67",
+              "=46.68"
+            ],
+            "components": [
+              "IK151",
+              "ET 2005",
+              "ADRESSBYTE 412",
+              "ADRESSBYTE 413",
+              "Power Module",
+              "Digital Input 4x24V"
+            ],
+            "cabinets": [],
+            "terminals": [],
+            "wire_numbers": [
+              "E72-GB-Br-XR12",
+              "E72-GH-Br",
+              "E72-EF-Br",
+              "E72-GF-Br",
+              "E72-GA-Br",
+              "E72-GA-Br"
+            ],
+            "connections": [
+              "IK151 to ET 2005",
+              "8 AWG HTW to termination block 61",
+              "Digital inputs connected to Power Module"
+            ],
+            "summary": "This is a monitoring PLC schematic for a container crane showing power module connections, digital inputs, and address byte configurations. The drawing is from Maersk Pacific USA and shows circuit details for PLC/CMS system.",
+            "page_number": 26,
+            "indexed_with": "claude-vision"
+          },
+          "27": {
+            "references": [],
+            "components": [
+              "Power Module -DX122",
+              "Digital Output -D122.1",
+              "Digital Output -D122.2",
+              "ADRESSBYTE 412",
+              "ADRESSBYTE 414"
+            ],
+            "cabinets": [
+              "ET 2005"
+            ],
+            "terminals": [],
+            "wire_numbers": [
+              "Q 422.0",
+              "Q 422.1",
+              "Q 422.2",
+              "Q 422.3",
+              "Q 424.0",
+              "Q 424.1",
+              "Q 424.2",
+              "Q 424.3"
+            ],
+            "connections": [
+              "Power Module to Digital Output modules",
+              "Digital Output 4x24V modules (2 instances)"
+            ],
+            "summary": "PLC/CMS monitoring schematic showing power module and digital output configuration for a container crane system. Includes address byte assignments and digital output channel wiring for ET 2005 module.",
+            "page_number": 27,
+            "indexed_with": "claude-vision"
+          },
+          "28": {
+            "references": [
+              "=12/3.0.0-D30.F13",
+              "=12/3.0.2-D31.2/33.2"
+            ],
+            "components": [
+              "Power Module ET 2005",
+              "Digital Input 4x24V ET 2005",
+              "VT2005 IPPR27 AMG PROFIBUS",
+              "ADDRESSBYTE 4",
+              "ADDRESSBYTE 5"
+            ],
+            "cabinets": [],
+            "terminals": [
+              "24V",
+              "M",
+              "AUX1"
+            ],
+            "wire_numbers": [
+              "E11-GA",
+              "E11-GA",
+              "E11-GA"
+            ],
+            "connections": [
+              "VT2005 to Power Module ET 2005",
+              "Power Module to Digital Input modules"
+            ],
+            "summary": "This page shows a 24V DC control schematic for a PLC/CMS system, featuring a VT2005 PROFIBUS module connected to a power module and multiple digital input modules (ET 2005) with address bytes configuration.",
+            "page_number": 28,
+            "indexed_with": "claude-vision"
+          },
+          "29": {
+            "references": [],
+            "components": [
+              "ADRESSBYTE 6",
+              "ADRESSBYTE 7",
+              "ADRESSBYTE 8",
+              "ADRESSBYTE 9"
+            ],
+            "cabinets": [],
+            "terminals": [
+              "DD2/24V",
+              "DD1/24V",
+              "AUX1"
+            ],
+            "wire_numbers": [
+              "-D31.5",
+              "-D31.6",
+              "-D31.7",
+              "-D31.8",
+              "-D31.9",
+              "-D31.10",
+              "-D31.11",
+              "-D31.12"
+            ],
+            "connections": [
+              "Digital Input 4x24V connections for each ADRESSBYTE"
+            ],
+            "summary": "This is a PLC/CMS circuit diagram for a Maersk Pacific USA Container Crane showing digital input connections for multiple ADRESSBYTE modules (6-9). Each module has 24V digital input connections and auxiliary connections labeled ET 2005.",
+            "page_number": 29,
+            "indexed_with": "claude-vision"
+          },
+          "30": {
+            "references": [
+              "=D31.13",
+              "=D31.14",
+              "=D31.15",
+              "=D31.16",
+              "=D31.17",
+              "=D31.18",
+              "=D31.19",
+              "=D31.20"
+            ],
+            "components": [],
+            "cabinets": [
+              "ET 2005"
+            ],
+            "terminals": [
+              "I 10.0",
+              "I 10.1",
+              "I 10.2",
+              "I 10.3",
+              "I 10.4",
+              "I 10.5",
+              "I 10.6",
+              "I 10.7",
+              "I 11.0",
+              "I 11.1",
+              "I 11.2",
+              "I 11.3",
+              "I 11.4",
+              "I 11.5",
+              "I 11.6",
+              "I 11.7",
+              "I 12.0",
+              "I 12.1",
+              "I 12.2",
+              "I 12.3",
+              "I 12.4",
+              "I 12.5",
+              "I 12.6",
+              "I 12.7",
+              "I 13.0",
+              "I 13.1",
+              "I 13.2",
+              "I 13.3",
+              "I 13.4",
+              "I 13.5",
+              "I 13.6",
+              "I 13.7"
+            ],
+            "wire_numbers": [],
+            "connections": [],
+            "summary": "This is a PLC/CMS circuit diagram for a Maersk Pacific USA Container Crane showing digital input connections (4x24V) with address bytes 10-13. The diagram appears to be mapping I/O addressing for a control system.",
+            "page_number": 30,
+            "indexed_with": "claude-vision"
+          },
+          "31": {
+            "references": [],
+            "components": [
+              "ADRESSBYTE 14 ET 2005",
+              "ADRESSBYTE 14 ET 2005",
+              "ADRESSBYTE 15 ET 2005",
+              "ADRESSBYTE 15 ET 2005",
+              "ADRESSBYTE 516 ET 2005"
+            ],
+            "cabinets": [],
+            "terminals": [],
+            "wire_numbers": [
+              "D31.21",
+              "D31.22",
+              "D31.23",
+              "D31.24",
+              "A31.1"
+            ],
+            "connections": [],
+            "summary": "This is a PLC/CMS circuit diagram for a Maersk Pacific USA container crane in Los Angeles, CA. It shows the digital and analog input configuration for multiple address bytes, with digital inputs at 4x24V and analog input at 2x4-20mA.",
+            "page_number": 31,
+            "indexed_with": "claude-vision"
+          },
+          "32": {
+            "references": [
+              "+11/44.1"
+            ],
+            "components": [
+              "Power Module",
+              "Digital Output 4x24V"
+            ],
+            "cabinets": [
+              "ET 2005"
+            ],
+            "terminals": [],
+            "wire_numbers": [
+              "D01/M AUX1",
+              "D02/M",
+              "D03/M AUX1"
+            ],
+            "connections": [
+              "Power Module to Digital Output modules via address bytes",
+              "-D32.1 to -D32.4 connections"
+            ],
+            "summary": "This page shows a PLC/CMS schematic for a Maersk Pacific USA container crane in Los Angeles, CA. It depicts power module connections to multiple 4x24V digital output modules with address byte configurations and auxiliary connections.",
+            "page_number": 32,
+            "indexed_with": "claude-vision"
+          },
+          "33": {
+            "references": [
+              "=10/101.8",
+              "=10/101.8"
+            ],
+            "components": [
+              "DP17",
+              "PTM1",
+              "25"
+            ],
+            "cabinets": [],
+            "terminals": [],
+            "wire_numbers": [
+              "-W7008",
+              "1PR4x22 AWG PROFIBUS"
+            ],
+            "connections": [
+              "PTM1 (24V) to DP17",
+              "DP17 to Profibus network",
+              "Termination connection to Profibus"
+            ],
+            "summary": "This schematic shows a Profibus network termination circuit with a 24V PTM1 component connected to DP17, which connects to the Profibus network. The drawing is from a Maersk Pacific USA container crane PLC/CMS system.",
+            "page_number": 33,
+            "indexed_with": "claude-vision"
+          },
+          "34": {
+            "references": [
+              "=11/29.3",
+              "=11/29.2",
+              "=11/29.1",
+              "=11/28.3",
+              "=11/28.2",
+              "=11/28.1"
+            ],
+            "components": [
+              "Power Module",
+              "Digital Input 4x24V",
+              "ADDRESSBYTE 20 ET 2005",
+              "ADDRESSBYTE 21 ET 2005",
+              "PE-busbar",
+              "IPR+22 AWG PROFIBUS"
+            ],
+            "cabinets": [],
+            "terminals": [],
+            "wire_numbers": [
+              "-W1006"
+            ],
+            "connections": [
+              "-W1006 to termination off",
+              "Sub1-IBOX1 to 10/101.6"
+            ],
+            "summary": "This schematic page shows the power and digital input configuration for a container crane control system, including PROFIBUS communications, power module connections, and multiple 24V digital input modules with address bytes.",
+            "page_number": 34,
+            "indexed_with": "claude-vision"
+          },
+          "35": {
+            "references": [],
+            "components": [
+              "ADRESSBYTE 22",
+              "ADRESSBYTE 23",
+              "ADRESSBYTE 24",
+              "ADRESSBYTE 25"
+            ],
+            "cabinets": [
+              "DSI-13",
+              "DSI-14",
+              "DSI-17",
+              "DSI-18",
+              "DSI-19",
+              "DSI-10",
+              "DSI-11",
+              "DSI-12"
+            ],
+            "terminals": [
+              "D0/24V",
+              "D1/24V AUX1",
+              "D2/24V",
+              "D3/24V AUX1"
+            ],
+            "wire_numbers": [],
+            "connections": [],
+            "summary": "This is a PLC/CMS circuit diagram for a Maersk Pacific USA Container Crane in Los Angeles, CA. It shows digital input configurations (4x24V) with multiple address bytes and their corresponding terminal connections.",
+            "page_number": 35,
+            "indexed_with": "claude-vision"
+          },
+          "36": {
+            "references": [],
+            "components": [
+              "ADRESSBYTE 26",
+              "ADRESSBYTE 27",
+              "ADRESSBYTE 28",
+              "ADRESSBYTE 29",
+              "DSI.13",
+              "DSI.14",
+              "DSI.15",
+              "DSI.16",
+              "DSI.17",
+              "DSI.18",
+              "DSI.19",
+              "DSI.20"
+            ],
+            "cabinets": [],
+            "terminals": [],
+            "wire_numbers": [
+              "DB0/24V",
+              "DB1/24V",
+              "DB2/24V",
+              "DB3/24V"
+            ],
+            "connections": [
+              "Digital Input 4x24V to ADRESSBYTE blocks"
+            ],
+            "summary": "This is a PLC/CMS circuit diagram for a Maersk Pacific USA Container Crane in Los Angeles, CA. It shows digital input configurations with 8 ADRESSBYTE blocks (26-29) and their associated 24V connections, likely for control system addressing.",
+            "page_number": 36,
+            "indexed_with": "claude-vision"
+          },
+          "37": {
+            "references": [],
+            "components": [
+              "ADRESSBYTE 30",
+              "ADRESSBYTE 30",
+              "ADRESSBYTE 31",
+              "ADRESSBYTE 31"
+            ],
+            "cabinets": [],
+            "terminals": [
+              "D0/24V",
+              "D1/24V",
+              "D2/24V",
+              "D3/24V",
+              "D0/24V AUX1",
+              "D1/24V AUX1",
+              "D2/24V AUX1",
+              "D3/24V AUX1"
+            ],
+            "wire_numbers": [
+              "I 30.0",
+              "I 30.1",
+              "I 30.2",
+              "I 30.3",
+              "I 30.4",
+              "I 30.5",
+              "I 30.6",
+              "I 30.7",
+              "I 31.0",
+              "I 31.1",
+              "I 31.2",
+              "I 31.3",
+              "I 31.4",
+              "I 31.5",
+              "I 31.6",
+              "I 31.7"
+            ],
+            "connections": [],
+            "summary": "This is a PLC/CMS circuit diagram for a container crane at Maersk Pacific USA in Los Angeles, showing digital input configurations for 4x24V signals with address bytes 30 and 31 from ET 2005.",
+            "page_number": 37,
+            "indexed_with": "claude-vision"
+          },
+          "38": {
+            "references": [
+              "=17/58.1",
+              "=17/67.1"
+            ],
+            "components": [
+              "Power Module",
+              "Digital Output 4x24V -DS2.1",
+              "Digital Output 4x24V -DS2.2",
+              "Digital Output 4x24V -DS2.3",
+              "Digital Output 4x24V -DS2.4",
+              "Digital Output 4x24V -DS2.5",
+              "Digital Output 4x24V -DS2.6"
+            ],
+            "cabinets": [
+              "ET 2005"
+            ],
+            "terminals": [
+              "24V",
+              "M",
+              "AUX1"
+            ],
+            "wire_numbers": [
+              "Q 20.1",
+              "Q 20.2",
+              "Q 20.3",
+              "Q 20.4",
+              "Q 20.5",
+              "Q 20.6",
+              "Q 20.7",
+              "Q 21.1",
+              "Q 21.2",
+              "Q 21.3",
+              "Q 21.4",
+              "Q 21.5",
+              "Q 21.6",
+              "Q 21.7",
+              "Q 22.1",
+              "Q 22.2",
+              "Q 22.3",
+              "Q 22.4",
+              "Q 22.5",
+              "Q 22.6",
+              "Q 22.7"
+            ],
+            "connections": [
+              "Power Module to Digital Output modules via ADRESSBYTE 20-22"
+            ],
+            "summary": "This schematic shows a PLC/CMS system for a container crane, featuring a power module connected to six 4x24V digital output modules with addressing bytes 20-22. The system appears to be part of Maersk Pacific USA's equipment in Los Angeles, CA.",
+            "page_number": 38,
+            "indexed_with": "claude-vision"
+          },
+          "39": {
+            "references": [
+              "=51/4.2",
+              "=51/4.3",
+              "=51/4.4",
+              "=51/4.5"
+            ],
+            "components": [
+              "WT2020 IPR02.22 AWG PROFIBUS",
+              "Adressbyte 100 ET 2005",
+              "Adressbyte 101 ET 2005",
+              "Adressbyte 102 ET 2005",
+              "Adressbyte 103 ET 2005",
+              "Power Module",
+              "Digital Input 4x24V"
+            ],
+            "cabinets": [],
+            "terminals": [
+              "I 100.0",
+              "I 100.1",
+              "I 100.2",
+              "I 100.3",
+              "I 101.0",
+              "I 101.1",
+              "I 101.2",
+              "I 101.3",
+              "I 102.0",
+              "I 102.1",
+              "I 102.2",
+              "I 102.3",
+              "I 103.0",
+              "I 103.1",
+              "I 103.2",
+              "I 103.3"
+            ],
+            "wire_numbers": [
+              "ECT-GB-SR",
+              "ECT-GA-SR"
+            ],
+            "connections": [
+              "WT2020 to termination off (40)",
+              "ECT cables to address modules"
+            ],
+            "summary": "This schematic shows a PROFIBUS network configuration with power module, digital input modules (4x24V), and address byte modules ET2005. The page includes termination and connection details for a container crane control system.",
+            "page_number": 39,
+            "indexed_with": "claude-vision"
+          },
+          "40": {
+            "references": [],
+            "components": [
+              "ADRESSBYTE 104",
+              "ADRESSBYTE 105",
+              "ADRESSBYTE 108",
+              "ADRESSBYTE 109"
+            ],
+            "cabinets": [],
+            "terminals": [],
+            "wire_numbers": [
+              "-DB1.5",
+              "-DB1.6",
+              "-DB1.7",
+              "-DB1.8",
+              "-DB1.9",
+              "-DB1.10",
+              "-DB1.11",
+              "-DB1.12"
+            ],
+            "connections": [
+              "Digital Input 4x24V connected to address bytes"
+            ],
+            "summary": "This is a PLC/CMS circuit diagram for a Maersk Pacific USA Container Crane in Los Angeles, CA, showing digital input connections (4x24V) mapped to various address bytes dated ET 2005.",
+            "page_number": 40,
+            "indexed_with": "claude-vision"
+          },
+          "41": {
+            "references": [
+              "=31/23.1",
+              "=31/23.2",
+              "=31/23.3",
+              "=31/23.4",
+              "=31/23.8",
+              "=31/24.1",
+              "=31/24.2",
+              "=31/24.3",
+              "=31/24.4",
+              "=19/4.1",
+              "=19/4.2",
+              "=19/4.3",
+              "=19/4.4",
+              "=19/4.8",
+              "=14/9.1",
+              "=14/9.2",
+              "=14/9.3",
+              "=14/9.4",
+              "=15/5.1",
+              "=15/5.2",
+              "=15/5.3",
+              "=15/5.4"
+            ],
+            "components": [
+              "ADRESSBYTE 110",
+              "ADRESSBYTE 116",
+              "ADRESSBYTE 111",
+              "ADRESSBYTE 116",
+              "ADRESSBYTE 120"
+            ],
+            "cabinets": [
+              "ET 2005"
+            ],
+            "terminals": [],
+            "wire_numbers": [
+              "DB1.13",
+              "DB1.14",
+              "DB1.15",
+              "DB1.16",
+              "DB1.17",
+              "DB1.18",
+              "DB1.19",
+              "DB1.20"
+            ],
+            "connections": [
+              "Digital Input 4x24V connections across all ADRESSBYTE modules"
+            ],
+            "summary": "This is a PLC/CMS circuit diagram for a Maersk Pacific USA Container Crane showing digital input configurations across multiple ADRESSBYTE modules, each operating at 24V DC.",
+            "page_number": 41,
+            "indexed_with": "claude-vision"
+          },
+          "42": {
+            "references": [],
+            "components": [
+              "ADRESSBYTE 122",
+              "ADRESSBYTE 124",
+              "ADRESSBYTE 124",
+              "ADRESSBYTE 125",
+              "ADRESSBYTE 125",
+              "ADRESSBYTE 123",
+              "ADRESSBYTE 123"
+            ],
+            "cabinets": [
+              "ET 2005"
+            ],
+            "terminals": [
+              "DB1.21",
+              "DB1.22",
+              "DB1.23",
+              "DB1.24",
+              "DB1.25",
+              "DB1.26",
+              "DB1.27"
+            ],
+            "wire_numbers": [],
+            "connections": [],
+            "summary": "This is a PLC/CMS circuit diagram for a Maersk Pacific USA Container Crane in Los Angeles, CA. It shows digital input connections (4x24V) with multiple address bytes and their corresponding terminal connections.",
+            "page_number": 42,
+            "indexed_with": "claude-vision"
+          },
+          "43": {
+            "references": [],
+            "components": [
+              "ADRESSBYTE 118",
+              "ADRESSBYTE 126",
+              "ADRESSBYTE 127"
+            ],
+            "cabinets": [
+              "ET 2005"
+            ],
+            "terminals": [
+              "DB172v",
+              "DB172v AUX1",
+              "OB172v",
+              "OB172v AUX1"
+            ],
+            "wire_numbers": [
+              "I118.0",
+              "I118.1",
+              "I118.2",
+              "I118.3",
+              "I126.0",
+              "I126.1",
+              "I126.2",
+              "I126.3",
+              "I127.0",
+              "I127.1",
+              "I127.2",
+              "I127.3"
+            ],
+            "connections": [
+              "Digital Input 4x24V to DB128",
+              "Digital Input 4x24V to DB129",
+              "Digital Input 4x24V to DB130"
+            ],
+            "summary": "This page shows the wiring diagram for digital input modules with three address bytes (118, 126, and 127) for a Maersk Pacific USA container crane PLC/CMS system. Each address byte has multiple input channels and auxiliary connections.",
+            "page_number": 43,
+            "indexed_with": "claude-vision"
+          },
+          "44": {
+            "references": [
+              "=230/63.3",
+              "=230/63.3",
+              "=230/63.3",
+              "=230/64.3",
+              "=231/63.2",
+              "=231/63.2",
+              "=231/63.2",
+              "=231/63.3"
+            ],
+            "components": [
+              "ADDRESSBYTE 528",
+              "ADDRESSBYTE 532",
+              "ADDRESSBYTE 536",
+              "ADDRESSBYTE 540",
+              "ADDRESSBYTE 544",
+              "ADDRESSBYTE 564",
+              "ADDRESSBYTE 568",
+              "ADDRESSBYTE 572",
+              "Analog Input 2x4-20mA",
+              "Analog Input RTD 2xPT100"
+            ],
+            "cabinets": [
+              "ET 2005"
+            ],
+            "terminals": [
+              "AI 528",
+              "AI 530",
+              "AI 532",
+              "AI 534",
+              "AI 536",
+              "AI 538",
+              "AI 540",
+              "AI 542",
+              "AI 544",
+              "AI 546",
+              "AI 564",
+              "AI 568",
+              "AI 570"
+            ],
+            "wire_numbers": [],
+            "connections": [
+              "-NB1.1 to -NB1.8"
+            ],
+            "summary": "This is a PLC/CMS circuit diagram for a Maersk Pacific USA Container Crane showing analog input configurations including 2x4-20mA and RTD PT100 inputs with multiple addressbytes and terminal connections.",
+            "page_number": 44,
+            "indexed_with": "claude-vision"
+          },
+          "45": {
+            "references": [
+              "=31/26.1",
+              "=31/26.8",
+              "=31/27.3",
+              "=31/27.5",
+              "=31/27.2",
+              "=17/4.2",
+              "=17/4.3",
+              "=17/4.7",
+              "=17/9.8"
+            ],
+            "components": [
+              "NBL9",
+              "NBL10",
+              "NBL11",
+              "NBL12",
+              "NBL13",
+              "NBL14",
+              "NBL15",
+              "NBL16",
+              "NBL17"
+            ],
+            "cabinets": [],
+            "terminals": [],
+            "wire_numbers": [],
+            "connections": [
+              "Analog Input RTD 2xPT100 to NBL9",
+              "Analog Input RTD 2xPT100 to NBL10",
+              "Analog Input RTD 2xPT100 to NBL11",
+              "Analog Input RTD 2xPT100 to NBL12",
+              "Analog Input RTD 2xPT100 to NBL13",
+              "Analog Input 2x4-20mA to NBL14",
+              "Analog Input 2x4-20mA to NBL15",
+              "Analog Input 2x10V to NBL16",
+              "Analog Input to NBL17"
+            ],
+            "summary": "This is a PLC/CMS circuit diagram for a Maersk Pacific USA Container Crane in Los Angeles, CA. It shows analog input connections including RTD temperature sensors, 4-20mA inputs, and 10V inputs connected to NBL series components.",
+            "page_number": 45,
+            "indexed_with": "claude-vision"
+          },
+          "46": {
+            "references": [],
+            "components": [
+              "ADDRESSBYTE 608 ProfiiBus",
+              "ADDRESSBYTE 608 ProfiiBus",
+              "SSI Interface",
+              "SSI Interface",
+              "-A82.1",
+              "-A82.2"
+            ],
+            "cabinets": [],
+            "terminals": [],
+            "wire_numbers": [
+              "i 608",
+              "i 608"
+            ],
+            "connections": [],
+            "summary": "This schematic page shows two identical SSI Interface channels with ADDRESSBYTE 608 ProfiiBus configurations, labeled as -A82.1 and -A82.2. The drawing is from a Maersk Pacific USA Container Crane PLC/CMS system.",
+            "page_number": 46,
+            "indexed_with": "claude-vision"
+          },
+          "47": {
+            "references": [
+              "/31.4",
+              "/31.2",
+              "/37.2",
+              "/48.1",
+              "/13/10.5"
+            ],
+            "components": [
+              "IM 151",
+              "ET 2005",
+              "Power Module",
+              "Digital Output 4x24V"
+            ],
+            "cabinets": [],
+            "terminals": [
+              "X12"
+            ],
+            "wire_numbers": [
+              "W7021",
+              "ECT-GB-Br",
+              "ECT-GB-Br",
+              "ECT-GE-Br",
+              "ECT-GE-Br",
+              "ECT-GA-Br",
+              "ECT-GA-Br"
+            ],
+            "connections": [
+              "IM 151 to ET 2005",
+              "PROFIBUS connection to termination",
+              "Power Module to Digital Output modules"
+            ],
+            "summary": "This schematic shows a PLC/CMS control system for a container crane, featuring PROFIBUS communication, power distribution, and multiple digital output modules. The page includes address byte configurations and terminal connections for a Maersk Pacific USA installation.",
+            "page_number": 47,
+            "indexed_with": "claude-vision"
+          },
+          "48": {
+            "references": [
+              "=DB2.6",
+              "=DB2.7",
+              "=DB2.8",
+              "=DB2.9",
+              "=DB2.10",
+              "=DB2.11",
+              "=DB2.12",
+              "=DB2.13"
+            ],
+            "components": [
+              "ADRESSBYTE 120",
+              "ADRESSBYTE 122",
+              "ADRESSBYTE 123",
+              "ADRESSBYTE 124"
+            ],
+            "cabinets": [],
+            "terminals": [],
+            "wire_numbers": [
+              "D120.0",
+              "D120.1",
+              "D120.2",
+              "D120.3",
+              "D122.0",
+              "D122.1",
+              "D122.2",
+              "D122.3",
+              "D123.0",
+              "D123.1",
+              "D123.2",
+              "D123.3",
+              "D124.0",
+              "D124.1",
+              "D124.2",
+              "D124.3"
+            ],
+            "connections": [
+              "Digital Output 4x24V to ADRESSBYTE blocks"
+            ],
+            "summary": "This is a PLC/CMS circuit diagram for a Maersk Pacific USA Container Crane showing digital output addressing configuration with multiple ADRESSBYTE blocks (120-124) connected to 4x24V digital outputs.",
+            "page_number": 48,
+            "indexed_with": "claude-vision"
+          },
+          "49": {
+            "references": [],
+            "components": [
+              "ADRESSBYTE 628",
+              "ADRESSBYTE 632",
+              "AD 628.1",
+              "AD 628.2",
+              "AD 632.1",
+              "AD 632.2",
+              "NB2.1",
+              "NB2.2"
+            ],
+            "cabinets": [],
+            "terminals": [],
+            "wire_numbers": [],
+            "connections": [],
+            "summary": "This schematic page shows analog output configuration for a Maersk Pacific USA container crane PLC/CMS system in Los Angeles, CA. It details two address bytes (628 and 632) with analog output voltage specifications of 2x 0-10VDC for each.",
+            "page_number": 49,
+            "indexed_with": "claude-vision"
+          },
+          "50": {
+            "references": [
+              "/5.1.5",
+              "/5.1.3",
+              "21/13.1"
+            ],
+            "components": [
+              "IM 151",
+              "ET 200S",
+              "ADRESSBYTE 424",
+              "ADRESSBYTE 425",
+              "ADRESSBYTE 428",
+              "Power Module",
+              "Digital Input 4x24V"
+            ],
+            "cabinets": [],
+            "terminals": [
+              "X1",
+              "X2"
+            ],
+            "wire_numbers": [
+              "ECT-GB-Br",
+              "ECT-GA-Br",
+              "-WIRE14 19x22AWG PROFIBUS",
+              "TEC-GEx"
+            ],
+            "connections": [
+              "ECT-GB-Br to terminal block",
+              "Profibus connection to IM 151",
+              "Power Module to Digital Input modules"
+            ],
+            "summary": "This schematic shows a PLC/CMS monitoring system for a container crane, featuring an IM 151 interface module, ET 200S system, power module and multiple 24V digital input modules with address byte configurations.",
+            "page_number": 50,
+            "indexed_with": "claude-vision"
+          },
+          "51": {
+            "references": [],
+            "components": [
+              "ADRESSBYTE 428",
+              "ADRESSBYTE 429",
+              "ADRESSBYTE 432",
+              "ADRESSBYTE 434",
+              "ADRESSBYTE 436"
+            ],
+            "cabinets": [],
+            "terminals": [
+              "DB/24V",
+              "DI/24V",
+              "AUX1"
+            ],
+            "wire_numbers": [
+              "I.428.4",
+              "I.428.5",
+              "I.428.6",
+              "I.428.7",
+              "I.429.0",
+              "I.429.1",
+              "I.429.2",
+              "I.429.3",
+              "I.432.0",
+              "I.432.1",
+              "I.432.2",
+              "I.432.3",
+              "I.434.0",
+              "I.434.1",
+              "I.434.2",
+              "I.434.3",
+              "I.436.0",
+              "I.436.1",
+              "I.436.2",
+              "I.436.3"
+            ],
+            "connections": [
+              "DIB15 to Digital Input 4x24V",
+              "DIB16 to Digital Input 4x24V",
+              "DIB17 to Digital Input 4x24V",
+              "DIB18 to Digital Input 4x24V",
+              "DIB19 to Digital Input 4x24V"
+            ],
+            "summary": "PLC/CMS monitoring schematic for container crane showing digital input modules (4x24V) with address bytes and signal connections. Drawing is for Maersk Pacific USA in Los Angeles, CA.",
+            "page_number": 51,
+            "indexed_with": "claude-vision"
+          },
+          "52": {
+            "references": [],
+            "components": [
+              "ADDRESSBYTE 768",
+              "ADDRESSBYTE 772",
+              "ADDRESSBYTE 776"
+            ],
+            "cabinets": [],
+            "terminals": [
+              "AI 768",
+              "AI 770",
+              "AI 772",
+              "AI 774",
+              "AI 776",
+              "AI 778"
+            ],
+            "wire_numbers": [],
+            "connections": [
+              "AI 768 to MS-/MS-/Hang/AUX1",
+              "AI 770 to MS-/MS-/Hang/AUX1",
+              "AI 772 to MS-/MS-/Hang/AUX1",
+              "AI 774 to MS-/MS-/Hang/AUX1",
+              "AI 776 to MS-/MS-/Hang/AUX1",
+              "AI 778 to MS-/MS-/Hang/AUX1"
+            ],
+            "summary": "This page shows the analog input configuration for a Maersk Pacific USA container crane PLC/CMS system, featuring three addressbyte modules (768, 772, 776) with analog inputs ranging from 2x4-20mA to 2x+-10V.",
+            "page_number": 52,
+            "indexed_with": "claude-vision"
+          },
+          "53": {
+            "references": [
+              "=21/12.1",
+              "=21/12.2",
+              "=21/12.3",
+              "=21/12.4",
+              "=22/12.1",
+              "=22/12.2",
+              "=22/12.3",
+              "=22/12.4",
+              "=31/12.1",
+              "=31/12.2",
+              "=31/12.3",
+              "=31/12.4",
+              "=41/12.1",
+              "=41/12.2",
+              "=41/12.3",
+              "=41/12.4"
+            ],
+            "components": [
+              "ET 200S",
+              "Power Module",
+              "Digital Output 4x24V"
+            ],
+            "cabinets": [],
+            "terminals": [],
+            "wire_numbers": [
+              "D 424.0",
+              "D 424.1",
+              "D 424.2",
+              "D 424.3",
+              "D 424.4",
+              "D 424.5",
+              "D 424.6",
+              "D 424.7",
+              "D 428.0",
+              "D 428.1",
+              "D 428.2",
+              "D 428.3",
+              "D 432.0",
+              "D 432.1",
+              "D 432.2",
+              "D 432.3"
+            ],
+            "connections": [
+              "Power Module -D182 to Digital Outputs",
+              "Digital Output modules with ADDRESSBYTE 424, 424, 428, and 432"
+            ],
+            "summary": "This is a PLC/CMS monitoring diagram for a container crane showing ET 200S power module and digital output configuration with four 4x24V digital output modules. The diagram is part of a Maersk Pacific USA system in Los Angeles, CA.",
+            "page_number": 53,
+            "indexed_with": "claude-vision"
+          },
+          "54": {
+            "references": [
+              "=62/701.5"
+            ],
+            "components": [
+              "PTM3",
+              "SA31",
+              "OP17"
+            ],
+            "cabinets": [],
+            "terminals": [],
+            "wire_numbers": [
+              "W7024"
+            ],
+            "connections": [
+              "PTM3 (24V) connects to SA31",
+              "SA31 connects to W7024 PROFIBUS",
+              "OP17 display/interface panel connected to SA31"
+            ],
+            "summary": "This schematic shows part of a PLC/CMS system for a container crane, featuring a PTM3 power supply (24V), SA31 interface module, OP17 operator panel, and PROFIBUS network connections.",
+            "page_number": 54,
+            "indexed_with": "claude-vision"
+          },
+          "55": {
+            "references": [],
+            "components": [
+              "PROFIBUS Module",
+              "Power Module -DX90",
+              "Digital Input Module -D9133",
+              "Digital Input Module -D9134",
+              "Digital Input Module -D9135",
+              "Digital Input Module -D9136",
+              "ADRESSBYTE ET 2005"
+            ],
+            "cabinets": [],
+            "terminals": [
+              "-X12",
+              "24V",
+              "N",
+              "ADR1"
+            ],
+            "wire_numbers": [
+              "WP626",
+              "+11/112"
+            ],
+            "connections": [
+              "PROFIBUS to termination resistor",
+              "24V DC power distribution to digital input modules",
+              "Digital inputs connected in parallel configuration"
+            ],
+            "summary": "This page shows a 24V DC PROFIBUS network configuration with power distribution and multiple digital input modules (ET 2005). It includes address byte assignments and termination details for what appears to be part of a container crane control system.",
+            "page_number": 55,
+            "indexed_with": "claude-vision"
+          },
+          "56": {
+            "references": [
+              "=11/17.1",
+              "=11/17.2",
+              "=11/17.3",
+              "=11/17.4",
+              "=11/17.5",
+              "=11/17.6",
+              "=11/17.7",
+              "=11/17.8"
+            ],
+            "components": [
+              "ADRESSBYTE 222",
+              "DIG/24V AUX1",
+              "Digital Input 4x24V",
+              "DPL37",
+              "DPL38"
+            ],
+            "cabinets": [],
+            "terminals": [],
+            "wire_numbers": [],
+            "connections": [],
+            "summary": "This schematic shows digital input configurations for a container crane control system, specifically detailing address byte 222 with digital 24V inputs and their corresponding reference numbers. The drawing is from Maersk Pacific USA's PLC/CMS system.",
+            "page_number": 56,
+            "indexed_with": "claude-vision"
+          },
+          "57": {
+            "references": [
+              "=17/11.3",
+              "=17/26.1",
+              "=107.2"
+            ],
+            "components": [
+              "IM 151",
+              "ET 2005",
+              "ADRESSBYTE 209",
+              "Digital Output 4x24V",
+              "Power Module"
+            ],
+            "cabinets": [],
+            "terminals": [
+              "-X12",
+              "DCC-GB-B-",
+              "DCC-GA-Br"
+            ],
+            "wire_numbers": [
+              "W2027",
+              "18 AWG, HTW",
+              "19Qx22 AWG",
+              "PROFIBUS"
+            ],
+            "connections": [
+              "24V DC to terminal blocks",
+              "PROFIBUS connection to IM 151",
+              "Digital Output modules in series"
+            ],
+            "summary": "This schematic shows a PLC/CMS system for a container crane, including power distribution (24V DC), PROFIBUS communications, and digital output modules with address bytes. The drawing is from NOELL for Maersk Pacific USA.",
+            "page_number": 57,
+            "indexed_with": "claude-vision"
+          },
+          "58": {
+            "references": [
+              "=25/18"
+            ],
+            "components": [
+              "-PTM20",
+              "PROFIBUS IPD422 AWG"
+            ],
+            "cabinets": [],
+            "terminals": [
+              "X12",
+              "X12",
+              "E18",
+              "E18"
+            ],
+            "wire_numbers": [
+              "WR43"
+            ],
+            "connections": [
+              "ETL-GB bus connection to PTM20",
+              "PTM20 to bus ending module",
+              "PROFIBUS connection to PTM20"
+            ],
+            "summary": "This schematic shows a PROFIBUS network connection layout for a container crane control system, featuring a PTM20 module with bus ending module and associated terminal connections.",
+            "page_number": 58,
+            "indexed_with": "claude-vision"
+          },
+          "59": {
+            "references": [
+              "=37/2",
+              "=48/1"
+            ],
+            "components": [
+              "-G5",
+              "-G6",
+              "-G9",
+              "-G10",
+              "RS485",
+              "W7001",
+              "-W4335"
+            ],
+            "cabinets": [],
+            "terminals": [
+              "-X12",
+              "-X13",
+              "-X14",
+              "-X16"
+            ],
+            "wire_numbers": [
+              "W7001",
+              "W4335"
+            ],
+            "connections": [
+              "L2-BUS connections between RS485 modules",
+              "Fibre optic connection bus between terminals",
+              "24V DC power distribution"
+            ],
+            "summary": "This schematic shows the PLC/CMS (Programmable Logic Controller/Crane Management System) communication architecture for a Maersk Pacific USA container crane in Los Angeles, featuring RS485 networks, fiber optic connections, and termination modules with L2-BUS connections.",
+            "page_number": 59,
+            "indexed_with": "claude-vision"
+          },
+          "60": {
+            "references": [
+              "-D21.18",
+              "-D21.19"
+            ],
+            "components": [
+              "1's-DIGIT",
+              "10's-DIGIT",
+              "I.B4.0",
+              "I.B4.1",
+              "I.B4.2",
+              "I.B4.3",
+              "I.B4.4",
+              "I.B4.5",
+              "I.B4.6",
+              "I.B4.7"
+            ],
+            "cabinets": [],
+            "terminals": [
+              "X3",
+              "X2",
+              "2^0",
+              "2^1",
+              "2^2",
+              "2^3",
+              "X12"
+            ],
+            "wire_numbers": [
+              "BU",
+              "BK",
+              "RD",
+              "OG",
+              "YE",
+              "BN",
+              "-SB0",
+              "W4039"
+            ],
+            "connections": [
+              "X3 to 2^0 terminal",
+              "X2 to 2^0 terminal",
+              "BU connections between terminals",
+              "Wire color sequence BK-RD-BU-OG-YE-BN across 1's digits",
+              "Wire color sequence BK-BK-BK across 10's digits"
+            ],
+            "summary": "This is a circuit diagram for a container crane PLC/CMS check safety functions system, showing digit display wiring for 1's and 10's digits with associated terminals and color-coded connections. The drawing is from Maersk Pacific USA in Los Angeles.",
+            "page_number": 60,
+            "indexed_with": "claude-vision"
+          },
+          "61": {
+            "references": [
+              "=D21.20/20.7",
+              "=D21.21/21.1"
+            ],
+            "components": [
+              "-S80",
+              "-S81 (key switch)",
+              "-CR11",
+              "100's-DIGIT"
+            ],
+            "cabinets": [],
+            "terminals": [
+              "BU",
+              "BK",
+              "RD",
+              "OG",
+              "X1",
+              "-X12"
+            ],
+            "wire_numbers": [
+              "-WL039",
+              "24x14 AWG"
+            ],
+            "connections": [
+              "-S80 to 100's-DIGIT terminals",
+              "100's-DIGIT to -S81 key switch",
+              "-S81 to -CR11"
+            ],
+            "summary": "This schematic page shows check safety functions for a container crane PLC/CMS system, including digit display control, key switch interface, and associated safety interlocks. The drawing is from Maersk Pacific USA's Los Angeles facility.",
+            "page_number": 61,
+            "indexed_with": "claude-vision"
+          },
+          "62": {
+            "references": [
+              "/58.8",
+              "/59.7"
+            ],
+            "components": [
+              "TRA1 remote control transmitter",
+              "REC1 remote control receiver",
+              "-CR11"
+            ],
+            "cabinets": [],
+            "terminals": [
+              "X11"
+            ],
+            "wire_numbers": [
+              "/57.5",
+              "/57.5",
+              "/58.8",
+              "/59.7"
+            ],
+            "connections": [
+              "Remote control transmitter to receiver",
+              "24V DC power to receiver",
+              "Stop hoist lifting connection to receiver",
+              "-CR11 to transmitter in charge unit"
+            ],
+            "summary": "This schematic shows a remote control system for a container crane, including the transmitter and receiver units, with stop hoist lifting functionality and connections to a charge unit. The system operates on both 120V 60Hz and 24V DC power supplies.",
+            "page_number": 62,
+            "indexed_with": "claude-vision"
+          },
+          "63": {
+            "references": [
+              "=61.E14"
+            ],
+            "components": [
+              "TRA1 transmitter",
+              "CHAR1 charge unit"
+            ],
+            "cabinets": [],
+            "terminals": [],
+            "wire_numbers": [
+              "W2705",
+              "W2705-1",
+              "W2760"
+            ],
+            "connections": [
+              "W2705 5x14 AWG TC1 to transmitter",
+              "W2705-1 5x14 AWG TC1 to transmitter",
+              "W2760 5x14 AWG TC1 to charge unit"
+            ],
+            "summary": "Circuit diagram showing anti jostle system components including a hoist lifting transmitter and charge unit with their associated wiring connections. Appears to be for a Maersk Pacific USA container crane in Los Angeles.",
+            "page_number": 63,
+            "indexed_with": "claude-vision"
+          },
+          "64": {
+            "references": [
+              "=61-E14",
+              "=61-TFP"
+            ],
+            "components": [
+              "W7200 A-DI2N2Y",
+              "W7201 A-DI2N2Y",
+              "W7251 Optoflex",
+              "W7252 Optoflex"
+            ],
+            "cabinets": [],
+            "terminals": [
+              "rd",
+              "gn",
+              "bu",
+              "ye",
+              "wh",
+              "gy",
+              "bn",
+              "vio",
+              "N.C.",
+              "N.C.",
+              "1",
+              "2",
+              "3",
+              "4",
+              "5",
+              "6"
+            ],
+            "wire_numbers": [
+              "8G6Z/125\u03bcm",
+              "6G6Z/125\u03bcm"
+            ],
+            "connections": [
+              "Fiber-optic connection bars between W7200/W7251 and W7201/W7252"
+            ],
+            "summary": "This page shows a fiber-optic connection diagram for a container crane system, featuring two sets of fiber-optic connection bars with color-coded terminals and Optoflex connections. The diagram is part of a PLC/CMS system for Maersk Pacific USA.",
+            "page_number": 64,
+            "indexed_with": "claude-vision"
+          },
+          "65": {
+            "references": [
+              "+1/124.1",
+              "+1/124.2",
+              "+1/124.3",
+              "+1/124.4",
+              "+1/124.5"
+            ],
+            "components": [
+              "ET 2005 ADRESSBYTE 210",
+              "ET 2005 ADRESSBYTE 211",
+              "ET 2005 ADRESSBYTE",
+              "IM 151",
+              "Power Module",
+              "Digital Input 4x24V"
+            ],
+            "cabinets": [],
+            "terminals": [],
+            "wire_numbers": [
+              "12 AWG MTW green",
+              "WF929",
+              "PROFIBUS"
+            ],
+            "connections": [
+              "Power Module to Digital Input modules",
+              "Termination on PROFIBUS network"
+            ],
+            "summary": "This is a PLC/CMS wiring diagram for a container crane operator seat (right) at Maersk Pacific USA. It shows the connection layout for ET2005 modules with addressing, power distribution, and PROFIBUS network termination. All remote PLC wiring is specified to be MTW#16AWG blue.",
+            "page_number": 65,
+            "indexed_with": "claude-vision"
+          },
+          "66": {
+            "references": [
+              "-D96.5",
+              "-D96.6",
+              "-D96.7",
+              "-D96.8",
+              "-D96.9",
+              "-D96.10",
+              "-D96.11",
+              "-D96.12"
+            ],
+            "components": [
+              "ADRESSBYTE 212",
+              "ADRESSBYTE 213",
+              "ADRESSBYTE 214",
+              "ADRESSBYTE 215",
+              "Digital Input 4x24V"
+            ],
+            "cabinets": [],
+            "terminals": [],
+            "wire_numbers": [
+              "MTW#16AWG BLUE"
+            ],
+            "connections": [],
+            "summary": "This page shows a PLC/CMS operator seat right control diagram for a Maersk Pacific USA container crane in Los Angeles, CA. It details multiple ADRESSBYTE modules (212-215) from ET 2005 and Digital Input 4x24V connections.",
+            "page_number": 66,
+            "indexed_with": "claude-vision"
+          },
+          "67": {
+            "references": [
+              "=D96.13",
+              "=D96.14",
+              "=D96.15",
+              "=D96.16",
+              "=D97.1",
+              "=D97.2",
+              "=D97.3",
+              "=D97.4",
+              "=D97.5"
+            ],
+            "components": [
+              "ADRESSBYTE 216",
+              "ADRESSBYTE 216",
+              "ADRESSBYTE 217",
+              "ADRESSBYTE 217",
+              "ADRESSBYTE 218",
+              "ADRESSBYTE 218",
+              "ADRESSBYTE 219",
+              "ADRESSBYTE 219",
+              "ADRESSBYTE 224"
+            ],
+            "cabinets": [
+              "ET 2005"
+            ],
+            "terminals": [
+              "D0/24V",
+              "D1/24V",
+              "D2/24V",
+              "D3/24V"
+            ],
+            "wire_numbers": [],
+            "connections": [
+              "Digital Input 4x24V",
+              "Digital Input 2x24V"
+            ],
+            "summary": "This is a PLC/CMS wiring diagram for a container crane operator seat (right) at Maersk Pacific USA in Los Angeles, CA. It shows digital input connections using MTW#16AWG blue wiring to remote PLCs.",
+            "page_number": 67,
+            "indexed_with": "claude-vision"
+          },
+          "68": {
+            "references": [
+              "+71/124.5",
+              "+71/187.1",
+              "+71/187.2",
+              "+71/187.3",
+              "+71/187.4",
+              "+71/188.1",
+              "+71/188.2",
+              "+71/188.3",
+              "+71/188.4",
+              "+71/189.1",
+              "+71/189.2",
+              "+71/189.3",
+              "+71/189.4",
+              "+71/124.1",
+              "+71/124.2"
+            ],
+            "components": [
+              "Power Module",
+              "ET 2005",
+              "Digital Output 4x24V",
+              "ADDRESSBYTE 212",
+              "ADDRESSBYTE 213",
+              "ADDRESSBYTE 214"
+            ],
+            "cabinets": [],
+            "terminals": [
+              "D20.0",
+              "D20.1",
+              "D20.2",
+              "D20.3",
+              "D21.0",
+              "D21.1",
+              "D21.2",
+              "D21.3",
+              "D22.0",
+              "D22.1",
+              "D22.2",
+              "D22.3",
+              "D23.0",
+              "D23.1",
+              "D23.2",
+              "D23.3",
+              "D24.0",
+              "D24.1",
+              "D24.2",
+              "D24.3"
+            ],
+            "wire_numbers": [
+              "MTW#16AWG BLUE"
+            ],
+            "connections": [
+              "12 AWG green wire to +71/124.5",
+              "-D98.1 through -D98.6 Digital Output modules"
+            ],
+            "summary": "This schematic shows the digital output configuration for a container crane operator seat right PLC/CMS system, featuring multiple addressbyte modules (ET 2005) with 4x24V digital outputs and associated terminal connections.",
+            "page_number": 68,
+            "indexed_with": "claude-vision"
+          },
+          "69": {
+            "references": [
+              "=D98.7",
+              "=D98.8",
+              "=D98.9",
+              "=D98.10",
+              "=D98.11",
+              "=D98.12",
+              "=D98.13",
+              "=D98.14"
+            ],
+            "components": [
+              "ADRESSBYTE 215",
+              "ADRESSBYTE 216",
+              "ADRESSBYTE 216",
+              "ADRESSBYTE 216",
+              "ADRESSBYTE 217",
+              "ADRESSBYTE 217",
+              "ADRESSBYTE 217",
+              "ADRESSBYTE 218"
+            ],
+            "cabinets": [],
+            "terminals": [],
+            "wire_numbers": [
+              "MTW#16AWG BLUE"
+            ],
+            "connections": [
+              "Digital Output 4x24V to -61 (for each ADRESSBYTE)"
+            ],
+            "summary": "PLC/CMS wiring diagram for container crane operator seat right showing ADRESSBYTE digital output connections. Drawing shows 8 channels of 4x24V digital outputs with addressing and signal references.",
+            "page_number": 69,
+            "indexed_with": "claude-vision"
+          },
+          "70": {
+            "references": [
+              "=71/115.1",
+              "=71/115.2",
+              "=71/115.3",
+              "=71/115.4",
+              "=102.2"
+            ],
+            "components": [
+              "ET 2005",
+              "ADRESSBYTE 200",
+              "ADRESSBYTE 201",
+              "IM 151",
+              "Power Module",
+              "Digital Input 4x24V",
+              "-DX90",
+              "-DP1.1",
+              "-DP1.2",
+              "-DP1.3",
+              "-DP1.4"
+            ],
+            "cabinets": [],
+            "terminals": [
+              "24V",
+              "N",
+              "AUX1"
+            ],
+            "wire_numbers": [
+              "12 AWG MTW green",
+              "WF202B",
+              "19Px22 AWG",
+              "PROFIBUS"
+            ],
+            "connections": [
+              "PROFIBUS cable to termination off",
+              "24V DC power to ET 2005 modules",
+              "Digital inputs connected to power module"
+            ],
+            "summary": "This is a PLC/CMS operator seat left control diagram showing ET 2005 modules with digital inputs, power connections, and PROFIBUS communication for a container crane system.",
+            "page_number": 70,
+            "indexed_with": "claude-vision"
+          },
+          "71": {
+            "references": [],
+            "components": [
+              "ADRESSBYTE 202 ET 2005",
+              "ADRESSBYTE 203 ET 2005",
+              "ADRESSBYTE 204 ET 2005",
+              "ADRESSBYTE 205 ET 2005",
+              "ADRESSBYTE 204c ET 2005",
+              "ADRESSBYTE 204b ET 2005",
+              "ADRESSBYTE 205 ET 2005",
+              "ADRESSBYTE 295 ET 2005",
+              "DPI.5",
+              "DPI.6",
+              "DPI.7",
+              "DPI.8",
+              "DPI.9",
+              "DPI.10",
+              "DPI.11",
+              "DPI.12"
+            ],
+            "cabinets": [],
+            "terminals": [],
+            "wire_numbers": [
+              "MTW#16AWG BLUE"
+            ],
+            "connections": [
+              "Digital Input 4x24V to DPI.5",
+              "Digital Input 4x24V to DPI.6",
+              "Digital Input 4x24V to DPI.7",
+              "Digital Input 4x24V to DPI.8",
+              "Digital Input 4x24V to DPI.9",
+              "Digital Input 4x24V to DPI.10",
+              "Digital Input 4x24V to DPI.11",
+              "Digital Input 4x24V to DPI.12"
+            ],
+            "summary": "This is a PLC/CMS wiring diagram for a container crane operator seat left position at Maersk Pacific USA in Los Angeles, CA. It shows digital input connections (4x24V) with address byte assignments and DPI mappings.",
+            "page_number": 71,
+            "indexed_with": "claude-vision"
+          },
+          "72": {
+            "references": [
+              "+T/1.19"
+            ],
+            "components": [
+              "ADRESSSBYTE 206 ET 2005",
+              "Digital Input 4x24V"
+            ],
+            "cabinets": [],
+            "terminals": [
+              "DI0/24V",
+              "DI1/24V AUX1",
+              "DI2/24V",
+              "DI3/24V AUX1"
+            ],
+            "wire_numbers": [
+              "206.0",
+              "206.1",
+              "206.2",
+              "206.3",
+              "206.4",
+              "206.5",
+              "206.6",
+              "206.7"
+            ],
+            "connections": [],
+            "summary": "This page shows the digital input wiring diagram for a PLC/CMS operator seat left control system for a Maersk Pacific USA container crane. It details ADRESSBYTE 206 configurations with 4x24V digital inputs and their corresponding terminal connections.",
+            "page_number": 72,
+            "indexed_with": "claude-vision"
+          },
+          "73": {
+            "references": [
+              "=71/120",
+              "=71/11.5"
+            ],
+            "components": [
+              "ET 200S",
+              "Power Module",
+              "Digital Output 4x24V",
+              "Terminal Module",
+              "ADDRESSBYTE 200",
+              "ADDRESSBYTE 201",
+              "ADDRESSBYTE 202"
+            ],
+            "cabinets": [],
+            "terminals": [
+              "D00/M",
+              "D01/M",
+              "D02/M",
+              "D03/M",
+              "AUX1"
+            ],
+            "wire_numbers": [
+              "MTW#16AWG BLUE"
+            ],
+            "connections": [
+              "12 AWG MTW green to =71/11.5",
+              "Digital Output modules to -D92.1 through -D92.6"
+            ],
+            "summary": "This is a PLC/CMS wiring diagram for a container crane operator seat left position, showing ET 200S digital output modules with address bytes and terminal connections. The drawing includes power distribution and digital output module configuration for Maersk Pacific USA.",
+            "page_number": 73,
+            "indexed_with": "claude-vision"
+          },
+          "74": {
+            "references": [
+              "=71/145.5"
+            ],
+            "components": [
+              "ADDRESSBYTE 228 ET 200S",
+              "ADDRESSBYTE 228 ET 200S",
+              "ADDRESSBYTE 229 ET 200S",
+              "ADDRESSBYTE 229 ET 200S",
+              "IM151 ProfiBus",
+              "ET 200S",
+              "W7625 IP5622 AWG PROFIBUS T",
+              "Power Module",
+              "Digital Input 4x24V",
+              "-ID120",
+              "-ID121.1",
+              "-ID121.2",
+              "-ID121.3",
+              "-ID121.4"
+            ],
+            "cabinets": [],
+            "terminals": [],
+            "wire_numbers": [
+              "MTW#16AWG"
+            ],
+            "connections": [
+              "24V DC power to ProfiBus network",
+              "ProfiBus connection to ET200S system",
+              "Termination eff 47 connection"
+            ],
+            "summary": "PLC/CMS driver cabin side console schematic showing ProfiBus network configuration with ET200S modules, including power distribution and digital input modules operating at 24V DC.",
+            "page_number": 74,
+            "indexed_with": "claude-vision"
+          },
+          "75": {
+            "references": [
+              "=61",
+              "=DI21.5",
+              "=DI21.6"
+            ],
+            "components": [
+              "ADRESSBYTE Z30 ET 2005",
+              "Digital input 4x24V"
+            ],
+            "cabinets": [],
+            "terminals": [
+              "I20.0",
+              "I20.1",
+              "I20.2",
+              "I20.3",
+              "DI0/24V",
+              "DI1/24V",
+              "DI2/24V",
+              "DI3/24V AUX1"
+            ],
+            "wire_numbers": [],
+            "connections": [],
+            "summary": "This schematic shows the digital input configuration for a container crane driver cabin side console, specifically detailing ADRESSBYTE Z30 ET 2005 modules with 4x24V digital inputs. The drawing includes a note that all wiring to remote PLCs will be MTW#16AWG BLUE.",
+            "page_number": 75,
+            "indexed_with": "claude-vision"
+          },
+          "76": {
+            "references": [
+              "+T1/45.5",
+              "+T1/61.1",
+              "+T1/61.2",
+              "+T1/61.3",
+              "+T1/61.4",
+              "+T1/61.5",
+              "+T1/62.0",
+              "+T1/62.1",
+              "+T1/62.2",
+              "+T1/62.3",
+              "+T1/62.4",
+              "+T1/51.1"
+            ],
+            "components": [
+              "Power Module",
+              "Digital Output 4x24V",
+              "Terminal Module",
+              "ADRESSBYTE 228 ET 2005",
+              "ADRESSBYTE 229 ET 2005",
+              "ADRESSBYTE 230 ET 2005"
+            ],
+            "cabinets": [],
+            "terminals": [
+              "24V",
+              "M",
+              "AUX1"
+            ],
+            "wire_numbers": [
+              "MTW#16AWG"
+            ],
+            "connections": [
+              "-DIZ2.1 to -DIZ2.2 to -DIZ2.3 to -DIZ2.4 to -DIZ2.5 to -DIZ2.6",
+              "Power Module to Digital Output modules"
+            ],
+            "summary": "This is a PLC/CMS driver cabin side console wiring diagram for a Maersk Pacific USA container crane, showing the interconnection of power modules, digital output modules, and addressing bytes with 16AWG blue wiring to remote PLCs.",
+            "page_number": 76,
+            "indexed_with": "claude-vision"
+          }
+        },
+        "indexed_at": "2025-10-24T09:55:29.402588"
       }
     }
   }
