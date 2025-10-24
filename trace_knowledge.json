@@ -177,6 +177,182 @@
         "Main transformer location"
       ],
       "timestamp": "2025-10-24T07:28:39.516076"
+    },
+    {
+      "log": [
+        {
+          "input": "i want to see if you retained the system groupds and corrispoding number codes?",
+          "type": "training"
+        }
+      ],
+      "items_count": 1,
+      "timestamp": "2025-10-24T12:28:46.770050"
     }
-  ]
+  ],
+  "system_groups": {
+    "=10": {
+      "code": "=10",
+      "definition": "MV-Supply",
+      "source": "glossary/electrical_sections.docx",
+      "added": "2025-10-24T15:26:25.705992"
+    },
+    "=11": {
+      "code": "=11",
+      "definition": "Feeding",
+      "source": "glossary/electrical_sections.docx",
+      "added": "2025-10-24T15:26:25.706032"
+    },
+    "=12": {
+      "code": "=12",
+      "definition": "Lighting and aux. device",
+      "source": "glossary/electrical_sections.docx",
+      "added": "2025-10-24T15:26:25.706063"
+    },
+    "=13": {
+      "code": "=13",
+      "definition": "Spreader",
+      "source": "glossary/electrical_sections.docx",
+      "added": "2025-10-24T15:26:25.706094"
+    },
+    "=14": {
+      "code": "=14",
+      "definition": "Spreader cable drum",
+      "source": "glossary/electrical_sections.docx",
+      "added": "2025-10-24T15:26:25.706124"
+    },
+    "=17": {
+      "code": "=17",
+      "definition": "Trim/List/Skew adjustment",
+      "source": "glossary/electrical_sections.docx",
+      "added": "2025-10-24T15:26:25.706154"
+    },
+    "=18": {
+      "code": "=18",
+      "definition": "Rectifier/regenerative unit",
+      "source": "glossary/electrical_sections.docx",
+      "added": "2025-10-24T15:26:25.706184"
+    },
+    "=19": {
+      "code": "=19",
+      "definition": "fire extinguishing system",
+      "source": "glossary/electrical_sections.docx",
+      "added": "2025-10-24T15:26:25.706213"
+    },
+    "=20": {
+      "code": "=20",
+      "definition": "hoist unit 1+2",
+      "source": "glossary/electrical_sections.docx",
+      "added": "2025-10-24T15:26:25.706242"
+    },
+    "=21": {
+      "code": "=21",
+      "definition": "Hoist unit 1",
+      "source": "glossary/electrical_sections.docx",
+      "added": "2025-10-24T15:26:25.706273"
+    },
+    "=22": {
+      "code": "=22",
+      "definition": "Hoist unit 2",
+      "source": "glossary/electrical_sections.docx",
+      "added": "2025-10-24T15:26:25.706304"
+    },
+    "=23": {
+      "code": "=23",
+      "definition": "Boom Hoist",
+      "source": "glossary/electrical_sections.docx",
+      "added": "2025-10-24T15:26:25.706334"
+    },
+    "=31": {
+      "code": "=31",
+      "definition": "Trolley Travel",
+      "source": "glossary/electrical_sections.docx",
+      "added": "2025-10-24T15:26:25.706363"
+    },
+    "=35": {
+      "code": "=35",
+      "definition": "festoon",
+      "source": "glossary/electrical_sections.docx",
+      "added": "2025-10-24T15:26:25.706392"
+    },
+    "=41": {
+      "code": "=41",
+      "definition": "Gantry Travel",
+      "source": "glossary/electrical_sections.docx",
+      "added": "2025-10-24T15:26:25.706421"
+    },
+    "=61": {
+      "code": "=61",
+      "definition": "PLC/CMS",
+      "source": "glossary/electrical_sections.docx",
+      "added": "2025-10-24T15:26:25.706450"
+    },
+    "=62": {
+      "code": "=62",
+      "definition": "Anti-Sway-System",
+      "source": "glossary/electrical_sections.docx",
+      "added": "2025-10-24T15:26:25.706478"
+    },
+    "=63": {
+      "code": "=63",
+      "definition": "Wireless network",
+      "source": "glossary/electrical_sections.docx",
+      "added": "2025-10-24T15:26:25.706507"
+    },
+    "=71": {
+      "code": "=71",
+      "definition": "Control Panels",
+      "source": "glossary/electrical_sections.docx",
+      "added": "2025-10-24T15:26:25.706536"
+    },
+    "=75": {
+      "code": "=75",
+      "definition": "camera system, truck positioning",
+      "source": "glossary/electrical_sections.docx",
+      "added": "2025-10-24T15:26:25.706564"
+    },
+    "=81": {
+      "code": "=81",
+      "definition": "Telephone system",
+      "source": "glossary/electrical_sections.docx",
+      "added": "2025-10-24T15:26:25.706592"
+    }
+  },
+  "terminals": {
+    "-X10": {
+      "code": "-X10",
+      "terminal_type": "Power terminal",
+      "source": "glossary/electrical_sections.docx",
+      "added": "2025-10-24T15:26:25.706895"
+    },
+    "-X11": {
+      "code": "-X11",
+      "terminal_type": "Control terminal 230V",
+      "source": "glossary/electrical_sections.docx",
+      "added": "2025-10-24T15:26:25.706927"
+    },
+    "-X12": {
+      "code": "-X12",
+      "terminal_type": "Control terminal 24VDC",
+      "source": "glossary/electrical_sections.docx",
+      "added": "2025-10-24T15:26:25.706958"
+    },
+    "-X14A": {
+      "code": "-X14A",
+      "terminal_type": "Analog signal terminal",
+      "source": "glossary/electrical_sections.docx",
+      "added": "2025-10-24T15:26:25.706988"
+    },
+    "-X15D": {
+      "code": "-X15D",
+      "terminal_type": "Digital signal terminal",
+      "source": "glossary/electrical_sections.docx",
+      "added": "2025-10-24T15:26:25.707019"
+    },
+    "-X16": {
+      "code": "-X16",
+      "terminal_type": "Fiber optic-Connection",
+      "source": "glossary/electrical_sections.docx",
+      "added": "2025-10-24T15:26:25.707049"
+    }
+  }
 }
