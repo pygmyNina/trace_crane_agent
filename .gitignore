@@ -33,6 +33,9 @@ ENV/
 # Training data (local only)
 data/training_sessions/
 data/corrections/
+data/training_data/
+data/test_storage/
+data/test_kb/
 data/training.db
 data/training.db-journal
 

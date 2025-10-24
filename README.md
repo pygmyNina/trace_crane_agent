@@ -1,6 +1,29 @@
 # TRACE Training System for Crane Schematics
 
-An intelligent, AI-powered training system for learning to read and interpret crane electrical schematics. Uses Claude AI for interactive conversational training.
+An intelligent, AI-powered dual training system for crane electrical schematics.
+
+## 🎯 Two Training Systems
+
+This repository contains **TWO different training systems**:
+
+### 1. **Human Training** (YOU learn from Claude)
+The original TRACE system where YOU learn to read crane schematics:
+- Claude quizzes you on schematic reading
+- You answer questions
+- System tracks your progress
+- **Use**: `python3 main.py`
+
+### 2. **Agent Training** (Claude learns from YOU) 🆕
+NEW system where CLAUDE learns to read YOUR schematics:
+- Claude analyzes your schematics with Vision AI
+- You correct Claude's mistakes
+- System builds training dataset
+- **Use**: `python3 scripts/train_agent.py --section 61`
+- **Guide**: See [AGENT_TRAINING_GUIDE.md](AGENT_TRAINING_GUIDE.md)
+
+**Most users will want the Agent Training system** to teach Claude about their specific crane schematics.
+
+---
 
 ## Features
 
