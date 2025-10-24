@@ -1,24 +1,31 @@
 #!/usr/bin/env python3
 """
 Import Glossary Script for TRACE
-Reads glossary files (Word documents with tables) and imports definitions into knowledge base.
+Reads glossary files and imports definitions into knowledge base.
+
+Supports: Word documents (.docx), Excel files (.xls, .xlsx)
 
 Handles multiple glossary types:
   - System Groups: =10, =61, etc. (system categories, not locations)
   - Terminals: -X10, -X11, etc. (terminal types and wire types)
-  - Locations: (future) actual physical locations
+  - Locations: abbreviations for physical crane locations
 
 Expected format: 2-column tables
-  Table 1 - System Groups:
+  System Groups:
     Column 1: Code (e.g., =10, =61)
     Column 2: Definition (e.g., MV-Supply, PLC/CMS)
 
-  Table 2 - Terminals:
+  Terminals:
     Column 1: Terminal Code (e.g., -X10, -X11)
     Column 2: Description (e.g., Power terminal)
 
+  Locations:
+    Column 1: Abbreviation (e.g., E11, MCC, CB)
+    Column 2: Description (e.g., Electrical Cabinet 11)
+
 Usage:
   python3 import_glossary.py glossary/electrical_sections.docx
+  python3 import_glossary.py glossary/locations.xls
 """
 
 import json
@@ -32,7 +39,19 @@ try:
     DOCX_AVAILABLE = True
 except ImportError:
     DOCX_AVAILABLE = False
-    print("⚠ python-docx not available. Install with: pip3 install python-docx")
+
+# Try importing Excel readers
+try:
+    import xlrd  # For .xls (old Excel format)
+    XLRD_AVAILABLE = True
+except ImportError:
+    XLRD_AVAILABLE = False
+
+try:
+    import openpyxl  # For .xlsx (new Excel format)
+    OPENPYXL_AVAILABLE = True
+except ImportError:
+    OPENPYXL_AVAILABLE = False
 
 
 class GlossaryImporter:
@@ -66,6 +85,9 @@ class GlossaryImporter:
         if "terminals" not in self.knowledge:
             self.knowledge["terminals"] = {}
             created.append("terminals")
+        if "locations" not in self.knowledge:
+            self.knowledge["locations"] = {}
+            created.append("locations")
         if created:
             print(f"✓ Created sections: {', '.join(created)}")
 
@@ -90,9 +112,14 @@ class GlossaryImporter:
             }
             return "terminal"
         else:
-            # Unknown format
-            print(f"  ⚠ Unknown format: {code} (expected = or - prefix)")
-            return None
+            # Location abbreviation (e.g., E11, MCC, CB)
+            self.knowledge["locations"][code] = {
+                "abbreviation": code,
+                "description": definition,
+                "source": source,
+                "added": datetime.now().isoformat()
+            }
+            return "location"
 
     def import_from_docx(self, doc_path):
         """Import glossary from Word document (.docx format)"""
@@ -119,6 +146,7 @@ class GlossaryImporter:
 
         system_groups_added = 0
         terminals_added = 0
+        locations_added = 0
 
         # Check if document has tables
         if doc.tables:
@@ -142,6 +170,9 @@ class GlossaryImporter:
                             elif added == "terminal":
                                 terminals_added += 1
                                 print(f"  ✓ Terminal:     {code:10} → {definition}")
+                            elif added == "location":
+                                locations_added += 1
+                                print(f"  ✓ Location:     {code:10} → {definition}")
         else:
             # No tables found - try reading as plain text with spacing
             print("   No tables found - reading as plain text\n")
@@ -173,6 +204,9 @@ class GlossaryImporter:
                         elif added == "terminal":
                             terminals_added += 1
                             print(f"  ✓ Terminal:     {code:10} → {definition}")
+                        elif added == "location":
+                            locations_added += 1
+                            print(f"  ✓ Location:     {code:10} → {definition}")
                 elif text.startswith('=') or text.startswith('-'):
                     # Single word entries or malformed - show warning
                     print(f"  ⚠ Could not parse: {text[:50]}")
@@ -182,7 +216,123 @@ class GlossaryImporter:
         print(f"✓ Import Complete!")
         print(f"  System Groups: {system_groups_added}")
         print(f"  Terminals:     {terminals_added}")
-        print(f"  Total:         {system_groups_added + terminals_added}")
+        print(f"  Locations:     {locations_added}")
+        print(f"  Total:         {system_groups_added + terminals_added + locations_added}")
+        print(f"{'='*60}\n")
+        return True
+
+    def import_from_excel(self, excel_path):
+        """Import glossary from Excel file (.xls or .xlsx format)"""
+        file_ext = os.path.splitext(excel_path)[1].lower()
+
+        if file_ext == '.xlsx':
+            if not OPENPYXL_AVAILABLE:
+                print("✗ openpyxl library required for .xlsx files")
+                print("  Install with: pip3 install openpyxl")
+                return False
+            return self._import_from_xlsx(excel_path)
+        elif file_ext == '.xls':
+            if not XLRD_AVAILABLE:
+                print("✗ xlrd library required for .xls files")
+                print("  Install with: pip3 install xlrd")
+                return False
+            return self._import_from_xls(excel_path)
+        else:
+            print(f"✗ Unsupported file type: {file_ext}")
+            return False
+
+    def _import_from_xlsx(self, excel_path):
+        """Import from .xlsx (newer Excel format)"""
+        try:
+            wb = openpyxl.load_workbook(excel_path, data_only=True)
+            sheet = wb.active
+        except Exception as e:
+            print(f"✗ Could not open {excel_path}")
+            print(f"  Error: {e}")
+            return False
+
+        print(f"\n📊 Reading {excel_path}...")
+        print(f"   Sheet: {sheet.title}\n")
+
+        self._ensure_glossary_sections()
+
+        system_groups_added = 0
+        terminals_added = 0
+        locations_added = 0
+
+        # Skip header row (row 1), process data rows
+        for row_num, row in enumerate(sheet.iter_rows(min_row=2, values_only=True), start=2):
+            if len(row) >= 2 and row[0] and row[1]:
+                code = str(row[0]).strip()
+                definition = str(row[1]).strip()
+
+                if code and definition:
+                    added = self._add_definition(code, definition, os.path.basename(excel_path))
+                    if added == "system_group":
+                        system_groups_added += 1
+                        print(f"  ✓ System Group: {code:10} → {definition}")
+                    elif added == "terminal":
+                        terminals_added += 1
+                        print(f"  ✓ Terminal:     {code:10} → {definition}")
+                    elif added == "location":
+                        locations_added += 1
+                        print(f"  ✓ Location:     {code:10} → {definition}")
+
+        wb.close()
+        self._save_knowledge()
+        print(f"\n{'='*60}")
+        print(f"✓ Import Complete!")
+        print(f"  System Groups: {system_groups_added}")
+        print(f"  Terminals:     {terminals_added}")
+        print(f"  Locations:     {locations_added}")
+        print(f"  Total:         {system_groups_added + terminals_added + locations_added}")
+        print(f"{'='*60}\n")
+        return True
+
+    def _import_from_xls(self, excel_path):
+        """Import from .xls (older Excel format)"""
+        try:
+            wb = xlrd.open_workbook(excel_path)
+            sheet = wb.sheet_by_index(0)
+        except Exception as e:
+            print(f"✗ Could not open {excel_path}")
+            print(f"  Error: {e}")
+            return False
+
+        print(f"\n📊 Reading {excel_path}...")
+        print(f"   Sheet: {sheet.name}\n")
+
+        self._ensure_glossary_sections()
+
+        system_groups_added = 0
+        terminals_added = 0
+        locations_added = 0
+
+        # Skip header row (row 0), process data rows
+        for row_num in range(1, sheet.nrows):
+            if sheet.ncols >= 2:
+                code = str(sheet.cell_value(row_num, 0)).strip()
+                definition = str(sheet.cell_value(row_num, 1)).strip()
+
+                if code and definition:
+                    added = self._add_definition(code, definition, os.path.basename(excel_path))
+                    if added == "system_group":
+                        system_groups_added += 1
+                        print(f"  ✓ System Group: {code:10} → {definition}")
+                    elif added == "terminal":
+                        terminals_added += 1
+                        print(f"  ✓ Terminal:     {code:10} → {definition}")
+                    elif added == "location":
+                        locations_added += 1
+                        print(f"  ✓ Location:     {code:10} → {definition}")
+
+        self._save_knowledge()
+        print(f"\n{'='*60}")
+        print(f"✓ Import Complete!")
+        print(f"  System Groups: {system_groups_added}")
+        print(f"  Terminals:     {terminals_added}")
+        print(f"  Locations:     {locations_added}")
+        print(f"  Total:         {system_groups_added + terminals_added + locations_added}")
         print(f"{'='*60}\n")
         return True
 
@@ -272,9 +422,18 @@ class GlossaryImporter:
             print(f"\n  Total: {len(self.knowledge['terminals'])} terminals")
             has_data = True
 
+        # Show Locations
+        if "locations" in self.knowledge and self.knowledge["locations"]:
+            print("\n=== Locations (Physical Crane Locations) ===\n")
+            for code in sorted(self.knowledge["locations"].keys()):
+                entry = self.knowledge["locations"][code]
+                print(f"  {code:10} → {entry['description']}")
+            print(f"\n  Total: {len(self.knowledge['locations'])} locations")
+            has_data = True
+
         if not has_data:
             print("\nNo glossary definitions in knowledge base.")
-            print("Use: python3 import_glossary.py <file.docx> to import\n")
+            print("Use: python3 import_glossary.py <file> to import\n")
 
 
 def main():
@@ -282,9 +441,10 @@ def main():
     importer = GlossaryImporter()
 
     if len(sys.argv) < 2:
-        print("Usage: python3 import_glossary.py <path-to-glossary.docx>")
+        print("Usage: python3 import_glossary.py <path-to-file>")
         print("   OR: python3 import_glossary.py --manual")
         print("   OR: python3 import_glossary.py --show")
+        print("\nSupported formats: .docx, .xls, .xlsx")
         sys.exit(1)
 
     arg = sys.argv[1]
@@ -294,12 +454,22 @@ def main():
     elif arg == "--manual":
         importer.import_from_manual_input()
     else:
-        doc_path = arg
-        if not os.path.exists(doc_path):
-            print(f"✗ File not found: {doc_path}")
+        file_path = arg
+        if not os.path.exists(file_path):
+            print(f"✗ File not found: {file_path}")
             sys.exit(1)
 
-        importer.import_from_docx(doc_path)
+        # Detect file type and route to appropriate import method
+        file_ext = os.path.splitext(file_path)[1].lower()
+
+        if file_ext == '.docx':
+            importer.import_from_docx(file_path)
+        elif file_ext in ['.xls', '.xlsx']:
+            importer.import_from_excel(file_path)
+        else:
+            print(f"✗ Unsupported file format: {file_ext}")
+            print("  Supported formats: .docx, .xls, .xlsx")
+            sys.exit(1)
 
 
 if __name__ == "__main__":
