@@ -33,9 +33,15 @@ ENV/
 # Training data (local only)
 data/training_sessions/
 data/corrections/
-data/pdfs/
 data/training.db
 data/training.db-journal
+
+# PDFs - ignore actual PDF files but allow directory structure
+data/pdfs/**/*.pdf
+# Allow catalog, readme, and .gitkeep files
+!data/pdfs/catalog.json
+!data/pdfs/README.md
+!data/pdfs/**/.gitkeep
 
 # Knowledge base can be committed, but backups should not
 data/knowledge_base/*.backup

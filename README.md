@@ -79,6 +79,56 @@ Alternatively, set the environment variable:
 export ANTHROPIC_API_KEY=your_api_key_here
 ```
 
+## PDF Library Setup (Optional)
+
+The system includes a PDF library for organizing and training with crane schematic PDFs.
+
+### Quick Setup
+
+1. **Add your PDFs** to the appropriate section directory:
+```bash
+cp /path/to/your/*.pdf data/pdfs/section_61/
+```
+
+2. **Catalog the PDFs** to index them:
+```bash
+python scripts/catalog_pdfs.py --scan
+```
+
+3. **Train with a section**:
+```bash
+python scripts/train_with_section.py --section 61
+```
+
+**For detailed instructions**, see [PDF_SETUP_GUIDE.md](PDF_SETUP_GUIDE.md)
+
+### PDF Library Features
+
+- 📁 **Organized by section** - Keep PDFs organized (section_61/, section_10/, etc.)
+- 📊 **Automatic cataloging** - Extract metadata, index references, components
+- 🎯 **Section training** - Train with entire sections or specific sheets
+- 📋 **Smart indexing** - Automatically detect index references and components
+- 🔍 **Easy navigation** - List and browse available PDFs
+
+### PDF Library Commands
+
+```bash
+# Catalog all PDFs
+python scripts/catalog_pdfs.py --scan
+
+# View catalog
+python scripts/catalog_pdfs.py --show
+
+# List available sections
+python scripts/train_with_section.py --list
+
+# Train with section 61
+python scripts/train_with_section.py --section 61
+
+# Train with specific sheets
+python scripts/train_with_section.py --section 61 --sheets 1,2,3
+```
+
 ## Usage
 
 ### Interactive Menu Mode
