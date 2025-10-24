@@ -252,7 +252,8 @@ class GlossaryImporter:
             return False
 
         print(f"\n📊 Reading {excel_path}...")
-        print(f"   Sheet: {sheet.title}\n")
+        print(f"   Sheet: {sheet.title}")
+        print(f"   Total rows: {sheet.max_row}\n")
 
         self._ensure_glossary_sections()
 
@@ -260,8 +261,20 @@ class GlossaryImporter:
         terminals_added = 0
         locations_added = 0
 
-        # Skip header row (row 1), process data rows
-        for row_num, row in enumerate(sheet.iter_rows(min_row=2, values_only=True), start=2):
+        # Auto-detect data start row
+        data_start_row = 1
+        for row_num, row in enumerate(sheet.iter_rows(values_only=True), start=1):
+            if len(row) >= 2 and row[0] and row[1]:
+                col1 = str(row[0]).strip()
+                col2 = str(row[1]).strip()
+                if col1 and col2 and not any(header_word in col1.lower() for header_word in ['code', 'abbreviation', 'name', 'kennzeichen']):
+                    data_start_row = row_num
+                    break
+
+        print(f"   Starting data import from row {data_start_row}\n")
+
+        # Process data rows
+        for row_num, row in enumerate(sheet.iter_rows(min_row=data_start_row, values_only=True), start=data_start_row):
             if len(row) >= 2 and row[0] and row[1]:
                 code = str(row[0]).strip()
                 definition = str(row[1]).strip()
@@ -300,7 +313,8 @@ class GlossaryImporter:
             return False
 
         print(f"\n📊 Reading {excel_path}...")
-        print(f"   Sheet: {sheet.name}\n")
+        print(f"   Sheet: {sheet.name}")
+        print(f"   Total rows: {sheet.nrows}\n")
 
         self._ensure_glossary_sections()
 
@@ -308,8 +322,21 @@ class GlossaryImporter:
         terminals_added = 0
         locations_added = 0
 
-        # Skip header row (row 0), process data rows
-        for row_num in range(1, sheet.nrows):
+        # Auto-detect data start row by looking for first non-empty row with data in both columns
+        data_start_row = 0
+        for row_num in range(sheet.nrows):
+            if sheet.ncols >= 2:
+                col1 = str(sheet.cell_value(row_num, 0)).strip()
+                col2 = str(sheet.cell_value(row_num, 1)).strip()
+                # Skip if either column is empty, or if column 1 looks like a header
+                if col1 and col2 and not any(header_word in col1.lower() for header_word in ['code', 'abbreviation', 'name', 'kennzeichen']):
+                    data_start_row = row_num
+                    break
+
+        print(f"   Starting data import from row {data_start_row + 1} (Excel row numbering)\n")
+
+        # Process data rows
+        for row_num in range(data_start_row, sheet.nrows):
             if sheet.ncols >= 2:
                 code = str(sheet.cell_value(row_num, 0)).strip()
                 definition = str(sheet.cell_value(row_num, 1)).strip()
