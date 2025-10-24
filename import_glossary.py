@@ -3,12 +3,22 @@
 Import Glossary Script for TRACE
 Reads glossary files (Word documents with tables) and imports definitions into knowledge base.
 
-Expected format: 2-column table
-  Column 1: Code (e.g., =10, =61)
-  Column 2: Definition (e.g., MV-Supply, PLC/CMS)
+Handles multiple glossary types:
+  - System Groups: =10, =61, etc. (system categories, not locations)
+  - Terminals: -X10, -X11, etc. (terminal types and wire types)
+  - Locations: (future) actual physical locations
+
+Expected format: 2-column tables
+  Table 1 - System Groups:
+    Column 1: Code (e.g., =10, =61)
+    Column 2: Definition (e.g., MV-Supply, PLC/CMS)
+
+  Table 2 - Terminals:
+    Column 1: Terminal Code (e.g., -X10, -X11)
+    Column 2: Description (e.g., Power terminal)
 
 Usage:
-  python3 import_glossary.py glossary/electrical_sections.doc
+  python3 import_glossary.py glossary/electrical_sections.docx
 """
 
 import json
@@ -47,11 +57,17 @@ class GlossaryImporter:
             json.dump(self.knowledge, f, indent=2)
         print(f"✓ Knowledge saved to {self.knowledge_file}")
 
-    def _ensure_glossary_section(self):
-        """Ensure glossary section exists in knowledge base"""
+    def _ensure_glossary_sections(self):
+        """Ensure glossary sections exist in knowledge base"""
+        created = []
         if "system_groups" not in self.knowledge:
             self.knowledge["system_groups"] = {}
-            print("✓ Created 'system_groups' section in knowledge base")
+            created.append("system_groups")
+        if "terminals" not in self.knowledge:
+            self.knowledge["terminals"] = {}
+            created.append("terminals")
+        if created:
+            print(f"✓ Created sections: {', '.join(created)}")
 
     def import_from_docx(self, doc_path):
         """Import glossary from Word document (.docx format)"""
@@ -80,43 +96,71 @@ class GlossaryImporter:
         print(f"\n📄 Reading {doc_path}...")
         print(f"   Found {len(doc.tables)} table(s)\n")
 
-        # Process first table
-        table = doc.tables[0]
-        definitions_added = 0
+        self._ensure_glossary_sections()
 
-        self._ensure_glossary_section()
+        system_groups_added = 0
+        terminals_added = 0
 
-        # Skip header row, process data rows
-        for i, row in enumerate(table.rows[1:], start=1):
-            cells = row.cells
-            if len(cells) >= 2:
-                code = cells[0].text.strip()
-                definition = cells[1].text.strip()
+        # Process ALL tables in the document
+        for table_num, table in enumerate(doc.tables, start=1):
+            print(f"\n--- Processing Table {table_num} ---")
 
-                if code and definition:
-                    # Store in knowledge base
-                    self.knowledge["system_groups"][code] = {
-                        "code": code,
-                        "definition": definition,
-                        "source": os.path.basename(doc_path),
-                        "added": datetime.now().isoformat()
-                    }
-                    definitions_added += 1
-                    print(f"  ✓ {code:10} → {definition}")
+            # Skip header row, process data rows
+            for i, row in enumerate(table.rows[1:], start=1):
+                cells = row.cells
+                if len(cells) >= 2:
+                    code = cells[0].text.strip()
+                    definition = cells[1].text.strip()
+
+                    if code and definition:
+                        # Detect which type based on code format
+                        if code.startswith('='):
+                            # System Group (e.g., =10, =61)
+                            self.knowledge["system_groups"][code] = {
+                                "code": code,
+                                "definition": definition,
+                                "source": os.path.basename(doc_path),
+                                "added": datetime.now().isoformat()
+                            }
+                            system_groups_added += 1
+                            print(f"  ✓ System Group: {code:10} → {definition}")
+
+                        elif code.startswith('-'):
+                            # Terminal (e.g., -X10, -X11)
+                            self.knowledge["terminals"][code] = {
+                                "code": code,
+                                "terminal_type": definition,
+                                "source": os.path.basename(doc_path),
+                                "added": datetime.now().isoformat()
+                            }
+                            terminals_added += 1
+                            print(f"  ✓ Terminal:     {code:10} → {definition}")
+
+                        else:
+                            # Unknown format - show warning but continue
+                            print(f"  ⚠ Unknown format: {code} (expected = or - prefix)")
 
         self._save_knowledge()
-        print(f"\n✓ Imported {definitions_added} definitions successfully!")
+        print(f"\n{'='*60}")
+        print(f"✓ Import Complete!")
+        print(f"  System Groups: {system_groups_added}")
+        print(f"  Terminals:     {terminals_added}")
+        print(f"  Total:         {system_groups_added + terminals_added}")
+        print(f"{'='*60}\n")
         return True
 
     def import_from_manual_input(self):
         """Manually enter definitions one by one"""
         print("\n=== Manual Glossary Entry ===")
         print("Enter definitions in format: CODE | DEFINITION")
-        print("Example: =10 | MV-Supply")
+        print("Examples:")
+        print("  =10 | MV-Supply        (system group)")
+        print("  -X10 | Power terminal  (terminal)")
         print("Type 'done' when finished\n")
 
-        self._ensure_glossary_section()
-        definitions_added = 0
+        self._ensure_glossary_sections()
+        system_groups_added = 0
+        terminals_added = 0
 
         while True:
             entry = input("Enter definition (or 'done'): ").strip()
@@ -133,37 +177,67 @@ class GlossaryImporter:
             definition = parts[1].strip()
 
             if code and definition:
-                self.knowledge["system_groups"][code] = {
-                    "code": code,
-                    "definition": definition,
-                    "source": "manual_entry",
-                    "added": datetime.now().isoformat()
-                }
-                definitions_added += 1
-                print(f"  ✓ Added: {code} → {definition}")
+                if code.startswith('='):
+                    # System Group
+                    self.knowledge["system_groups"][code] = {
+                        "code": code,
+                        "definition": definition,
+                        "source": "manual_entry",
+                        "added": datetime.now().isoformat()
+                    }
+                    system_groups_added += 1
+                    print(f"  ✓ Added System Group: {code} → {definition}")
+                elif code.startswith('-'):
+                    # Terminal
+                    self.knowledge["terminals"][code] = {
+                        "code": code,
+                        "terminal_type": definition,
+                        "source": "manual_entry",
+                        "added": datetime.now().isoformat()
+                    }
+                    terminals_added += 1
+                    print(f"  ✓ Added Terminal: {code} → {definition}")
+                else:
+                    print(f"  ✗ Unknown format: {code} (expected = or - prefix)")
             else:
                 print("  ✗ Both code and definition required")
 
-        if definitions_added > 0:
+        total_added = system_groups_added + terminals_added
+        if total_added > 0:
             self._save_knowledge()
-            print(f"\n✓ Imported {definitions_added} definitions successfully!")
+            print(f"\n✓ Imported {total_added} definitions successfully!")
+            print(f"  System Groups: {system_groups_added}")
+            print(f"  Terminals:     {terminals_added}")
         else:
             print("\n  No definitions added.")
 
-        return definitions_added > 0
+        return total_added > 0
 
     def show_all_definitions(self):
-        """Display all system group definitions"""
-        if "system_groups" not in self.knowledge or not self.knowledge["system_groups"]:
-            print("\nNo system group definitions in knowledge base.")
-            return
+        """Display all glossary definitions"""
+        has_data = False
 
-        print("\n=== System Groups ===\n")
-        for code in sorted(self.knowledge["system_groups"].keys()):
-            entry = self.knowledge["system_groups"][code]
-            print(f"  {code:10} → {entry['definition']}")
+        # Show System Groups
+        if "system_groups" in self.knowledge and self.knowledge["system_groups"]:
+            print("\n=== System Groups (System Categories) ===\n")
+            for code in sorted(self.knowledge["system_groups"].keys()):
+                entry = self.knowledge["system_groups"][code]
+                print(f"  {code:10} → {entry['definition']}")
+            print(f"\n  Total: {len(self.knowledge['system_groups'])} system groups")
+            has_data = True
 
-        print(f"\nTotal: {len(self.knowledge['system_groups'])} definitions")
+        # Show Terminals
+        if "terminals" in self.knowledge and self.knowledge["terminals"]:
+            print("\n=== Terminals (Terminal Types) ===\n")
+            for code in sorted(self.knowledge["terminals"].keys()):
+                entry = self.knowledge["terminals"][code]
+                print(f"  {code:10} → {entry['terminal_type']}")
+            print(f"\n  Total: {len(self.knowledge['terminals'])} terminals")
+            has_data = True
+
+        if not has_data:
+            print("\nNo glossary definitions in knowledge base.")
+            print("Use: python3 import_glossary.py <file.docx> to import\n")
 
 
 def main():
