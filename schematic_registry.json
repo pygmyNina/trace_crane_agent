@@ -1,0 +1,152 @@
+{
+  "sections": {
+    "electrical": {
+      "10.pdf": {
+        "path": "schematics/electrical/10.pdf",
+        "total_pages": 3,
+        "loaded_at": "2025-10-24T07:53:00.966037",
+        "indexed": true,
+        "pages": {
+          "1": {
+            "references": [
+              "=61/33.3",
+              "=61/32.3"
+            ],
+            "components": [
+              "SG1 MV switch cell",
+              "CB1",
+              "CT1",
+              "CT2",
+              "CT3",
+              "PM1 Main Power Monitor",
+              "FDS1 Ground Level MV Switch",
+              "HTR1",
+              "PB1"
+            ],
+            "cabinets": [
+              "MACHINE HOUSE"
+            ],
+            "terminals": [
+              "V1",
+              "V2",
+              "V3",
+              "R",
+              "S",
+              "T"
+            ],
+            "wire_numbers": [
+              "W1902",
+              "W1984",
+              "W1944",
+              "W1944.1",
+              "W1944.2",
+              "W1944.3",
+              "W7007",
+              "W2034",
+              "W2035",
+              "W2302"
+            ],
+            "connections": [
+              "PM1 to CB1 via CT1/CT2/CT3",
+              "Power Rail to FDS1",
+              "PM1 to Remote Trip Breaker",
+              "PM1 to Remote Close Breaker"
+            ],
+            "summary": "High voltage supply schematic for a container crane showing the main power distribution from 4160V 3-phase utility input through MV switch, current transformers, and power monitoring to the machine house, including trip and close control circuits.",
+            "page_number": 1,
+            "indexed_with": "claude-vision"
+          },
+          "2": {
+            "references": [
+              "=11+E3",
+              "=11+E4"
+            ],
+            "components": [
+              "-TR1",
+              "-CB1 +HVC1",
+              "-GFR1 +HVC1",
+              "-CB1 +HVC2",
+              "-GFR1 +HVC2"
+            ],
+            "cabinets": [],
+            "terminals": [
+              "1",
+              "2",
+              "3",
+              "4",
+              "5",
+              "10"
+            ],
+            "wire_numbers": [
+              "3/2 AWG",
+              "W2036 3x12 AWG"
+            ],
+            "connections": [
+              "700 kVA transformer to CB1",
+              "CB1 to ground fault relay GFR1",
+              "2000kVA BUS 1 to multiple terminals",
+              "2000kVA BUS 3 to multiple terminals"
+            ],
+            "summary": "This is a HV-supply circuit diagram for a Container Crane at Maersk Pacific USA, showing redundant 700 kVA transformer systems with circuit breakers (CB1) and ground fault relays (GFR1), connecting to 2000kVA buses.",
+            "page_number": 2,
+            "indexed_with": "claude-vision"
+          },
+          "3": {
+            "references": [
+              "=11/4.5.1",
+              "=11/4.5.2",
+              "=11/4.5.4",
+              "=11/3.4.1",
+              "=11/3.5.1",
+              "=11/3.4.2",
+              "=11/4.6.1",
+              "=11/4.0.2",
+              "=11/4.0.7",
+              "=12/31.1",
+              "=12/31.2",
+              "=12/31.3",
+              "=11/E11"
+            ],
+            "components": [
+              "TR1 HV Transformer",
+              "CB1",
+              "GFR1",
+              "FAN CONTROLLER"
+            ],
+            "cabinets": [
+              "200kVA BUS 2"
+            ],
+            "terminals": [
+              "X1",
+              "X2",
+              "X3",
+              "1",
+              "2",
+              "3",
+              "8",
+              "9",
+              "10",
+              "11",
+              "12"
+            ],
+            "wire_numbers": [
+              "W2037",
+              "W2024"
+            ],
+            "connections": [
+              "TR1 transformer to CB1",
+              "CB1 to Ground Pad",
+              "CB1 to GFR1",
+              "GFR1 to Fan Controller",
+              "System ground to fan controller"
+            ],
+            "summary": "This is a high voltage supply schematic for a container crane showing the connections from a 200kVA transformer through circuit breakers and ground fault relay to a fan controller system.",
+            "page_number": 3,
+            "indexed_with": "claude-vision"
+          }
+        },
+        "indexed_at": "2025-10-24T08:03:26.950298"
+      }
+    }
+  }
+}
