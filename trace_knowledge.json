@@ -354,5 +354,355 @@
       "source": "glossary/electrical_sections.docx",
       "added": "2025-10-24T15:26:25.707049"
     }
+  },
+  "locations": {
+    "shorthand expression for crane locations in circuit diagrams": {
+      "abbreviation": "shorthand expression for crane locations in circuit diagrams",
+      "description": "location",
+      "source": "electrical_locations.csv",
+      "added": "2025-10-24T18:30:24.432677"
+    },
+    "+BDA": {
+      "abbreviation": "+BDA",
+      "description": "Boom Hoist Drive Auxiliary Box",
+      "source": "electrical_locations.csv",
+      "added": "2025-10-24T18:30:24.432694"
+    },
+    "+BFC": {
+      "abbreviation": "+BFC",
+      "description": "Bridge Girder Festoon Terminal Box Control",
+      "source": "electrical_locations.csv",
+      "added": "2025-10-24T18:30:24.432699"
+    },
+    "+BFP": {
+      "abbreviation": "+BFP",
+      "description": "Bridge Girder Festoon Terminal Box Power",
+      "source": "electrical_locations.csv",
+      "added": "2025-10-24T18:30:24.432703"
+    },
+    "+BGH": {
+      "abbreviation": "+BGH",
+      "description": "Bridge Girder Hinge Terminal Box",
+      "source": "electrical_locations.csv",
+      "added": "2025-10-24T18:30:24.432706"
+    },
+    "+BGI": {
+      "abbreviation": "+BGI",
+      "description": "Bridge Girder Inside",
+      "source": "electrical_locations.csv",
+      "added": "2025-10-24T18:30:24.432709"
+    },
+    "+BGR": {
+      "abbreviation": "+BGR",
+      "description": "Bridge Girder",
+      "source": "electrical_locations.csv",
+      "added": "2025-10-24T18:30:24.432713"
+    },
+    "+BCS": {
+      "abbreviation": "+BCS",
+      "description": "BoomHoistControlStation",
+      "source": "electrical_locations.csv",
+      "added": "2025-10-24T18:30:24.432716"
+    },
+    "+BOH": {
+      "abbreviation": "+BOH",
+      "description": "Boom Hinge Terminal Box",
+      "source": "electrical_locations.csv",
+      "added": "2025-10-24T18:30:24.432720"
+    },
+    "+BOI": {
+      "abbreviation": "+BOI",
+      "description": "Boom Inside",
+      "source": "electrical_locations.csv",
+      "added": "2025-10-24T18:30:24.432723"
+    },
+    "+BOM": {
+      "abbreviation": "+BOM",
+      "description": "Boom",
+      "source": "electrical_locations.csv",
+      "added": "2025-10-24T18:30:24.432727"
+    },
+    "+CHC": {
+      "abbreviation": "+CHC",
+      "description": "Checker\u00b4s Cabin",
+      "source": "electrical_locations.csv",
+      "added": "2025-10-24T18:30:24.432731"
+    },
+    "+CLI": {
+      "abbreviation": "+CLI",
+      "description": "Cross Beam Landside Inside",
+      "source": "electrical_locations.csv",
+      "added": "2025-10-24T18:30:24.432735"
+    },
+    "+CLO": {
+      "abbreviation": "+CLO",
+      "description": "Cross Beam Landside Outside",
+      "source": "electrical_locations.csv",
+      "added": "2025-10-24T18:30:24.432738"
+    },
+    "+CWI": {
+      "abbreviation": "+CWI",
+      "description": "Cross Beam Waterside Inside",
+      "source": "electrical_locations.csv",
+      "added": "2025-10-24T18:30:24.432741"
+    },
+    "+CWO": {
+      "abbreviation": "+CWO",
+      "description": "Cross Beam Waterside Outside",
+      "source": "electrical_locations.csv",
+      "added": "2025-10-24T18:30:24.432744"
+    },
+    "+DSL": {
+      "abbreviation": "+DSL",
+      "description": "DriverSeatLeft",
+      "source": "electrical_locations.csv",
+      "added": "2025-10-24T18:30:24.432748"
+    },
+    "+DSR": {
+      "abbreviation": "+DSR",
+      "description": "DriverSeatRight",
+      "source": "electrical_locations.csv",
+      "added": "2025-10-24T18:30:24.432751"
+    },
+    "+E../.": {
+      "abbreviation": "+E../.",
+      "description": "Mounting Plate, Electrical equipment",
+      "source": "electrical_locations.csv",
+      "added": "2025-10-24T18:30:24.432754"
+    },
+    "+ERI": {
+      "abbreviation": "+ERI",
+      "description": "Electrical Room Inside",
+      "source": "electrical_locations.csv",
+      "added": "2025-10-24T18:30:24.432758"
+    },
+    "+GCS": {
+      "abbreviation": "+GCS",
+      "description": "Ground Control Station",
+      "source": "electrical_locations.csv",
+      "added": "2025-10-24T18:30:24.432761"
+    },
+    "+GDL": {
+      "abbreviation": "+GDL",
+      "description": "Gantry Drive Landside",
+      "source": "electrical_locations.csv",
+      "added": "2025-10-24T18:30:24.432764"
+    },
+    "+GDW": {
+      "abbreviation": "+GDW",
+      "description": "Gantry Drive Waterside",
+      "source": "electrical_locations.csv",
+      "added": "2025-10-24T18:30:24.432768"
+    },
+    "+HDA": {
+      "abbreviation": "+HDA",
+      "description": "Hoist Drive Auxiliary Box",
+      "source": "electrical_locations.csv",
+      "added": "2025-10-24T18:30:24.432771"
+    },
+    "+HFR": {
+      "abbreviation": "+HFR",
+      "description": "Headframe",
+      "source": "electrical_locations.csv",
+      "added": "2025-10-24T18:30:24.432774"
+    },
+    "+HFT": {
+      "abbreviation": "+HFT",
+      "description": "Headframe Terminal Box",
+      "source": "electrical_locations.csv",
+      "added": "2025-10-24T18:30:24.432778"
+    },
+    "+HVC": {
+      "abbreviation": "+HVC",
+      "description": "High Voltage Switch Control Box",
+      "source": "electrical_locations.csv",
+      "added": "2025-10-24T18:30:24.432781"
+    },
+    "+LLL": {
+      "abbreviation": "+LLL",
+      "description": "Leg Landside Left",
+      "source": "electrical_locations.csv",
+      "added": "2025-10-24T18:30:24.432784"
+    },
+    "+LLR": {
+      "abbreviation": "+LLR",
+      "description": "Leg Landside Right",
+      "source": "electrical_locations.csv",
+      "added": "2025-10-24T18:30:24.432787"
+    },
+    "+LLT": {
+      "abbreviation": "+LLT",
+      "description": "Leg LandsideTermial box",
+      "source": "electrical_locations.csv",
+      "added": "2025-10-24T18:30:24.432790"
+    },
+    "+LWT": {
+      "abbreviation": "+LWT",
+      "description": "Leg WandsideTermial box",
+      "source": "electrical_locations.csv",
+      "added": "2025-10-24T18:30:24.432794"
+    },
+    "+LWL": {
+      "abbreviation": "+LWL",
+      "description": "Leg Waterside Left",
+      "source": "electrical_locations.csv",
+      "added": "2025-10-24T18:30:24.432797"
+    },
+    "+LWR": {
+      "abbreviation": "+LWR",
+      "description": "Leg Waterside Right",
+      "source": "electrical_locations.csv",
+      "added": "2025-10-24T18:30:24.432800"
+    },
+    "+MHI": {
+      "abbreviation": "+MHI",
+      "description": "Machinery House Inside",
+      "source": "electrical_locations.csv",
+      "added": "2025-10-24T18:30:24.432803"
+    },
+    "+MHO": {
+      "abbreviation": "+MHO",
+      "description": "Machinery  House Outside",
+      "source": "electrical_locations.csv",
+      "added": "2025-10-24T18:30:24.432806"
+    },
+    "+MLR": {
+      "abbreviation": "+MLR",
+      "description": "Machinery H. Local Station Rope changing Boom",
+      "source": "electrical_locations.csv",
+      "added": "2025-10-24T18:30:24.432810"
+    },
+    "+OCE": {
+      "abbreviation": "+OCE",
+      "description": "Operators Cabin Electrical equipment plate",
+      "source": "electrical_locations.csv",
+      "added": "2025-10-24T18:30:24.432881"
+    },
+    "+OFC": {
+      "abbreviation": "+OFC",
+      "description": "Operators Cabin Front Console",
+      "source": "electrical_locations.csv",
+      "added": "2025-10-24T18:30:24.432885"
+    },
+    "+OPC": {
+      "abbreviation": "+OPC",
+      "description": "Operators Cabin",
+      "source": "electrical_locations.csv",
+      "added": "2025-10-24T18:30:24.432888"
+    },
+    "+OPS": {
+      "abbreviation": "+OPS",
+      "description": "Operator`s Seat",
+      "source": "electrical_locations.csv",
+      "added": "2025-10-24T18:30:24.432892"
+    },
+    "+OSC": {
+      "abbreviation": "+OSC",
+      "description": "Operator Cabin Side Console",
+      "source": "electrical_locations.csv",
+      "added": "2025-10-24T18:30:24.432895"
+    },
+    "+PBL": {
+      "abbreviation": "+PBL",
+      "description": "Portal Beam Left",
+      "source": "electrical_locations.csv",
+      "added": "2025-10-24T18:30:24.432898"
+    },
+    "+PBR": {
+      "abbreviation": "+PBR",
+      "description": "Portal Beam Right",
+      "source": "electrical_locations.csv",
+      "added": "2025-10-24T18:30:24.432902"
+    },
+    "+PYT": {
+      "abbreviation": "+PYT",
+      "description": "Pylon Terminal Box",
+      "source": "electrical_locations.csv",
+      "added": "2025-10-24T18:30:24.432906"
+    },
+    "+PYW": {
+      "abbreviation": "+PYW",
+      "description": "Pylon Waterside",
+      "source": "electrical_locations.csv",
+      "added": "2025-10-24T18:30:24.432909"
+    },
+    "+SLI": {
+      "abbreviation": "+SLI",
+      "description": "Sillbeam Landside Inside",
+      "source": "electrical_locations.csv",
+      "added": "2025-10-24T18:30:24.432912"
+    },
+    "+SLT": {
+      "abbreviation": "+SLT",
+      "description": "Sillbeam Landside Terminal Box",
+      "source": "electrical_locations.csv",
+      "added": "2025-10-24T18:30:24.432915"
+    },
+    "+SPR": {
+      "abbreviation": "+SPR",
+      "description": "Spreader",
+      "source": "electrical_locations.csv",
+      "added": "2025-10-24T18:30:24.432918"
+    },
+    "+SWI": {
+      "abbreviation": "+SWI",
+      "description": "Sillbeam Waterside Inside",
+      "source": "electrical_locations.csv",
+      "added": "2025-10-24T18:30:24.432922"
+    },
+    "+SWT": {
+      "abbreviation": "+SWT",
+      "description": "Sillbeam Waterside Terminal Box",
+      "source": "electrical_locations.csv",
+      "added": "2025-10-24T18:30:24.432925"
+    },
+    "+TEC": {
+      "abbreviation": "+TEC",
+      "description": "Trolley Electrical Cubicle",
+      "source": "electrical_locations.csv",
+      "added": "2025-10-24T18:30:24.432928"
+    },
+    "+TFP": {
+      "abbreviation": "+TFP",
+      "description": "Trolley Festoon Terminal  Box Power",
+      "source": "electrical_locations.csv",
+      "added": "2025-10-24T18:30:24.432931"
+    },
+    "+TDA": {
+      "abbreviation": "+TDA",
+      "description": "Trolley DriveAuxiliary",
+      "source": "electrical_locations.csv",
+      "added": "2025-10-24T18:30:24.432935"
+    },
+    "+TLM": {
+      "abbreviation": "+TLM",
+      "description": "Trolley Local Station for Maintenance Trolley",
+      "source": "electrical_locations.csv",
+      "added": "2025-10-24T18:30:24.432938"
+    },
+    "+TLR": {
+      "abbreviation": "+TLR",
+      "description": "Trolley Local Station for Rope changing  hoist",
+      "source": "electrical_locations.csv",
+      "added": "2025-10-24T18:30:24.432941"
+    },
+    "+TMH": {
+      "abbreviation": "+TMH",
+      "description": "Trolley Machinery House",
+      "source": "electrical_locations.csv",
+      "added": "2025-10-24T18:30:24.432944"
+    },
+    "+TRO": {
+      "abbreviation": "+TRO",
+      "description": "Trolley",
+      "source": "electrical_locations.csv",
+      "added": "2025-10-24T18:30:24.432947"
+    },
+    "+TSD": {
+      "abbreviation": "+TSD",
+      "description": "Spreader Drum on Trolley",
+      "source": "electrical_locations.csv",
+      "added": "2025-10-24T18:30:24.432951"
+    }
   }
 }
