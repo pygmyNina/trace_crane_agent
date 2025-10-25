@@ -3,7 +3,7 @@
 Import Glossary Script for TRACE
 Reads glossary files and imports definitions into knowledge base.
 
-Supports: Word documents (.docx), Excel files (.xls, .xlsx)
+Supports: Word documents (.docx), Excel files (.xls, .xlsx), CSV files (.csv)
 
 Handles multiple glossary types:
   - System Groups: =10, =61, etc. (system categories, not locations)
@@ -26,11 +26,13 @@ Expected format: 2-column tables
 Usage:
   python3 import_glossary.py glossary/electrical_sections.docx
   python3 import_glossary.py glossary/locations.xls
+  python3 import_glossary.py glossary/locations.csv
 """
 
 import json
 import sys
 import os
+import csv
 from datetime import datetime
 
 # Try importing Word document reader
@@ -363,6 +365,67 @@ class GlossaryImporter:
         print(f"{'='*60}\n")
         return True
 
+    def import_from_csv(self, csv_path):
+        """Import glossary from CSV file"""
+        try:
+            with open(csv_path, 'r', encoding='utf-8-sig') as f:  # utf-8-sig handles BOM
+                reader = csv.reader(f)
+                rows = list(reader)
+        except Exception as e:
+            print(f"✗ Could not open {csv_path}")
+            print(f"  Error: {e}")
+            return False
+
+        print(f"\n📄 Reading {csv_path}...")
+        print(f"   Total rows: {len(rows)}\n")
+
+        self._ensure_glossary_sections()
+
+        system_groups_added = 0
+        terminals_added = 0
+        locations_added = 0
+
+        # Auto-detect data start row
+        data_start_row = 0
+        for row_num, row in enumerate(rows):
+            if len(row) >= 2:
+                col1 = row[0].strip()
+                col2 = row[1].strip()
+                # Skip if either column is empty, or if column 1 looks like a header
+                if col1 and col2 and not any(header_word in col1.lower() for header_word in ['code', 'abbreviation', 'name', 'kennzeichen']):
+                    data_start_row = row_num
+                    break
+
+        print(f"   Starting data import from row {data_start_row + 1}\n")
+
+        # Process data rows
+        for row_num, row in enumerate(rows[data_start_row:], start=data_start_row):
+            if len(row) >= 2:
+                code = row[0].strip()
+                definition = row[1].strip()
+
+                if code and definition:
+                    added = self._add_definition(code, definition, os.path.basename(csv_path))
+                    if added == "system_group":
+                        system_groups_added += 1
+                        print(f"  ✓ System Group: {code:10} → {definition}")
+                    elif added == "terminal":
+                        terminals_added += 1
+                        print(f"  ✓ Terminal:     {code:10} → {definition}")
+                    elif added == "location":
+                        locations_added += 1
+                        print(f"  ✓ Location:     {code:10} → {definition}")
+
+        self._save_knowledge()
+        print(f"\n{'='*60}")
+        print(f"✓ Import Complete!")
+        print(f"  System Groups: {system_groups_added}")
+        print(f"  Terminals:     {terminals_added}")
+        print(f"  Locations:     {locations_added}")
+        print(f"  Total:         {system_groups_added + terminals_added + locations_added}")
+        print(f"{'='*60}\n")
+        return True
+
     def import_from_manual_input(self):
         """Manually enter definitions one by one"""
         print("\n=== Manual Glossary Entry ===")
@@ -471,7 +534,7 @@ def main():
         print("Usage: python3 import_glossary.py <path-to-file>")
         print("   OR: python3 import_glossary.py --manual")
         print("   OR: python3 import_glossary.py --show")
-        print("\nSupported formats: .docx, .xls, .xlsx")
+        print("\nSupported formats: .docx, .xls, .xlsx, .csv")
         sys.exit(1)
 
     arg = sys.argv[1]
@@ -493,9 +556,11 @@ def main():
             importer.import_from_docx(file_path)
         elif file_ext in ['.xls', '.xlsx']:
             importer.import_from_excel(file_path)
+        elif file_ext == '.csv':
+            importer.import_from_csv(file_path)
         else:
             print(f"✗ Unsupported file format: {file_ext}")
-            print("  Supported formats: .docx, .xls, .xlsx")
+            print("  Supported formats: .docx, .xls, .xlsx, .csv")
             sys.exit(1)
 
 
