@@ -5103,5 +5103,2394 @@
         "indexed_at": "2025-10-25T22:53:38.957485"
       }
     }
+  },
+  "parts_lists": {
+    "electrical": {
+      "11_parts.pdf": {
+        "path": "schematics/electrical/11_parts.pdf",
+        "total_pages": 18,
+        "loaded_at": "2025-10-26T14:10:24.630295",
+        "indexed": true,
+        "parts": [
+          {
+            "quantity": "1",
+            "description": "wind sensor",
+            "identification": "4.3519.00.041",
+            "symbol": "-B1",
+            "sheet_section": "=11/109.6",
+            "location": "+PYW",
+            "remarks": ""
+          },
+          {
+            "quantity": "1",
+            "description": "capacitor 2200mF 25V",
+            "identification": "NEH2200M25FF",
+            "symbol": "-C1",
+            "sheet_section": "=11/13.5",
+            "location": "+TEC",
+            "remarks": ""
+          },
+          {
+            "quantity": "1",
+            "description": "capacitor 2200mF 25V",
+            "identification": "NEH2200M25FF",
+            "symbol": "-C2",
+            "sheet_section": "=11/16.6",
+            "location": "+E13",
+            "remarks": ""
+          },
+          {
+            "quantity": "1",
+            "description": "circuit breaker 700A",
+            "identification": "S6L800A",
+            "symbol": "-CB1",
+            "sheet_section": "=11/1.5",
+            "location": "+E3",
+            "remarks": ""
+          },
+          {
+            "quantity": "1",
+            "description": "circuit breaker 700A",
+            "identification": "S6L800A",
+            "symbol": "-CB1",
+            "sheet_section": "=11/2.5",
+            "location": "+E4",
+            "remarks": ""
+          },
+          {
+            "quantity": "1",
+            "description": "automatic circuit breaker 16A 2-pole",
+            "identification": "5SX2 216-8",
+            "symbol": "-CB1",
+            "sheet_section": "=11/7.7",
+            "location": "+E11",
+            "remarks": ""
+          },
+          {
+            "quantity": "1",
+            "description": "auxiliary switch 1NO+1NC",
+            "identification": "5SX9 100",
+            "symbol": "-CB1",
+            "sheet_section": "=11/7.7",
+            "location": "+E11",
+            "remarks": ""
+          },
+          {
+            "quantity": "1",
+            "description": "automatic circuit breaker 16A 2-pole",
+            "identification": "5SX2 216-8",
+            "symbol": "-CB2",
+            "sheet_section": "=11/7.8",
+            "location": "+E11",
+            "remarks": ""
+          },
+          {
+            "quantity": "1",
+            "description": "auxiliary switch 1NO+1NC",
+            "identification": "5SX9 100",
+            "symbol": "-CB2",
+            "sheet_section": "=11/7.8",
+            "location": "+E11",
+            "remarks": ""
+          },
+          {
+            "quantity": "1",
+            "description": "auxiliary switch 1NO+1NC",
+            "identification": "C01FD62B",
+            "symbol": "-CB7",
+            "sheet_section": "=11/8.2",
+            "location": "+E11",
+            "remarks": ""
+          },
+          {
+            "quantity": "1",
+            "description": "circuit breaker 250A",
+            "identification": "FXD63B250L",
+            "symbol": "-CB7",
+            "sheet_section": "=11/8.2",
+            "location": "+E11",
+            "remarks": ""
+          },
+          {
+            "quantity": "1",
+            "description": "auxiliary switch 1NO+1NC",
+            "identification": "C01FD62B",
+            "symbol": "-CB8",
+            "sheet_section": "=11/10.2",
+            "location": "+E11",
+            "remarks": ""
+          },
+          {
+            "quantity": "1",
+            "description": "circuit breaker 250A",
+            "identification": "FXD63B250L",
+            "symbol": "-CB8",
+            "sheet_section": "=11/10.2",
+            "location": "+E11",
+            "remarks": ""
+          },
+          {
+            "quantity": "1",
+            "description": "auxiliary switch 1NO+1NC",
+            "identification": "A01MND64B",
+            "symbol": "-CB10",
+            "sheet_section": "=11/5.4",
+            "location": "+E3",
+            "remarks": ""
+          },
+          {
+            "quantity": "1",
+            "description": "circuit breaker 700A",
+            "identification": "HMXD63B700H",
+            "symbol": "-CB10",
+            "sheet_section": "=11/5.4",
+            "location": "+E3",
+            "remarks": ""
+          },
+          {
+            "quantity": "1",
+            "description": "auxiliary switch 1NO+1NC",
+            "identification": "A01MND64B",
+            "symbol": "-CB10",
+            "sheet_section": "=11/6.4",
+            "location": "+E4",
+            "remarks": ""
+          },
+          {
+            "quantity": "1",
+            "description": "circuit breaker 700A",
+            "identification": "HMXD63B700H",
+            "symbol": "-CB10",
+            "sheet_section": "=11/6.4",
+            "location": "+E4",
+            "remarks": ""
+          },
+          {
+            "quantity": "1",
+            "description": "auxiliary switch 1NO+1NC",
+            "identification": "A01MND64B",
+            "symbol": "-CB10A",
+            "sheet_section": "=11/5.5",
+            "location": "+E3",
+            "remarks": ""
+          },
+          {
+            "quantity": "1",
+            "description": "circuit breaker 1200A",
+            "identification": "HNXD63B120H",
+            "symbol": "-CB10A",
+            "sheet_section": "=11/5.5",
+            "location": "+E3",
+            "remarks": ""
+          },
+          {
+            "quantity": "1",
+            "description": "auxiliary switch 1NO+1NC",
+            "identification": "A01MND64B",
+            "symbol": "-CB10A",
+            "sheet_section": "=11/6.5",
+            "location": "+E4",
+            "remarks": ""
+          },
+          {
+            "quantity": "1",
+            "description": "circuit breaker 1200A",
+            "identification": "HNXD63B120H",
+            "symbol": "-CB10A",
+            "sheet_section": "=11/6.5",
+            "location": "+E4",
+            "remarks": ""
+          },
+          {
+            "quantity": "1",
+            "description": "auxiliary switch 1NO+1NC",
+            "identification": "A01ED42B",
+            "symbol": "-CB13",
+            "sheet_section": "=11/8.2",
+            "location": "+E13",
+            "remarks": ""
+          },
+          {
+            "quantity": "1",
+            "description": "circuit breaker 400A",
+            "identification": "ED63B100L",
+            "symbol": "-CB13",
+            "sheet_section": "=11/8.2",
+            "location": "+E13",
+            "remarks": ""
+          },
+          {
+            "quantity": "1",
+            "description": "automatic circuit breaker 10A 1-pole",
+            "identification": "5SX2 110-8",
+            "symbol": "-CB17",
+            "sheet_section": "=11/29.2",
+            "location": "+E13",
+            "remarks": ""
+          },
+          {
+            "quantity": "1",
+            "description": "auxiliary switch 1NO+1NC",
+            "identification": "5SX9 100",
+            "symbol": "-CB17",
+            "sheet_section": "=11/29.2",
+            "location": "+E13",
+            "remarks": ""
+          },
+          {
+            "quantity": "1",
+            "description": "automatic circuit breaker 6A 1-pole",
+            "identification": "5SX2 106-8",
+            "symbol": "-CB18",
+            "sheet_section": "=11/30.2",
+            "location": "+E13",
+            "remarks": ""
+          },
+          {
+            "quantity": "1",
+            "description": "auxiliary switch 1NO+1NC",
+            "identification": "5SX9 100",
+            "symbol": "-CB18",
+            "sheet_section": "=11/30.2",
+            "location": "+E13",
+            "remarks": ""
+          },
+          {
+            "quantity": "1",
+            "description": "automatic circuit breaker 10A 1-pole",
+            "identification": "5SX2 110-8",
+            "symbol": "-CB19",
+            "sheet_section": "=11/31.2",
+            "location": "+E13",
+            "remarks": ""
+          },
+          {
+            "quantity": "1",
+            "description": "auxiliary switch 1NO+1NC",
+            "identification": "5SX9 100",
+            "symbol": "-CB19",
+            "sheet_section": "=11/31.2",
+            "location": "+E13",
+            "remarks": ""
+          },
+          {
+            "quantity": "1",
+            "description": "automatic circuit breaker 10A 1-pole",
+            "identification": "5SX2 110-8",
+            "symbol": "-CB20",
+            "sheet_section": "=11/31.6",
+            "location": "+E13",
+            "remarks": ""
+          },
+          {
+            "quantity": "1",
+            "description": "auxiliary switch 1NO+1NC",
+            "identification": "5SX9 100",
+            "symbol": "-CB20",
+            "sheet_section": "=11/31.6",
+            "location": "+E13",
+            "remarks": ""
+          },
+          {
+            "quantity": "1",
+            "description": "automatic circuit breaker 40A 1-pole",
+            "identification": "5SX2 140-8",
+            "symbol": "-CB21",
+            "sheet_section": "=11/16.2",
+            "location": "+E13",
+            "remarks": ""
+          },
+          {
+            "quantity": "1",
+            "description": "auxiliary switch 1NO+1NC",
+            "identification": "5SX9 100",
+            "symbol": "-CB21",
+            "sheet_section": "=11/16.2",
+            "location": "+E13",
+            "remarks": ""
+          },
+          {
+            "quantity": "1",
+            "description": "automatic circuit breaker 20A 1-pole",
+            "identification": "5SX2 120-8",
+            "symbol": "-CB24",
+            "sheet_section": "=11/32.2",
+            "location": "+E13",
+            "remarks": ""
+          },
+          {
+            "quantity": "1",
+            "description": "auxiliary switch 1NO+1NC",
+            "identification": "5SX9 100",
+            "symbol": "-CB24",
+            "sheet_section": "=11/32.2",
+            "location": "+E13",
+            "remarks": ""
+          },
+          {
+            "quantity": "1",
+            "description": "automatic circuit breaker 16A 2-pole",
+            "identification": "5SX2 216-8",
+            "symbol": "-CB31",
+            "sheet_section": "=11/14.2",
+            "location": "+TEC",
+            "remarks": ""
+          },
+          {
+            "quantity": "1",
+            "description": "auxiliary switch 1NO+1NC",
+            "identification": "5SX9 100",
+            "symbol": "-CB31",
+            "sheet_section": "=11/14.2",
+            "location": "+TEC",
+            "remarks": ""
+          },
+          {
+            "quantity": "1",
+            "description": "automatic circuit breaker 6A 1-pole",
+            "identification": "5SX2 106-8",
+            "symbol": "-CB32",
+            "sheet_section": "=11/15.2",
+            "location": "+TEC",
+            "remarks": ""
+          },
+          {
+            "quantity": "1",
+            "description": "auxiliary switch 1NO+1NC",
+            "identification": "5SX9 100",
+            "symbol": "-CB32",
+            "sheet_section": "=11/15.2",
+            "location": "+TEC",
+            "remarks": ""
+          },
+          {
+            "quantity": "1",
+            "description": "automatic circuit breaker 10A 1-pole",
+            "identification": "5SX2 110-8",
+            "symbol": "-CB33",
+            "sheet_section": "=11/15.4",
+            "location": "+TEC",
+            "remarks": ""
+          },
+          {
+            "quantity": "1",
+            "description": "auxiliary switch 1NO+1NC",
+            "identification": "5SX9 100",
+            "symbol": "-CB33",
+            "sheet_section": "=11/15.4",
+            "location": "+TEC",
+            "remarks": ""
+          },
+          {
+            "quantity": "1",
+            "description": "automatic circuit breaker 10A 1-pole",
+            "identification": "5SX2 110-8",
+            "symbol": "-CB34",
+            "sheet_section": "=11/15.6",
+            "location": "+TEC",
+            "remarks": ""
+          },
+          {
+            "quantity": "1",
+            "description": "auxiliary switch 1NO+1NC",
+            "identification": "5SX9 100",
+            "symbol": "-CB34",
+            "sheet_section": "=11/15.6",
+            "location": "+TEC",
+            "remarks": ""
+          },
+          {
+            "quantity": "1",
+            "description": "automatic circuit breaker 6A 1-pole",
+            "identification": "5SX2 106-8",
+            "symbol": "-CB35",
+            "sheet_section": "=11/15.8",
+            "location": "+TEC",
+            "remarks": ""
+          },
+          {
+            "quantity": "1",
+            "description": "auxiliary switch 1NO+1NC",
+            "identification": "5SX9 100",
+            "symbol": "-CB35",
+            "sheet_section": "=11/15.8",
+            "location": "+TEC",
+            "remarks": ""
+          },
+          {
+            "quantity": "1",
+            "description": "automatic circuit breaker 6A 1-pole",
+            "identification": "5SX2 106-8",
+            "symbol": "-CB200",
+            "sheet_section": "=11/17.2",
+            "location": "+E13",
+            "remarks": ""
+          },
+          {
+            "quantity": "1",
+            "description": "auxiliary switch 1NO+1NC",
+            "identification": "5SX9 100",
+            "symbol": "-CB200",
+            "sheet_section": "=11/17.2",
+            "location": "+E13",
+            "remarks": ""
+          },
+          {
+            "quantity": "1",
+            "description": "automatic circuit breaker 6A 1-pole",
+            "identification": "5SX2 106-8",
+            "symbol": "-CB201",
+            "sheet_section": "=11/17.3",
+            "location": "+E13",
+            "remarks": ""
+          },
+          {
+            "quantity": "1",
+            "description": "auxiliary switch 1NO+1NC",
+            "identification": "5SX9 100",
+            "symbol": "-CB201",
+            "sheet_section": "=11/17.3",
+            "location": "+E13",
+            "remarks": ""
+          },
+          {
+            "quantity": "1",
+            "description": "automatic circuit breaker 10A 1-pole",
+            "identification": "5SX2 110-8",
+            "symbol": "-CB202",
+            "sheet_section": "=11/17.4",
+            "location": "+E13",
+            "remarks": ""
+          },
+          {
+            "quantity": "1",
+            "description": "auxiliary switch 1NO+1NC",
+            "identification": "5SX9 100",
+            "symbol": "-CB202",
+            "sheet_section": "=11/17.4",
+            "location": "+E13",
+            "remarks": ""
+          },
+          {
+            "quantity": "1",
+            "description": "automatic circuit breaker 10A 1-pole",
+            "identification": "5SX2 110-8",
+            "symbol": "-CB203",
+            "sheet_section": "=11/17.6",
+            "location": "+E13",
+            "remarks": ""
+          },
+          {
+            "quantity": "1",
+            "description": "auxiliary switch 1NO+1NC",
+            "identification": "5SX9 100",
+            "symbol": "-CB203",
+            "sheet_section": "=11/17.6",
+            "location": "+E13",
+            "remarks": ""
+          },
+          {
+            "quantity": "1",
+            "description": "automatic circuit breaker 10A 1-pole",
+            "identification": "5SX2 110-8",
+            "symbol": "-CB204",
+            "sheet_section": "=11/17.7",
+            "location": "+E13",
+            "remarks": ""
+          },
+          {
+            "quantity": "1",
+            "description": "auxiliary switch 1NO+1NC",
+            "identification": "5SX9 100",
+            "symbol": "-CB204",
+            "sheet_section": "=11/17.7",
+            "location": "+E13",
+            "remarks": ""
+          },
+          {
+            "quantity": "1",
+            "description": "automatic circuit breaker 10A 1-pole",
+            "identification": "5SX2 110-8",
+            "symbol": "-CB205",
+            "sheet_section": "=11/18.2",
+            "location": "+E13",
+            "remarks": ""
+          },
+          {
+            "quantity": "1",
+            "description": "auxiliary switch 1NO+1NC",
+            "identification": "5SX9 100",
+            "symbol": "-CB205",
+            "sheet_section": "=11/18.2",
+            "location": "+E13",
+            "remarks": ""
+          },
+          {
+            "quantity": "1",
+            "description": "automatic circuit breaker 6A 1-pole",
+            "identification": "5SX2 106-8",
+            "symbol": "-CB206",
+            "sheet_section": "=11/18.5",
+            "location": "+E13",
+            "remarks": ""
+          },
+          {
+            "quantity": "1",
+            "description": "auxiliary switch 1NO+1NC",
+            "identification": "5SX9 100",
+            "symbol": "-CB206",
+            "sheet_section": "=11/18.5",
+            "location": "+E13",
+            "remarks": ""
+          },
+          {
+            "quantity": "1",
+            "description": "automatic circuit breaker 10A 1-pole",
+            "identification": "5SX2 110-8",
+            "symbol": "-CB207",
+            "sheet_section": "=11/18.6",
+            "location": "+E13",
+            "remarks": ""
+          },
+          {
+            "quantity": "1",
+            "description": "auxiliary switch 1NO+1NC",
+            "identification": "5SX9 100 Siemens",
+            "symbol": "-CB207",
+            "sheet_section": "=11/18.6",
+            "location": "+E13",
+            "remarks": ""
+          },
+          {
+            "quantity": "1",
+            "description": "busbar holder 2500A",
+            "identification": "SV 3055.000 Rittal",
+            "symbol": "-CBB1",
+            "sheet_section": "=11/1.2",
+            "location": "+E3",
+            "remarks": ""
+          },
+          {
+            "quantity": "1",
+            "description": "CU busbar 80x10mm",
+            "identification": "SV 3590.000 Rittal",
+            "symbol": "-CBB1",
+            "sheet_section": "=11/1.2",
+            "location": "+E3",
+            "remarks": ""
+          },
+          {
+            "quantity": "1",
+            "description": "busbar holder 2500A",
+            "identification": "SV 3055.000 Rittal",
+            "symbol": "-CBB1",
+            "sheet_section": "=11/2.2",
+            "location": "+E4",
+            "remarks": ""
+          },
+          {
+            "quantity": "1",
+            "description": "CU busbar 80x10mm",
+            "identification": "SV 3590.000 Rittal",
+            "symbol": "-CBB1",
+            "sheet_section": "=11/2.2",
+            "location": "+E4",
+            "remarks": ""
+          },
+          {
+            "quantity": "1",
+            "description": "Fastbus 36\"",
+            "identification": "FBB36 Siemens",
+            "symbol": "-CBB1",
+            "sheet_section": "=11/8.2",
+            "location": "+E13",
+            "remarks": ""
+          },
+          {
+            "quantity": "1",
+            "description": "Fastbus holder",
+            "identification": "FBS499 Siemens",
+            "symbol": "-CBB1",
+            "sheet_section": "=11/8.2",
+            "location": "+E13",
+            "remarks": ""
+          },
+          {
+            "quantity": "1",
+            "description": "Fastbus conn.",
+            "identification": "FTB250 Siemens",
+            "symbol": "-CBB1",
+            "sheet_section": "=11/8.2",
+            "location": "+E13",
+            "remarks": ""
+          },
+          {
+            "quantity": "1",
+            "description": "Fastbus 36\"",
+            "identification": "FBB36 Siemens",
+            "symbol": "-CBB1",
+            "sheet_section": "=11/12.2",
+            "location": "+TEC1",
+            "remarks": ""
+          },
+          {
+            "quantity": "1",
+            "description": "Fastbus holder",
+            "identification": "FBS400 Siemens",
+            "symbol": "-CBB1",
+            "sheet_section": "=11/12.2",
+            "location": "+TEC1",
+            "remarks": ""
+          },
+          {
+            "quantity": "1",
+            "description": "Fastbus conn.",
+            "identification": "FBT250 Siemens",
+            "symbol": "-CBB1",
+            "sheet_section": "=11/12.2",
+            "location": "+TEC1",
+            "remarks": ""
+          },
+          {
+            "quantity": "1",
+            "description": "auxiliary contact",
+            "identification": "3RH19 21-1CA10 Siemens",
+            "symbol": "-CONT10",
+            "sheet_section": "=11/20.7",
+            "location": "+E13",
+            "remarks": ""
+          },
+          {
+            "quantity": "1",
+            "description": "A.C. contactor 3RT10, AC-operated",
+            "identification": "3RT10 25-1AK60 Siemens",
+            "symbol": "-CONT10",
+            "sheet_section": "=11/20.7",
+            "location": "+E13",
+            "remarks": ""
+          },
+          {
+            "quantity": "1",
+            "description": "surge suppressor",
+            "identification": "3RT19 16-1BC00 Siemens",
+            "symbol": "-CONT10",
+            "sheet_section": "=11/20.7",
+            "location": "+E13",
+            "remarks": ""
+          },
+          {
+            "quantity": "1",
+            "description": "auxiliary contact module for 3RT1",
+            "identification": "3RH19 11-1HA12 Siemens",
+            "symbol": "-CONT11",
+            "sheet_section": "=11/20.8",
+            "location": "+TEC1",
+            "remarks": ""
+          },
+          {
+            "quantity": "1",
+            "description": "A.C. contactor 3RT10, AC-operated",
+            "identification": "3RT10 15-1AK61",
+            "symbol": "-CONT11",
+            "sheet_section": "=11/20.8",
+            "location": "+TEC1",
+            "remarks": ""
+          },
+          {
+            "quantity": "1",
+            "description": "surge suppressor",
+            "identification": "3RT19 16-1BC00",
+            "symbol": "-CONT11",
+            "sheet_section": "=11/20.8",
+            "location": "+TEC1",
+            "remarks": ""
+          },
+          {
+            "quantity": "1",
+            "description": "auxiliary contact module for 3RT1",
+            "identification": "3RH19 11-1HA12",
+            "symbol": "-CONT12",
+            "sheet_section": "=11/20.5",
+            "location": "+TEC1",
+            "remarks": ""
+          },
+          {
+            "quantity": "1",
+            "description": "A.C. contactor 3RT10, AC-operated",
+            "identification": "3RT10 15-1AK61",
+            "symbol": "-CONT12",
+            "sheet_section": "=11/20.5",
+            "location": "+TEC1",
+            "remarks": ""
+          },
+          {
+            "quantity": "1",
+            "description": "surge suppressor",
+            "identification": "3RT19 16-1BC00",
+            "symbol": "-CONT12",
+            "sheet_section": "=11/20.5",
+            "location": "+TEC1",
+            "remarks": ""
+          },
+          {
+            "quantity": "1",
+            "description": "auxiliary contact",
+            "identification": "3RH19 21-1CA10",
+            "symbol": "-CONT22",
+            "sheet_section": "=11/20.2",
+            "location": "+E13",
+            "remarks": ""
+          },
+          {
+            "quantity": "1",
+            "description": "A.C. contactor 3RT10, AC-operated",
+            "identification": "3RT10 25-1AK61",
+            "symbol": "-CONT22",
+            "sheet_section": "=11/20.2",
+            "location": "+E13",
+            "remarks": ""
+          },
+          {
+            "quantity": "1",
+            "description": "surge suppressor",
+            "identification": "3RT19 26-1BC00",
+            "symbol": "-CONT22",
+            "sheet_section": "=11/20.2",
+            "location": "+E13",
+            "remarks": ""
+          },
+          {
+            "quantity": "1",
+            "description": "auxiliary contact module for 3RT1",
+            "identification": "3RH19 11-1HA12",
+            "symbol": "-CONT23",
+            "sheet_section": "=11/20.4",
+            "location": "+TEC1",
+            "remarks": ""
+          },
+          {
+            "quantity": "1",
+            "description": "A.C. contactor 3RT10, AC-operated",
+            "identification": "3RT10 44-1AK61",
+            "symbol": "-CONT23",
+            "sheet_section": "=11/20.4",
+            "location": "+TEC1",
+            "remarks": ""
+          },
+          {
+            "quantity": "1",
+            "description": "surge suppressor",
+            "identification": "3RT19 26-1BC00",
+            "symbol": "-CONT23",
+            "sheet_section": "=11/20.4",
+            "location": "+TEC1",
+            "remarks": ""
+          },
+          {
+            "quantity": "1",
+            "description": "auxiliary contact",
+            "identification": "3RH19 11-1FA12",
+            "symbol": "-CONT24",
+            "sheet_section": "=11/20.3",
+            "location": "+E13",
+            "remarks": ""
+          },
+          {
+            "quantity": "1",
+            "description": "A.C. contactor 3RT10, AC-operated",
+            "identification": "3RT10 34-1AK60",
+            "symbol": "-CONT24",
+            "sheet_section": "=11/20.3",
+            "location": "+E13",
+            "remarks": ""
+          },
+          {
+            "quantity": "1",
+            "description": "surge suppressor",
+            "identification": "3RT19 16-1BC00",
+            "symbol": "-CONT24",
+            "sheet_section": "=11/20.3",
+            "location": "+E13",
+            "remarks": ""
+          },
+          {
+            "quantity": "1",
+            "description": "auxiliary contactor 3RH11, DC-operated",
+            "identification": "3RH11 22-1AK60",
+            "symbol": "-CR25",
+            "sheet_section": "=11/20.6",
+            "location": "+TEC",
+            "remarks": ""
+          },
+          {
+            "quantity": "1",
+            "description": "surge suppressor",
+            "identification": "3RT19 16-1BC00",
+            "symbol": "-CR25",
+            "sheet_section": "=11/20.6",
+            "location": "+TEC",
+            "remarks": ""
+          },
+          {
+            "quantity": "1",
+            "description": "auxiliary contactor relay3RH11, DC-opera",
+            "identification": "3RH11 40-1BB40",
+            "symbol": "-CR100",
+            "sheet_section": "=11/44.1",
+            "location": "+E13",
+            "remarks": ""
+          },
+          {
+            "quantity": "1",
+            "description": "auxiliary contact module 2NO+2NC",
+            "identification": "3RH19 11-1GA22",
+            "symbol": "-CR100",
+            "sheet_section": "=11/44.1",
+            "location": "+E13",
+            "remarks": ""
+          },
+          {
+            "quantity": "1",
+            "description": "surge suppressor, varistor",
+            "identification": "3RT19 16-1BB00",
+            "symbol": "-CR100",
+            "sheet_section": "=11/44.1",
+            "location": "+E13",
+            "remarks": ""
+          },
+          {
+            "quantity": "1",
+            "description": "auxiliary contactor relay3RH11, DC-opera",
+            "identification": "3RH11 40-1BB40",
+            "symbol": "-CR101",
+            "sheet_section": "=11/44.2",
+            "location": "+E13",
+            "remarks": ""
+          },
+          {
+            "quantity": "1",
+            "description": "auxiliary contact module 2NO+2NC",
+            "identification": "3RH19 11-1GA22",
+            "symbol": "-CR101",
+            "sheet_section": "=11/44.2",
+            "location": "+E13",
+            "remarks": ""
+          },
+          {
+            "quantity": "1",
+            "description": "surge suppressor, varistor",
+            "identification": "3RT19 16-1BB00",
+            "symbol": "-CR101",
+            "sheet_section": "=11/44.2",
+            "location": "+E13",
+            "remarks": ""
+          },
+          {
+            "quantity": "1",
+            "description": "auxiliary contactor relay3RH11, DC-opera",
+            "identification": "3RH11 22-1BB40",
+            "symbol": "-CR102",
+            "sheet_section": "=11/44.3",
+            "location": "+E13",
+            "remarks": ""
+          },
+          {
+            "quantity": "1",
+            "description": "surge suppressor, varistor",
+            "identification": "3RT19 16-1BB00",
+            "symbol": "-CR102",
+            "sheet_section": "=11/44.3",
+            "location": "+E13",
+            "remarks": ""
+          },
+          {
+            "quantity": "1",
+            "description": "auxiliary contactor relay3RH11, DC-opera",
+            "identification": "3RH11 22-1BB40",
+            "symbol": "-CR103",
+            "sheet_section": "=11/44.8",
+            "location": "+E13",
+            "remarks": ""
+          },
+          {
+            "quantity": "1",
+            "description": "surge suppressor, varistor",
+            "identification": "3RT19 16-1BB00",
+            "symbol": "-CR103",
+            "sheet_section": "=11/44.8",
+            "location": "+E13",
+            "remarks": ""
+          },
+          {
+            "quantity": "1",
+            "description": "auxiliary contactor relay3RH11, DC-opera",
+            "identification": "3RH11 22-1BB40",
+            "symbol": "-CR105",
+            "sheet_section": "=11/44.5",
+            "location": "+E13",
+            "remarks": ""
+          },
+          {
+            "quantity": "1",
+            "description": "surge suppressor, varistor",
+            "identification": "3RT19 16-1BB00",
+            "symbol": "-CR105",
+            "sheet_section": "=11/44.5",
+            "location": "+E13",
+            "remarks": ""
+          },
+          {
+            "quantity": "1",
+            "description": "auxiliary contactor relay3RH11, DC-opera",
+            "identification": "3RH11 22-1BB40",
+            "symbol": "-CR106",
+            "sheet_section": "=11/44.6",
+            "location": "+E13",
+            "remarks": ""
+          },
+          {
+            "quantity": "1",
+            "description": "surge suppressor, varistor",
+            "identification": "3RT19 16-1BB00",
+            "symbol": "-CR106",
+            "sheet_section": "=11/44.6",
+            "location": "+E13",
+            "remarks": ""
+          },
+          {
+            "quantity": "1",
+            "description": "auxiliary contactor relay3RH11, DC-opera",
+            "identification": "3RH11 22-1BB40",
+            "symbol": "-CR201",
+            "sheet_section": "=11/45.2",
+            "location": "+E13",
+            "remarks": ""
+          },
+          {
+            "quantity": "1",
+            "description": "surge suppressor, varistor",
+            "identification": "3RT19 16-1BB00",
+            "symbol": "-CR201",
+            "sheet_section": "=11/45.2",
+            "location": "+E13",
+            "remarks": ""
+          },
+          {
+            "quantity": "1",
+            "description": "auxiliary contactor relay3RH11, DC-opera",
+            "identification": "3RH11 22-1BB40",
+            "symbol": "-CR202",
+            "sheet_section": "=11/45.3",
+            "location": "+E13",
+            "remarks": ""
+          },
+          {
+            "quantity": "1",
+            "description": "surge suppressor, varistor",
+            "identification": "3RT19 16-1BB00",
+            "symbol": "-CR202",
+            "sheet_section": "=11/45.3",
+            "location": "+E13",
+            "remarks": ""
+          },
+          {
+            "quantity": "1",
+            "description": "auxiliary contactor relay3RH11, DC-opera",
+            "identification": "3RH11 22-1BB40",
+            "symbol": "-CR203",
+            "sheet_section": "=11/45.4",
+            "location": "+E13",
+            "remarks": ""
+          },
+          {
+            "quantity": "1",
+            "description": "surge suppressor, varistor",
+            "identification": "3RT19 16-1BB00",
+            "symbol": "-CR203",
+            "sheet_section": "=11/45.4",
+            "location": "+E13",
+            "remarks": ""
+          },
+          {
+            "quantity": "1",
+            "description": "current transformer",
+            "identification": "Y4760 5000-042",
+            "symbol": "-CT1",
+            "sheet_section": "=11/1.7",
+            "location": "+E3",
+            "remarks": ""
+          },
+          {
+            "quantity": "1",
+            "description": "current transformer",
+            "identification": "Y4760 5000-042",
+            "symbol": "-CT1",
+            "sheet_section": "=11/2.7",
+            "location": "+E4",
+            "remarks": ""
+          },
+          {
+            "quantity": "3",
+            "description": "Dist. Block cover",
+            "identification": "08590",
+            "symbol": "-DBK1",
+            "sheet_section": "=11/1.4",
+            "location": "+E3",
+            "remarks": ""
+          },
+          {
+            "quantity": "1",
+            "description": "Dist. Block",
+            "identification": "69093",
+            "symbol": "-DBK1",
+            "sheet_section": "=11/1.4",
+            "location": "+E3",
+            "remarks": ""
+          },
+          {
+            "quantity": "3",
+            "description": "Dist. Block cover",
+            "identification": "08590",
+            "symbol": "-DBK1",
+            "sheet_section": "=11/2.4",
+            "location": "+E4",
+            "remarks": ""
+          },
+          {
+            "quantity": "1",
+            "description": "Dist. Block",
+            "identification": "69093",
+            "symbol": "-DBK1",
+            "sheet_section": "=11/2.4",
+            "location": "+E4",
+            "remarks": ""
+          },
+          {
+            "quantity": "1",
+            "description": "Dist. Block",
+            "identification": "67003",
+            "symbol": "-DBK1",
+            "sheet_section": "=11/7.1",
+            "location": "+E11",
+            "remarks": ""
+          },
+          {
+            "quantity": "3",
+            "description": "Dist. Block cover",
+            "identification": "08570",
+            "symbol": "-DBK1",
+            "sheet_section": "=11/10.2",
+            "location": "+E20",
+            "remarks": ""
+          },
+          {
+            "quantity": "1",
+            "description": "Dist. Block",
+            "identification": "67003",
+            "symbol": "-DBK1",
+            "sheet_section": "=11/10.2",
+            "location": "+E20",
+            "remarks": ""
+          },
+          {
+            "quantity": "3",
+            "description": "Dist. Block cover",
+            "identification": "08570",
+            "symbol": "-DBK2",
+            "sheet_section": "=11/10.5",
+            "location": "+E20",
+            "remarks": ""
+          },
+          {
+            "quantity": "1",
+            "description": "Dist. Block",
+            "identification": "67003",
+            "symbol": "-DBK2",
+            "sheet_section": "=11/10.5",
+            "location": "+E20",
+            "remarks": ""
+          },
+          {
+            "quantity": "3",
+            "description": "Dist. Block cover",
+            "identification": "08570",
+            "symbol": "-DBK3",
+            "sheet_section": "=11/10.2",
+            "location": "+E20",
+            "remarks": ""
+          },
+          {
+            "quantity": "1",
+            "description": "Dist. Block",
+            "identification": "67003",
+            "symbol": "-DBK3",
+            "sheet_section": "=11/10.2",
+            "location": "+E20",
+            "remarks": ""
+          },
+          {
+            "quantity": "1",
+            "description": "relay SNO, e-stop monitoring",
+            "identification": "3TK28 07-0BB40",
+            "symbol": "-ESR1",
+            "sheet_section": "=11/19.1",
+            "location": "+E13",
+            "remarks": ""
+          },
+          {
+            "quantity": "1",
+            "description": "emergency stop relay",
+            "identification": "3TK29 23-0BB4",
+            "symbol": "-ESR2",
+            "sheet_section": "=11/19.4",
+            "location": "+E13",
+            "remarks": ""
+          },
+          {
+            "quantity": "1",
+            "description": "emergency stop relay",
+            "identification": "3TK29 23-0BB4",
+            "symbol": "-ESR3",
+            "sheet_section": "=11/19.6",
+            "location": "+E13",
+            "remarks": ""
+          },
+          {
+            "quantity": "1",
+            "description": "emergency stop relay",
+            "identification": "3TK28 21-1CB30",
+            "symbol": "-ESR4",
+            "sheet_section": "=11/19.7",
+            "location": "+E13",
+            "remarks": ""
+          },
+          {
+            "quantity": "1",
+            "description": "horn",
+            "identification": "Model A 120 VAC",
+            "symbol": "-HRN1",
+            "sheet_section": "=11/110.5",
+            "location": "+MHO",
+            "remarks": ""
+          },
+          {
+            "quantity": "1",
+            "description": "reactive power compensation",
+            "identification": "D4G400C4A2",
+            "symbol": "-HS1",
+            "sheet_section": "=11/101.4",
+            "location": "+E17",
+            "remarks": ""
+          },
+          {
+            "quantity": "1",
+            "description": "reactive power compensation",
+            "identification": "D4G400C4A2",
+            "symbol": "-HS2",
+            "sheet_section": "=11/102.4",
+            "location": "+E16",
+            "remarks": ""
+          },
+          {
+            "quantity": "1",
+            "description": "\"Power on\" light",
+            "identification": "VFXHBF15057RP",
+            "symbol": "-LT10",
+            "sheet_section": "=11/110.7",
+            "location": "+BGR",
+            "remarks": ""
+          },
+          {
+            "quantity": "1",
+            "description": "adder for 52W lamp",
+            "identification": "60A52WH",
+            "symbol": "-LT10",
+            "sheet_section": "=11/110.7",
+            "location": "+BGR",
+            "remarks": ""
+          },
+          {
+            "quantity": "1",
+            "description": "surge voltage protection",
+            "identification": "904 601",
+            "symbol": "-MOV1",
+            "sheet_section": "=11/1.6",
+            "location": "+E3",
+            "remarks": ""
+          },
+          {
+            "quantity": "1",
+            "description": "surge voltage protection",
+            "identification": "904 601",
+            "symbol": "-MOV1",
+            "sheet_section": "=11/2.6",
+            "location": "+E4",
+            "remarks": ""
+          },
+          {
+            "quantity": "3",
+            "description": "surge voltage protection",
+            "identification": "904 601",
+            "symbol": "-MOV1",
+            "sheet_section": "=11/7.3",
+            "location": "+E11",
+            "remarks": ""
+          },
+          {
+            "quantity": "1",
+            "description": "surge voltage protection",
+            "identification": "2V025",
+            "symbol": "-MOV1",
+            "sheet_section": "=11/16.6",
+            "location": "+E13",
+            "remarks": ""
+          },
+          {
+            "quantity": "1",
+            "description": "surge voltage protection",
+            "identification": "2V025",
+            "symbol": "-MOV1",
+            "sheet_section": "=11/13.5",
+            "location": "+TEC",
+            "remarks": ""
+          },
+          {
+            "quantity": "3",
+            "description": "surge voltage protection",
+            "identification": "904 601",
+            "symbol": "-MOV2",
+            "sheet_section": "=11/11.2",
+            "location": "+E11",
+            "remarks": ""
+          },
+          {
+            "quantity": "1",
+            "description": "adapter shoe for 3RV101",
+            "identification": "FBS2545",
+            "symbol": "-MSP4",
+            "sheet_section": "=11/12.7",
+            "location": "+TEC1",
+            "remarks": ""
+          },
+          {
+            "quantity": "1",
+            "description": "circuit breakers 0,7-1A",
+            "identification": "3RV10 21-0JA10",
+            "symbol": "-MSP4",
+            "sheet_section": "=11/12.7",
+            "location": "+TEC1",
+            "remarks": ""
+          },
+          {
+            "quantity": "1",
+            "description": "auxiliary 1S, 10",
+            "identification": "3RV19 01-1E",
+            "symbol": "-MSP4",
+            "sheet_section": "=11/12.7",
+            "location": "+TEC1",
+            "remarks": ""
+          },
+          {
+            "quantity": "1",
+            "description": "circuit breakers 45-63A",
+            "identification": "3RV10 41-4JA10",
+            "symbol": "-MSP11",
+            "sheet_section": "=11/1.6",
+            "location": "+E3",
+            "remarks": ""
+          },
+          {
+            "quantity": "1",
+            "description": "auxiliary 1S, 10",
+            "identification": "3RV19 01-1E",
+            "symbol": "-MSP11",
+            "sheet_section": "=11/1.6",
+            "location": "+E3",
+            "remarks": ""
+          },
+          {
+            "quantity": "1",
+            "description": "circuit breakers 45-63A",
+            "identification": "3RV10 41-4JA10",
+            "symbol": "-MSP11",
+            "sheet_section": "=11/2.6",
+            "location": "+E4",
+            "remarks": ""
+          },
+          {
+            "quantity": "1",
+            "description": "auxiliary 1S, 10",
+            "identification": "3RV19 01-1E",
+            "symbol": "-MSP11",
+            "sheet_section": "=11/2.6",
+            "location": "+E4",
+            "remarks": ""
+          },
+          {
+            "quantity": "1",
+            "description": "adapter shoe for 3RV104",
+            "identification": "FBS10070",
+            "symbol": "-MSP11",
+            "sheet_section": "=11/7.3",
+            "location": "+E11",
+            "remarks": ""
+          },
+          {
+            "quantity": "1",
+            "description": "circuit breakers 45-63A",
+            "identification": "3RV10 41-4JA10",
+            "symbol": "-MSP11",
+            "sheet_section": "=11/7.3",
+            "location": "+E11",
+            "remarks": ""
+          },
+          {
+            "quantity": "1",
+            "description": "auxiliary 1S, 10",
+            "identification": "3RV19 01-1E",
+            "symbol": "-MSP11",
+            "sheet_section": "=11/7.3",
+            "location": "+E11",
+            "remarks": ""
+          },
+          {
+            "quantity": "1",
+            "description": "circuit breakers 45-63A",
+            "identification": "3RV10 41-4JA10",
+            "symbol": "-MSP12",
+            "sheet_section": "=11/11.3",
+            "location": "+E11",
+            "remarks": ""
+          },
+          {
+            "quantity": "1",
+            "description": "auxiliary 1S, 1O",
+            "identification": "3RV19 01-1E",
+            "symbol": "-MSP12",
+            "sheet_section": "=11/11.3",
+            "location": "+E11",
+            "remarks": ""
+          },
+          {
+            "quantity": "1",
+            "description": "adapter shoe for 3RV101",
+            "identification": "FBS2S45",
+            "symbol": "-MSP14",
+            "sheet_section": "=11/8.5",
+            "location": "+E13",
+            "remarks": ""
+          },
+          {
+            "quantity": "1",
+            "description": "circuit breakers 20-25A",
+            "identification": "3RV10 21-4DA10",
+            "symbol": "-MSP14",
+            "sheet_section": "=11/8.5",
+            "location": "+E13",
+            "remarks": ""
+          },
+          {
+            "quantity": "1",
+            "description": "auxiliary 1S, 1O",
+            "identification": "3RV19 01-1E",
+            "symbol": "-MSP14",
+            "sheet_section": "=11/8.5",
+            "location": "+E13",
+            "remarks": ""
+          },
+          {
+            "quantity": "1",
+            "description": "adapter shoe for 3RV101",
+            "identification": "FBS2S45",
+            "symbol": "-MSP14A",
+            "sheet_section": "=11/8.4",
+            "location": "+E13",
+            "remarks": ""
+          },
+          {
+            "quantity": "1",
+            "description": "circuit breakers 3,5-5A",
+            "identification": "3RV10 21-1FA10",
+            "symbol": "-MSP14A",
+            "sheet_section": "=11/8.4",
+            "location": "+E13",
+            "remarks": ""
+          },
+          {
+            "quantity": "1",
+            "description": "auxiliary 1S, 1O",
+            "identification": "3RV19 01-1E",
+            "symbol": "-MSP14A",
+            "sheet_section": "=11/8.4",
+            "location": "+E13",
+            "remarks": ""
+          },
+          {
+            "quantity": "1",
+            "description": "adapter shoe for 3RV103",
+            "identification": "FBS50S5",
+            "symbol": "-MSP15",
+            "sheet_section": "=11/8.7",
+            "location": "+E13",
+            "remarks": ""
+          },
+          {
+            "quantity": "1",
+            "description": "circuit breakers 22-32A",
+            "identification": "3RV10 31-4EA10",
+            "symbol": "-MSP15",
+            "sheet_section": "=11/8.7",
+            "location": "+E13",
+            "remarks": ""
+          },
+          {
+            "quantity": "1",
+            "description": "auxiliary 1S, 1O",
+            "identification": "3RV19 01-1E",
+            "symbol": "-MSP15",
+            "sheet_section": "=11/8.7",
+            "location": "+E13",
+            "remarks": ""
+          },
+          {
+            "quantity": "1",
+            "description": "circuit breakers 3,5-5A",
+            "identification": "3RV10 21-1FA10",
+            "symbol": "-MSP16",
+            "sheet_section": "=11/3.3",
+            "location": "+E3",
+            "remarks": ""
+          },
+          {
+            "quantity": "1",
+            "description": "auxiliary 1S, 1O",
+            "identification": "3RV19 01-1E",
+            "symbol": "-MSP16",
+            "sheet_section": "=11/3.3",
+            "location": "+E3",
+            "remarks": ""
+          },
+          {
+            "quantity": "1",
+            "description": "circuit breakers 3,5-5A",
+            "identification": "3RV10 21-1FA10",
+            "symbol": "-MSP16",
+            "sheet_section": "=11/4.3",
+            "location": "+E4",
+            "remarks": ""
+          },
+          {
+            "quantity": "1",
+            "description": "auxiliary 1S, 1O",
+            "identification": "3RV19 01-1E",
+            "symbol": "-MSP16",
+            "sheet_section": "=11/4.3",
+            "location": "+E4",
+            "remarks": ""
+          },
+          {
+            "quantity": "1",
+            "description": "fastbus shoe",
+            "identification": "FBS32S4",
+            "symbol": "-MSP16",
+            "sheet_section": "=11/7.4",
+            "location": "+E11",
+            "remarks": ""
+          },
+          {
+            "quantity": "1",
+            "description": "circuit breakers 3,5-5A",
+            "identification": "3RV10 21-1FA10",
+            "symbol": "-MSP16",
+            "sheet_section": "=11/7.4",
+            "location": "+E11",
+            "remarks": ""
+          },
+          {
+            "quantity": "1",
+            "description": "auxiliary 1S, 10",
+            "identification": "3RV19 01-1E",
+            "symbol": "-MSP16",
+            "sheet_section": "=11/7.4",
+            "location": "+E11",
+            "remarks": ""
+          },
+          {
+            "quantity": "1",
+            "description": "adapter shoe for 3RV104",
+            "identification": "FBS10070",
+            "symbol": "-MSP16",
+            "sheet_section": "=11/9.2",
+            "location": "+E13",
+            "remarks": ""
+          },
+          {
+            "quantity": "1",
+            "description": "circuit breakers 22-32A",
+            "identification": "3RV10 31-4EA10",
+            "symbol": "-MSP16",
+            "sheet_section": "=11/9.2",
+            "location": "+E13",
+            "remarks": ""
+          },
+          {
+            "quantity": "1",
+            "description": "auxiliary 1S, 10",
+            "identification": "3RV19 01-1E",
+            "symbol": "-MSP16",
+            "sheet_section": "=11/9.2",
+            "location": "+E13",
+            "remarks": ""
+          },
+          {
+            "quantity": "1",
+            "description": "adapter shoe for 3RV104",
+            "identification": "FBS10070",
+            "symbol": "-MSP17",
+            "sheet_section": "=11/9.4",
+            "location": "+E13",
+            "remarks": ""
+          },
+          {
+            "quantity": "1",
+            "description": "circuit breakers 22-32A",
+            "identification": "3RV10 31-4EA10",
+            "symbol": "-MSP17",
+            "sheet_section": "=11/9.4",
+            "location": "+E13",
+            "remarks": ""
+          },
+          {
+            "quantity": "1",
+            "description": "auxiliary 1S, 10",
+            "identification": "3RV19 01-1E",
+            "symbol": "-MSP17",
+            "sheet_section": "=11/9.4",
+            "location": "+E13",
+            "remarks": ""
+          },
+          {
+            "quantity": "1",
+            "description": "fastbus shoe",
+            "identification": "FBS3254",
+            "symbol": "-MSP18",
+            "sheet_section": "=11/7.7",
+            "location": "+E11",
+            "remarks": ""
+          },
+          {
+            "quantity": "1",
+            "description": "circuit breakers 14-20A",
+            "identification": "3RV10 21-4BA10",
+            "symbol": "-MSP18",
+            "sheet_section": "=11/7.7",
+            "location": "+E11",
+            "remarks": ""
+          },
+          {
+            "quantity": "1",
+            "description": "auxiliary 1S, 10",
+            "identification": "3RV19 01-1E",
+            "symbol": "-MSP18",
+            "sheet_section": "=11/7.7",
+            "location": "+E11",
+            "remarks": ""
+          },
+          {
+            "quantity": "1",
+            "description": "adapter shoe for 3RV101",
+            "identification": "FBS2545",
+            "symbol": "-MSP19",
+            "sheet_section": "=11/16.2",
+            "location": "+E13",
+            "remarks": ""
+          },
+          {
+            "quantity": "1",
+            "description": "circuit breakers 9-12A",
+            "identification": "3RV10 21-1KA10",
+            "symbol": "-MSP19",
+            "sheet_section": "=11/16.2",
+            "location": "+E13",
+            "remarks": ""
+          },
+          {
+            "quantity": "1",
+            "description": "auxiliary 1S, 10",
+            "identification": "3RV19 01-1E",
+            "symbol": "-MSP19",
+            "sheet_section": "=11/16.2",
+            "location": "+E13",
+            "remarks": ""
+          },
+          {
+            "quantity": "1",
+            "description": "adapter shoe for 3RV101",
+            "identification": "FBS2545",
+            "symbol": "-MSP20",
+            "sheet_section": "=11/16.6",
+            "location": "+E13",
+            "remarks": ""
+          },
+          {
+            "quantity": "1",
+            "description": "circuit breakers 2.2-3.2A",
+            "identification": "3RV10 21-1DA10",
+            "symbol": "-MSP20",
+            "sheet_section": "=11/16.6",
+            "location": "+E13",
+            "remarks": ""
+          },
+          {
+            "quantity": "1",
+            "description": "auxiliary 1S, 1O",
+            "identification": "3RV19 01-1E",
+            "symbol": "-MSP20",
+            "sheet_section": "=11/16.6",
+            "location": "+E13",
+            "remarks": ""
+          },
+          {
+            "quantity": "1",
+            "description": "adapter shoe for 3RV101",
+            "identification": "FBS2545",
+            "symbol": "-MSP30",
+            "sheet_section": "=11/12.5",
+            "location": "+TEC1",
+            "remarks": ""
+          },
+          {
+            "quantity": "1",
+            "description": "circuit breakers 7-10A",
+            "identification": "3RV10 21-1JA10",
+            "symbol": "-MSP30",
+            "sheet_section": "=11/12.5",
+            "location": "+TEC1",
+            "remarks": ""
+          },
+          {
+            "quantity": "1",
+            "description": "auxiliary 1S, 1O",
+            "identification": "3RV19 01-1E",
+            "symbol": "-MSP30",
+            "sheet_section": "=11/12.5",
+            "location": "+TEC1",
+            "remarks": ""
+          },
+          {
+            "quantity": "1",
+            "description": "adapter shoe for 3RV104",
+            "identification": "FBS10070",
+            "symbol": "-MSP31",
+            "sheet_section": "=11/12.2",
+            "location": "+TEC1",
+            "remarks": ""
+          },
+          {
+            "quantity": "1",
+            "description": "circuit breakers 45-63A",
+            "identification": "3RV10 41-4JA10",
+            "symbol": "-MSP31",
+            "sheet_section": "=11/12.2",
+            "location": "+TEC1",
+            "remarks": ""
+          },
+          {
+            "quantity": "1",
+            "description": "auxiliary 1S, 1O",
+            "identification": "3RV19 01-1E",
+            "symbol": "-MSP31",
+            "sheet_section": "=11/12.2",
+            "location": "+TEC1",
+            "remarks": ""
+          },
+          {
+            "quantity": "1",
+            "description": "adapter shoe for 3RV101",
+            "identification": "FBS2545",
+            "symbol": "-MSP33",
+            "sheet_section": "=11/13.3",
+            "location": "+TEC1",
+            "remarks": ""
+          },
+          {
+            "quantity": "1",
+            "description": "circuit breakers 3.5-5A",
+            "identification": "3RV10 21-1FA10",
+            "symbol": "-MSP33",
+            "sheet_section": "=11/13.3",
+            "location": "+TEC1",
+            "remarks": ""
+          },
+          {
+            "quantity": "1",
+            "description": "auxiliary 1S, 1O",
+            "identification": "3RV19 01-1E",
+            "symbol": "-MSP33",
+            "sheet_section": "=11/13.3",
+            "location": "+TEC1",
+            "remarks": ""
+          },
+          {
+            "quantity": "1",
+            "description": "adapter shoe for 3RV101",
+            "identification": "FBS2545",
+            "symbol": "-MSP34",
+            "sheet_section": "=11/13.5",
+            "location": "+TEC1",
+            "remarks": ""
+          },
+          {
+            "quantity": "1",
+            "description": "circuit breakers 1.1-1.6A",
+            "identification": "3RV10 21-1AA10",
+            "symbol": "-MSP34",
+            "sheet_section": "=11/13.5",
+            "location": "+TEC1",
+            "remarks": ""
+          },
+          {
+            "quantity": "1",
+            "description": "auxiliary 1S, 1O",
+            "identification": "3RV19 01-1E",
+            "symbol": "-MSP34",
+            "sheet_section": "=11/13.5",
+            "location": "+TEC1",
+            "remarks": ""
+          },
+          {
+            "quantity": "1",
+            "description": "circuit breakers 3.5-5A",
+            "identification": "3RV10 21-1FA10",
+            "symbol": "-MSP90",
+            "sheet_section": "=11/11.5",
+            "location": "+E11",
+            "remarks": ""
+          },
+          {
+            "quantity": "1",
+            "description": "auxiliary 1S, 10",
+            "identification": "3RV19 01-1E",
+            "symbol": "-MSP90",
+            "sheet_section": "=11/11.5",
+            "location": "+E11",
+            "remarks": ""
+          },
+          {
+            "quantity": "1",
+            "description": "voltmeter scale 0 - 600V AC",
+            "identification": "25034SSJSJ7/UL",
+            "symbol": "-MTR1",
+            "sheet_section": "=11/3.6",
+            "location": "+E3",
+            "remarks": ""
+          },
+          {
+            "quantity": "1",
+            "description": "voltmeter scale 0 - 600V AC",
+            "identification": "25034SSJSJ7/UL",
+            "symbol": "-MTR1",
+            "sheet_section": "=11/4.6",
+            "location": "+E4",
+            "remarks": ""
+          },
+          {
+            "quantity": "1",
+            "description": "voltmeter scale 0 - 600V AC",
+            "identification": "25034SSJSJ7/UL",
+            "symbol": "-MTR1",
+            "sheet_section": "=11/7.6",
+            "location": "+E11",
+            "remarks": ""
+          },
+          {
+            "quantity": "1",
+            "description": "voltmeter scale 0 - 600V AC",
+            "identification": "25034SSJSJ7/UL",
+            "symbol": "-MTR2",
+            "sheet_section": "=11/11.7",
+            "location": "+E11",
+            "remarks": ""
+          },
+          {
+            "quantity": "1",
+            "description": "hour meter 24V DC",
+            "identification": "5320-1000(66F1121)",
+            "symbol": "-MTR100",
+            "sheet_section": "=11/44.7",
+            "location": "+E13",
+            "remarks": ""
+          },
+          {
+            "quantity": "1",
+            "description": "mushroom shaped pushbutton red 40mm",
+            "identification": "3SB36 01-1CB61",
+            "symbol": "-PB1",
+            "sheet_section": "=11/22.3",
+            "location": "+GCS",
+            "remarks": ""
+          },
+          {
+            "quantity": "1",
+            "description": "contact unit 3SB13",
+            "identification": "3SB14 20-0C",
+            "symbol": "-PB10",
+            "sheet_section": "=11/103.1",
+            "location": "+ERI",
+            "remarks": ""
+          },
+          {
+            "quantity": "1",
+            "description": "mushroom shaped pushbutton",
+            "identification": "3SB18 01-7AK-Z",
+            "symbol": "-PB10",
+            "sheet_section": "=11/103.1",
+            "location": "+ERI",
+            "remarks": ""
+          },
+          {
+            "quantity": "1",
+            "description": "mushroom shaped pushbutton",
+            "identification": "3SB12 03-1AC01",
+            "symbol": "-PB10",
+            "sheet_section": "=11/26.3",
+            "location": "+TRO",
+            "remarks": ""
+          },
+          {
+            "quantity": "1",
+            "description": "contact unit 1NC",
+            "identification": "3SB14 00-0C",
+            "symbol": "-PB10",
+            "sheet_section": "=11/26.3",
+            "location": "+TRO",
+            "remarks": ""
+          },
+          {
+            "quantity": "1",
+            "description": "contact unit 3SB13",
+            "identification": "3SB14 20-0C",
+            "symbol": "-PB11",
+            "sheet_section": "=11/103.3",
+            "location": "+ERI",
+            "remarks": ""
+          },
+          {
+            "quantity": "1",
+            "description": "mushroom shaped pushbutton",
+            "identification": "3SB18 01-7AK-Z",
+            "symbol": "-PB11",
+            "sheet_section": "=11/103.3",
+            "location": "+ERI",
+            "remarks": ""
+          },
+          {
+            "quantity": "1",
+            "description": "contact unit 3SB13",
+            "identification": "3SB14 20-0C",
+            "symbol": "-PB20",
+            "sheet_section": "=11/103.4",
+            "location": "+MHI",
+            "remarks": ""
+          },
+          {
+            "quantity": "1",
+            "description": "mushroom shaped pushbutton",
+            "identification": "3SB18 01-7AK-Z",
+            "symbol": "-PB20",
+            "sheet_section": "=11/103.4",
+            "location": "+MHI",
+            "remarks": ""
+          },
+          {
+            "quantity": "1",
+            "description": "contact unit 3SB13",
+            "identification": "3SB14 20-0C",
+            "symbol": "-PB21",
+            "sheet_section": "=11/103.5",
+            "location": "+MHI",
+            "remarks": ""
+          },
+          {
+            "quantity": "1",
+            "description": "mushroom shaped pushbutton",
+            "identification": "3SB18 01-7AK-Z",
+            "symbol": "-PB21",
+            "sheet_section": "=11/103.5",
+            "location": "+MHI",
+            "remarks": ""
+          },
+          {
+            "quantity": "1",
+            "description": "contact unit 3SB13",
+            "identification": "3SB14 20-0C",
+            "symbol": "-PB24",
+            "sheet_section": "=11/109.2",
+            "location": "+PYW",
+            "remarks": ""
+          },
+          {
+            "quantity": "1",
+            "description": "mushroom shaped pushbutton",
+            "identification": "3SB18 01-7AK-Z",
+            "symbol": "-PB24",
+            "sheet_section": "=11/109.2",
+            "location": "+PYW",
+            "remarks": ""
+          },
+          {
+            "quantity": "1",
+            "description": "contact unit 3SB13",
+            "identification": "3SB14 20-0C",
+            "symbol": "-PB25",
+            "sheet_section": "=11/109.5",
+            "location": "+BOM",
+            "remarks": ""
+          },
+          {
+            "quantity": "1",
+            "description": "mushroom shaped pushbutton",
+            "identification": "3SB18 01-7AK-Z",
+            "symbol": "-PB25",
+            "sheet_section": "=11/109.5",
+            "location": "+BOM",
+            "remarks": ""
+          },
+          {
+            "quantity": "1",
+            "description": "contact unit 3SB13",
+            "identification": "3SB14 20-0C",
+            "symbol": "-PB26",
+            "sheet_section": "=11/109.3",
+            "location": "+BGR",
+            "remarks": ""
+          },
+          {
+            "quantity": "1",
+            "description": "mushroom shaped pushbutton",
+            "identification": "3SB18 01-7AK-Z",
+            "symbol": "-PB26",
+            "sheet_section": "=11/109.3",
+            "location": "+BGR",
+            "remarks": ""
+          },
+          {
+            "quantity": "1",
+            "description": "mushroom shaped pushbutton 70mm",
+            "identification": "3SB10 00-1HC01",
+            "symbol": "-PB40",
+            "sheet_section": "=11/104.3",
+            "location": "+GDL",
+            "remarks": ""
+          },
+          {
+            "quantity": "2",
+            "description": "contact unit 3SB13",
+            "identification": "3SB14 20-0C",
+            "symbol": "-PB40",
+            "sheet_section": "=11/104.3",
+            "location": "+GDL",
+            "remarks": ""
+          },
+          {
+            "quantity": "1",
+            "description": "housing for emergency stop",
+            "identification": "3SB18 01-0AK",
+            "symbol": "-PB40",
+            "sheet_section": "=11/104.3",
+            "location": "+GDL",
+            "remarks": ""
+          },
+          {
+            "quantity": "1",
+            "description": "mushroom shaped pushbutton 70mm",
+            "identification": "3SB10 00-1HC01",
+            "symbol": "-PB41",
+            "sheet_section": "=11/104.4",
+            "location": "+GDL",
+            "remarks": ""
+          },
+          {
+            "quantity": "2",
+            "description": "contact unit 3SB13",
+            "identification": "3SB14 20-0C",
+            "symbol": "-PB41",
+            "sheet_section": "=11/104.4",
+            "location": "+GDL",
+            "remarks": ""
+          },
+          {
+            "quantity": "1",
+            "description": "housing for emergency stop",
+            "identification": "3SB18 01-0AK",
+            "symbol": "-PB41",
+            "sheet_section": "=11/104.4",
+            "location": "+GDL",
+            "remarks": ""
+          },
+          {
+            "quantity": "1",
+            "description": "mushroom shaped pushbutton 70mm",
+            "identification": "3SB10 00-1HC01",
+            "symbol": "-PB42",
+            "sheet_section": "=11/104.5",
+            "location": "+GDL",
+            "remarks": ""
+          },
+          {
+            "quantity": "2",
+            "description": "contact unit 3SB13",
+            "identification": "3SB14 20-0C",
+            "symbol": "-PB42",
+            "sheet_section": "=11/104.5",
+            "location": "+GDL",
+            "remarks": ""
+          },
+          {
+            "quantity": "1",
+            "description": "housing for emergency stop",
+            "identification": "3SB18 01-0AK",
+            "symbol": "-PB42",
+            "sheet_section": "=11/104.5",
+            "location": "+GDL",
+            "remarks": ""
+          },
+          {
+            "quantity": "1",
+            "description": "mushroom shaped pushbutton 70mm",
+            "identification": "3SB10 00-1HC01",
+            "symbol": "-PB43",
+            "sheet_section": "=11/104.6",
+            "location": "+GDL",
+            "remarks": ""
+          },
+          {
+            "quantity": "2",
+            "description": "contact unit 3SB13",
+            "identification": "3SB14 20-0C",
+            "symbol": "-PB43",
+            "sheet_section": "=11/104.6",
+            "location": "+GDL",
+            "remarks": ""
+          },
+          {
+            "quantity": "1",
+            "description": "housing for emergency stop",
+            "identification": "3SB18 01-0AK",
+            "symbol": "-PB43",
+            "sheet_section": "=11/104.6",
+            "location": "+GDL",
+            "remarks": ""
+          },
+          {
+            "quantity": "1",
+            "description": "mushroom shaped pushbutton 70mm",
+            "identification": "3SB10 00-1HC01",
+            "symbol": "-PB50",
+            "sheet_section": "=11/105.1",
+            "location": "+GDW",
+            "remarks": ""
+          },
+          {
+            "quantity": "2",
+            "description": "contact unit 3SB13",
+            "identification": "3SB14 20-0C",
+            "symbol": "-PB50",
+            "sheet_section": "=11/105.1",
+            "location": "+GDW",
+            "remarks": ""
+          },
+          {
+            "quantity": "1",
+            "description": "housing for emergency stop",
+            "identification": "3SB18 01-0AK",
+            "symbol": "-PB50",
+            "sheet_section": "=11/105.1",
+            "location": "+GDW",
+            "remarks": ""
+          },
+          {
+            "quantity": "1",
+            "description": "mushroom shaped pushbutton 70mm",
+            "identification": "3SB10 00-1HC01",
+            "symbol": "-PB51",
+            "sheet_section": "=11/105.3",
+            "location": "+GDW",
+            "remarks": ""
+          },
+          {
+            "quantity": "2",
+            "description": "contact unit 3SB13",
+            "identification": "3SB14 20-0C",
+            "symbol": "-PB51",
+            "sheet_section": "=11/105.3",
+            "location": "+GDW",
+            "remarks": ""
+          },
+          {
+            "quantity": "1",
+            "description": "housing for emergency stop",
+            "identification": "3SB18 01-0AK",
+            "symbol": "-PB51",
+            "sheet_section": "=11/105.3",
+            "location": "+GDW",
+            "remarks": ""
+          },
+          {
+            "quantity": "1",
+            "description": "mushroom shaped pushbutton 70mm",
+            "identification": "3SB10 00-1HC01",
+            "symbol": "-PB52",
+            "sheet_section": "=11/105.4",
+            "location": "+GDW",
+            "remarks": ""
+          },
+          {
+            "quantity": "2",
+            "description": "contact unit 3SB13",
+            "identification": "3SB14 20-0C",
+            "symbol": "-PB52",
+            "sheet_section": "=11/105.4",
+            "location": "+GDW",
+            "remarks": ""
+          },
+          {
+            "quantity": "1",
+            "description": "housing for emergency stop",
+            "identification": "3SB18 01-0AK",
+            "symbol": "-PB52",
+            "sheet_section": "=11/105.4",
+            "location": "+GDW",
+            "remarks": ""
+          },
+          {
+            "quantity": "1",
+            "description": "mushroom shaped pushbutton 70mm",
+            "identification": "3SB10 00-1HC01",
+            "symbol": "-PB53",
+            "sheet_section": "=11/105.5",
+            "location": "+GDW",
+            "remarks": ""
+          },
+          {
+            "quantity": "2",
+            "description": "contact unit 3SB13",
+            "identification": "3SB14 20-0C",
+            "symbol": "-PB53",
+            "sheet_section": "=11/105.5",
+            "location": "+GDW",
+            "remarks": ""
+          },
+          {
+            "quantity": "1",
+            "description": "housing for emergency stop",
+            "identification": "3SB18 01-0AK",
+            "symbol": "-PB53",
+            "sheet_section": "=11/105.5",
+            "location": "+GDW",
+            "remarks": ""
+          },
+          {
+            "quantity": "1",
+            "description": "contact unit 3SB13",
+            "identification": "3SB14 20-0C",
+            "symbol": "-PB60",
+            "sheet_section": "=11/107.3",
+            "location": "+TMH",
+            "remarks": ""
+          },
+          {
+            "quantity": "1",
+            "description": "mushroom shaped pushbutton",
+            "identification": "3SB18 01-7AK-Z",
+            "symbol": "-PB60",
+            "sheet_section": "=11/107.3",
+            "location": "+TMH",
+            "remarks": ""
+          },
+          {
+            "quantity": "1",
+            "description": "contact unit 3SB13",
+            "identification": "3SB14 20-0C",
+            "symbol": "-PB61",
+            "sheet_section": "=11/107.5",
+            "location": "+TMH",
+            "remarks": ""
+          },
+          {
+            "quantity": "1",
+            "description": "mushroom shaped pushbutton",
+            "identification": "3SB18 01-7AK-Z",
+            "symbol": "-PB61",
+            "sheet_section": "=11/107.5",
+            "location": "+TMH",
+            "remarks": ""
+          },
+          {
+            "quantity": "1",
+            "description": "contact unit 3SB13",
+            "identification": "3SB14 20-0C",
+            "symbol": "-PB70",
+            "sheet_section": "=11/108.3",
+            "location": "+TRO",
+            "remarks": ""
+          },
+          {
+            "quantity": "1",
+            "description": "mushroom shaped pushbutton",
+            "identification": "3SB18 01-7AK-Z",
+            "symbol": "-PB70",
+            "sheet_section": "=11/108.3",
+            "location": "+TRO",
+            "remarks": ""
+          },
+          {
+            "quantity": "1",
+            "description": "phase monitoring relay",
+            "identification": "DSP-1LS",
+            "symbol": "-PM90",
+            "sheet_section": "=11/3.3",
+            "location": "+E3",
+            "remarks": ""
+          },
+          {
+            "quantity": "1",
+            "description": "phase monitoring relay",
+            "identification": "DSP-1LS",
+            "symbol": "-PM90",
+            "sheet_section": "=11/4.3",
+            "location": "+E4",
+            "remarks": ""
+          },
+          {
+            "quantity": "1",
+            "description": "phase monitoring relay",
+            "identification": "DSP-1LS",
+            "symbol": "-PM90",
+            "sheet_section": "=11/7.4",
+            "location": "+E11",
+            "remarks": ""
+          },
+          {
+            "quantity": "1",
+            "description": "phase monitoring relay",
+            "identification": "DSP-1LS",
+            "symbol": "-PM91",
+            "sheet_section": "=11/11.5",
+            "location": "+E11",
+            "remarks": ""
+          },
+          {
+            "quantity": "1",
+            "description": "power supply 24V DC, 40A",
+            "identification": "6EP1 437-2BA10",
+            "symbol": "-PWR10",
+            "sheet_section": "=11/16.6",
+            "location": "+E13",
+            "remarks": ""
+          },
+          {
+            "quantity": "1",
+            "description": "power supply 24V DC",
+            "identification": "6EP1 436-2BA00",
+            "symbol": "-PWR30",
+            "sheet_section": "=11/13.5",
+            "location": "+TEC",
+            "remarks": ""
+          },
+          {
+            "quantity": "1",
+            "description": "change over switch",
+            "identification": "DS200EK1",
+            "symbol": "-S10",
+            "sheet_section": "=11/10.2",
+            "location": "+E20",
+            "remarks": ""
+          },
+          {
+            "quantity": "1",
+            "description": "auxiliary switch",
+            "identification": "NF354DTK Siemens",
+            "symbol": "-S10",
+            "sheet_section": "=11/10.2",
+            "location": "+E20",
+            "remarks": ""
+          },
+          {
+            "quantity": "1",
+            "description": "switch for voltmeter, 3HP",
+            "identification": "CB0170016PL2 RCI",
+            "symbol": "-SS1",
+            "sheet_section": "=11/3.6",
+            "location": "+E3",
+            "remarks": ""
+          },
+          {
+            "quantity": "1",
+            "description": "switch for voltmeter, 3HP",
+            "identification": "CB0170016PL2 RCI",
+            "symbol": "-SS1",
+            "sheet_section": "=11/4.6",
+            "location": "+E4",
+            "remarks": ""
+          },
+          {
+            "quantity": "1",
+            "description": "switch for voltmeter, 3HP",
+            "identification": "CB0170016PL2 RCI",
+            "symbol": "-SS1",
+            "sheet_section": "=11/7.6",
+            "location": "+E11",
+            "remarks": ""
+          },
+          {
+            "quantity": "1",
+            "description": "switch for voltmeter, 3HP",
+            "identification": "CB0170016PL2 RCI",
+            "symbol": "-SS2",
+            "sheet_section": "=11/11.7",
+            "location": "+E11",
+            "remarks": ""
+          },
+          {
+            "quantity": "1",
+            "description": "transformator 3000VA 480/230V",
+            "identification": "TA83223 ACME",
+            "symbol": "-TR1",
+            "sheet_section": "=11/7.7",
+            "location": "+E11",
+            "remarks": ""
+          },
+          {
+            "quantity": "1",
+            "description": "transformer 480/120V AC, 5000VA",
+            "identification": "MT5000A Siemens",
+            "symbol": "-TR20",
+            "sheet_section": "=11/16.2",
+            "location": "+E13",
+            "remarks": ""
+          },
+          {
+            "quantity": "1",
+            "description": "transformer 480/120V AC, 1500VA",
+            "identification": "MT1500A Siemens",
+            "symbol": "-TR30",
+            "sheet_section": "=11/13.3",
+            "location": "+TEC",
+            "remarks": ""
+          },
+          {
+            "quantity": "1",
+            "description": "socket 200A",
+            "identification": "DF2404MRABO",
+            "symbol": "-X1",
+            "sheet_section": "=11/101.2",
+            "location": "+GDL",
+            "remarks": ""
+          }
+        ],
+        "indexed_at": "2025-10-26T14:15:27.083798"
+      }
+    }
   }
 }
