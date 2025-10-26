@@ -486,8 +486,8 @@ class SectionManager:
                         if not (desc_match or ident_match):
                             match = False
 
-                    # Filter by symbol
-                    if symbol and symbol.lower() not in part.get("symbol", "").lower():
+                    # Filter by symbol (exact match)
+                    if symbol and symbol.lower() != part.get("symbol", "").lower():
                         match = False
 
                     # Filter by sheet
