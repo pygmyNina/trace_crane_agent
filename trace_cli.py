@@ -65,6 +65,14 @@ class TRACECLI:
         print("  sheets <code>  - Find all sheets for system (=10) or location (+E3)")
         print("  sheet <number> - Find specific sheet by number (e.g., 102)")
         print("  systems        - List all system groups with sheet counts")
+        print("\n  === Parts Lists ===")
+        print("  load partslist <section> <pdf> [--index]")
+        print("                 - Load parts list PDF into section")
+        print("  index partslist <section> <pdf>  - Index parts list with Vision API")
+        print("  parts <query>  - Search parts by description or manufacturer")
+        print("  part <symbol>  - Find part by symbol (e.g., -TR1, -CBTP)")
+        print("  parts on <sheet>  - Find all parts on sheet (e.g., =10/102.2)")
+        print("  parts at <location>  - Find all parts at location (e.g., +HVC1)")
         print("\n  === Vision Analysis ===")
         print("  ask <question> - Ask question about schematics (uses Vision API)")
         print("  analyze <section> <pdf> <page>  - Deep analyze specific page")
@@ -608,6 +616,86 @@ class TRACECLI:
             print("  No indexed sheets found with system group metadata")
             print("  (PDFs need to be indexed or re-indexed with latest Vision extraction)\n")
 
+    def load_parts_list_pdf(self, section: str, pdf_path: str, auto_index: bool = False):
+        """Load parts list PDF into a section"""
+        print(f"\n📋 Loading parts list {pdf_path} into section '{section}'...")
+
+        result = self.section_mgr.load_parts_list(section, pdf_path, auto_index)
+
+        if result["success"]:
+            print(f"✓ Loaded: {result['pdf_name']}")
+            print(f"  Section: {result['section']}")
+            print(f"  Pages: {result['pages']}")
+
+            if auto_index and result.get("indexed"):
+                idx_result = result["index_result"]
+                print(f"  Indexed: {idx_result.get('total_parts', 0)} parts extracted")
+            elif auto_index:
+                print("  ⚠ Auto-indexing failed (is Vision API configured?)")
+        else:
+            print(f"✗ Error: {result.get('error', 'Unknown error')}")
+
+        print()
+
+    def index_parts_list_pdf(self, section: str, pdf_name: str):
+        """Index a parts list PDF with Vision API"""
+        print(f"\n🔍 Indexing parts list {section}/{pdf_name}...")
+
+        result = self.section_mgr.index_parts_list(section, pdf_name)
+
+        if result["success"]:
+            print(f"\n✓ Indexed: {result['total_parts']} parts from {result['total_pages']} pages")
+            if result.get('errors'):
+                print(f"⚠ Errors: {len(result['errors'])}")
+                for error in result['errors'][:5]:
+                    print(f"  • {error}")
+        else:
+            print(f"✗ Error: {result.get('error', 'Unknown error')}")
+
+        print()
+
+    def search_parts(self, query: str = None, symbol: str = None,
+                     sheet: str = None, location: str = None):
+        """Search for parts"""
+        print(f"\n🔍 Searching parts...")
+        if query:
+            print(f"  Query: {query}")
+        if symbol:
+            print(f"  Symbol: {symbol}")
+        if sheet:
+            print(f"  Sheet: {sheet}")
+        if location:
+            print(f"  Location: {location}")
+        print("="*60 + "\n")
+
+        results = self.section_mgr.search_parts(query=query, symbol=symbol,
+                                                sheet=sheet, location=location)
+
+        if results:
+            for part in results:
+                print(f"🔧 {part.get('symbol', 'N/A')}")
+                print(f"  Description: {part.get('description', 'N/A')}")
+                if part.get('identification'):
+                    print(f"  Manufacturer: {part.get('identification')}")
+                if part.get('quantity'):
+                    print(f"  Quantity: {part.get('quantity')}")
+                if part.get('sheet_section'):
+                    print(f"  Sheet: {part.get('sheet_section')}")
+                if part.get('location'):
+                    # Look up location name
+                    loc_code = part.get('location')
+                    loc_name = loc_code
+                    if "locations" in self.kb.knowledge and loc_code in self.kb.knowledge["locations"]:
+                        loc_name = self.kb.knowledge["locations"][loc_code]["description"]
+                    print(f"  Location: {loc_code} ({loc_name})")
+                print(f"  Source: {part.get('section', 'N/A')}/{part.get('parts_list', 'N/A')}")
+                print()
+
+            print(f"Total: {len(results)} part(s) found\n")
+        else:
+            print("  No parts found matching the criteria")
+            print("  (Make sure parts lists are loaded and indexed)\n")
+
     def run_command(self, command: str, args: list = None):
         """Execute a command"""
         args = args or []
@@ -625,20 +713,31 @@ class TRACECLI:
                 self.query_knowledge(" ".join(args))
 
         elif command == "load":
-            if len(args) < 3 or args[0] != "section":
-                print("\nUsage: load section <section_name> <pdf_path> [--index]\n")
-                print(f"Valid sections: {', '.join(SectionManager.VALID_SECTIONS)}\n")
-            else:
+            if len(args) >= 3 and args[0] == "partslist":
+                section = args[1]
+                pdf_path = " ".join(args[2:]).replace("--index", "").strip()
+                auto_index = "--index" in args
+                self.load_parts_list_pdf(section, pdf_path, auto_index)
+            elif len(args) >= 3 and args[0] == "section":
                 section = args[1]
                 pdf_path = " ".join(args[2:]).replace("--index", "").strip()
                 auto_index = "--index" in args
                 self.load_section_pdf(section, pdf_path, auto_index)
+            else:
+                print("\nUsage:")
+                print("  load section <section_name> <pdf_path> [--index]")
+                print("  load partslist <section_name> <pdf_path> [--index]\n")
+                print(f"Valid sections: {', '.join(SectionManager.VALID_SECTIONS)}\n")
 
         elif command == "index":
-            if len(args) < 2:
-                print("\nUsage: index <section> <pdf_name>\n")
-            else:
+            if len(args) >= 3 and args[0] == "partslist":
+                self.index_parts_list_pdf(args[1], args[2])
+            elif len(args) >= 2:
                 self.index_pdf(args[0], args[1])
+            else:
+                print("\nUsage:")
+                print("  index <section> <pdf_name>")
+                print("  index partslist <section> <pdf_name>\n")
 
         elif command == "sections":
             self.list_sections()
@@ -711,6 +810,30 @@ class TRACECLI:
 
         elif command == "systems":
             self.list_systems()
+
+        elif command == "parts":
+            if not args:
+                print("\nUsage:")
+                print("  parts <query>      - Search by description or manufacturer")
+                print("  parts on <sheet>   - Find parts on sheet (e.g., =10/102.2)")
+                print("  parts at <location> - Find parts at location (e.g., +HVC1)\n")
+            elif len(args) >= 2 and args[0] == "on":
+                sheet = args[1]
+                self.search_parts(sheet=sheet)
+            elif len(args) >= 2 and args[0] == "at":
+                location = args[1]
+                self.search_parts(location=location)
+            else:
+                query = " ".join(args)
+                self.search_parts(query=query)
+
+        elif command == "part":
+            if not args:
+                print("\nUsage: part <symbol>")
+                print("  Example: part -TR1\n")
+            else:
+                symbol = args[0]
+                self.search_parts(symbol=symbol)
 
         elif command == "show":
             if not args:
