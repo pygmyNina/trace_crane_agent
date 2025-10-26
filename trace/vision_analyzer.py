@@ -92,18 +92,31 @@ class VisionAnalyzer:
         # Create indexing prompt
         prompt = """Analyze this crane electrical schematic page and extract structured information.
 
-Extract ALL of the following that you can find:
+IMPORTANT: First, look at the BOTTOM RIGHT CORNER of the schematic for metadata:
+- SHEET NUMBER: Look for "sheet XXX" or just a number (e.g., "102", "sheet 105")
+- SYSTEM GROUP: Look for =XX format (e.g., "=10", "=61")
+- LOCATION: Look for +XXX format (e.g., "+E3", "+OPC", "+SPR")
 
-1. REFERENCES: All schematic references in format =XX/YY.Y.Z (e.g., =10/102.0.3, =22/1.1.1)
-2. COMPONENTS: Component names and IDs (e.g., "Slave 22", "Breaker B1", "Motor M1", "Transformer T1")
-3. CABINETS: Cabinet identifiers (e.g., "E11", "E12", "Cabinet E15")
-4. TERMINALS: Terminal IDs (e.g., "1U", "2V", "3W", "X1", "A1")
-5. WIRE_NUMBERS: Wire identification numbers if visible
-6. CONNECTIONS: Key connections you can identify (e.g., "HVC3 breaker to =61/4.1.3")
-7. SUMMARY: Brief description of what this page shows (1-2 sentences)
+Then extract ALL of the following from the main schematic:
+
+1. SHEET METADATA (from bottom right corner):
+   - sheet_number: The sheet number (just the number, e.g., "102")
+   - system_group: The system code in =XX format (e.g., "=10")
+   - location: The location code in +XXX format (e.g., "+E3")
+
+2. REFERENCES: All schematic references in format =XX/YY.Y.Z (e.g., =10/102.0.3, =22/1.1.1)
+3. COMPONENTS: Component names and IDs (e.g., "Slave 22", "Breaker B1", "Motor M1", "Transformer T1")
+4. CABINETS: Cabinet identifiers (e.g., "E11", "E12", "Cabinet E15")
+5. TERMINALS: Terminal IDs (e.g., "1U", "2V", "3W", "X1", "A1")
+6. WIRE_NUMBERS: Wire identification numbers if visible
+7. CONNECTIONS: Key connections you can identify (e.g., "HVC3 breaker to =61/4.1.3")
+8. SUMMARY: Brief description of what this page shows (1-2 sentences)
 
 Return ONLY a JSON object with these fields:
 {
+  "sheet_number": "102",
+  "system_group": "=10",
+  "location": "+E3",
   "references": ["=10/1.1.1", "=10/1.1.2", ...],
   "components": ["Breaker B1", "Breaker B2", ...],
   "cabinets": ["E11"],
@@ -113,7 +126,7 @@ Return ONLY a JSON object with these fields:
   "summary": "Brief description of page content"
 }
 
-If a field has no data, return an empty array or empty string.
+If a field has no data, return an empty array or empty string. For sheet metadata, return empty string if not found.
 """
 
         try:
