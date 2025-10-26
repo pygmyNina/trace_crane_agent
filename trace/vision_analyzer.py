@@ -185,13 +185,14 @@ If a field has no data, return an empty array or empty string. For sheet metadat
             print(f"✗ Error calling Vision API: {e}")
             return None
 
-    def extract_parts_list(self, image_path: str, page_num: int) -> Optional[Dict[str, Any]]:
+    def extract_parts_list(self, image_path: str, page_num: int, section_code: str = None) -> Optional[Dict[str, Any]]:
         """
         Extract parts list table from a parts list page
 
         Args:
             image_path: Path to parts list page image
             page_num: Page number
+            section_code: Section code (e.g., "11" for section 11) to help with OCR context
 
         Returns:
             Dictionary with extracted parts data or None on error
@@ -204,8 +205,13 @@ If a field has no data, return an empty array or empty string. For sheet metadat
         if not image_data:
             return None
 
+        # Build section context for prompt
+        section_context = ""
+        if section_code:
+            section_context = f"\n\nIMPORTANT: This is section {section_code}. All sheet references should start with ={section_code}/ (e.g., ={section_code}/101.2, ={section_code}/16.3).\nBe careful with OCR - the number '{section_code}' might look like other characters. Always use ={section_code}/ for sheet references."
+
         # Create parts list extraction prompt
-        prompt = """Analyze this parts list table and extract ALL component entries.
+        prompt = f"""Analyze this parts list table and extract ALL component entries.
 
 This is a bilingual table (English/German) with 7 columns:
 1. Quantity (Stückzahl)
@@ -214,11 +220,11 @@ This is a bilingual table (English/German) with 7 columns:
 4. Identifying symbol - component ID (Kennzeichen)
 5. Circuit diagram sheet No., section No. (Stromlaufplan, Planabschnitt)
 6. Location (Einbauort)
-7. General remarks (Allgemeine Bemerkungen)
+7. General remarks (Allgemeine Bemerkungen){section_context}
 
 IMPORTANT PATTERNS:
 - Identifying symbols use format: -XXXX (e.g., -CBTP, -STB1, -TR1, -PB1)
-- Sheet/section references use format: =XX/YYY.Z (e.g., =10/102.2, =10/101.7)
+- Sheet/section references use format: =XX/YYY.Z (e.g., =10/102.2, =11/101.7)
 - Locations use format: +XXXX (e.g., +HVC1, +HVC2, +GDW, +ERI, +MHI)
 
 Extract EVERY row from the table. Return ONLY a JSON object:

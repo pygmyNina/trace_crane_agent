@@ -400,7 +400,16 @@ class SectionManager:
         pdf_path = parts_info["path"]
         total_pages = parts_info["total_pages"]
 
+        # Try to extract section code from filename (e.g., "11_parts.pdf" -> "11")
+        section_code = None
+        import re
+        match = re.match(r'^(\d+)[_\-]?parts', pdf_name.lower())
+        if match:
+            section_code = match.group(1)
+
         print(f"\n🔍 Indexing parts list {pdf_name} ({total_pages} pages)...")
+        if section_code:
+            print(f"  Section code detected: {section_code}")
 
         all_parts = []
         errors = []
@@ -415,8 +424,8 @@ class SectionManager:
                 print("✗ Conversion failed")
                 continue
 
-            # Extract parts with Vision API
-            page_data = self.vision.extract_parts_list(image_path, page_num)
+            # Extract parts with Vision API (pass section code for better OCR context)
+            page_data = self.vision.extract_parts_list(image_path, page_num, section_code)
             if not page_data:
                 errors.append(f"Page {page_num}: Failed to extract")
                 print("✗ Extraction failed")
