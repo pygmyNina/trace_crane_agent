@@ -185,6 +185,127 @@ If a field has no data, return an empty array or empty string. For sheet metadat
             print(f"✗ Error calling Vision API: {e}")
             return None
 
+    def extract_parts_list(self, image_path: str, page_num: int) -> Optional[Dict[str, Any]]:
+        """
+        Extract parts list table from a parts list page
+
+        Args:
+            image_path: Path to parts list page image
+            page_num: Page number
+
+        Returns:
+            Dictionary with extracted parts data or None on error
+        """
+        if not self.client:
+            return None
+
+        # Encode image
+        image_data = self._encode_image(image_path)
+        if not image_data:
+            return None
+
+        # Create parts list extraction prompt
+        prompt = """Analyze this parts list table and extract ALL component entries.
+
+This is a bilingual table (English/German) with 7 columns:
+1. Quantity (Stückzahl)
+2. Description and function (Benennung und Verwendung)
+3. Identification data - manufacturer/part numbers (Fabrikatsbezeichnung)
+4. Identifying symbol - component ID (Kennzeichen)
+5. Circuit diagram sheet No., section No. (Stromlaufplan, Planabschnitt)
+6. Location (Einbauort)
+7. General remarks (Allgemeine Bemerkungen)
+
+IMPORTANT PATTERNS:
+- Identifying symbols use format: -XXXX (e.g., -CBTP, -STB1, -TR1, -PB1)
+- Sheet/section references use format: =XX/YYY.Z (e.g., =10/102.2, =10/101.7)
+- Locations use format: +XXXX (e.g., +HVC1, +HVC2, +GDW, +ERI, +MHI)
+
+Extract EVERY row from the table. Return ONLY a JSON object:
+
+{
+  "parts": [
+    {
+      "quantity": "1",
+      "description": "main circuit breaker 480V 3-phase",
+      "identification": "Industrial Power Sys D01-47172.17",
+      "symbol": "-CBTP",
+      "sheet_section": "=10/102.2",
+      "location": "+HVC1",
+      "remarks": ""
+    },
+    {
+      "quantity": "1",
+      "description": "dry type transformer 4160/3x480V 1600KVA",
+      "identification": "Magnetic Technologies 341600K07HA01",
+      "symbol": "-TR1",
+      "sheet_section": "=10/102.1",
+      "location": "+MHI",
+      "remarks": ""
+    }
+  ]
+}
+
+Extract ALL rows visible on this page. If a field is empty, use empty string "".
+Be accurate with the identifying symbols, sheet references, and locations - these are critical for cross-referencing with schematics.
+"""
+
+        try:
+            # Call Vision API
+            message = self.client.messages.create(
+                model="claude-3-5-sonnet-20241022",
+                max_tokens=4096,  # Parts lists can be long
+                messages=[
+                    {
+                        "role": "user",
+                        "content": [
+                            {
+                                "type": "image",
+                                "source": {
+                                    "type": "base64",
+                                    "media_type": self._get_image_media_type(image_path),
+                                    "data": image_data,
+                                },
+                            },
+                            {
+                                "type": "text",
+                                "text": prompt
+                            }
+                        ],
+                    }
+                ],
+            )
+
+            # Parse response
+            response_text = message.content[0].text
+
+            # Extract JSON from response (might have markdown code blocks)
+            if "```json" in response_text:
+                json_start = response_text.find("```json") + 7
+                json_end = response_text.find("```", json_start)
+                response_text = response_text[json_start:json_end].strip()
+            elif "```" in response_text:
+                json_start = response_text.find("```") + 3
+                json_end = response_text.find("```", json_start)
+                response_text = response_text[json_start:json_end].strip()
+
+            # Parse JSON
+            extracted_data = json.loads(response_text)
+
+            # Add metadata
+            extracted_data['page_number'] = page_num
+            extracted_data['indexed_with'] = 'claude-vision'
+
+            return extracted_data
+
+        except json.JSONDecodeError as e:
+            print(f"⚠ Failed to parse Vision API response as JSON: {e}")
+            print(f"Response: {response_text[:200]}...")
+            return None
+        except Exception as e:
+            print(f"✗ Error calling Vision API: {e}")
+            return None
+
     def ask_question(self, image_paths: List[str], question: str) -> Optional[str]:
         """
         Ask a question about schematic page(s)
