@@ -61,6 +61,10 @@ class TRACECLI:
         print("  index <section> <pdf>  - Index PDF pages with Vision API")
         print("  sections       - List all sections and PDFs")
         print("  section <name> - Show section summary")
+        print("\n  === Sheet Queries ===")
+        print("  sheets <code>  - Find all sheets for system (=10) or location (+E3)")
+        print("  sheet <number> - Find specific sheet by number (e.g., 102)")
+        print("  systems        - List all system groups with sheet counts")
         print("\n  === Vision Analysis ===")
         print("  ask <question> - Ask question about schematics (uses Vision API)")
         print("  analyze <section> <pdf> <page>  - Deep analyze specific page")
@@ -418,6 +422,192 @@ class TRACECLI:
         self.converter.clear_cache()
         print("\n✓ Image cache cleared\n")
 
+    def query_sheets_by_system(self, system_code: str):
+        """Query all sheets for a specific system group (e.g., =10)"""
+        print(f"\n🔍 Searching sheets for system: {system_code}")
+        print("="*60)
+
+        # Look up system name from glossary
+        system_name = "Unknown"
+        if "system_groups" in self.kb.knowledge and system_code in self.kb.knowledge["system_groups"]:
+            system_name = self.kb.knowledge["system_groups"][system_code]["definition"]
+
+        print(f"\nSystem Group: {system_code} ({system_name})")
+        print("="*60 + "\n")
+
+        sheets_found = []
+
+        # Search through indexed pages
+        for section, pdfs in self.section_mgr.registry["sections"].items():
+            for pdf_name, pdf_info in pdfs.items():
+                if not pdf_info.get("indexed"):
+                    continue
+
+                for page_num, page_data in pdf_info.get("pages", {}).items():
+                    # Check if this page belongs to the system group
+                    if page_data.get("system_group") == system_code:
+                        sheets_found.append({
+                            "section": section,
+                            "pdf": pdf_name,
+                            "page": int(page_num),
+                            "sheet_number": page_data.get("sheet_number", "unknown"),
+                            "location": page_data.get("location", ""),
+                            "summary": page_data.get("summary", "")
+                        })
+
+        if sheets_found:
+            # Sort by sheet number
+            sheets_found.sort(key=lambda x: x["sheet_number"])
+
+            for sheet in sheets_found:
+                print(f"Sheet {sheet['sheet_number']}")
+                if sheet['location']:
+                    # Look up location name
+                    loc_name = sheet['location']
+                    if "locations" in self.kb.knowledge and sheet['location'] in self.kb.knowledge["locations"]:
+                        loc_name = self.kb.knowledge["locations"][sheet['location']]["description"]
+                    print(f"  Location: {sheet['location']} ({loc_name})")
+                print(f"  File: {sheet['section']}/{sheet['pdf']}, Page {sheet['page']}")
+                if sheet['summary']:
+                    print(f"  Summary: {sheet['summary']}")
+                print()
+
+            print(f"Total: {len(sheets_found)} sheet(s) found for {system_code}\n")
+        else:
+            print(f"  No sheets found for system {system_code}")
+            print(f"  (Make sure PDFs are indexed with Vision API)\n")
+
+    def query_sheets_by_location(self, location_code: str):
+        """Query all sheets for a specific location (e.g., +E3)"""
+        print(f"\n🔍 Searching sheets for location: {location_code}")
+        print("="*60)
+
+        # Look up location name from glossary
+        location_name = "Unknown"
+        if "locations" in self.kb.knowledge and location_code in self.kb.knowledge["locations"]:
+            location_name = self.kb.knowledge["locations"][location_code]["description"]
+
+        print(f"\nLocation: {location_code} ({location_name})")
+        print("="*60 + "\n")
+
+        sheets_found = []
+
+        # Search through indexed pages
+        for section, pdfs in self.section_mgr.registry["sections"].items():
+            for pdf_name, pdf_info in pdfs.items():
+                if not pdf_info.get("indexed"):
+                    continue
+
+                for page_num, page_data in pdf_info.get("pages", {}).items():
+                    # Check if this page is at this location
+                    if page_data.get("location") == location_code:
+                        sheets_found.append({
+                            "section": section,
+                            "pdf": pdf_name,
+                            "page": int(page_num),
+                            "sheet_number": page_data.get("sheet_number", "unknown"),
+                            "system_group": page_data.get("system_group", ""),
+                            "summary": page_data.get("summary", "")
+                        })
+
+        if sheets_found:
+            # Sort by sheet number
+            sheets_found.sort(key=lambda x: x["sheet_number"])
+
+            for sheet in sheets_found:
+                print(f"Sheet {sheet['sheet_number']}")
+                if sheet['system_group']:
+                    # Look up system name
+                    sys_name = sheet['system_group']
+                    if "system_groups" in self.kb.knowledge and sheet['system_group'] in self.kb.knowledge["system_groups"]:
+                        sys_name = self.kb.knowledge["system_groups"][sheet['system_group']]["definition"]
+                    print(f"  System: {sheet['system_group']} ({sys_name})")
+                print(f"  File: {sheet['section']}/{sheet['pdf']}, Page {sheet['page']}")
+                if sheet['summary']:
+                    print(f"  Summary: {sheet['summary']}")
+                print()
+
+            print(f"Total: {len(sheets_found)} sheet(s) found at {location_code}\n")
+        else:
+            print(f"  No sheets found at location {location_code}")
+            print(f"  (Make sure PDFs are indexed with Vision API)\n")
+
+    def find_sheet(self, sheet_number: str):
+        """Find a specific sheet by number"""
+        print(f"\n🔍 Searching for sheet: {sheet_number}")
+        print("="*60 + "\n")
+
+        # Search through indexed pages
+        for section, pdfs in self.section_mgr.registry["sections"].items():
+            for pdf_name, pdf_info in pdfs.items():
+                if not pdf_info.get("indexed"):
+                    continue
+
+                for page_num, page_data in pdf_info.get("pages", {}).items():
+                    if page_data.get("sheet_number") == sheet_number:
+                        print(f"Sheet {sheet_number} found!")
+                        print(f"  File: {section}/{pdf_name}, Page {page_num}")
+
+                        if page_data.get("system_group"):
+                            sys_name = page_data["system_group"]
+                            if "system_groups" in self.kb.knowledge and page_data["system_group"] in self.kb.knowledge["system_groups"]:
+                                sys_name = self.kb.knowledge["system_groups"][page_data["system_group"]]["definition"]
+                            print(f"  System: {page_data['system_group']} ({sys_name})")
+
+                        if page_data.get("location"):
+                            loc_name = page_data["location"]
+                            if "locations" in self.kb.knowledge and page_data["location"] in self.kb.knowledge["locations"]:
+                                loc_name = self.kb.knowledge["locations"][page_data["location"]]["description"]
+                            print(f"  Location: {page_data['location']} ({loc_name})")
+
+                        if page_data.get("summary"):
+                            print(f"  Summary: {page_data['summary']}")
+
+                        print()
+                        return
+
+        print(f"  Sheet {sheet_number} not found in indexed PDFs\n")
+
+    def list_systems(self):
+        """List all system groups found in indexed sheets"""
+        print(f"\n📊 System Groups in Indexed Sheets")
+        print("="*60 + "\n")
+
+        systems = {}
+
+        # Collect all system groups from indexed pages
+        for section, pdfs in self.section_mgr.registry["sections"].items():
+            for pdf_name, pdf_info in pdfs.items():
+                if not pdf_info.get("indexed"):
+                    continue
+
+                for page_num, page_data in pdf_info.get("pages", {}).items():
+                    sys_code = page_data.get("system_group")
+                    if sys_code:
+                        if sys_code not in systems:
+                            systems[sys_code] = {
+                                "name": sys_code,
+                                "sheets": []
+                            }
+                        systems[sys_code]["sheets"].append(page_data.get("sheet_number", "unknown"))
+
+        if systems:
+            # Look up names from glossary
+            for sys_code in sorted(systems.keys()):
+                sys_name = sys_code
+                if "system_groups" in self.kb.knowledge and sys_code in self.kb.knowledge["system_groups"]:
+                    sys_name = self.kb.knowledge["system_groups"][sys_code]["definition"]
+
+                sheet_count = len(systems[sys_code]["sheets"])
+                print(f"{sys_code:10} - {sys_name}")
+                print(f"             {sheet_count} sheet(s)")
+                print()
+
+            print(f"Total: {len(systems)} system group(s) found\n")
+        else:
+            print("  No indexed sheets found with system group metadata")
+            print("  (PDFs need to be indexed or re-indexed with latest Vision extraction)\n")
+
     def run_command(self, command: str, args: list = None):
         """Execute a command"""
         args = args or []
@@ -495,6 +685,32 @@ class TRACECLI:
                 self.clear_cache()
             else:
                 print("\nUsage: cache [stats|clear]\n")
+
+        elif command == "sheets":
+            if not args:
+                print("\nUsage: sheets <code>")
+                print("  Example: sheets =10    (find sheets for system =10)")
+                print("  Example: sheets +E3    (find sheets at location +E3)\n")
+            else:
+                code = args[0]
+                if code.startswith('='):
+                    self.query_sheets_by_system(code)
+                elif code.startswith('+'):
+                    self.query_sheets_by_location(code)
+                else:
+                    print(f"\n✗ Invalid code format: {code}")
+                    print("  System codes start with = (e.g., =10)")
+                    print("  Location codes start with + (e.g., +E3)\n")
+
+        elif command == "sheet":
+            if not args:
+                print("\nUsage: sheet <number>")
+                print("  Example: sheet 102\n")
+            else:
+                self.find_sheet(args[0])
+
+        elif command == "systems":
+            self.list_systems()
 
         elif command == "show":
             if not args:
