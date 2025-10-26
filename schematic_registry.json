@@ -2813,6 +2813,2294 @@
           }
         },
         "indexed_at": "2025-10-24T09:55:29.402588"
+      },
+      "11.pdf": {
+        "path": "schematics/electrical/11.pdf",
+        "total_pages": 61,
+        "loaded_at": "2025-10-25T22:47:21.972938",
+        "indexed": true,
+        "pages": {
+          "1": {
+            "references": [
+              "/3.1",
+              "/3.1",
+              "/3.1"
+            ],
+            "components": [
+              "-CB1 700AT",
+              "-MSP11 45-63A",
+              "-DBK1",
+              "-MOV1"
+            ],
+            "cabinets": [],
+            "terminals": [
+              "L1",
+              "L2",
+              "L3",
+              "1",
+              "2",
+              "3",
+              "4",
+              "5",
+              "6",
+              "1",
+              "3",
+              "5",
+              "13",
+              "21"
+            ],
+            "wire_numbers": [
+              "W1056",
+              "W1057",
+              "W1058",
+              "W1059",
+              "W1060",
+              "W1061",
+              "W1062",
+              "W1063",
+              "W1064",
+              "W1065",
+              "W1066",
+              "W1067"
+            ],
+            "connections": [
+              "900 kVA BUS 1 to BUS 1",
+              "480V 60Hz power supply to overvoltage protection",
+              "Harmonic suppressor to overvoltage protection"
+            ],
+            "summary": "This is an electrical schematic for a Maersk Pacific USA container crane feeding circuit in Los Angeles, CA. It shows a 900 kVA bus system with harmonic suppression and overvoltage protection components, including circuit breakers, surge protection, and monitoring devices.",
+            "page_number": 1,
+            "indexed_with": "claude-vision"
+          },
+          "2": {
+            "references": [],
+            "components": [
+              "-CB1 700AT 1000AF",
+              "-MSP11 45-63A 60A",
+              "-DBK1",
+              "-MOV1"
+            ],
+            "cabinets": [],
+            "terminals": [
+              "L1",
+              "L2",
+              "L3",
+              "Z4.1",
+              "Z4.2",
+              "Z4.3"
+            ],
+            "wire_numbers": [
+              "-W1055.1",
+              "-W1057.1",
+              "-W1058.1",
+              "-W1059.1",
+              "-W1060.1",
+              "-W1062.1",
+              "-W1063.1",
+              "-W1064.1",
+              "-W1065.1",
+              "-W1066.1",
+              "-W1067.1"
+            ],
+            "connections": [
+              "900kVA BUS 3 to CB1",
+              "CB1 to MSP11",
+              "MSP11 to MOV1",
+              "Multiple 1x500 Kcmil TC2 connections to bus"
+            ],
+            "summary": "This is an electrical schematic for a container crane power distribution system showing a 480V 50Hz bus connection through circuit breaker, harmonic suppressor, and overvoltage protection components. The drawing is for Maersk Pacific USA in Los Angeles, CA.",
+            "page_number": 2,
+            "indexed_with": "claude-vision"
+          },
+          "3": {
+            "references": [],
+            "components": [
+              "MSP16",
+              "PM90",
+              "SS1",
+              "MTR1",
+              "CONTROLAB DSP-QLS"
+            ],
+            "cabinets": [],
+            "terminals": [
+              "X1",
+              "X2",
+              "L1",
+              "L2",
+              "L3"
+            ],
+            "wire_numbers": [
+              "01.1",
+              "01.2",
+              "01.3"
+            ],
+            "connections": [
+              "480V 60Hz Bus 1 to MSP16",
+              "MSP16 to CONTROLAB DSP-QLS",
+              "CONTROLAB to SS1 switch",
+              "SS1 to MTR1 voltage meter"
+            ],
+            "summary": "This is a phase monitoring circuit diagram for a container crane showing power distribution from 480V bus through protective devices (MSP16) to control equipment (CONTROLAB) and monitoring instruments (MTR1 voltage meter), with switching control (SS1).",
+            "page_number": 3,
+            "indexed_with": "claude-vision"
+          },
+          "4": {
+            "references": [
+              "=23.1"
+            ],
+            "components": [
+              "-MSP16",
+              "-PM90",
+              "-SS1",
+              "-MTR1",
+              "CONTROLAB DSP-01S"
+            ],
+            "cabinets": [],
+            "terminals": [
+              "X1",
+              "X2",
+              "L1",
+              "L2",
+              "L3",
+              "T1",
+              "T2"
+            ],
+            "wire_numbers": [
+              "03.1",
+              "03.2",
+              "03.3"
+            ],
+            "connections": [
+              "480V 60Hz Bus 3 to L1/L2/L3",
+              "MSP16 to CONTROLAB DSP-01S",
+              "CONTROLAB to SS1",
+              "SS1 to MTR1"
+            ],
+            "summary": "This is a phase monitoring circuit diagram for a container crane, showing power distribution from 480V 60Hz through protection devices, monitoring equipment (CONTROLAB DSP-01S), and control switch to a voltage monitoring meter.",
+            "page_number": 4,
+            "indexed_with": "claude-vision"
+          },
+          "5": {
+            "references": [
+              "=18/1.2",
+              "=21/1.1"
+            ],
+            "components": [
+              "CB10 700AT 1000AF",
+              "CB10A 700AT 1000AF",
+              "BUS 1"
+            ],
+            "cabinets": [],
+            "terminals": [
+              "L1",
+              "L2",
+              "L3",
+              "1",
+              "2",
+              "3",
+              "4",
+              "5",
+              "6",
+              "13",
+              "14",
+              "A1"
+            ],
+            "wire_numbers": [
+              "480L.1",
+              "480L.2",
+              "480L.3"
+            ],
+            "connections": [
+              "480V 60Hz bus to CB10",
+              "CB10 to CB10A",
+              "CB10A to rectifier outputs"
+            ],
+            "summary": "Power distribution schematic showing 480V bus connections through circuit breakers CB10 and CB10A for a container crane rectifier/regenerative unit and converter power hoist unit.",
+            "page_number": 5,
+            "indexed_with": "claude-vision"
+          },
+          "6": {
+            "references": [
+              "=18/2.2",
+              "=48/1.1.1",
+              "=48/1.2.1",
+              "=48/1.3.1",
+              "=22/1.1"
+            ],
+            "components": [
+              "CB10 700AT 1000AF",
+              "CB10A 700AT 1600AF",
+              "BUS 3"
+            ],
+            "cabinets": [],
+            "terminals": [
+              "L1",
+              "L2",
+              "L3",
+              "I13",
+              "I14",
+              "IC1",
+              "IA1"
+            ],
+            "wire_numbers": [
+              "535 Kcmil",
+              "2x535 Kcmil"
+            ],
+            "connections": [
+              "CB10 connects to rectifier/regenerative unit 2",
+              "CB10A connects to converter power hoist unit 2",
+              "BUS 3 feeds both circuit breakers"
+            ],
+            "summary": "This is a 480V power distribution schematic for a container crane showing the connections between Bus 3 and two circuit breakers (CB10 and CB10A) feeding rectifier and converter units. The drawing is from Noell for Maersk Pacific USA in Los Angeles.",
+            "page_number": 6,
+            "indexed_with": "claude-vision"
+          },
+          "7": {
+            "references": [
+              "/8.1"
+            ],
+            "components": [
+              "MSP11",
+              "MSP16",
+              "MSP18",
+              "DBK1",
+              "PM90",
+              "SS1",
+              "TR1",
+              "CB1",
+              "CB2",
+              "MOV1",
+              "MTR1"
+            ],
+            "cabinets": [],
+            "terminals": [
+              "X1",
+              "X4",
+              "L1",
+              "L2",
+              "L3"
+            ],
+            "wire_numbers": [
+              "W1052",
+              "W1052.1",
+              "W1052.2",
+              "W1052.3",
+              "10 AWG",
+              "12 AWG"
+            ],
+            "connections": [
+              "Bus 2 to MSP components",
+              "MOV1 to overvoltage protection",
+              "PM90 to phase monitoring",
+              "TR1 to converter fan supply"
+            ],
+            "summary": "Electrical schematic for container crane showing power distribution, overvoltage protection, phase monitoring, and converter fan supply circuits operating at 480V 60Hz",
+            "page_number": 7,
+            "indexed_with": "claude-vision"
+          },
+          "8": {
+            "references": [
+              "=29/1.2",
+              "=29/1.3",
+              "=29/2.1",
+              "=29/2.2",
+              "=29/2.3",
+              "=29/3.1",
+              "=29/3.2",
+              "=29/3.3"
+            ],
+            "components": [
+              "Circuit Breaker CB7",
+              "Circuit Breaker CB13",
+              "Motor Protection MSP14A",
+              "Motor Protection MSP14",
+              "Motor Protection MSP15",
+              "Contactor CONT40",
+              "Contactor CONT24",
+              "Contactor CONT22",
+              "PE-busbar X9"
+            ],
+            "cabinets": [],
+            "terminals": [
+              "L1",
+              "L2",
+              "L3"
+            ],
+            "wire_numbers": [
+              "92L1",
+              "92L2",
+              "92L3",
+              "71L1",
+              "71L2",
+              "71L3"
+            ],
+            "connections": [
+              "480V supply to CB7 and CB13",
+              "MSP14A to brake boom hoist unit",
+              "MSP14 to brake gantry travel",
+              "MSP15 to hydraulic rail brakes"
+            ],
+            "summary": "This is an electrical schematic for a Maersk Pacific USA Container Crane in Los Angeles, showing the 480V 60Hz power distribution system including circuit breakers, motor protections, and contactors for various brake systems.",
+            "page_number": 8,
+            "indexed_with": "claude-vision"
+          },
+          "9": {
+            "references": [
+              "=21/Y1.1",
+              "=21/Y1.2",
+              "=21/Y1.3",
+              "=21/Y2.1",
+              "=22/Y1.1",
+              "=22/Y1.2",
+              "=22/Y1.3",
+              "=22/Y2.1"
+            ],
+            "components": [
+              "MSP16",
+              "MSP17",
+              "Motor M1011",
+              "Motor M1012",
+              "Circuit Breaker 22-32A",
+              "Circuit Breaker 29A",
+              "PE-holder"
+            ],
+            "cabinets": [],
+            "terminals": [
+              "L1",
+              "L2",
+              "L3",
+              "BK",
+              "GN",
+              "RD"
+            ],
+            "wire_numbers": [
+              "18 AWG - MTW",
+              "4x16 AWG"
+            ],
+            "connections": [
+              "480V SERHOS BUS to L1/L2/L3",
+              "MSP16 to Motor M1011",
+              "MSP17 to Motor M1012"
+            ],
+            "summary": "This is an electrical schematic showing two identical 480V supply circuits for a container crane, each consisting of circuit breakers, motor starters (MSP16/17), and motors (M1011/M1012) with PE (Protective Earth) connections.",
+            "page_number": 9,
+            "indexed_with": "claude-vision"
+          },
+          "10": {
+            "references": [
+              "=17/11.1",
+              "=17/11.2",
+              "=17/11.3",
+              "=17/11.PE"
+            ],
+            "components": [
+              "Circuit Breaker CB8",
+              "Terminal Block DBK1",
+              "Terminal Block DBK2",
+              "Terminal Block DBK3",
+              "Switch S10"
+            ],
+            "cabinets": [
+              "E20"
+            ],
+            "terminals": [
+              "L1",
+              "L2",
+              "L3",
+              "1",
+              "2",
+              "3"
+            ],
+            "wire_numbers": [
+              "021.1",
+              "021.2",
+              "021.3",
+              "WP04",
+              "WP046.1"
+            ],
+            "connections": [
+              "CB8 250A to DBK2",
+              "DBK1 to S10",
+              "DBK2 to EFL1/2/3",
+              "DBK3 to lighting devices"
+            ],
+            "summary": "This is an electrical schematic for a container crane showing 480V 60Hz power distribution system for lighting and auxiliary devices. The drawing shows circuit breakers, terminal blocks, and connections for three-phase power distribution.",
+            "page_number": 10,
+            "indexed_with": "claude-vision"
+          },
+          "11": {
+            "references": [],
+            "components": [
+              "MSP12",
+              "MSP90",
+              "MOV2",
+              "PM91",
+              "SS2",
+              "MTR2",
+              "CONTROLAB DSP-4LS"
+            ],
+            "cabinets": [],
+            "terminals": [
+              "L1",
+              "L2",
+              "L3",
+              "13",
+              "14",
+              "21",
+              "22",
+              "T1",
+              "T2",
+              "X1",
+              "X2"
+            ],
+            "wire_numbers": [
+              "8 AWG",
+              "12 AWG"
+            ],
+            "connections": [
+              "480V 60Hz supply to MSP12 and MSP90",
+              "MSP12 (63A) to MOV2",
+              "MSP90 (5A) to CONTROLAB DSP-4LS",
+              "CONTROLAB DSP-4LS to SS2 switch",
+              "SS2 to MTR2 voltage meter"
+            ],
+            "summary": "This is an electrical schematic showing phase monitoring and overvoltage protection circuits for a container crane. It includes surge protection devices, phase monitoring relay, control switch and voltage meter connections for a 480V 60Hz system.",
+            "page_number": 11,
+            "indexed_with": "claude-vision"
+          },
+          "12": {
+            "references": [
+              "=37/1.1.1",
+              "=37/1.1.2",
+              "=37/1.1.3",
+              "=27/4.4.1",
+              "=27/4.4.2",
+              "=27/4.4.3",
+              "=32/4.4.1",
+              "=32/4.4.2",
+              "=32/4.4.3",
+              "=14/702.2",
+              "=14/702.2",
+              "=14/702.2",
+              "=14/702.2"
+            ],
+            "components": [
+              "-MSP31",
+              "-MSP30",
+              "-MSP4",
+              "-CONT23",
+              "-CONT11",
+              "-CONT12",
+              "-CONT2"
+            ],
+            "cabinets": [],
+            "terminals": [
+              "L1",
+              "L2",
+              "L3",
+              "13",
+              "14",
+              "21",
+              "22"
+            ],
+            "wire_numbers": [
+              "14 AWG MTW",
+              "12 AWG MTW"
+            ],
+            "connections": [
+              "MSP31 to CONT23",
+              "MSP30 to CONT11",
+              "MSP4 to CONT2"
+            ],
+            "summary": "This is an electrical schematic for a Maersk Pacific USA container crane in Los Angeles, showing power distribution for auxiliary drives on trolley, brakes for hoist units 1 & 2, and spreader cable drum fan motor.",
+            "page_number": 12,
+            "indexed_with": "claude-vision"
+          },
+          "13": {
+            "references": [],
+            "components": [
+              "-MSP33",
+              "-MSP34",
+              "-W2002",
+              "-TR30",
+              "-PWR30",
+              "-MDV1",
+              "-C1"
+            ],
+            "cabinets": [],
+            "terminals": [
+              "X11",
+              "L1",
+              "L2",
+              "L3",
+              "GN"
+            ],
+            "wire_numbers": [
+              "12X 12 AWG",
+              "12 AWG MTW"
+            ],
+            "connections": [
+              "MSP33 to MSP34 via BK and BR wires",
+              "TR30 (480V/120V transformer) to power system",
+              "PWR30 (480V/24V power supply) to MDV1"
+            ],
+            "summary": "This is a power distribution schematic for a container crane showing the 480V supply being transformed to 120V and 24V circuits through transformers and power supplies. The page includes surge protection devices (MSP33/34), transformer TR30, and power supply PWR30.",
+            "page_number": 13,
+            "indexed_with": "claude-vision"
+          },
+          "14": {
+            "references": [
+              "=17/21.1.2",
+              "=17/21.N2",
+              "=21/2.1.2",
+              "=21/2.N2",
+              "=22/5.1.2",
+              "=22/5.N2",
+              "=17/1.1.2",
+              "=17/1.N2",
+              "=14/4.1.2",
+              "=14/4.N2",
+              "=62/20.1.2",
+              "=62/20.2.0",
+              "=62/20.2.4"
+            ],
+            "components": [
+              "-CB31",
+              "-CR25",
+              "-W2002"
+            ],
+            "cabinets": [],
+            "terminals": [
+              "-X11",
+              "RD",
+              "BU",
+              "BK",
+              "YE",
+              "BN"
+            ],
+            "wire_numbers": [
+              "14 AWG HTW",
+              "12 AWG HTW",
+              "10X12 AWG TC1"
+            ],
+            "connections": [
+              "-CB31 to -X11",
+              "-CR25 to -X11",
+              "-W2002 terminals to spreader cable reel"
+            ],
+            "summary": "This is an electrical schematic for a container crane feeding system, showing connections between circuit breaker CB31, relay CR25, and terminal blocks for spreader control, hoist units, and anti-sway system components.",
+            "page_number": 14,
+            "indexed_with": "claude-vision"
+          },
+          "15": {
+            "references": [],
+            "components": [
+              "-CB32",
+              "-CB33",
+              "-CB34",
+              "-CB35"
+            ],
+            "cabinets": [],
+            "terminals": [
+              "123",
+              "24",
+              "11",
+              "12"
+            ],
+            "wire_numbers": [
+              "14 AWG, MTW"
+            ],
+            "connections": [
+              "Bus modules to input modules",
+              "Input modules to output modules",
+              "X12 connection across modules"
+            ],
+            "summary": "This schematic shows a 24V DC control circuit for a Maersk Pacific USA container crane in Los Angeles, CA. It depicts the interconnection between bus modules, input modules, and output modules with circuit breakers CB32-CB35.",
+            "page_number": 15,
+            "indexed_with": "claude-vision"
+          },
+          "16": {
+            "references": [
+              "/17.1",
+              "/29.1",
+              "/31.8",
+              "/32.1"
+            ],
+            "components": [
+              "MSP19",
+              "MSP20",
+              "TR20",
+              "CB21",
+              "PWR10",
+              "MOV1",
+              "C2",
+              "X12"
+            ],
+            "cabinets": [],
+            "terminals": [
+              "L1",
+              "L2",
+              "L3"
+            ],
+            "wire_numbers": [
+              "12 AWG MTW",
+              "8 AWG MTW",
+              "10 AWG MTW"
+            ],
+            "connections": [
+              "480V power bus to MSP19 and MSP20",
+              "TR20 (5KVA transformer) steps down 480V to 120V",
+              "PWR10 connected to MOV1",
+              "C2 capacitor (27000 \u03bcF) connected to DC output"
+            ],
+            "summary": "Electrical schematic showing power distribution from 480V 60Hz input through circuit breakers, transformers and power supplies to generate various DC voltages. Includes protection components and filtering capacitors.",
+            "page_number": 16,
+            "indexed_with": "claude-vision"
+          },
+          "17": {
+            "references": [
+              "=21/24.3.3",
+              "=23/24.2.1",
+              "=24/54.3.2",
+              "=27/54.3.2",
+              "=27/54.3.3"
+            ],
+            "components": [
+              "-CB200",
+              "-CB201",
+              "-CB202",
+              "-CB203",
+              "-CB204",
+              "-CONT22"
+            ],
+            "cabinets": [],
+            "terminals": [
+              "X11",
+              "23",
+              "11",
+              "24",
+              "12"
+            ],
+            "wire_numbers": [
+              "W2011"
+            ],
+            "connections": [
+              "Ground fault relay circuit to control voltage emergency stop relay",
+              "Control voltage emergency stop relay to control voltage hoist unit 1-2",
+              "Control voltage hoist unit 1-2 to control voltage boom hoist unit"
+            ],
+            "summary": "This is an electrical schematic for a container crane feeding system, showing circuit breakers, control voltage connections, and relay circuits for ground fault, emergency stop, and hoist unit controls. The system operates on 120V 60Hz power.",
+            "page_number": 17,
+            "indexed_with": "claude-vision"
+          },
+          "18": {
+            "references": [
+              "=31/4.4.3",
+              "=31/4.4.2",
+              "=31/4.4.1",
+              "=35/5.1.1",
+              "=35/5.1.2",
+              "=35/5.1.3",
+              "=44/4.4.1",
+              "=44/4.4.2",
+              "=41/2.2.5",
+              "=41/2.2.6",
+              "=41/4.4.1",
+              "=41/2.2.2"
+            ],
+            "components": [
+              "-CB205",
+              "-CB206",
+              "-CB207",
+              "-ER101",
+              "-ESR1",
+              "-W2019",
+              "-W2014",
+              "-W2009",
+              "-W2022",
+              "-W2006"
+            ],
+            "cabinets": [],
+            "terminals": [
+              "X11",
+              "J23",
+              "J11",
+              "J24",
+              "J12"
+            ],
+            "wire_numbers": [
+              "3x12 AWG",
+              "4 AWG",
+              "4x12 AWG"
+            ],
+            "connections": [
+              "120V 60 Hz power supply connections",
+              "Control voltage trolley travel circuits",
+              "120VAC control voltage spreader cable reel"
+            ],
+            "summary": "This is an electrical schematic for a Maersk Pacific USA container crane in Los Angeles, showing control voltage circuits for trolley travel and spreader cable reel systems, including circuit breakers, relays, and wiring connections.",
+            "page_number": 18,
+            "indexed_with": "claude-vision"
+          },
+          "19": {
+            "references": [],
+            "components": [
+              "-ESR1",
+              "-ESR2",
+              "-ESR3",
+              "-ESR4",
+              "-CR102",
+              "-CR103"
+            ],
+            "cabinets": [],
+            "terminals": [
+              "X1",
+              "X3",
+              "X4",
+              "X7",
+              "X8",
+              "Y1",
+              "Y2",
+              "Z1",
+              "Z2",
+              "A1",
+              "A2",
+              "K1",
+              "K2",
+              "PE"
+            ],
+            "wire_numbers": [
+              "20.2",
+              "20.7",
+              "29.6",
+              "70.4",
+              "21/24.1",
+              "24/25.4",
+              "24/42.5",
+              "36/22.6",
+              "37/14.1"
+            ],
+            "connections": [
+              "ESR2 to ESR3 via X7/X8",
+              "ESR1 to CR102/CR103 via X1/X4",
+              "CR102 to CR103 via terminal connections"
+            ],
+            "summary": "Emergency stop relay circuit diagram for a container crane feeding system, showing interconnections between multiple emergency stop relays (ESR) and control relays (CR) operating on 24V DC power.",
+            "page_number": 19,
+            "indexed_with": "claude-vision"
+          },
+          "20": {
+            "references": [
+              "/19.3",
+              "/10.3",
+              "/8.7",
+              "/8.5",
+              "/12.2",
+              "/12.6",
+              "/14.6",
+              "/8.4",
+              "/12.5"
+            ],
+            "components": [
+              "-ESR1",
+              "-CR101",
+              "-CONT22",
+              "-CONT24",
+              "-CONT23",
+              "-CONT12",
+              "-CR25",
+              "-CONT10",
+              "-CONT11",
+              "-W2002"
+            ],
+            "cabinets": [],
+            "terminals": [
+              "A1",
+              "A2",
+              "43",
+              "44",
+              "77",
+              "78",
+              "33",
+              "34"
+            ],
+            "wire_numbers": [
+              "/19.1",
+              "/44.2"
+            ],
+            "connections": [
+              "ESR1 with delay to CONT22",
+              "ESR1 without delay to CONT11",
+              "CR101 to CONT24",
+              "CR100 to CONT11"
+            ],
+            "summary": "This is an electrical control schematic for a Maersk Pacific USA Container Crane in Los Angeles, showing the control circuits for auxiliary drives, brakes, and safety systems for various crane movements including gantry travel, boom hoist, and trolley operations. The diagram operates on 120V 60Hz power.",
+            "page_number": 20,
+            "indexed_with": "claude-vision"
+          },
+          "21": {
+            "references": [
+              "=23/X12.0",
+              "=11-NA1/B-/22.1"
+            ],
+            "components": [
+              "-PB10",
+              "-PB11",
+              "-PB20",
+              "-PB21",
+              "-A1-PB12",
+              "-WL006 3x4 AWG TC1"
+            ],
+            "cabinets": [],
+            "terminals": [
+              "BK",
+              "RD"
+            ],
+            "wire_numbers": [
+              "WL006"
+            ],
+            "connections": [
+              "Emergency stop pushbutton chain connection between multiple PB components",
+              "WL006 3x4 AWG TC1 connected to BK and RD terminals"
+            ],
+            "summary": "Circuit diagram showing emergency stop pushbutton chain for a container crane, including multiple emergency stop buttons located in electrical room, machinery house, and rope changing station with associated wiring and interconnections.",
+            "page_number": 21,
+            "indexed_with": "claude-vision"
+          },
+          "22": {
+            "references": [
+              "=23/B22",
+              "=PB1",
+              "=PB40",
+              "=PB41",
+              "=PB42",
+              "=PB43"
+            ],
+            "components": [
+              "emergency stop pushbutton auxiliary boom hoist",
+              "emergency stop pushbutton ground control station",
+              "emergency stop pushbutton portal landside",
+              "emergency stop pushbutton portal landside",
+              "emergency stop pushbutton portal landside",
+              "emergency stop pushbutton portal landside"
+            ],
+            "cabinets": [],
+            "terminals": [
+              "11",
+              "12",
+              "21",
+              "22",
+              "31"
+            ],
+            "wire_numbers": [
+              "11.NA1/Br-X12",
+              "11.NA1/Br-23.1"
+            ],
+            "connections": [
+              "Emergency stop buttons connected in series",
+              "Connections between multiple portal landside emergency stops"
+            ],
+            "summary": "This schematic shows the emergency stop system circuitry for a Maersk Pacific USA container crane in Los Angeles, CA. It details the wiring of multiple emergency stop pushbuttons for different crane sections including auxiliary boom hoist, ground control station, and portal landside locations.",
+            "page_number": 22,
+            "indexed_with": "claude-vision"
+          },
+          "23": {
+            "references": [
+              "=22/B.11.NA1/B-X17",
+              "=11.NA1/Br.24.1"
+            ],
+            "components": [
+              "-PB50 emergency stop pushbutton portal waterside",
+              "-PB51 emergency stop pushbutton",
+              "-PB52 emergency stop pushbutton",
+              "-PB53 emergency stop pushbutton portal waterside"
+            ],
+            "cabinets": [],
+            "terminals": [],
+            "wire_numbers": [
+              "71051.11-04-01-111",
+              "71051.11-04-01-111",
+              "71051.11-04-01-112",
+              "71051.11-04-01-113",
+              "71051.11-04-01-114"
+            ],
+            "connections": [
+              "Emergency stop pushbuttons connected in series between =22/B.11.NA1/B-X17 and =11.NA1/Br.24.1"
+            ],
+            "summary": "This page shows the wiring diagram for four emergency stop pushbuttons (PB50-PB53) for a container crane portal waterside. The pushbuttons are connected in series as part of a safety circuit.",
+            "page_number": 23,
+            "indexed_with": "claude-vision"
+          },
+          "24": {
+            "references": [
+              "=23/X12",
+              "=23-X12",
+              "=23-PB8"
+            ],
+            "components": [
+              "PB24",
+              "PB26",
+              "PB25"
+            ],
+            "cabinets": [],
+            "terminals": [
+              "21",
+              "22",
+              "23",
+              "24",
+              "25",
+              "26",
+              "27",
+              "28",
+              "29",
+              "30"
+            ],
+            "wire_numbers": [
+              "11-NA2",
+              "11-NA1/BR",
+              "NA-064",
+              "BK",
+              "GN",
+              "RD"
+            ],
+            "connections": [
+              "Emergency stop pushbutton pylon to terminals",
+              "Emergency stop pushbutton bridge girder to terminals",
+              "Emergency stop pushbutton boom waterside to terminals",
+              "Emergency stop pushbutton boom hoist control station to terminals"
+            ],
+            "summary": "This is an electrical schematic for a container crane emergency stop system at Maersk Pacific USA in Los Angeles, showing the wiring of multiple emergency stop pushbuttons located at different positions (pylon, bridge girder, boom waterside, and control station).",
+            "page_number": 24,
+            "indexed_with": "claude-vision"
+          },
+          "25": {
+            "references": [
+              "=20/71.22",
+              "=20/71.21",
+              "=71",
+              "=FT-X12",
+              "=PS",
+              "=DSR"
+            ],
+            "components": [
+              "PB22",
+              "PB60",
+              "PB30",
+              "PB70",
+              "AZ-PB12",
+              "PB39"
+            ],
+            "cabinets": [],
+            "terminals": [
+              "11",
+              "21",
+              "31",
+              "41",
+              "12",
+              "22",
+              "32",
+              "42"
+            ],
+            "wire_numbers": [],
+            "connections": [
+              "Emergency stop buttons connected in series",
+              "PB22 to PB60",
+              "PB60 to PB30",
+              "PB30 to PB70",
+              "PB70 to AZ-PB12",
+              "AZ-PB12 to PB39"
+            ],
+            "summary": "This is an electrical schematic showing the emergency stop circuit for a Maersk Pacific USA container crane in Los Angeles, CA. It depicts the interconnection of multiple emergency stop pushbuttons located at different positions including machinery house trolley, trim list skew, trolley, and rope changing station.",
+            "page_number": 25,
+            "indexed_with": "claude-vision"
+          },
+          "26": {
+            "references": [
+              "/24.3.10.024.3",
+              "/25.8"
+            ],
+            "components": [
+              "H+OCE-NA1/B+",
+              "-W4-238",
+              "-PB10",
+              "-PB61",
+              "-X12"
+            ],
+            "cabinets": [],
+            "terminals": [
+              "11",
+              "12",
+              "21",
+              "22",
+              "BN",
+              "BK",
+              "YE"
+            ],
+            "wire_numbers": [
+              "/ST31-5",
+              "/ST31-5",
+              "/ST31-6"
+            ],
+            "connections": [
+              "H+OCE-NA1/B+ to -X12",
+              "-X12 to -PB10",
+              "-X12 to -PB61"
+            ],
+            "summary": "Emergency stop circuit diagram for a container crane showing the electrical connections between pushbuttons for the electrical case trolley and machinery house trolley. This appears to be for Maersk Pacific USA in Los Angeles, CA.",
+            "page_number": 26,
+            "indexed_with": "claude-vision"
+          },
+          "27": {
+            "references": [
+              "-X11.z0",
+              "-X11.z1",
+              "-X11.z2",
+              "-X11.z3",
+              "-X11.z5",
+              "-X11.z6",
+              "-X11.z7",
+              "-X11.z8",
+              "-X11.z9",
+              "-X11.z10"
+            ],
+            "components": [],
+            "cabinets": [],
+            "terminals": [],
+            "wire_numbers": [
+              "11.1/3/Br",
+              "120 N1/Br"
+            ],
+            "connections": [],
+            "summary": "This appears to be a feeding circuit diagram for a container crane at Maersk Pacific USA in Los Angeles, CA. The page shows terminal connections for what appears to be a 120V 60Hz system, but is largely empty/unused.",
+            "page_number": 27,
+            "indexed_with": "claude-vision"
+          },
+          "28": {
+            "references": [
+              "/20.8",
+              "/44.5",
+              "/44.6",
+              "/44.3",
+              "/44.4",
+              "/45"
+            ],
+            "components": [
+              "-CR105",
+              "-CR106",
+              "-X11"
+            ],
+            "cabinets": [],
+            "terminals": [
+              "X11"
+            ],
+            "wire_numbers": [
+              "707F8",
+              "707F7",
+              "707F6",
+              "707F5",
+              "707F4"
+            ],
+            "connections": [
+              "Wind measurement inputs to terminal block -X14",
+              "-CR105 relay to -X11",
+              "-CR106 relay to -X11"
+            ],
+            "summary": "This is a circuit diagram for a container crane wind measurement system with alarm horn and lamp control components. The schematic shows the 120V 60Hz control circuit for Maersk Pacific USA in Los Angeles, CA.",
+            "page_number": 28,
+            "indexed_with": "claude-vision"
+          },
+          "29": {
+            "references": [],
+            "components": [
+              "-CB17",
+              "-X12",
+              "-W4003",
+              "-W4005"
+            ],
+            "cabinets": [],
+            "terminals": [
+              "13",
+              "14",
+              "21",
+              "22"
+            ],
+            "wire_numbers": [
+              "46 AWG, MTW",
+              "7x14 AWG, TC-1",
+              "3x14 AWG, TC-1"
+            ],
+            "connections": [
+              "+24V DC bus connection across top",
+              "0V DC bus connection through middle",
+              "Ground bus modules connected in series"
+            ],
+            "summary": "This schematic shows the control voltage distribution for a container crane system, including power bus modules for various functions like feeding, lighting, gantry travel, emergency stop, and spreader cable reel. It's from a Maersk Pacific USA crane in Los Angeles.",
+            "page_number": 29,
+            "indexed_with": "claude-vision"
+          },
+          "30": {
+            "references": [
+              "/29.0",
+              "/31.1"
+            ],
+            "components": [
+              "-CB18",
+              "-W4003",
+              "-W4017",
+              "-W4018"
+            ],
+            "cabinets": [],
+            "terminals": [
+              "11",
+              "12",
+              "21",
+              "22",
+              "41",
+              "42",
+              "43",
+              "44",
+              "45",
+              "46",
+              "47",
+              "48",
+              "49",
+              "50",
+              "51",
+              "52",
+              "53",
+              "54",
+              "55"
+            ],
+            "wire_numbers": [
+              "18 AWG MTW",
+              "7x14 AWG",
+              "5x16 AWG"
+            ],
+            "connections": [
+              "+24V DC connection from /29.0 to /31.1",
+              "0V DC/B- connection from /29.0 to /31.1",
+              "TC1 to BG303GN connections"
+            ],
+            "summary": "This is a control voltage input modules schematic for a Maersk Pacific USA container crane in Los Angeles, CA. It shows the power distribution for feeding, lighting and auxiliary devices, gantry/trolley travel, spreader cable reel, and rectifier/regenerative unit sections.",
+            "page_number": 30,
+            "indexed_with": "claude-vision"
+          },
+          "31": {
+            "references": [
+              "/30.8",
+              "/32.1"
+            ],
+            "components": [
+              "-CB19 10A",
+              "-CB20 10A",
+              "-X12",
+              "-W4C03 7x14 AWG LC1"
+            ],
+            "cabinets": [],
+            "terminals": [
+              "11",
+              "12",
+              "23",
+              "24",
+              "21",
+              "22",
+              "23",
+              "24",
+              "25",
+              "26"
+            ],
+            "wire_numbers": [
+              "18 AWG MTW",
+              "+V/+21",
+              "-V/+21",
+              "+V/+31",
+              "-V/+31",
+              "+V/+41",
+              "-V/+41",
+              "+V/+61",
+              "-V/+61",
+              "+V/+81",
+              "-V/+81",
+              "+V/+91",
+              "-V/+91"
+            ],
+            "connections": [
+              "24V DC power distribution through circuit breakers CB19 and CB20",
+              "0V DC/Br distribution through terminal block X12"
+            ],
+            "summary": "Control voltage output modules schematic showing 24V DC power distribution for various crane systems including feeding, lighting, gantry travel, spreader cable reel, and trailer positioning system",
+            "page_number": 31,
+            "indexed_with": "claude-vision"
+          },
+          "32": {
+            "references": [],
+            "components": [
+              "-CB24",
+              "-W4017",
+              "-W4018",
+              "-W4004",
+              "-W4025",
+              "-W4026",
+              "-W4014",
+              "-W4036"
+            ],
+            "cabinets": [],
+            "terminals": [
+              "1",
+              "2",
+              "11",
+              "12",
+              "23",
+              "24"
+            ],
+            "wire_numbers": [
+              "5x14 AWG",
+              "5x14 AWG",
+              "3x14 AWG",
+              "3x14 AWG",
+              "3x14 AWG",
+              "3x14 AWG",
+              "3x14 AWG"
+            ],
+            "connections": [
+              "CB24 (20A) to rectifier/regenerative unit",
+              "24V DC power distribution across multiple components",
+              "BN/RD/GN connections across trolley, gantry, and festoon sections"
+            ],
+            "summary": "This schematic shows the 24V DC power distribution system for a container crane, including connections from a circuit breaker through various components for trolley travel, gantry travel, spreader cable reel, and festoon systems.",
+            "page_number": 32,
+            "indexed_with": "claude-vision"
+          },
+          "33": {
+            "references": [
+              "=64/4.1.4",
+              "=64/4.1.5",
+              "=64/4.1.6",
+              "=70/8.0"
+            ],
+            "components": [
+              "CB13",
+              "MSP20",
+              "CB17",
+              "CB18",
+              "CB7",
+              "PM90",
+              "CB32",
+              "CB33",
+              "MSP34",
+              "X11"
+            ],
+            "cabinets": [],
+            "terminals": [
+              "13",
+              "14",
+              "7",
+              "19",
+              "23",
+              "24"
+            ],
+            "wire_numbers": [
+              "W2003",
+              "W2004",
+              "W2326"
+            ],
+            "connections": [
+              "W2003 4x12 AWG connects BK-BU-RD",
+              "W2004 4x12 AWG connects BK-BU-RD",
+              "W2326 3x12 AWG connects BK-RD"
+            ],
+            "summary": "This is an electrical circuit diagram for a Maersk Pacific USA container crane feeding system, showing multiple circuit breakers (CB), power modules (PM/MSP), and their interconnections operating on 120V 60Hz UPS1 power supply.",
+            "page_number": 33,
+            "indexed_with": "claude-vision"
+          },
+          "34": {
+            "references": [
+              "=61/27.4",
+              "=61/27.5"
+            ],
+            "components": [
+              "MSP11",
+              "MSP16",
+              "PM90",
+              "CB1"
+            ],
+            "cabinets": [],
+            "terminals": [
+              "E3",
+              "E4",
+              "C",
+              "C1",
+              "A1",
+              "BN",
+              "BU",
+              "DG",
+              "YE",
+              "GN"
+            ],
+            "wire_numbers": [
+              "W4002",
+              "W4001",
+              "12x1.5 AWG TC1"
+            ],
+            "connections": [
+              "Voltage monitoring to MSP11",
+              "Phase monitoring to MSP16",
+              "Phase failure to PM90",
+              "CB monitoring to CB1"
+            ],
+            "summary": "This is an electrical schematic showing monitoring circuits for BUS 1 and BUS 3 of a container crane, including voltage monitoring, phase monitoring, failure detection, and CB monitoring for 480V supply systems. The drawing is for Maersk Pacific USA's feeding operation PLC system.",
+            "page_number": 34,
+            "indexed_with": "claude-vision"
+          },
+          "35": {
+            "references": [
+              "=33.8/1.1.2",
+              "=35.1/1.1.2"
+            ],
+            "components": [
+              "-W4126 5x16 AWG YC1",
+              "-W4127 5x16 AWG YC1",
+              "-W4128 5x16 AWG YC1",
+              "bus 1 / transformer ground fault relay",
+              "bus 3 / transformer ground fault relay"
+            ],
+            "cabinets": [],
+            "terminals": [
+              "BU",
+              "OG"
+            ],
+            "wire_numbers": [
+              "-D31.3",
+              "+61/27.5",
+              "-D31.4",
+              "+61/27.6"
+            ],
+            "connections": [
+              "24V DC bus connection between =33.8/1.1.2 and =35.1/1.1.2",
+              "Ground fault relay connections for multiple transformer buses"
+            ],
+            "summary": "Electrical schematic showing transformer ground fault relay connections and wiring for multiple bus systems at 24V DC. Part of container crane feeding operation PLC for Maersk Pacific USA in Los Angeles.",
+            "page_number": 35,
+            "indexed_with": "claude-vision"
+          },
+          "36": {
+            "references": [
+              "=61/28.1",
+              "=61/28.2"
+            ],
+            "components": [
+              "-W4126",
+              "-W4127",
+              "-W4128",
+              "-W4130",
+              "-MSP11",
+              "-MSP16",
+              "-MSP18"
+            ],
+            "cabinets": [
+              "E11"
+            ],
+            "terminals": [],
+            "wire_numbers": [
+              "5x14 AWG",
+              "3x14 AWG"
+            ],
+            "connections": [
+              "BUS 1 to BUS 3",
+              "E13D100/1/-Br circuit path",
+              "24V DC power distribution"
+            ],
+            "summary": "This is an electrical schematic page for a Maersk Pacific USA container crane feeding operation PLC system in Los Angeles, CA. It shows bus monitoring, emergency feeding, voltage/phase monitoring and transformer supply circuits.",
+            "page_number": 36,
+            "indexed_with": "claude-vision"
+          },
+          "37": {
+            "references": [
+              "=61/28.3",
+              "=61/28.4"
+            ],
+            "components": [
+              "CB1",
+              "CB2",
+              "CB8",
+              "MSP12",
+              "MSP90",
+              "PM01"
+            ],
+            "cabinets": [],
+            "terminals": [
+              "13",
+              "14"
+            ],
+            "wire_numbers": [
+              "=D31.7",
+              "=D31.8"
+            ],
+            "connections": [
+              "CB monitoring to converter fan 230V supply 1",
+              "CB monitoring to converter fan 230V supply 2",
+              "CB monitoring to 480V supply lighting and aux devices",
+              "Voltage monitoring emergency feeding",
+              "Phase monitoring emergency feeding",
+              "Phase monitoring failure"
+            ],
+            "summary": "This is an electrical schematic page for a Maersk Pacific USA container crane feeding operation PLC system in Los Angeles, CA. It shows circuit monitoring for converter fans, power supplies, voltage monitoring and phase monitoring components operating on 230V DC.",
+            "page_number": 37,
+            "indexed_with": "claude-vision"
+          },
+          "38": {
+            "references": [
+              "+61/28.4",
+              "+61/28.5",
+              "-D31.9",
+              "-D31.10"
+            ],
+            "components": [
+              "-MSP14",
+              "-MSP14A",
+              "-MSP15",
+              "-MSP16"
+            ],
+            "cabinets": [],
+            "terminals": [
+              "13",
+              "14"
+            ],
+            "wire_numbers": [
+              "/8.5",
+              "/8.4",
+              "/8.7",
+              "/9.2"
+            ],
+            "connections": [
+              "Harmonic suppressor alarm unit 1 to terminal block",
+              "Harmonic suppressor alarm unit 2 to terminal block",
+              "480V supply voltage monitoring connections",
+              "Voltage monitoring for gantry travel and boom hoist brakes"
+            ],
+            "summary": "This is sheet 37 of a Maersk Pacific USA container crane electrical schematic showing harmonic suppressor alarms and 480V voltage monitoring circuits for various crane functions including gantry travel and boom hoist brakes.",
+            "page_number": 38,
+            "indexed_with": "claude-vision"
+          },
+          "39": {
+            "references": [
+              "=61/29.4",
+              "=61/29.5",
+              "=31.17",
+              "=31.18"
+            ],
+            "components": [
+              "-MSP17",
+              "-MSP19",
+              "-CB21",
+              "-CB200",
+              "-CB201",
+              "-CB202"
+            ],
+            "cabinets": [
+              "s61"
+            ],
+            "terminals": [
+              "13",
+              "14",
+              "23",
+              "24"
+            ],
+            "wire_numbers": [
+              "37.8",
+              "E130100Hz",
+              "39.1"
+            ],
+            "connections": [
+              "MSP17 to voltage monitoring 480V supply",
+              "MSP19 to voltage monitoring 480V supply control power transformer",
+              "CB21 to control power transformer 120V supply",
+              "CB200 to spare",
+              "CB201 to ground fault relay shunt trip circuit",
+              "CB202 to CB monitoring 120V supply"
+            ],
+            "summary": "This page shows a 24V DC electrical schematic for a container crane feeding operation PLC system, including voltage monitoring, control power transformer circuits, and circuit breaker connections for various 480V and 120V supplies.",
+            "page_number": 39,
+            "indexed_with": "claude-vision"
+          },
+          "40": {
+            "references": [
+              "=61/29.6",
+              "=61/29.7"
+            ],
+            "components": [
+              "-CB203",
+              "-CB204",
+              "-CB205",
+              "-CB206",
+              "-CB207",
+              "-ESR1",
+              "-CONT22",
+              "-CONT24"
+            ],
+            "cabinets": [],
+            "terminals": [
+              "S1",
+              "S2",
+              "24",
+              "23",
+              "14"
+            ],
+            "wire_numbers": [
+              "-D31.19",
+              "-D31.20"
+            ],
+            "connections": [
+              "CB monitoring 120V supply to boom hoist unit",
+              "CB monitoring 120V supply to trolley & festoon",
+              "CB monitoring 120V supply to spreader cable reel",
+              "CB monitoring 120V supply to gantry travel",
+              "Emergency stop relay",
+              "Auxiliary drives contactor on",
+              "Gantry travel contactor on"
+            ],
+            "summary": "This is a PLC circuit diagram sheet for a Maersk Pacific USA container crane in Los Angeles, CA. It shows various circuit breaker monitoring circuits, emergency stop relay, and drive/travel contactors operating on 24V DC system.",
+            "page_number": 40,
+            "indexed_with": "claude-vision"
+          },
+          "41": {
+            "references": [
+              "=61/30.1",
+              "=61/30.2",
+              "=31.21",
+              "=31.22"
+            ],
+            "components": [
+              "-CONT10",
+              "-CB19",
+              "-CB24",
+              "-CB20",
+              "-W1429",
+              "TC1"
+            ],
+            "cabinets": [
+              "s61"
+            ],
+            "terminals": [
+              "13",
+              "14",
+              "23",
+              "24",
+              "BR",
+              "BU",
+              "BK",
+              "RD"
+            ],
+            "wire_numbers": [
+              "16 AWG MTW",
+              "4x14 AWG"
+            ],
+            "connections": [
+              "24V DC power supply connections",
+              "CB monitoring control voltage connections",
+              "Transformer connections"
+            ],
+            "summary": "This is a power distribution and control voltage monitoring schematic for a Maersk Pacific USA container crane in Los Angeles, CA. The page shows circuit breaker monitoring, transformer connections, and 24V DC control voltage distribution.",
+            "page_number": 41,
+            "indexed_with": "claude-vision"
+          },
+          "42": {
+            "references": [
+              "=61/-D31.23",
+              "=61/30.3",
+              "=61/-D31.24",
+              "=61/30.4"
+            ],
+            "components": [],
+            "cabinets": [],
+            "terminals": [],
+            "wire_numbers": [],
+            "connections": [],
+            "summary": "This appears to be a Container Crane feeding operation PLC circuit diagram for Maersk Pacific USA in Los Angeles, CA. The schematic shows 8 similar segments labeled 1.15.0 through 1.15.7, each containing matching reference designators but appears to be a template or blank sheet with minimal detailed information filled in.",
+            "page_number": 42,
+            "indexed_with": "claude-vision"
+          },
+          "43": {
+            "references": [],
+            "components": [
+              "YD3.2",
+              "YD3.3",
+              "YD3.4",
+              "YD3.5",
+              "YD4.3",
+              "YD4.4",
+              "YD4.6",
+              "YD9.4"
+            ],
+            "cabinets": [],
+            "terminals": [
+              "S1",
+              "S2",
+              "DI01",
+              "DI02",
+              "AI01"
+            ],
+            "wire_numbers": [
+              "-D31.11",
+              "-61/28.6",
+              "-D31.12",
+              "-61/28.7"
+            ],
+            "connections": [
+              "Emergency stop pushbuttons to YD components",
+              "Portal landside electrical connections"
+            ],
+            "summary": "This is an electrical schematic page for a Maersk Pacific USA container crane in Los Angeles, CA, showing emergency stop pushbutton circuits and associated portal landside electrical connections. The drawing is part of a NOELL feeding operation PLC circuit diagram.",
+            "page_number": 43,
+            "indexed_with": "claude-vision"
+          },
+          "44": {
+            "references": [
+              "+61/29.1",
+              "+61/29.2",
+              "-031.13",
+              "-031.14"
+            ],
+            "components": [
+              "YPS.2",
+              "YPS.3",
+              "YPS.4",
+              "YPS.6",
+              "YPS.7",
+              "YPS.9",
+              "YPS.5",
+              "YPS.2",
+              "YPS.6"
+            ],
+            "cabinets": [],
+            "terminals": [
+              "S1",
+              "S2",
+              "X12"
+            ],
+            "wire_numbers": [],
+            "connections": [
+              "YPS.2 to emergency stop pushbutton",
+              "YPS.3 to emergency stop pushbutton",
+              "YPS.4 to emergency stop pushbutton",
+              "YPS.6 to emergency stop pushbutton",
+              "YPS.7 to emergency stop pushbutton",
+              "YPS.9 to emergency stop pushbutton",
+              "YPS.5 to emergency stop pushbutton"
+            ],
+            "summary": "This is a container crane electrical schematic showing emergency stop pushbutton circuits for various portal waterside locations. The drawing is for Maersk Pacific USA in Los Angeles, CA and shows feeding operation PLC circuits.",
+            "page_number": 44,
+            "indexed_with": "claude-vision"
+          },
+          "45": {
+            "references": [
+              "=61/29.3",
+              "=D31.15"
+            ],
+            "components": [
+              "crane 1",
+              "crane 2",
+              "crane 3",
+              "crane 4",
+              "crane 5",
+              "crane 6",
+              "crane 7",
+              "crane 8",
+              "crane 9",
+              "crane 10"
+            ],
+            "cabinets": [],
+            "terminals": [],
+            "wire_numbers": [],
+            "connections": [],
+            "summary": "This is a NOELL Container Crane feeding operation PLC circuit diagram for Maersk Pacific USA in Los Angeles, CA. It shows a matrix/truth table of crane configurations with bits 0-3 and includes corresponding chart spaces labeled 1.11.0 through 1.11.7.",
+            "page_number": 45,
+            "indexed_with": "claude-vision"
+          },
+          "46": {
+            "references": [
+              "=61/31.2",
+              "=D32.1",
+              "=D32.2",
+              "=61/31.3",
+              "=45.1"
+            ],
+            "components": [
+              "CR100",
+              "CR101",
+              "CR102",
+              "CR103",
+              "CR105",
+              "CR106",
+              "MTR100"
+            ],
+            "cabinets": [],
+            "terminals": [
+              "X1",
+              "X2"
+            ],
+            "wire_numbers": [
+              "/14.5",
+              "/21/5.6",
+              "/23/5.2",
+              "/20",
+              "/22/5.6",
+              "/32/12.6",
+              "/31/16.3",
+              "/61/23.6",
+              "/18.6",
+              "/20.2",
+              "/10.3",
+              "/28.6",
+              "/28.5",
+              "/10.3"
+            ],
+            "connections": [
+              "MTR100 to CR103",
+              "Emergency stop signals to CR100/CR101/CR102"
+            ],
+            "summary": "This is a PLC control schematic for a Maersk Pacific USA container crane feeding operation, showing emergency stop controls, wind measurement, and hour meter control circuits.",
+            "page_number": 46,
+            "indexed_with": "claude-vision"
+          },
+          "47": {
+            "references": [],
+            "components": [
+              "BUS 3",
+              "BUS 4",
+              "-CR201",
+              "-CR202",
+              "-CR203",
+              "-W2032",
+              "-W2033",
+              "-W2034"
+            ],
+            "cabinets": [],
+            "terminals": [
+              "A1",
+              "A2",
+              "13",
+              "14",
+              "23",
+              "24",
+              "31",
+              "32",
+              "41",
+              "42",
+              "43",
+              "44"
+            ],
+            "wire_numbers": [
+              "3x12 AWG",
+              "3x12 AWG",
+              "3x12 AWG"
+            ],
+            "connections": [
+              "Ground fault relay shunt trip circuits",
+              "CR201/202/203 relay connections to TC1",
+              "PE-busbar connections to RD/GN terminals"
+            ],
+            "summary": "This is a schematic showing ground fault relay shunt trip circuits and control relay wiring for a container crane system. The page includes three identical relay circuits with associated terminal connections and PE-busbar grounding.",
+            "page_number": 47,
+            "indexed_with": "claude-vision"
+          },
+          "48": {
+            "references": [
+              "=N31.1"
+            ],
+            "components": [
+              "A1.S16",
+              "A1.S18"
+            ],
+            "cabinets": [],
+            "terminals": [
+              "V+2.Z83"
+            ],
+            "wire_numbers": [],
+            "connections": [
+              "Wind speed signal 4-20mA 0.4cm/s",
+              "A1.S16 to A1.S18"
+            ],
+            "summary": "This is a PLC feeding operation diagram for a Maersk Pacific USA container crane in Los Angeles, CA. It shows wind speed sensor connections with 4-20mA signal interface.",
+            "page_number": 48,
+            "indexed_with": "claude-vision"
+          },
+          "49": {
+            "references": [
+              "-61/37.4"
+            ],
+            "components": [
+              "MSP30 /I20",
+              "CONTI2 /34",
+              "MSP32 /I33",
+              "MSP41 /I14",
+              "CB31 /L42",
+              "-W430 24x1% AWG TC1",
+              "-X12 +TEC1"
+            ],
+            "cabinets": [
+              "-DB1.1",
+              "-DB1.2"
+            ],
+            "terminals": [
+              "BK",
+              "RD",
+              "GN",
+              "BU",
+              "OR",
+              "YE",
+              "BN"
+            ],
+            "wire_numbers": [],
+            "connections": [
+              "MSP30 to power monitoring",
+              "CONTI2 to brakes",
+              "MSP32 to transformer monitoring",
+              "MSP41 to 480V supply monitoring",
+              "CB31 to 120V feeder"
+            ],
+            "summary": "This is a feeding operation PLC circuit diagram for a Maersk Pacific USA container crane in Los Angeles, CA. The page shows monitoring circuits for brake, hoist, transformer, and power supply systems.",
+            "page_number": 49,
+            "indexed_with": "claude-vision"
+          },
+          "50": {
+            "references": [
+              "-61/37.6",
+              "-61/37.7"
+            ],
+            "components": [
+              "-CB34",
+              "-CB35",
+              "-CONT44",
+              "-CONT22",
+              "-CR25",
+              "-MSP31",
+              "-CR35",
+              "-W4032",
+              "-W4030"
+            ],
+            "cabinets": [],
+            "terminals": [
+              "BN",
+              "RD",
+              "BK",
+              "BU",
+              "YE"
+            ],
+            "wire_numbers": [
+              "24x4K AWG TC1"
+            ],
+            "connections": [
+              "-W4032 24x4K AWG TC1 connects BN to RD/BK",
+              "-W4030 24x4K AWG TC1 connects to YE/BK"
+            ],
+            "summary": "This is a control schematic for a Maersk Pacific USA container crane in Los Angeles, CA. The page shows protection circuits for various crane functions including main contactor brake, auxiliary drives, safety brake, floodlights and emergency stop, operating at 24V DC.",
+            "page_number": 50,
+            "indexed_with": "claude-vision"
+          },
+          "51": {
+            "references": [
+              "=11/E11",
+              "=11/E3",
+              "=11/E13",
+              "=11"
+            ],
+            "components": [
+              "PE Busbar",
+              "harmonic suppressor 400KVA",
+              "emergency feeding 200A, 440V"
+            ],
+            "cabinets": [
+              "UNIT 1"
+            ],
+            "terminals": [
+              "X1",
+              "TB1",
+              "TB2",
+              "X10",
+              "HS1"
+            ],
+            "wire_numbers": [
+              "W1716",
+              "W101",
+              "W101.1",
+              "W101.2",
+              "W101.3",
+              "W101.4",
+              "W101.5",
+              "W101.6",
+              "W1716.1",
+              "W3R3",
+              "W413",
+              "W752"
+            ],
+            "connections": [
+              "W1716 3x1/0 AWG to X10",
+              "W1716.1 3x3/0 AWG to X10",
+              "W752 4x3/0 AWG to X1",
+              "W101 series (1-6) 1x500 Kcmil to HS1",
+              "W3R3 1PR4x16 AWG to TB1",
+              "W413 4x16 AWG to TB2"
+            ],
+            "summary": "This is an electrical schematic for a container crane feeding circuit, showing emergency feeding (200A, 440V) and harmonic suppressor (400KVA) connections with various wire connections and terminal blocks.",
+            "page_number": 51,
+            "indexed_with": "claude-vision"
+          },
+          "52": {
+            "references": [
+              "=11/E4",
+              "=11/E13"
+            ],
+            "components": [
+              "HS2",
+              "TC1",
+              "TC2"
+            ],
+            "cabinets": [
+              "UNIT 2"
+            ],
+            "terminals": [
+              "TB1",
+              "TB2"
+            ],
+            "wire_numbers": [
+              "W1153.1",
+              "W1153.2",
+              "W1153.3",
+              "W1153.4",
+              "W1153.5",
+              "W1153.6",
+              "W5104"
+            ],
+            "connections": [
+              "TC2 components to TB1",
+              "TC1 to TB2"
+            ],
+            "summary": "Electrical schematic for a 400kVAr harmonic suppressor system in a container crane, showing TC1/TC2 connections and wiring for Maersk Pacific USA equipment.",
+            "page_number": 52,
+            "indexed_with": "claude-vision"
+          },
+          "53": {
+            "references": [
+              "=11/E13",
+              "=23/E11",
+              "=23/103.3",
+              "=23+BDA"
+            ],
+            "components": [
+              "-PB10",
+              "-PB11",
+              "-PB20",
+              "-PB21",
+              "-PB12"
+            ],
+            "cabinets": [],
+            "terminals": [
+              "11",
+              "12",
+              "21",
+              "22"
+            ],
+            "wire_numbers": [
+              "-W4051",
+              "-W4052",
+              "-W4053",
+              "-W4054",
+              "-W4055"
+            ],
+            "connections": [
+              "Emergency stop pushbuttons to wire numbers",
+              "5x14 AWG connections to BK RD GN BU/OG terminals"
+            ],
+            "summary": "Electrical schematic showing emergency stop pushbutton circuits for a Maersk Pacific USA container crane in Los Angeles, CA. The page details multiple emergency stop buttons located in different areas including electrical room, machinery house, and boom hoist auxiliary drive case.",
+            "page_number": 53,
+            "indexed_with": "claude-vision"
+          },
+          "54": {
+            "references": [
+              "=11-GCS",
+              "=11-E13"
+            ],
+            "components": [
+              "-W4700 12x14 AWG TC1",
+              "-W4700-1 12x14 AWG TC1",
+              "-W4751 5x14 AWG MC1",
+              "-W4752 5x14 AWG MC1",
+              "-W4754 5x14 AWG MC1",
+              "-W4755 5x14 AWG MC1",
+              "-W4757 5x14 AWG MC1",
+              "-PB40 -GUL",
+              "-PB41 -GUL",
+              "-PB42 -GUL",
+              "-PB43 -GUL"
+            ],
+            "cabinets": [],
+            "terminals": [
+              "11",
+              "12",
+              "21",
+              "22"
+            ],
+            "wire_numbers": [
+              "BK",
+              "RD",
+              "GN",
+              "BU",
+              "OG",
+              "YE",
+              "BN"
+            ],
+            "connections": [
+              "Emergency stop pushbuttons connected in series",
+              "Wire bundles W4700/W4700-1 to multiple emergency stop buttons",
+              "Multiple wire bundles (W4751-W4757) connected to emergency stops"
+            ],
+            "summary": "Electrical schematic showing emergency stop circuit for a Maersk Pacific USA container crane in Los Angeles, CA. The diagram shows multiple emergency stop pushbuttons wired in series with various multi-conductor cables and terminal connections.",
+            "page_number": 54,
+            "indexed_with": "claude-vision"
+          },
+          "55": {
+            "references": [
+              "=11/E.13"
+            ],
+            "components": [
+              "-PB50 +GDW",
+              "-PB51 +GDW",
+              "-PB52 +GDW",
+              "-PB53 +GDW"
+            ],
+            "cabinets": [],
+            "terminals": [
+              "11",
+              "12",
+              "21",
+              "22",
+              "d1",
+              "d2",
+              "d3",
+              "d4",
+              "d5"
+            ],
+            "wire_numbers": [
+              "-W4800 12x1.5 AWG TC1",
+              "-W4800.1 12x1.5 AWG TC1",
+              "-W4851 5x1.5 AWG MC1",
+              "-W4852 5x1.5 AWG MC1",
+              "-W4853 5x1.5 AWG MC1",
+              "-W4859 5x1.5 AWG MC1"
+            ],
+            "connections": [
+              "Emergency stop pushbuttons connected in series",
+              "Color-coded wires BK/RD/GN/BU to terminals"
+            ],
+            "summary": "Circuit diagram showing four emergency stop pushbuttons for portal waterside of a container crane, with associated wiring and terminal connections. Made for Maersk Pacific USA in Los Angeles, CA by NOELL.",
+            "page_number": 55,
+            "indexed_with": "claude-vision"
+          },
+          "56": {
+            "references": [
+              "=11/E13",
+              "=11/E14",
+              "=11/TEC"
+            ],
+            "components": [],
+            "cabinets": [],
+            "terminals": [
+              "X12",
+              "X11",
+              "BK",
+              "RD",
+              "GN"
+            ],
+            "wire_numbers": [
+              "W4290",
+              "W4251",
+              "W4329",
+              "W4282",
+              "W4252",
+              "W4323"
+            ],
+            "connections": [
+              "Cable splits shown between =11/E13 and =11/E14",
+              "2x4.5mm\u00b2 and 5x4 AWG cable connections"
+            ],
+            "summary": "This is an electrical schematic page for a container crane feeding system, showing cable splits and connections between different sections, with specific wire numbers and terminal designations. The drawing is for Maersk Pacific USA in Los Angeles.",
+            "page_number": 56,
+            "indexed_with": "claude-vision"
+          },
+          "57": {
+            "references": [
+              "=11+TEC"
+            ],
+            "components": [
+              "-W4301",
+              "-W4302",
+              "-W4341",
+              "-W4339",
+              "-2D-X17",
+              "-PB32",
+              "-PB60",
+              "-PB61",
+              "-PB30",
+              "-31",
+              "-A10",
+              "-1DA"
+            ],
+            "cabinets": [],
+            "terminals": [
+              "11",
+              "21",
+              "12",
+              "22",
+              "PE"
+            ],
+            "wire_numbers": [
+              "5x14 AWG TC1",
+              "12x14 AWG FLEX2"
+            ],
+            "connections": [
+              "BK RD GN BU OG connections across multiple components",
+              "Emergency stop pushbuttons connected in series"
+            ],
+            "summary": "This schematic shows emergency stop circuit wiring for a container crane, including multiple emergency stop pushbuttons for auxiliary drive trolley, machinery house trolley, and trim list skew. The drawing is for Maersk Pacific USA equipment in Los Angeles, CA.",
+            "page_number": 57,
+            "indexed_with": "claude-vision"
+          },
+          "58": {
+            "references": [
+              "=11/TEC",
+              "=20/101.1",
+              "=20",
+              "=A2"
+            ],
+            "components": [
+              "PB70 emergency stop pushbutton trolley",
+              "PB12 emergency stop pushbutton local station for rope changing main hoist",
+              "Watch Dog"
+            ],
+            "cabinets": [],
+            "terminals": [
+              "11",
+              "21",
+              "12",
+              "22"
+            ],
+            "wire_numbers": [
+              "W4331",
+              "W4303",
+              "W4400",
+              "W4417"
+            ],
+            "connections": [
+              "PB70 connected to wire W4331",
+              "PB12 connected to wire W4303",
+              "Watch Dog connected to wire W4400",
+              "Wire W4417 connected to operator seat emergency stop"
+            ],
+            "summary": "This schematic shows the emergency stop circuit configurations for a container crane, including three emergency stop pushbuttons for trolley, rope changing station, and operator seat, along with their associated wiring and Watch Dog monitoring system.",
+            "page_number": 58,
+            "indexed_with": "claude-vision"
+          },
+          "59": {
+            "references": [
+              "=11/E13"
+            ],
+            "components": [
+              "PB24 emergency stop pushbutton pylon",
+              "PB26 emergency stop pushbutton bridge gator",
+              "PB25 emergency stop pushbutton boom waterside",
+              "B1 wind speed measuring"
+            ],
+            "cabinets": [],
+            "terminals": [
+              "11",
+              "21",
+              "12",
+              "22"
+            ],
+            "wire_numbers": [
+              "W4402",
+              "W415",
+              "W4451",
+              "W4500",
+              "W4531",
+              "W4551",
+              "W5400",
+              "W5451"
+            ],
+            "connections": [
+              "Emergency stop buttons connect to respective wire harnesses",
+              "Wind speed measuring device connected to 24V DC"
+            ],
+            "summary": "This schematic shows the wiring for three emergency stop pushbuttons (pylon, bridge gator, and boom waterside) and a wind speed measuring system for a Maersk Pacific USA container crane in Los Angeles.",
+            "page_number": 59,
+            "indexed_with": "claude-vision"
+          },
+          "60": {
+            "references": [
+              "=11/E13"
+            ],
+            "components": [
+              "-W1700 4x1 AWG TC1",
+              "-W1751 2x2.5mm\u00b2 NGFLG\u00d6U-J",
+              "-W1706 4x1 AWG TC1",
+              "-W2200 7x12 AWG TC1",
+              "-W2252 2x2.5mm\u00b2 NGFLG\u00d6U-J",
+              "-W2315 5x12 AWG TC1",
+              "-W1231 3x12 AWG TC1",
+              "-W1232 3x12 AWG TC1",
+              "-HRN1 Horn",
+              "-LT10 RGR"
+            ],
+            "cabinets": [],
+            "terminals": [
+              "X1",
+              "X2"
+            ],
+            "wire_numbers": [
+              "-X10",
+              "-BFP",
+              "-X11",
+              "-TFP"
+            ],
+            "connections": [
+              "480V supply trolley to terminal blocks",
+              "Alarm horn connected to W1231/W1232",
+              "Lamp control connected to LT10"
+            ],
+            "summary": "This is an electrical schematic for a container crane showing power distribution from 480V supply to various components including trolley wiring, alarm horn, and lamp control. It includes terminal blocks, wire connections, and color-coded wiring (BK, RD, BU, GN, etc.).",
+            "page_number": 60,
+            "indexed_with": "claude-vision"
+          },
+          "61": {
+            "references": [
+              "=11+TEC",
+              "=11+DCE",
+              "=61-X12",
+              "=71-X12",
+              "=72-X12",
+              "=73-X12"
+            ],
+            "components": [],
+            "cabinets": [],
+            "terminals": [],
+            "wire_numbers": [
+              "W4401",
+              "12x14 AWG",
+              "18 AWG HTW"
+            ],
+            "connections": [
+              "24V supply PLC +DCE connections",
+              "24V supply PLC +OPS connections",
+              "24V supply PLC +OSC connections",
+              "24V supply wipers connections"
+            ],
+            "summary": "This is an electrical schematic for a Maersk Pacific USA container crane in Los Angeles, CA, showing 24V power supply distribution to various PLC components including DCE, OPS, OSC, and wipers. The drawing shows terminal connections and wire routing between these components.",
+            "page_number": 61,
+            "indexed_with": "claude-vision"
+          }
+        },
+        "indexed_at": "2025-10-25T22:53:38.957485"
       }
     }
   }
