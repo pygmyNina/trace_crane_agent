@@ -112,15 +112,23 @@ SCHEMATIC CONVENTIONS YOU MUST FOLLOW:
    Example: -W2061 (not W2035, W2037 - those are individual conductors within the bundle)
    Cables contain 2-40 conductors
 
-3. PHYSICAL PROXIMITY ≠ ELECTRICAL CONNECTION
+3. WIRE INTERSECTIONS AND CONNECTIONS:
+   - DOT at intersection = wires are ELECTRICALLY CONNECTED
+   - NO DOT at intersection = wires just CROSS (no electrical connection)
+   - Wires cross PERPENDICULARLY only (vertical wire stays vertical, horizontal stays horizontal)
+   - Wire paths ONLY turn at 90-degree angles
+   - Connected junctions should have TERMINAL NUMBERS labeled
+   Example: Where -W2061 meets terminal block at terminal 5 and 6 on -SG1
+
+4. PHYSICAL PROXIMITY ≠ ELECTRICAL CONNECTION
    Components may be housed in the same cabinet but NOT electrically connected
    Example: -HTR1 is physically in +GDW cabinet but NOT connected to -FDS1
    Only mark as "connected" if wires actually link them
 
-4. TERMINAL DESTINATIONS must be SPECIFIC in format: "SYMBOL +LOCATION Terminal X"
+5. TERMINAL DESTINATIONS must be SPECIFIC in format: "SYMBOL +LOCATION Terminal X"
    Example: "-SG1 +MHI Terminal 5" NOT "upstream control wiring"
 
-5. CROSS-REFERENCES are shown in format: =XX/YYY.Y (points to another sheet)
+6. CROSS-REFERENCES are shown in format: =XX/YYY.Y (points to another sheet)
    Example: =41/109.3 means section 41, sheet 109, subsection 3
    Include ALL cross-references found on traced wires
 
@@ -156,12 +164,31 @@ Extract the following information in JSON format:
   "electrically_connected_components": [
     "components with actual wire connections (format: SYMBOL +LOCATION Terminal X)"
   ],
+  "wire_junctions": [
+    {{
+      "junction_terminal": "terminal number at junction point",
+      "wires_meeting": ["list of wires/conductors meeting at this junction with dots"],
+      "connection_type": "junction/splice/terminal block"
+    }}
+  ],
+  "wire_paths": [
+    {{
+      "from_terminal": "starting terminal on {component_symbol}",
+      "to_terminal": "destination terminal (format: SYMBOL +LOCATION Terminal X)",
+      "path_description": "describe wire path including any 90-degree turns, junctions crossed",
+      "dots_at_intersections": ["terminal numbers where dots indicate connections"],
+      "crosses_without_connection": ["wires crossed perpendicularly without dots"]
+    }}
+  ],
   "notes": "any additional important details"
 }}
 
-CRITICAL RULES:
+CRITICAL RULES FOR WIRE TRACING:
 - Look for DOTTED LINES across wires = cable bundles (format: -WXXXX)
 - Trace each wire from {component_symbol} terminal to its DESTINATION component and terminal
+- DOT at wire intersection = electrical connection (record the junction terminal number)
+- NO DOT at perpendicular crossing = wires just cross, no connection (note these separately)
+- Follow wire paths through 90-degree turns only (wires don't curve)
 - Include cross-references (=XX/YYY.Y) found along wire paths
 - Do NOT assume electrical connection just because components share a cabinet
 - Be specific: "SYMBOL +LOCATION Terminal X" not "upstream wiring"
