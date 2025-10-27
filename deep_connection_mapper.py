@@ -153,7 +153,7 @@ IMPORTANT:
     # Call Vision API
     try:
         response = vision.client.messages.create(
-            model=vision.model,
+            model="claude-3-5-sonnet-20241022",
             max_tokens=4000,
             messages=[
                 {
@@ -164,7 +164,7 @@ IMPORTANT:
                             "source": {
                                 "type": "base64",
                                 "media_type": "image/png",
-                                "data": vision._image_to_base64(image_path)
+                                "data": vision._encode_image(image_path)
                             }
                         },
                         {
