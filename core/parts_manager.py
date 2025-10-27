@@ -6,6 +6,7 @@ Shared by CLI and API interfaces
 import json
 import os
 from typing import List, Dict, Any, Optional
+from collections import defaultdict
 
 
 class PartsManager:
@@ -222,3 +223,122 @@ class PartsManager:
             self._save_registry()
 
         return updated
+
+    def get_parts_structure(self, section: str = "electrical") -> Dict[str, Any]:
+        """
+        Analyze parts structure to identify assemblies vs reused components
+
+        Args:
+            section: Section to analyze
+
+        Returns:
+            Dictionary with:
+            - assemblies: Components where multiple parts make one schematic symbol
+            - reused_components: Same part used in multiple locations
+            - single_components: Parts with only one entry
+            - summary: Statistics
+        """
+        all_parts = self.get_all_parts(section)
+
+        # Group parts by symbol
+        by_symbol = defaultdict(list)
+        for part in all_parts:
+            symbol = part.get("symbol", "")
+            if symbol:
+                by_symbol[symbol].append(part)
+
+        assemblies = []
+        reused_components = []
+        single_components = []
+
+        for symbol, instances in by_symbol.items():
+            if len(instances) == 1:
+                # Single component
+                single_components.append(instances[0])
+            else:
+                # Multiple instances - check if assembly or reused
+                by_location_sheet = defaultdict(list)
+                for inst in instances:
+                    key = (inst.get("location", ""), inst.get("sheet_section", ""))
+                    by_location_sheet[key].append(inst)
+
+                if len(by_location_sheet) == 1:
+                    # All parts at same location/sheet = ASSEMBLY
+                    assemblies.append({
+                        "symbol": symbol,
+                        "location": instances[0].get("location", ""),
+                        "sheet": instances[0].get("sheet_section", ""),
+                        "part_count": len(instances),
+                        "parts": instances
+                    })
+                else:
+                    # Different locations = REUSED COMPONENT
+                    locations_data = []
+                    for (location, sheet), parts in by_location_sheet.items():
+                        locations_data.append({
+                            "location": location,
+                            "sheet": sheet,
+                            "parts": parts
+                        })
+
+                    reused_components.append({
+                        "symbol": symbol,
+                        "instance_count": len(by_location_sheet),
+                        "locations": locations_data
+                    })
+
+        return {
+            "assemblies": assemblies,
+            "reused_components": reused_components,
+            "single_components": single_components,
+            "summary": {
+                "total_assemblies": len(assemblies),
+                "total_reused": len(reused_components),
+                "total_single": len(single_components),
+                "total_unique_symbols": len(by_symbol),
+                "total_parts_entries": len(all_parts)
+            }
+        }
+
+    def get_assemblies(self, section: str = "electrical") -> List[Dict[str, Any]]:
+        """
+        Get all assemblies (multiple parts making one schematic component)
+
+        Args:
+            section: Section to analyze
+
+        Returns:
+            List of assembly data
+        """
+        structure = self.get_parts_structure(section)
+        return structure["assemblies"]
+
+    def get_reused_components(self, section: str = "electrical") -> List[Dict[str, Any]]:
+        """
+        Get all reused components (same part in multiple locations)
+
+        Args:
+            section: Section to analyze
+
+        Returns:
+            List of reused component data
+        """
+        structure = self.get_parts_structure(section)
+        return structure["reused_components"]
+
+    def get_assembly_by_symbol(self, symbol: str, section: str = "electrical") -> Optional[Dict[str, Any]]:
+        """
+        Get assembly details for a specific symbol
+
+        Args:
+            symbol: Component symbol
+            section: Section to search in
+
+        Returns:
+            Assembly data or None if not an assembly
+        """
+        assemblies = self.get_assemblies(section)
+        for assembly in assemblies:
+            if assembly["symbol"].lower() == symbol.lower():
+                return assembly
+        return None

@@ -83,21 +83,6 @@ async def list_parts(
     return parts
 
 
-@app.get("/api/parts/{symbol}")
-async def get_part(symbol: str) -> Dict[str, Any]:
-    """
-    Get specific part by symbol
-
-    Example: GET /api/parts/-TR1
-    """
-    part = parts_mgr.get_part_by_symbol(symbol)
-
-    if not part:
-        raise HTTPException(status_code=404, detail=f"Part {symbol} not found")
-
-    return part
-
-
 @app.get("/api/parts/search")
 async def search_parts(
     q: Optional[str] = Query(None, description="Search query (description/manufacturer)"),
@@ -162,6 +147,86 @@ async def get_parts_by_location(
     """
     parts = parts_mgr.get_parts_by_location(location, section=section)
     return parts
+
+
+@app.get("/api/parts/structure")
+async def get_parts_structure(
+    section: str = Query("electrical")
+) -> Dict[str, Any]:
+    """
+    Get complete parts structure analysis
+
+    Identifies:
+    - Assemblies: Multiple parts making one schematic component
+    - Reused components: Same part used in multiple locations
+    - Single components: Parts with one entry only
+
+    Example: GET /api/parts/structure?section=electrical
+    """
+    return parts_mgr.get_parts_structure(section=section)
+
+
+@app.get("/api/parts/assemblies")
+async def list_assemblies(
+    section: str = Query("electrical")
+) -> List[Dict[str, Any]]:
+    """
+    Get all assemblies (multiple parts → one schematic component)
+
+    Example: GET /api/parts/assemblies?section=electrical
+    """
+    return parts_mgr.get_assemblies(section=section)
+
+
+@app.get("/api/parts/assemblies/{symbol}")
+async def get_assembly(
+    symbol: str,
+    section: str = Query("electrical")
+) -> Dict[str, Any]:
+    """
+    Get assembly details for a specific symbol
+
+    Example: GET /api/parts/assemblies/-PB1?section=electrical
+    """
+    assembly = parts_mgr.get_assembly_by_symbol(symbol, section=section)
+
+    if not assembly:
+        raise HTTPException(
+            status_code=404,
+            detail=f"Assembly {symbol} not found (may be a single part or reused component)"
+        )
+
+    return assembly
+
+
+@app.get("/api/parts/reused")
+async def list_reused_components(
+    section: str = Query("electrical")
+) -> List[Dict[str, Any]]:
+    """
+    Get all reused components (same part in multiple locations)
+
+    Example: GET /api/parts/reused?section=electrical
+    """
+    return parts_mgr.get_reused_components(section=section)
+
+
+@app.get("/api/parts/{symbol}")
+async def get_part(symbol: str) -> Dict[str, Any]:
+    """
+    Get specific part by symbol
+
+    NOTE: This route must come AFTER all specific /api/parts/* routes
+    to avoid matching path segments as symbols.
+
+    Example: GET /api/parts/-TR1
+    """
+    part = parts_mgr.get_part_by_symbol(symbol)
+
+    if not part:
+        raise HTTPException(status_code=404, detail=f"Part {symbol} not found")
+
+    return part
 
 
 # ========================================
