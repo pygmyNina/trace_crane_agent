@@ -94,7 +94,7 @@ def extract_deep_connections(vision, converter, component_symbol, pdf_path, page
     print(f"  Analyzing {component_symbol} on page {page_num}...")
 
     # Convert page to image
-    image_path = converter.pdf_page_to_image(pdf_path, int(page_num))
+    image_path = converter.convert_page(pdf_path, int(page_num))
     if not image_path:
         print(f"    ✗ Failed to convert page")
         return None
