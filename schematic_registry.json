@@ -7490,6 +7490,105 @@
           }
         ],
         "indexed_at": "2025-10-26T14:15:27.083798"
+      },
+      "10_parts.pdf": {
+        "path": "schematics/electrical/10_parts.pdf",
+        "total_pages": 1,
+        "loaded_at": "2025-10-26T20:45:19.209360",
+        "indexed": true,
+        "parts": [
+          {
+            "quantity": "1",
+            "description": "main circuit breaker 480V 3-phase",
+            "identification": "Industrial Power Sys D01-47172",
+            "symbol": "-CB1",
+            "sheet_section": "=10/102.2",
+            "location": "+HVC1",
+            "remarks": ""
+          },
+          {
+            "quantity": "1",
+            "description": "main circuit breaker 480V 3-phase",
+            "identification": "Industrial Power Sys D01-47172",
+            "symbol": "-CB1",
+            "sheet_section": "=10/102.5",
+            "location": "+HVC2",
+            "remarks": ""
+          },
+          {
+            "quantity": "1",
+            "description": "main circuit breaker 480V 3-phase",
+            "identification": "Industrial Power Sys D01-47172",
+            "symbol": "-CB1",
+            "sheet_section": "=10/103.3",
+            "location": "+HVC3",
+            "remarks": ""
+          },
+          {
+            "quantity": "1",
+            "description": "MV main switch 6.15KV",
+            "identification": "Powercon S-16280",
+            "symbol": "-FQS1",
+            "sheet_section": "=10/101.2",
+            "location": "+GDW",
+            "remarks": ""
+          },
+          {
+            "quantity": "1",
+            "description": "fuse 400A CS-3 series",
+            "identification": "Ferraz A055F2D0R0-400E",
+            "symbol": "-FDS1",
+            "sheet_section": "=10/101.2",
+            "location": "+GDW",
+            "remarks": ""
+          },
+          {
+            "quantity": "1",
+            "description": "housing",
+            "identification": "Siemens 3SB38 10-0AD",
+            "symbol": "-PB1",
+            "sheet_section": "=10/101.7",
+            "location": "+ERI",
+            "remarks": ""
+          },
+          {
+            "quantity": "1",
+            "description": "aux. contact 1NO",
+            "identification": "Siemens 3SB34 20-0B",
+            "symbol": "-PB1",
+            "sheet_section": "=10/101.7",
+            "location": "+ERI",
+            "remarks": ""
+          },
+          {
+            "quantity": "1",
+            "description": "mushroom shaped pushbutton",
+            "identification": "Siemens 3SB35 00-1MA20",
+            "symbol": "-PB1",
+            "sheet_section": "=10/101.7",
+            "location": "+ERI",
+            "remarks": ""
+          },
+          {
+            "quantity": "1",
+            "description": "primary switchgear 460 Volt",
+            "identification": "Industrial Power Sys D01-747171",
+            "symbol": "-SG1",
+            "sheet_section": "=10/101.1",
+            "location": "+MHI",
+            "remarks": ""
+          },
+          {
+            "quantity": "1",
+            "description": "dry type transformer 4160/3x480V 1600KVA",
+            "identification": "Magnetic Technologie 341600K07HA01",
+            "symbol": "-TR1",
+            "sheet_section": "=10/102.1",
+            "location": "+MHI",
+            "remarks": ""
+          }
+        ],
+        "indexed_at": "2025-10-26T20:45:31.750002"
       }
     }
   }
