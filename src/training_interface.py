@@ -167,8 +167,12 @@ Always format your responses clearly and provide detailed explanations for corre
 
         return assistant_message
 
-    def interactive_training(self):
-        """Run interactive training session"""
+    def interactive_training(self, max_questions: Optional[int] = 10):
+        """Run interactive training session
+
+        Args:
+            max_questions: Maximum number of questions before prompting to continue (None for unlimited)
+        """
         self.console.print(Panel(
             "[bold cyan]Interactive Training Mode[/bold cyan]\n\n"
             "The AI trainer will ask you questions about crane schematics.\n"
@@ -176,7 +180,8 @@ Always format your responses clearly and provide detailed explanations for corre
             "Commands:\n"
             "- Type 'quit' or 'exit' to end session\n"
             "- Type 'feedback' to see your progress\n"
-            "- Type 'help' for assistance",
+            "- Type 'help' for assistance\n"
+            f"- Question limit: {max_questions if max_questions else 'unlimited'}",
             border_style="cyan"
         ))
 
@@ -187,6 +192,8 @@ Always format your responses clearly and provide detailed explanations for corre
         )
 
         self.console.print(Panel(Markdown(intro), title="AI Trainer", border_style="cyan"))
+
+        question_count = 0
 
         while True:
             # Get user input
@@ -219,6 +226,20 @@ Always format your responses clearly and provide detailed explanations for corre
 
             # Display response
             self.console.print(Panel(Markdown(response), title="AI Trainer", border_style="cyan"))
+
+            # Increment question counter
+            question_count += 1
+
+            # Check if we've reached the question limit
+            if max_questions and question_count >= max_questions:
+                self.console.print(f"\n[yellow]You've completed {question_count} questions.[/yellow]")
+                if not Confirm.ask("Would you like to continue training?", default=False):
+                    self.console.print("[green]Great work! Ending training session.[/green]")
+                    break
+                else:
+                    # Reset counter for next batch
+                    question_count = 0
+                    self.console.print("[cyan]Continuing training...[/cyan]\n")
 
     def quiz_mode(self, num_questions: int = 10):
         """Run a structured quiz"""
@@ -280,15 +301,21 @@ After I answer all questions, provide my score and corrections.
 
             self.console.print("-" * 60)
 
-    def practice_category(self, category: str):
-        """Practice a specific category"""
+    def practice_category(self, category: str, max_questions: Optional[int] = 5):
+        """Practice a specific category
+
+        Args:
+            category: The category to practice
+            max_questions: Maximum number of questions before prompting to continue
+        """
         if category not in CATEGORIES:
             self.console.print(f"[red]Unknown category: {category}[/red]")
             self.console.print(f"Available categories: {', '.join(CATEGORIES.keys())}")
             return
 
         self.console.print(Panel(
-            f"[bold green]Practice: {CATEGORIES[category]}[/bold green]",
+            f"[bold green]Practice: {CATEGORIES[category]}[/bold green]\n"
+            f"Question limit: {max_questions if max_questions else 'unlimited'}",
             border_style="green"
         ))
 
@@ -301,6 +328,8 @@ Provide detailed explanations for any incorrect answers.
         response = self.chat(request)
         self.console.print(Panel(Markdown(response), title="Practice", border_style="green"))
 
+        question_count = 0
+
         # Continue practice session
         while True:
             user_input = Prompt.ask("\n[bold yellow]Your answer[/bold yellow]")
@@ -310,6 +339,20 @@ Provide detailed explanations for any incorrect answers.
 
             response = self.chat(user_input)
             self.console.print(Panel(Markdown(response), title="Practice", border_style="green"))
+
+            # Increment question counter
+            question_count += 1
+
+            # Check if we've reached the question limit
+            if max_questions and question_count >= max_questions:
+                self.console.print(f"\n[yellow]You've completed {question_count} practice questions.[/yellow]")
+                if not Confirm.ask("Would you like to continue practicing this category?", default=False):
+                    self.console.print("[green]Great practice! Ending category session.[/green]")
+                    break
+                else:
+                    # Reset counter for next batch
+                    question_count = 0
+                    self.console.print("[cyan]Continuing practice...[/cyan]\n")
 
     def load_pdf_page(self, page_num: int):
         """Load and discuss a specific PDF page"""

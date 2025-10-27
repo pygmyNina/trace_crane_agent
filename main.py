@@ -61,12 +61,28 @@ class TRACETrainer:
 """
         self.console.print(menu)
 
-    def start_training(self, pdf_file: str = None):
+    def start_training(self, pdf_file: str = None, max_questions: int = None):
         """Start interactive training session"""
         try:
+            # Ask for question limit if not provided
+            if max_questions is None:
+                self.console.print("\n[bold]Question Limit Configuration[/bold]")
+                self.console.print("Set a limit for automatic session breaks (recommended: 10)")
+                limit_input = Prompt.ask(
+                    "Enter question limit (or 'unlimited')",
+                    default="10"
+                )
+                if limit_input.lower() in ['unlimited', 'none', '0']:
+                    max_questions = None
+                else:
+                    try:
+                        max_questions = int(limit_input)
+                    except ValueError:
+                        max_questions = 10
+
             self.trainer = TrainingInterface()
             self.trainer.start_session(pdf_file)
-            self.trainer.interactive_training()
+            self.trainer.interactive_training(max_questions=max_questions)
             self.trainer.end_session()
         except Exception as e:
             self.console.print(f"[red]Error: {e}[/red]")
@@ -293,6 +309,12 @@ def main():
         help="Category for practice mode",
         type=str
     )
+    parser.add_argument(
+        "--max-questions",
+        help="Maximum questions before prompting to continue (default: 10, 0 for unlimited)",
+        type=int,
+        default=10
+    )
 
     args = parser.parse_args()
 
@@ -302,17 +324,20 @@ def main():
     try:
         app = TRACETrainer()
 
+        # Convert max_questions to None if 0 or unlimited
+        max_questions = None if args.max_questions == 0 else args.max_questions
+
         # Check if running in non-interactive mode
         if args.pdf or args.mode != "interactive":
             if args.mode == "interactive":
-                app.start_training(args.pdf)
+                app.start_training(args.pdf, max_questions=max_questions)
             elif args.mode == "quiz":
                 app.start_quiz()
             elif args.mode == "practice":
                 if args.category:
                     trainer = TrainingInterface()
                     trainer.start_session()
-                    trainer.practice_category(args.category)
+                    trainer.practice_category(args.category, max_questions=max_questions)
                     trainer.end_session()
                 else:
                     app.console.print("[red]--category required for practice mode[/red]")
