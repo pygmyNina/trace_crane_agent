@@ -100,54 +100,72 @@ def extract_deep_connections(vision, converter, component_symbol, pdf_path, page
         return None
 
     # Prepare detailed prompt for Vision API
-    prompt = f"""Analyze this electrical schematic and extract DETAILED connection information for component {component_symbol}.
+    prompt = f"""Analyze this crane electrical schematic and extract DETAILED connection information for component {component_symbol}.
 
 FOCUS ON: {component_symbol}
+
+SCHEMATIC CONVENTIONS YOU MUST FOLLOW:
+1. COMPONENTS are shown with a box or dotted box around them, labeled with format: SYMBOL +LOCATION
+   Example: -FDS1 +GDW, -PB1 +ERI, -SG1 +MHI
+
+2. CABLE BUNDLES are shown as DOTTED LINES crossing multiple wires and labeled with format: -WXXXX
+   Example: -W2061 (not W2035, W2037 - those are individual conductors within the bundle)
+   Cables contain 2-40 conductors
+
+3. PHYSICAL PROXIMITY ≠ ELECTRICAL CONNECTION
+   Components may be housed in the same cabinet but NOT electrically connected
+   Example: -HTR1 is physically in +GDW cabinet but NOT connected to -FDS1
+   Only mark as "connected" if wires actually link them
+
+4. TERMINAL DESTINATIONS must be SPECIFIC in format: "SYMBOL +LOCATION Terminal X"
+   Example: "-SG1 +MHI Terminal 5" NOT "upstream control wiring"
+
+5. CROSS-REFERENCES are shown in format: =XX/YYY.Y (points to another sheet)
+   Example: =41/109.3 means section 41, sheet 109, subsection 3
+   Include ALL cross-references found on traced wires
 
 Extract the following information in JSON format:
 
 {{
   "component_symbol": "{component_symbol}",
+  "location": "location code (e.g., +GDW, +ERI)",
   "terminals": [
     {{
-      "terminal_number": "terminal designation (e.g., X1:1, A1, L1, etc.)",
-      "terminal_type": "type (power, control, signal, ground, etc.)",
-      "connections": [
-        {{
-          "wire_number": "wire number if visible",
-          "connects_to": "destination component:terminal",
-          "signal_type": "power/control/signal/ground",
-          "notes": "any relevant details (voltage, current, signal name)"
-        }}
-      ]
+      "terminal_number": "terminal designation (1, 2, 13, 14, T1, T2, etc.)",
+      "terminal_type": "type (power, control, signal, ground)",
+      "cable_bundle": "cable bundle designation if visible (format: -WXXXX)",
+      "conductor_in_bundle": "specific conductor within bundle if visible",
+      "connects_to_component": "destination component with location (format: SYMBOL +LOCATION)",
+      "connects_to_terminal": "destination terminal number",
+      "cross_references": ["list of sheet cross-references in format =XX/YYY.Y"],
+      "signal_type": "power/control/signal/ground",
+      "voltage": "voltage level if visible",
+      "wire_spec": "wire specification (AWG, conductor count, insulation type)"
     }}
   ],
-  "related_components": [
-    "list of components directly connected to {component_symbol}"
-  ],
-  "power_connections": {{
-    "input": "where power comes from",
-    "output": "where power goes to",
-    "voltage": "voltage level if visible",
-    "phases": "single/3-phase if applicable"
-  }},
-  "control_connections": [
+  "cable_bundles": [
     {{
-      "function": "what the connection controls (e.g., trip, close, status)",
-      "from": "source",
-      "to": "destination",
-      "wire_numbers": ["list of wire numbers involved"]
+      "cable_designation": "cable bundle label (format: -WXXXX)",
+      "conductor_count": "number of conductors if visible",
+      "terminals_connected": ["list of terminal numbers using this cable"]
     }}
   ],
-  "notes": "any additional important details about {component_symbol} connections"
+  "physically_adjacent_components": [
+    "components in same cabinet/location but NOT electrically connected"
+  ],
+  "electrically_connected_components": [
+    "components with actual wire connections (format: SYMBOL +LOCATION Terminal X)"
+  ],
+  "notes": "any additional important details"
 }}
 
-IMPORTANT:
-- Focus specifically on {component_symbol} and its immediate connections
-- Include ALL terminal numbers visible on {component_symbol}
-- Extract ALL wire numbers connected to {component_symbol}
-- Be as specific as possible with terminal designations
-- If information is not clearly visible, omit that field rather than guessing
+CRITICAL RULES:
+- Look for DOTTED LINES across wires = cable bundles (format: -WXXXX)
+- Trace each wire from {component_symbol} terminal to its DESTINATION component and terminal
+- Include cross-references (=XX/YYY.Y) found along wire paths
+- Do NOT assume electrical connection just because components share a cabinet
+- Be specific: "SYMBOL +LOCATION Terminal X" not "upstream wiring"
+- If you cannot clearly see where a wire goes, state "trace unclear" rather than guessing
 """
 
     # Call Vision API
