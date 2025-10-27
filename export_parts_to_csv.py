@@ -1,15 +1,27 @@
 #!/usr/bin/env python3
 """
 Export parts list to CSV for manual review in Google Sheets
+
+Usage:
+  python3 export_parts_to_csv.py [section_code]
+
+Examples:
+  python3 export_parts_to_csv.py 10      # Export section 10
+  python3 export_parts_to_csv.py 11      # Export section 11
+  python3 export_parts_to_csv.py         # Export section 11 (default)
 """
 
 import json
 import csv
 import sys
 
-def export_parts_to_csv(section="electrical", pdf_name="11_parts.pdf",
-                        output_file="section_11_parts_review.csv"):
+def export_parts_to_csv(section_code="11"):
     """Export parts list data to CSV"""
+
+    # Construct filenames based on section code
+    section = "electrical"
+    pdf_name = f"{section_code}_parts.pdf"
+    output_file = f"section_{section_code}_parts_review.csv"
 
     # Load registry
     print(f"Loading schematic_registry.json...")
@@ -26,6 +38,9 @@ def export_parts_to_csv(section="electrical", pdf_name="11_parts.pdf",
 
     if pdf_name not in registry["parts_lists"][section]:
         print(f"✗ Parts list '{pdf_name}' not found in section '{section}'")
+        print(f"\nAvailable parts lists in {section}:")
+        for name in registry["parts_lists"][section].keys():
+            print(f"  - {name}")
         return
 
     parts = registry["parts_lists"][section][pdf_name].get("parts", [])
@@ -34,7 +49,7 @@ def export_parts_to_csv(section="electrical", pdf_name="11_parts.pdf",
         print("✗ No parts found")
         return
 
-    print(f"Found {len(parts)} parts")
+    print(f"Found {len(parts)} parts in section {section_code}")
 
     # Write to CSV
     print(f"Exporting to {output_file}...")
@@ -66,7 +81,7 @@ def export_parts_to_csv(section="electrical", pdf_name="11_parts.pdf",
 
 if __name__ == "__main__":
     if len(sys.argv) > 1:
-        output_file = sys.argv[1]
-        export_parts_to_csv(output_file=output_file)
+        section_code = sys.argv[1]
+        export_parts_to_csv(section_code=section_code)
     else:
         export_parts_to_csv()
