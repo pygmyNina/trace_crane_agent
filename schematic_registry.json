@@ -7528,7 +7528,7 @@
             "quantity": "1",
             "description": "MV main switch 6.15KV",
             "identification": "Powercon S-16280",
-            "symbol": "-FQS1",
+            "symbol": "-FSD1",
             "sheet_section": "=10/101.2",
             "location": "+GDW",
             "remarks": ""
