@@ -205,16 +205,16 @@ CRITICAL RULES FOR WIRE TRACING:
                     "role": "user",
                     "content": [
                         {
+                            "type": "text",
+                            "text": prompt
+                        },
+                        {
                             "type": "image",
                             "source": {
                                 "type": "base64",
                                 "media_type": "image/png",
                                 "data": vision._encode_image(image_path)
                             }
-                        },
-                        {
-                            "type": "text",
-                            "text": prompt
                         }
                     ]
                 }
