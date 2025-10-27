@@ -229,9 +229,9 @@ IMPORTANT PATTERNS:
 
 Extract EVERY row from the table. Return ONLY a JSON object:
 
-{
+{{
   "parts": [
-    {
+    {{
       "quantity": "1",
       "description": "main circuit breaker 480V 3-phase",
       "identification": "Industrial Power Sys D01-47172.17",
@@ -239,8 +239,8 @@ Extract EVERY row from the table. Return ONLY a JSON object:
       "sheet_section": "=10/102.2",
       "location": "+HVC1",
       "remarks": ""
-    },
-    {
+    }},
+    {{
       "quantity": "1",
       "description": "dry type transformer 4160/3x480V 1600KVA",
       "identification": "Magnetic Technologies 341600K07HA01",
@@ -248,9 +248,9 @@ Extract EVERY row from the table. Return ONLY a JSON object:
       "sheet_section": "=10/102.1",
       "location": "+MHI",
       "remarks": ""
-    }
+    }}
   ]
-}
+}}
 
 Extract ALL rows visible on this page. If a field is empty, use empty string "".
 Be accurate with the identifying symbols, sheet references, and locations - these are critical for cross-referencing with schematics.
