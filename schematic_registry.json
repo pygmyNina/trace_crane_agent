@@ -8,20 +8,23 @@
         "indexed": true,
         "pages": {
           "1": {
+            "sheet_number": "101",
+            "system_group": "",
+            "location": "",
             "references": [
               "=61/33.3",
-              "=61/32.3"
+              "=71-PTM1"
             ],
             "components": [
-              "SG1 MV switch cell",
-              "CB1",
-              "CT1",
-              "CT2",
-              "CT3",
-              "PM1 Main Power Monitor",
-              "FDS1 Ground Level MV Switch",
-              "HTR1",
-              "PB1"
+              "-SG1",
+              "-CB1",
+              "-CT1",
+              "-CT2",
+              "-CT3",
+              "-PM1",
+              "-FDS1",
+              "-HTR1",
+              "-PB1"
             ],
             "cabinets": [
               "MACHINE HOUSE"
@@ -30,122 +33,215 @@
               "V1",
               "V2",
               "V3",
-              "R",
-              "S",
-              "T"
+              "L1",
+              "L2",
+              "L3"
             ],
             "wire_numbers": [
-              "W1902",
-              "W1984",
-              "W1944",
-              "W1944.1",
-              "W1944.2",
-              "W1944.3",
-              "W7007",
-              "W2034",
-              "W2035",
-              "W2302"
+              "-W1902",
+              "-W1984",
+              "-W1944",
+              "-W1944.1",
+              "-W1944.2",
+              "-W1944.3",
+              "-W2035",
+              "-W2064",
+              "-W2302",
+              "-W7007"
             ],
             "connections": [
-              "PM1 to CB1 via CT1/CT2/CT3",
-              "Power Rail to FDS1",
-              "PM1 to Remote Trip Breaker",
-              "PM1 to Remote Close Breaker"
+              "Main Power Monitor PM1 to Remote Trip Breaker",
+              "Ground Level MV Switch to Power Rail",
+              "CB1 to Current Transformers CT1/CT2/CT3"
             ],
-            "summary": "High voltage supply schematic for a container crane showing the main power distribution from 4160V 3-phase utility input through MV switch, current transformers, and power monitoring to the machine house, including trip and close control circuits.",
+            "summary": "High voltage supply schematic for container crane showing 4160V 3-phase power distribution from utility company through MV switch cell, circuit breakers, current transformers, and power monitoring system with remote trip functionality.",
             "page_number": 1,
-            "indexed_with": "claude-vision"
+            "indexed_with": "claude-vision",
+            "deep_connections": {
+              "-FDS1": {
+                "data": {
+                  "component_symbol": "-FDS1",
+                  "terminals": [
+                    {
+                      "terminal_number": "T1",
+                      "terminal_type": "power",
+                      "connections": [
+                        {
+                          "wire_number": "W1902",
+                          "connects_to": "power rail",
+                          "signal_type": "power",
+                          "notes": "3x350 Kcmil cable, 13.5% insulation non-shielded"
+                        }
+                      ]
+                    },
+                    {
+                      "terminal_number": "T2",
+                      "terminal_type": "power",
+                      "connections": [
+                        {
+                          "wire_number": "W1984",
+                          "connects_to": "-HTR1",
+                          "signal_type": "power",
+                          "notes": "3x12 AWG"
+                        }
+                      ]
+                    }
+                  ],
+                  "related_components": [
+                    "-HTR1",
+                    "Power Rail"
+                  ],
+                  "power_connections": {
+                    "input": "Power Rail (crane rail)",
+                    "output": "-HTR1",
+                    "voltage": "4160 V",
+                    "phases": "3-phase / 60 Hz"
+                  },
+                  "control_connections": [],
+                  "notes": "Component is labeled as 'GROUND LEVEL MV SWITCH', appears to be part of sliding contact shoe system for power distribution. Connected via Tiger Brand 8KV cables on the power rail side."
+                },
+                "extracted_at": "2025-10-27T10:08:04.529948"
+              },
+              "-PB1": {
+                "data": {
+                  "component_symbol": "-PB1",
+                  "terminals": [
+                    {
+                      "terminal_number": "13",
+                      "terminal_type": "control",
+                      "connections": [
+                        {
+                          "wire_number": "W2035",
+                          "connects_to": "upstream control wiring",
+                          "signal_type": "control",
+                          "notes": "3x12 AWG TC1 wiring with BK, RD, GN conductors"
+                        }
+                      ]
+                    },
+                    {
+                      "terminal_number": "14",
+                      "terminal_type": "control",
+                      "connections": [
+                        {
+                          "wire_number": "W2037",
+                          "connects_to": "downstream control wiring",
+                          "signal_type": "control",
+                          "notes": "3x12 AWG TC1 wiring with BK, RD, GN conductors"
+                        }
+                      ]
+                    }
+                  ],
+                  "related_components": [
+                    "Remote close breaker circuit"
+                  ],
+                  "power_connections": {
+                    "input": "Not directly visible",
+                    "output": "Not directly visible",
+                    "voltage": "120V (based on control circuit voltage)",
+                    "phases": "Single phase control circuit"
+                  },
+                  "control_connections": [
+                    {
+                      "function": "Remote close breaker control",
+                      "from": "W2035",
+                      "to": "W2037",
+                      "wire_numbers": [
+                        "W2035",
+                        "W2037"
+                      ]
+                    }
+                  ],
+                  "notes": "-PB1 appears to be a push button or control switch in the remote close breaker circuit of the machine house control system. It's connected with 12 AWG control wiring on both sides."
+                },
+                "extracted_at": "2025-10-27T10:08:11.638895"
+              }
+            }
           },
           "2": {
+            "sheet_number": "102",
+            "system_group": "=11",
+            "location": "+E3",
             "references": [
-              "=11+E3",
-              "=11+E4"
+              "=11/E3",
+              "=11/E4"
             ],
             "components": [
-              "-TR1",
-              "-CB1 +HVC1",
-              "-GFR1 +HVC1",
-              "-CB1 +HVC2",
-              "-GFR1 +HVC2"
+              "TR1 700kVA Transformer",
+              "CB1 +HVC1",
+              "GFR1 +HVC1",
+              "TR1 700kVA Transformer (second)",
+              "CB1 +HVC2",
+              "GFR1 +HVC2"
             ],
             "cabinets": [],
             "terminals": [
-              "1",
-              "2",
-              "3",
-              "4",
-              "5",
-              "10"
+              "PE"
             ],
             "wire_numbers": [
               "3/2 AWG",
-              "W2036 3x12 AWG"
+              "W2034 3x12 AWG"
             ],
             "connections": [
-              "700 kVA transformer to CB1",
-              "CB1 to ground fault relay GFR1",
-              "2000kVA BUS 1 to multiple terminals",
-              "2000kVA BUS 3 to multiple terminals"
+              "TR1 to CB1 through 1200AT breaker",
+              "CB1 to shunt trip",
+              "Shunt trip to GFR1",
+              "24V breaker supply to alarm supply trip"
             ],
-            "summary": "This is a HV-supply circuit diagram for a Container Crane at Maersk Pacific USA, showing redundant 700 kVA transformer systems with circuit breakers (CB1) and ground fault relays (GFR1), connecting to 2000kVA buses.",
+            "summary": "HV-supply circuit diagram for Container Crane showing dual 700 kVA transformer feeds with circuit breakers (CB1), ground fault relays (GFR1), and associated protection circuitry. The page shows two identical circuits for redundancy.",
             "page_number": 2,
             "indexed_with": "claude-vision"
           },
           "3": {
+            "sheet_number": "103",
+            "system_group": "",
+            "location": "",
             "references": [
               "=11/4.5.1",
               "=11/4.5.2",
               "=11/4.5.4",
+              "=11/4.1.3",
               "=11/3.4.1",
-              "=11/3.5.1",
-              "=11/3.4.2",
-              "=11/4.6.1",
-              "=11/4.0.2",
+              "=11/5.5.1",
+              "=11/4.4.1",
+              "=11/4.4.2",
               "=11/4.0.7",
-              "=12/31.1",
-              "=12/31.2",
-              "=12/31.3",
-              "=11/E11"
+              "=11/2.11.4",
+              "=11/2.11.5",
+              "=11/2.11.6",
+              "=11/7.1.2"
             ],
             "components": [
               "TR1 HV Transformer",
               "CB1",
               "GFR1",
-              "FAN CONTROLLER"
-            ],
-            "cabinets": [
+              "FAN CONTROLLER",
               "200kVA BUS 2"
             ],
+            "cabinets": [],
             "terminals": [
-              "X1",
-              "X2",
-              "X3",
-              "1",
-              "2",
-              "3",
-              "8",
-              "9",
-              "10",
-              "11",
-              "12"
+              "e1",
+              "e2",
+              "e3",
+              "e4",
+              "e2",
+              "e10"
             ],
             "wire_numbers": [
               "W2037",
               "W2024"
             ],
             "connections": [
-              "TR1 transformer to CB1",
-              "CB1 to Ground Pad",
+              "TR1 Transformer to CB1",
               "CB1 to GFR1",
               "GFR1 to Fan Controller",
-              "System ground to fan controller"
+              "Ground connections to frame and barrier cabinet"
             ],
-            "summary": "This is a high voltage supply schematic for a container crane showing the connections from a 200kVA transformer through circuit breakers and ground fault relay to a fan controller system.",
+            "summary": "High voltage supply schematic showing power distribution from a 200kVA transformer through circuit breaker and ground fault relay to fan controller, with various control and monitoring connections.",
             "page_number": 3,
             "indexed_with": "claude-vision"
           }
         },
-        "indexed_at": "2025-10-24T08:03:26.950298"
+        "indexed_at": "2025-10-27T10:01:54.347385"
       },
       "61.pdf": {
         "path": "schematics/electrical/61.pdf",
