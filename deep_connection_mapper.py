@@ -195,7 +195,35 @@ CRITICAL RULES FOR WIRE TRACING:
 - If you cannot clearly see where a wire goes, state "trace unclear" rather than guessing
 """
 
-    # Call Vision API
+    # Load comprehensive annotated example
+    example_path = "examples/annotated/comprehensive_example.png"
+
+    # Build prompt with example
+    example_description = """
+BEFORE analyzing the schematic, study this ANNOTATED EXAMPLE showing all extraction conventions:
+
+COLOR LEGEND IN EXAMPLE:
+🔴 RED BOX: Cable bundle designation (-W2061) with dotted line notation
+🔵 BLUE BOX: -PB1 component with terminals 13 & 14
+🟠 ORANGE BOX: -SG1 component with terminals 5 & 6
+⬛ BLACK ARROW: Wire path from -SG1 Terminal 5 → -PB1 Terminal 13
+🔴 RED ARROW: Wire path from -SG1 Terminal 6 → -PB1 Terminal 14
+🟢 GREEN ARROW: Ground wire path
+🟢 GREEN BOX: HTR1 component (physically adjacent but NOT electrically connected to main circuit)
+🔴 RED LINES: Show electrical power flow through panel
+🟡 YELLOW BOX: HTR1 cross-references (=41/109.3, etc.)
+
+KEY CONCEPTS SHOWN:
+1. Cable bundles have dotted line notation with -WXXXX designation
+2. Terminal connections are traced from source to destination
+3. Physical proximity (HTR1 in same panel) ≠ electrical connection
+4. Cross-references point to other sheets
+5. Wire paths follow 90-degree turns
+
+Now use these SAME conventions to analyze the schematic below:
+"""
+
+    # Call Vision API with example
     try:
         response = vision.client.messages.create(
             model="claude-3-5-sonnet-20241022",
@@ -206,7 +234,19 @@ CRITICAL RULES FOR WIRE TRACING:
                     "content": [
                         {
                             "type": "text",
-                            "text": prompt
+                            "text": example_description
+                        },
+                        {
+                            "type": "image",
+                            "source": {
+                                "type": "base64",
+                                "media_type": "image/png",
+                                "data": vision._encode_image(example_path)
+                            }
+                        },
+                        {
+                            "type": "text",
+                            "text": f"\n{'='*80}\nNOW ANALYZE THIS SCHEMATIC:\nComponent: {component_symbol}\n{'='*80}\n\n{prompt}"
                         },
                         {
                             "type": "image",
