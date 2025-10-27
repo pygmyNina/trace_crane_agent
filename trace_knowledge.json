@@ -518,6 +518,24 @@
       "source": "electrical_locations.csv",
       "added": "2025-10-24T18:30:24.432781"
     },
+    "+HVC1": {
+      "abbreviation": "+HVC1",
+      "description": "High Voltage Switch Control Box #1",
+      "source": "section_10_parts_list",
+      "added": "2025-10-27T00:00:00.000000"
+    },
+    "+HVC2": {
+      "abbreviation": "+HVC2",
+      "description": "High Voltage Switch Control Box #2",
+      "source": "section_10_parts_list",
+      "added": "2025-10-27T00:00:00.000000"
+    },
+    "+HVC3": {
+      "abbreviation": "+HVC3",
+      "description": "High Voltage Switch Control Box #3",
+      "source": "section_10_parts_list",
+      "added": "2025-10-27T00:00:00.000000"
+    },
     "+LLL": {
       "abbreviation": "+LLL",
       "description": "Leg Landside Left",
