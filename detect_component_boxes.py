@@ -5,7 +5,7 @@ Uses component label positions + detected lines to find rectangular component bo
 
 Algorithm:
 1. Start from component label position (e.g., "-U1")
-2. Find closest vertical line to the LEFT of the label
+2. Find closest vertical line to the RIGHT of the label (can be slightly above/below)
 3. Trace connected lines to form a rectangle
 4. Return component bounding box
 
@@ -236,10 +236,11 @@ def distance_point_to_line_segment(px: int, py: int, line: Line) -> float:
     return math.sqrt((px - closest_x)**2 + (py - closest_y)**2)
 
 
-def find_closest_vertical_line_to_left(component: Component, lines: List[Line],
-                                       max_distance: int = 300) -> Optional[Line]:
+def find_closest_vertical_line_to_right(component: Component, lines: List[Line],
+                                        max_distance: int = 300) -> Optional[Line]:
     """
-    Find the closest vertical line to the LEFT of the component label
+    Find the closest vertical line to the RIGHT of the component label
+    (can be slightly above or below the label as well)
 
     Args:
         component: Component with label position
@@ -249,7 +250,7 @@ def find_closest_vertical_line_to_left(component: Component, lines: List[Line],
     Returns:
         Closest vertical line or None
     """
-    vertical_lines_left = []
+    vertical_lines_right = []
 
     for line in lines:
         # Only consider vertical lines
@@ -259,32 +260,30 @@ def find_closest_vertical_line_to_left(component: Component, lines: List[Line],
         # Get average x position of the vertical line
         line_x = (line.x1 + line.x2) / 2
 
-        # Only consider lines to the LEFT of the label
-        if line_x >= component.label_x:
+        # Only consider lines to the RIGHT of the label
+        if line_x <= component.label_x:
             continue
 
         # Calculate horizontal distance
-        horizontal_distance = component.label_x - line_x
+        horizontal_distance = line_x - component.label_x
 
         if horizontal_distance > max_distance:
             continue
 
-        # Also consider vertical alignment (is the label roughly at the same y position?)
-        line_y_min = min(line.y1, line.y2)
-        line_y_max = max(line.y1, line.y2)
-
         # Calculate distance from label center to the line
+        # This considers both horizontal and vertical distance,
+        # so the line can be slightly above or below the label
         dist = distance_point_to_line_segment(component.label_center_x,
                                               component.label_center_y, line)
 
-        vertical_lines_left.append((line, dist, horizontal_distance))
+        vertical_lines_right.append((line, dist, horizontal_distance))
 
-    if not vertical_lines_left:
+    if not vertical_lines_right:
         return None
 
     # Sort by distance and pick closest
-    vertical_lines_left.sort(key=lambda x: x[1])
-    return vertical_lines_left[0][0]
+    vertical_lines_right.sort(key=lambda x: x[1])
+    return vertical_lines_right[0][0]
 
 
 def are_lines_connected(line1: Line, line2: Line, tolerance: int = 10) -> Optional[Tuple[int, int]]:
@@ -346,16 +345,16 @@ def find_connected_lines(line: Line, all_lines: List[Line],
 def trace_rectangle(start_line: Line, all_lines: List[Line],
                    component: Component, tolerance: int = 10) -> Optional[ComponentBox]:
     """
-    Trace a rectangle starting from a vertical line (assumed to be right edge)
+    Trace a rectangle starting from a vertical line (assumed to be left edge)
 
     Algorithm:
-    1. Start with right vertical edge
+    1. Start with left vertical edge (closest to right of label)
     2. Find horizontal lines connected to top/bottom
-    3. Follow horizontal lines to find left vertical edge
+    3. Follow horizontal lines to find right vertical edge
     4. Verify rectangle closure
 
     Args:
-        start_line: Starting vertical line (right edge)
+        start_line: Starting vertical line (left edge)
         all_lines: All available lines
         component: Component label information
         tolerance: Pixel tolerance for connections
@@ -363,15 +362,15 @@ def trace_rectangle(start_line: Line, all_lines: List[Line],
     Returns:
         ComponentBox if rectangle found, None otherwise
     """
-    # Start line should be vertical (right edge)
+    # Start line should be vertical (left edge)
     if start_line.orientation != 'vertical':
         return None
 
-    right_edge = start_line
-    traced_lines = [right_edge.index]
+    left_edge = start_line
+    traced_lines = [left_edge.index]
 
-    # Find horizontal lines connected to the right edge
-    horizontal_connected = find_connected_lines(right_edge, all_lines,
+    # Find horizontal lines connected to the left edge
+    horizontal_connected = find_connected_lines(left_edge, all_lines,
                                                 orientation='horizontal', tolerance=tolerance)
 
     if len(horizontal_connected) < 2:
@@ -386,27 +385,27 @@ def trace_rectangle(start_line: Line, all_lines: List[Line],
 
     traced_lines.extend([top_edge.index, bottom_edge.index])
 
-    # Find left vertical edge connected to both top and bottom
+    # Find right vertical edge connected to both top and bottom
     top_verticals = find_connected_lines(top_edge, all_lines,
                                          orientation='vertical', tolerance=tolerance)
     bottom_verticals = find_connected_lines(bottom_edge, all_lines,
                                            orientation='vertical', tolerance=tolerance)
 
-    # Find common vertical line (left edge)
-    left_edge = None
+    # Find common vertical line (right edge)
+    right_edge = None
     for top_v, _ in top_verticals:
         for bottom_v, _ in bottom_verticals:
-            if top_v.index == bottom_v.index and top_v.index != right_edge.index:
-                left_edge = top_v
+            if top_v.index == bottom_v.index and top_v.index != left_edge.index:
+                right_edge = top_v
                 break
-        if left_edge:
+        if right_edge:
             break
 
-    if not left_edge:
+    if not right_edge:
         # No complete rectangle found
         return None
 
-    traced_lines.append(left_edge.index)
+    traced_lines.append(right_edge.index)
 
     # Calculate bounding box from the four edges
     x_coords = [right_edge.x1, right_edge.x2, left_edge.x1, left_edge.x2,
@@ -454,11 +453,11 @@ def detect_component_boxes(components: List[Component], lines: List[Line],
     detected_boxes = []
 
     for component in components:
-        # Find closest vertical line to the left
-        closest_vertical = find_closest_vertical_line_to_left(component, lines, max_search_distance)
+        # Find closest vertical line to the right
+        closest_vertical = find_closest_vertical_line_to_right(component, lines, max_search_distance)
 
         if not closest_vertical:
-            print(f"  {component.symbol}: No vertical line found to left")
+            print(f"  {component.symbol}: No vertical line found to right")
             continue
 
         # Try to trace a rectangle from this vertical line
