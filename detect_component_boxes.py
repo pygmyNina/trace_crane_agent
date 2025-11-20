@@ -238,7 +238,7 @@ def distance_point_to_line_segment(px: int, py: int, line: Line) -> float:
 
 def find_closest_vertical_line_to_right(component: Component, lines: List[Line],
                                         max_distance: int = 500,
-                                        vertical_tolerance: int = 300) -> Optional[Line]:
+                                        vertical_tolerance: int = 100) -> Optional[Line]:
     """
     Find the closest vertical line to the RIGHT of the component label
     (can be above or below the label within vertical tolerance)
@@ -247,7 +247,7 @@ def find_closest_vertical_line_to_right(component: Component, lines: List[Line],
         component: Component with label position
         lines: All detected lines
         max_distance: Maximum horizontal distance to search (default: 500px)
-        vertical_tolerance: Maximum vertical distance from label center (default: 300px)
+        vertical_tolerance: Maximum vertical distance from label center (default: 100px)
 
     Returns:
         Closest vertical line or None
@@ -520,7 +520,7 @@ def trace_rectangle(start_line: Line, all_lines: List[Line],
 
 def detect_component_boxes(components: List[Component], lines: List[Line],
                           tolerance: int = 10, max_search_distance: int = 500,
-                          vertical_search_tolerance: int = 300,
+                          vertical_search_tolerance: int = 100,
                           use_corner_merge: bool = True,
                           corner_h_tolerance: int = 48,
                           corner_v_tolerance: int = 56) -> List[ComponentBox]:
@@ -532,7 +532,7 @@ def detect_component_boxes(components: List[Component], lines: List[Line],
         lines: List of detected lines
         tolerance: Pixel tolerance for line connections
         max_search_distance: Maximum horizontal distance to search for vertical line
-        vertical_search_tolerance: Maximum vertical distance for line search (default: 300px)
+        vertical_search_tolerance: Maximum vertical distance for line search (default: 100px)
         use_corner_merge: Enable corner merge for incomplete corners
         corner_h_tolerance: Horizontal tolerance for corner merge (default: 48px)
         corner_v_tolerance: Vertical tolerance for corner merge (default: 56px)
@@ -643,8 +643,8 @@ def main():
     parser.add_argument('--tolerance', type=int, default=10, help='Pixel tolerance for line connections')
     parser.add_argument('--max-search-distance', type=int, default=500,
                        help='Maximum horizontal distance to search for vertical line (default: 500px)')
-    parser.add_argument('--vertical-search-tolerance', type=int, default=300,
-                       help='Maximum vertical distance for line search (default: 300px)')
+    parser.add_argument('--vertical-search-tolerance', type=int, default=100,
+                       help='Maximum vertical distance for line search (default: 100px)')
     parser.add_argument('--corner-merge', action='store_true', default=True,
                        help='Enable corner merge for incomplete/dashed corners (default: True)')
     parser.add_argument('--no-corner-merge', dest='corner_merge', action='store_false',
