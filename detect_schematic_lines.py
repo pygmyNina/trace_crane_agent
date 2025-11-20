@@ -44,7 +44,7 @@ class Line:
 
 
 def detect_lines(image: np.ndarray,
-                 min_length: int = 12,
+                 min_length: int = 20,
                  lsd_scale: float = 0.8,
                  lsd_sigma_scale: float = 0.6) -> List[Line]:
     """
@@ -524,8 +524,8 @@ def main():
                        help='Input image (text-masked or fully-masked schematic)')
     parser.add_argument('--output', required=True,
                        help='Output JSON file for detected lines')
-    parser.add_argument('--min-length', type=int, default=12,
-                       help='Minimum line length in pixels (default: 12)')
+    parser.add_argument('--min-length', type=int, default=20,
+                       help='Minimum line length in pixels (default: 20)')
     parser.add_argument('--lsd-scale', type=float, default=0.8,
                        help='LSD scale parameter (default: 0.8)')
     parser.add_argument('--lsd-sigma', type=float, default=0.6,
