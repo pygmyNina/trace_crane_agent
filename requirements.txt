@@ -3,6 +3,8 @@
 
 # AI & Vision
 anthropic>=0.25.0
+opencv-python>=4.8.0
+numpy>=1.24.0
 
 # PDF Processing
 pypdf>=3.0.0
