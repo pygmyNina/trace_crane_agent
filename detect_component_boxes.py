@@ -312,8 +312,47 @@ def are_lines_connected(line1: Line, line2: Line, tolerance: int = 10) -> Option
     return None
 
 
+def are_lines_connected_corner(line1: Line, line2: Line,
+                                horizontal_tolerance: int = 48,
+                                vertical_tolerance: int = 56) -> Optional[Tuple[int, int]]:
+    """
+    Check if two lines are connected at a corner with asymmetric tolerances
+    for handling incomplete/dashed corners
+
+    Uses different tolerances for horizontal vs vertical gaps to better handle
+    typical dashed line patterns at corners.
+
+    Args:
+        line1, line2: Lines to check
+        horizontal_tolerance: Max horizontal gap for corner connection (default: 48px)
+        vertical_tolerance: Max vertical gap for corner connection (default: 56px)
+
+    Returns:
+        Connection point (x, y) if connected, None otherwise
+    """
+    endpoints1 = [(line1.x1, line1.y1), (line1.x2, line1.y2)]
+    endpoints2 = [(line2.x1, line2.y1), (line2.x2, line2.y2)]
+
+    for ep1 in endpoints1:
+        for ep2 in endpoints2:
+            dx = abs(ep1[0] - ep2[0])
+            dy = abs(ep1[1] - ep2[1])
+
+            # Check if within asymmetric tolerance
+            if dx <= horizontal_tolerance and dy <= vertical_tolerance:
+                # Use average of the two endpoints for connection point
+                conn_x = (ep1[0] + ep2[0]) // 2
+                conn_y = (ep1[1] + ep2[1]) // 2
+                return (conn_x, conn_y)
+
+    return None
+
+
 def find_connected_lines(line: Line, all_lines: List[Line],
-                        orientation: str = None, tolerance: int = 10) -> List[Tuple[Line, Tuple[int, int]]]:
+                        orientation: str = None, tolerance: int = 10,
+                        use_corner_merge: bool = True,
+                        corner_h_tolerance: int = 48,
+                        corner_v_tolerance: int = 56) -> List[Tuple[Line, Tuple[int, int]]]:
     """
     Find all lines connected to the given line
 
@@ -322,6 +361,9 @@ def find_connected_lines(line: Line, all_lines: List[Line],
         all_lines: All available lines
         orientation: Optional filter for orientation ('horizontal', 'vertical')
         tolerance: Pixel tolerance for connection detection
+        use_corner_merge: Enable corner merge for incomplete corners
+        corner_h_tolerance: Horizontal tolerance for corner merge (default: 48px)
+        corner_v_tolerance: Vertical tolerance for corner merge (default: 56px)
 
     Returns:
         List of (connected_line, connection_point) tuples
@@ -335,15 +377,26 @@ def find_connected_lines(line: Line, all_lines: List[Line],
         if orientation and other_line.orientation != orientation:
             continue
 
+        # Try standard connection first
         connection_point = are_lines_connected(line, other_line, tolerance)
         if connection_point:
             connected.append((other_line, connection_point))
+        elif use_corner_merge:
+            # If standard connection fails, try corner merge for incomplete corners
+            connection_point = are_lines_connected_corner(line, other_line,
+                                                          corner_h_tolerance,
+                                                          corner_v_tolerance)
+            if connection_point:
+                connected.append((other_line, connection_point))
 
     return connected
 
 
 def trace_rectangle(start_line: Line, all_lines: List[Line],
-                   component: Component, tolerance: int = 10) -> Optional[ComponentBox]:
+                   component: Component, tolerance: int = 10,
+                   use_corner_merge: bool = True,
+                   corner_h_tolerance: int = 48,
+                   corner_v_tolerance: int = 56) -> Optional[ComponentBox]:
     """
     Trace a rectangle starting from a vertical line (assumed to be left edge)
 
@@ -358,6 +411,9 @@ def trace_rectangle(start_line: Line, all_lines: List[Line],
         all_lines: All available lines
         component: Component label information
         tolerance: Pixel tolerance for connections
+        use_corner_merge: Enable corner merge for incomplete corners
+        corner_h_tolerance: Horizontal tolerance for corner merge
+        corner_v_tolerance: Vertical tolerance for corner merge
 
     Returns:
         ComponentBox if rectangle found, None otherwise
@@ -371,7 +427,11 @@ def trace_rectangle(start_line: Line, all_lines: List[Line],
 
     # Find horizontal lines connected to the left edge
     horizontal_connected = find_connected_lines(left_edge, all_lines,
-                                                orientation='horizontal', tolerance=tolerance)
+                                                orientation='horizontal',
+                                                tolerance=tolerance,
+                                                use_corner_merge=use_corner_merge,
+                                                corner_h_tolerance=corner_h_tolerance,
+                                                corner_v_tolerance=corner_v_tolerance)
 
     if len(horizontal_connected) < 2:
         # Need at least top and bottom edges
@@ -387,9 +447,17 @@ def trace_rectangle(start_line: Line, all_lines: List[Line],
 
     # Find right vertical edge connected to both top and bottom
     top_verticals = find_connected_lines(top_edge, all_lines,
-                                         orientation='vertical', tolerance=tolerance)
+                                         orientation='vertical',
+                                         tolerance=tolerance,
+                                         use_corner_merge=use_corner_merge,
+                                         corner_h_tolerance=corner_h_tolerance,
+                                         corner_v_tolerance=corner_v_tolerance)
     bottom_verticals = find_connected_lines(bottom_edge, all_lines,
-                                           orientation='vertical', tolerance=tolerance)
+                                           orientation='vertical',
+                                           tolerance=tolerance,
+                                           use_corner_merge=use_corner_merge,
+                                           corner_h_tolerance=corner_h_tolerance,
+                                           corner_v_tolerance=corner_v_tolerance)
 
     # Find common vertical line (right edge)
     right_edge = None
@@ -437,7 +505,10 @@ def trace_rectangle(start_line: Line, all_lines: List[Line],
 
 
 def detect_component_boxes(components: List[Component], lines: List[Line],
-                          tolerance: int = 10, max_search_distance: int = 500) -> List[ComponentBox]:
+                          tolerance: int = 10, max_search_distance: int = 500,
+                          use_corner_merge: bool = True,
+                          corner_h_tolerance: int = 48,
+                          corner_v_tolerance: int = 56) -> List[ComponentBox]:
     """
     Detect component bounding boxes using label-anchored rectangle tracing
 
@@ -446,6 +517,9 @@ def detect_component_boxes(components: List[Component], lines: List[Line],
         lines: List of detected lines
         tolerance: Pixel tolerance for line connections
         max_search_distance: Maximum distance to search for vertical line
+        use_corner_merge: Enable corner merge for incomplete corners
+        corner_h_tolerance: Horizontal tolerance for corner merge
+        corner_v_tolerance: Vertical tolerance for corner merge
 
     Returns:
         List of detected component boxes
@@ -461,7 +535,8 @@ def detect_component_boxes(components: List[Component], lines: List[Line],
             continue
 
         # Try to trace a rectangle from this vertical line
-        box = trace_rectangle(closest_vertical, lines, component, tolerance)
+        box = trace_rectangle(closest_vertical, lines, component, tolerance,
+                             use_corner_merge, corner_h_tolerance, corner_v_tolerance)
 
         if box:
             detected_boxes.append(box)
@@ -550,6 +625,14 @@ def main():
     parser.add_argument('--tolerance', type=int, default=10, help='Pixel tolerance for line connections')
     parser.add_argument('--max-search-distance', type=int, default=500,
                        help='Maximum distance to search for vertical line')
+    parser.add_argument('--corner-merge', action='store_true', default=True,
+                       help='Enable corner merge for incomplete/dashed corners (default: True)')
+    parser.add_argument('--no-corner-merge', dest='corner_merge', action='store_false',
+                       help='Disable corner merge feature')
+    parser.add_argument('--corner-h-tolerance', type=int, default=48,
+                       help='Horizontal tolerance for corner merge (default: 48px)')
+    parser.add_argument('--corner-v-tolerance', type=int, default=56,
+                       help='Vertical tolerance for corner merge (default: 56px)')
     parser.add_argument('--visualize', action='store_true', help='Create visualization image')
     parser.add_argument('--image', help='Original schematic image (required for visualization)')
 
@@ -576,8 +659,12 @@ def main():
         step_num = 2
 
     # Detect boxes
-    print(f"\n{step_num}. Detecting component boxes (tolerance={args.tolerance}px)")
-    boxes = detect_component_boxes(components, lines, args.tolerance, args.max_search_distance)
+    corner_status = "enabled" if args.corner_merge else "disabled"
+    print(f"\n{step_num}. Detecting component boxes (tolerance={args.tolerance}px, corner_merge={corner_status})")
+    if args.corner_merge:
+        print(f"   Corner merge tolerances: {args.corner_h_tolerance}px (H) x {args.corner_v_tolerance}px (V)")
+    boxes = detect_component_boxes(components, lines, args.tolerance, args.max_search_distance,
+                                   args.corner_merge, args.corner_h_tolerance, args.corner_v_tolerance)
 
     print(f"\n✓ Detected {len(boxes)} / {len(components)} component boxes")
 
