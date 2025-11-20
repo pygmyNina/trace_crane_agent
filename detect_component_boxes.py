@@ -12,7 +12,7 @@ Algorithm:
 Usage:
   python3 detect_component_boxes.py \
     --text-csv "extraction_results/system_10/visual_3_final/detections_with_visual_ids.csv" \
-    --wire-json "extraction_results/system_10/wires/page_001_wires.json" \
+    --line-json "extraction_results/system_10/lines/page_001_all_lines.json" \
     --output "extraction_results/system_10/components/page_001_boxes.json" \
     --page-number 1 \
     --boundary "extraction_results/system_10/boundary_dimensions.json" \
@@ -175,10 +175,10 @@ def load_components(csv_path: str, page_number: int = None) -> List[Component]:
 
 def load_lines(json_path: str) -> List[Line]:
     """
-    Load detected lines from wire detection JSON
+    Load detected lines from line detection JSON
 
     Args:
-        json_path: Path to wire detection JSON
+        json_path: Path to line detection JSON
 
     Returns:
         List of Line objects
@@ -543,7 +543,7 @@ def visualize_component_boxes(image_path: str, components: List[Component],
 def main():
     parser = argparse.ArgumentParser(description='Detect component boxes using label-anchored rectangle tracing')
     parser.add_argument('--text-csv', required=True, help='Path to text detection CSV')
-    parser.add_argument('--wire-json', required=True, help='Path to wire detection JSON')
+    parser.add_argument('--line-json', required=True, help='Path to line detection JSON')
     parser.add_argument('--output', required=True, help='Output JSON path for component boxes')
     parser.add_argument('--page-number', type=int, help='Page number to process')
     parser.add_argument('--boundary', help='Path to boundary_dimensions.json to limit detection to schematic area')
@@ -561,7 +561,7 @@ def main():
     # Load data
     print("\n1. Loading components and lines")
     components = load_components(args.text_csv, args.page_number)
-    lines = load_lines(args.wire_json)
+    lines = load_lines(args.line_json)
 
     # Filter by boundary if provided
     if args.boundary:
@@ -587,7 +587,7 @@ def main():
 
     data = {
         'text_csv': args.text_csv,
-        'wire_json': args.wire_json,
+        'line_json': args.line_json,
         'page_number': args.page_number,
         'boundary': args.boundary,
         'total_components': len(components),
