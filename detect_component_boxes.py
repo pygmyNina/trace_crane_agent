@@ -240,29 +240,28 @@ def find_closest_vertical_line_to_right(component: Component, lines: List[Line],
                                         max_distance: int = 500,
                                         vertical_tolerance: int = 100) -> Optional[Line]:
     """
-    Find the closest vertical line to the RIGHT of the component label
-    (can be above or below the label within vertical tolerance)
+    Find the first vertical line to the RIGHT of the component label
+    No vertical distance restriction - just the closest line horizontally
 
     Args:
         component: Component with label position
         lines: All detected lines
         max_distance: Maximum horizontal distance to search (default: 500px)
-        vertical_tolerance: Maximum vertical distance from label center (default: 100px)
+        vertical_tolerance: Not used, kept for API compatibility
 
     Returns:
-        Closest vertical line or None
+        Closest vertical line to the right, or None
     """
-    vertical_lines_right = []
+    closest_line = None
+    closest_distance = float('inf')
 
     for line in lines:
-        # Only consider vertical lines
+        # Only consider vertical lines (angle within 15° of 90°)
         if line.orientation != 'vertical':
             continue
 
-        # Get average x and y position of the vertical line
+        # Get average x position of the vertical line
         line_x = (line.x1 + line.x2) / 2
-        line_y_min = min(line.y1, line.y2)
-        line_y_max = max(line.y1, line.y2)
 
         # Only consider lines to the RIGHT of the label
         if line_x <= component.label_x:
@@ -271,33 +270,16 @@ def find_closest_vertical_line_to_right(component: Component, lines: List[Line],
         # Calculate horizontal distance
         horizontal_distance = line_x - component.label_x
 
+        # Check max distance limit
         if horizontal_distance > max_distance:
             continue
 
-        # Check if line is within vertical tolerance of label center
-        # Allow lines that overlap vertically or are nearby
-        label_y = component.label_center_y
+        # Track the closest line horizontally
+        if horizontal_distance < closest_distance:
+            closest_distance = horizontal_distance
+            closest_line = line
 
-        # If label is within the line's vertical range, vertical distance is 0
-        if line_y_min <= label_y <= line_y_max:
-            vertical_distance = 0
-        else:
-            # Calculate distance to nearest endpoint
-            vertical_distance = min(abs(label_y - line_y_min), abs(label_y - line_y_max))
-
-        # Skip lines that are too far vertically
-        if vertical_distance > vertical_tolerance:
-            continue
-
-        # Prioritize horizontal distance for sorting (closer horizontally is better)
-        vertical_lines_right.append((line, horizontal_distance, vertical_distance))
-
-    if not vertical_lines_right:
-        return None
-
-    # Sort by horizontal distance (closest horizontally wins)
-    vertical_lines_right.sort(key=lambda x: x[1])
-    return vertical_lines_right[0][0]
+    return closest_line
 
 
 def are_lines_connected(line1: Line, line2: Line, tolerance: int = 10) -> Optional[Tuple[int, int]]:
