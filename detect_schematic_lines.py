@@ -352,7 +352,7 @@ def merge_two_lines(line1: Line, line2: Line) -> Line:
 
 
 def merge_collinear_lines(lines: List[Line],
-                          gap_threshold: int = 20,
+                          gap_threshold: int = 55,
                           angle_threshold: float = 5.0,
                           distance_threshold: float = 10.0) -> List[Line]:
     """
@@ -538,8 +538,8 @@ def main():
                        help='Merge collinear lines (dashed lines → solid lines) (default: True)')
     parser.add_argument('--no-merge-lines', dest='merge_lines', action='store_false',
                        help='Disable line merging')
-    parser.add_argument('--merge-gap', type=int, default=20,
-                       help='Maximum gap for merging dashed lines (default: 20px)')
+    parser.add_argument('--merge-gap', type=int, default=55,
+                       help='Maximum gap for merging dashed lines (default: 55px)')
     parser.add_argument('--visualize', action='store_true',
                        help='Create visualization image')
 
