@@ -535,19 +535,6 @@ def visualize_component_boxes(image_path: str, components: List[Component],
         cv2.putText(overlay, label_text, (box.box_x1, box.box_y1 - 5),
                    cv2.FONT_HERSHEY_SIMPLEX, 0.5, (0, 255, 0), 1)
 
-    # Draw components without boxes in red
-    detected_symbols = {box.symbol for box in boxes}
-    for component in components:
-        if component.symbol not in detected_symbols:
-            # Draw label position
-            cv2.circle(overlay, (component.label_center_x, component.label_center_y),
-                      3, (0, 0, 255), -1)  # Red dot
-
-            # Draw label
-            cv2.putText(overlay, component.symbol,
-                       (component.label_center_x + 5, component.label_center_y),
-                       cv2.FONT_HERSHEY_SIMPLEX, 0.4, (0, 0, 255), 1)
-
     # Save visualization
     cv2.imwrite(output_path, overlay)
     print(f"\n✓ Saved visualization: {output_path}")
