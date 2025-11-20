@@ -237,15 +237,17 @@ def distance_point_to_line_segment(px: int, py: int, line: Line) -> float:
 
 
 def find_closest_vertical_line_to_right(component: Component, lines: List[Line],
-                                        max_distance: int = 500) -> Optional[Line]:
+                                        max_distance: int = 500,
+                                        vertical_tolerance: int = 300) -> Optional[Line]:
     """
     Find the closest vertical line to the RIGHT of the component label
-    (can be slightly above or below the label as well)
+    (can be above or below the label within vertical tolerance)
 
     Args:
         component: Component with label position
         lines: All detected lines
-        max_distance: Maximum horizontal distance to search
+        max_distance: Maximum horizontal distance to search (default: 500px)
+        vertical_tolerance: Maximum vertical distance from label center (default: 300px)
 
     Returns:
         Closest vertical line or None
@@ -257,8 +259,10 @@ def find_closest_vertical_line_to_right(component: Component, lines: List[Line],
         if line.orientation != 'vertical':
             continue
 
-        # Get average x position of the vertical line
+        # Get average x and y position of the vertical line
         line_x = (line.x1 + line.x2) / 2
+        line_y_min = min(line.y1, line.y2)
+        line_y_max = max(line.y1, line.y2)
 
         # Only consider lines to the RIGHT of the label
         if line_x <= component.label_x:
@@ -270,18 +274,28 @@ def find_closest_vertical_line_to_right(component: Component, lines: List[Line],
         if horizontal_distance > max_distance:
             continue
 
-        # Calculate distance from label center to the line
-        # This considers both horizontal and vertical distance,
-        # so the line can be slightly above or below the label
-        dist = distance_point_to_line_segment(component.label_center_x,
-                                              component.label_center_y, line)
+        # Check if line is within vertical tolerance of label center
+        # Allow lines that overlap vertically or are nearby
+        label_y = component.label_center_y
 
-        vertical_lines_right.append((line, dist, horizontal_distance))
+        # If label is within the line's vertical range, vertical distance is 0
+        if line_y_min <= label_y <= line_y_max:
+            vertical_distance = 0
+        else:
+            # Calculate distance to nearest endpoint
+            vertical_distance = min(abs(label_y - line_y_min), abs(label_y - line_y_max))
+
+        # Skip lines that are too far vertically
+        if vertical_distance > vertical_tolerance:
+            continue
+
+        # Prioritize horizontal distance for sorting (closer horizontally is better)
+        vertical_lines_right.append((line, horizontal_distance, vertical_distance))
 
     if not vertical_lines_right:
         return None
 
-    # Sort by distance and pick closest
+    # Sort by horizontal distance (closest horizontally wins)
     vertical_lines_right.sort(key=lambda x: x[1])
     return vertical_lines_right[0][0]
 
@@ -506,6 +520,7 @@ def trace_rectangle(start_line: Line, all_lines: List[Line],
 
 def detect_component_boxes(components: List[Component], lines: List[Line],
                           tolerance: int = 10, max_search_distance: int = 500,
+                          vertical_search_tolerance: int = 300,
                           use_corner_merge: bool = True,
                           corner_h_tolerance: int = 48,
                           corner_v_tolerance: int = 56) -> List[ComponentBox]:
@@ -516,7 +531,8 @@ def detect_component_boxes(components: List[Component], lines: List[Line],
         components: List of components with label positions
         lines: List of detected lines
         tolerance: Pixel tolerance for line connections
-        max_search_distance: Maximum distance to search for vertical line
+        max_search_distance: Maximum horizontal distance to search for vertical line
+        vertical_search_tolerance: Maximum vertical distance for line search (default: 300px)
         use_corner_merge: Enable corner merge for incomplete corners
         corner_h_tolerance: Horizontal tolerance for corner merge (default: 48px)
         corner_v_tolerance: Vertical tolerance for corner merge (default: 56px)
@@ -528,7 +544,9 @@ def detect_component_boxes(components: List[Component], lines: List[Line],
 
     for component in components:
         # Find closest vertical line to the right
-        closest_vertical = find_closest_vertical_line_to_right(component, lines, max_search_distance)
+        closest_vertical = find_closest_vertical_line_to_right(component, lines,
+                                                               max_search_distance,
+                                                               vertical_search_tolerance)
 
         if not closest_vertical:
             print(f"  {component.symbol}: No vertical line found to right")
@@ -624,7 +642,9 @@ def main():
     parser.add_argument('--boundary', help='Path to boundary_dimensions.json to limit detection to schematic area')
     parser.add_argument('--tolerance', type=int, default=10, help='Pixel tolerance for line connections')
     parser.add_argument('--max-search-distance', type=int, default=500,
-                       help='Maximum distance to search for vertical line')
+                       help='Maximum horizontal distance to search for vertical line (default: 500px)')
+    parser.add_argument('--vertical-search-tolerance', type=int, default=300,
+                       help='Maximum vertical distance for line search (default: 300px)')
     parser.add_argument('--corner-merge', action='store_true', default=True,
                        help='Enable corner merge for incomplete/dashed corners (default: True)')
     parser.add_argument('--no-corner-merge', dest='corner_merge', action='store_false',
@@ -661,9 +681,11 @@ def main():
     # Detect boxes
     corner_status = "enabled" if args.corner_merge else "disabled"
     print(f"\n{step_num}. Detecting component boxes (tolerance={args.tolerance}px, corner_merge={corner_status})")
+    print(f"   Search window: {args.max_search_distance}px (H) x {args.vertical_search_tolerance}px (V)")
     if args.corner_merge:
         print(f"   Corner merge tolerances: {args.corner_h_tolerance}px (H) x {args.corner_v_tolerance}px (V)")
     boxes = detect_component_boxes(components, lines, args.tolerance, args.max_search_distance,
+                                   args.vertical_search_tolerance,
                                    args.corner_merge, args.corner_h_tolerance, args.corner_v_tolerance)
 
     print(f"\n✓ Detected {len(boxes)} / {len(components)} component boxes")
