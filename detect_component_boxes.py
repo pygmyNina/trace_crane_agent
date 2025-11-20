@@ -237,7 +237,7 @@ def distance_point_to_line_segment(px: int, py: int, line: Line) -> float:
 
 
 def find_closest_vertical_line_to_right(component: Component, lines: List[Line],
-                                        max_distance: int = 300) -> Optional[Line]:
+                                        max_distance: int = 500) -> Optional[Line]:
     """
     Find the closest vertical line to the RIGHT of the component label
     (can be slightly above or below the label as well)
@@ -437,7 +437,7 @@ def trace_rectangle(start_line: Line, all_lines: List[Line],
 
 
 def detect_component_boxes(components: List[Component], lines: List[Line],
-                          tolerance: int = 10, max_search_distance: int = 300) -> List[ComponentBox]:
+                          tolerance: int = 10, max_search_distance: int = 500) -> List[ComponentBox]:
     """
     Detect component bounding boxes using label-anchored rectangle tracing
 
@@ -548,7 +548,7 @@ def main():
     parser.add_argument('--page-number', type=int, help='Page number to process')
     parser.add_argument('--boundary', help='Path to boundary_dimensions.json to limit detection to schematic area')
     parser.add_argument('--tolerance', type=int, default=10, help='Pixel tolerance for line connections')
-    parser.add_argument('--max-search-distance', type=int, default=300,
+    parser.add_argument('--max-search-distance', type=int, default=500,
                        help='Maximum distance to search for vertical line')
     parser.add_argument('--visualize', action='store_true', help='Create visualization image')
     parser.add_argument('--image', help='Original schematic image (required for visualization)')
