@@ -200,6 +200,238 @@ def filter_duplicate_lines(lines: List[Line],
     return unique_lines
 
 
+def point_to_line_distance(px: float, py: float, line: Line) -> float:
+    """
+    Calculate perpendicular distance from point to infinite line
+
+    Args:
+        px, py: Point coordinates
+        line: Line segment (treated as infinite line)
+
+    Returns:
+        Perpendicular distance
+    """
+    x1, y1, x2, y2 = line.x1, line.y1, line.x2, line.y2
+
+    # Line direction vector
+    dx = x2 - x1
+    dy = y2 - y1
+
+    if dx == 0 and dy == 0:
+        return math.sqrt((px - x1)**2 + (py - y1)**2)
+
+    # Perpendicular distance formula
+    num = abs(dy * px - dx * py + x2 * y1 - y2 * x1)
+    den = math.sqrt(dx * dx + dy * dy)
+
+    return num / den
+
+
+def are_lines_collinear(line1: Line, line2: Line,
+                        angle_threshold: float = 5.0,
+                        distance_threshold: float = 10.0) -> bool:
+    """
+    Check if two lines are collinear (on the same infinite line)
+
+    Args:
+        line1, line2: Lines to check
+        angle_threshold: Maximum angle difference in degrees
+        distance_threshold: Maximum perpendicular distance in pixels
+
+    Returns:
+        True if lines are collinear
+    """
+    # Check angle similarity
+    angle_diff = min(
+        abs(line1.angle - line2.angle),
+        180 - abs(line1.angle - line2.angle)
+    )
+
+    if angle_diff > angle_threshold:
+        return False
+
+    # Check if endpoints of line2 are close to the infinite line of line1
+    dist1 = point_to_line_distance(line2.x1, line2.y1, line1)
+    dist2 = point_to_line_distance(line2.x2, line2.y2, line1)
+
+    if dist1 > distance_threshold or dist2 > distance_threshold:
+        return False
+
+    return True
+
+
+def lines_gap_distance(line1: Line, line2: Line) -> float:
+    """
+    Calculate the gap distance between two line segments
+
+    Returns the minimum distance between the endpoints of the two lines.
+    If lines overlap or touch, returns 0.
+
+    Args:
+        line1, line2: Line segments
+
+    Returns:
+        Gap distance in pixels
+    """
+    # Get all endpoints
+    p1_start = (line1.x1, line1.y1)
+    p1_end = (line1.x2, line1.y2)
+    p2_start = (line2.x1, line2.y1)
+    p2_end = (line2.x2, line2.y2)
+
+    # Calculate all endpoint-to-endpoint distances
+    distances = [
+        math.sqrt((p1_end[0] - p2_start[0])**2 + (p1_end[1] - p2_start[1])**2),
+        math.sqrt((p1_end[0] - p2_end[0])**2 + (p1_end[1] - p2_end[1])**2),
+        math.sqrt((p1_start[0] - p2_start[0])**2 + (p1_start[1] - p2_start[1])**2),
+        math.sqrt((p1_start[0] - p2_end[0])**2 + (p1_start[1] - p2_end[1])**2),
+    ]
+
+    return min(distances)
+
+
+def merge_two_lines(line1: Line, line2: Line) -> Line:
+    """
+    Merge two collinear line segments into one
+
+    Args:
+        line1, line2: Lines to merge
+
+    Returns:
+        Merged line spanning both input lines
+    """
+    # Get all endpoints
+    points = [
+        (line1.x1, line1.y1),
+        (line1.x2, line1.y2),
+        (line2.x1, line2.y1),
+        (line2.x2, line2.y2)
+    ]
+
+    # For horizontal/vertical lines, find extremes
+    if line1.orientation == 'horizontal':
+        # Find leftmost and rightmost points
+        points.sort(key=lambda p: p[0])
+        x1, y1 = points[0]
+        x2, y2 = points[-1]
+    elif line1.orientation == 'vertical':
+        # Find topmost and bottommost points
+        points.sort(key=lambda p: p[1])
+        x1, y1 = points[0]
+        x2, y2 = points[-1]
+    else:
+        # For diagonal/other, find most distant points
+        max_dist = 0
+        best_pair = (points[0], points[1])
+        for i in range(len(points)):
+            for j in range(i + 1, len(points)):
+                dist = math.sqrt(
+                    (points[i][0] - points[j][0])**2 +
+                    (points[i][1] - points[j][1])**2
+                )
+                if dist > max_dist:
+                    max_dist = dist
+                    best_pair = (points[i], points[j])
+        (x1, y1), (x2, y2) = best_pair
+
+    # Calculate new length and angle
+    length = math.sqrt((x2 - x1)**2 + (y2 - y1)**2)
+    angle = math.degrees(math.atan2(y2 - y1, x2 - x1))
+    if angle < 0:
+        angle += 180
+
+    return Line(
+        x1=int(x1),
+        y1=int(y1),
+        x2=int(x2),
+        y2=int(y2),
+        length=length,
+        angle=angle,
+        orientation=line1.orientation
+    )
+
+
+def merge_collinear_lines(lines: List[Line],
+                          gap_threshold: int = 20,
+                          angle_threshold: float = 5.0,
+                          distance_threshold: float = 10.0) -> List[Line]:
+    """
+    Merge collinear line segments that are close together
+
+    This is essential for converting dashed lines into solid lines.
+
+    Args:
+        lines: List of detected lines
+        gap_threshold: Maximum gap between lines to merge (pixels)
+        angle_threshold: Maximum angle difference for collinearity (degrees)
+        distance_threshold: Maximum perpendicular distance for collinearity (pixels)
+
+    Returns:
+        List of merged lines
+    """
+    if not lines:
+        return []
+
+    # Group lines by orientation for efficiency
+    groups = {
+        'horizontal': [],
+        'vertical': [],
+        'diagonal': [],
+        'other': []
+    }
+
+    for line in lines:
+        groups[line.orientation].append(line)
+
+    merged_lines = []
+
+    # Process each orientation group separately
+    for orientation, group_lines in groups.items():
+        if not group_lines:
+            continue
+
+        # Track which lines have been merged
+        used = [False] * len(group_lines)
+
+        for i in range(len(group_lines)):
+            if used[i]:
+                continue
+
+            # Start with this line
+            current_line = group_lines[i]
+            used[i] = True
+            merged_any = True
+
+            # Keep trying to merge until no more merges possible
+            while merged_any:
+                merged_any = False
+
+                for j in range(len(group_lines)):
+                    if used[j]:
+                        continue
+
+                    candidate = group_lines[j]
+
+                    # Check if lines are collinear
+                    if not are_lines_collinear(current_line, candidate,
+                                              angle_threshold, distance_threshold):
+                        continue
+
+                    # Check gap distance
+                    gap = lines_gap_distance(current_line, candidate)
+                    if gap > gap_threshold:
+                        continue
+
+                    # Merge the lines
+                    current_line = merge_two_lines(current_line, candidate)
+                    used[j] = True
+                    merged_any = True
+
+            merged_lines.append(current_line)
+
+    return merged_lines
+
+
 def visualize_lines(image_path: str, lines: List[Line], output_path: str):
     """
     Create visualization of detected lines
@@ -302,6 +534,12 @@ def main():
                        help='Angle tolerance for orientation classification (default: 15°)')
     parser.add_argument('--filter-duplicates', action='store_true',
                        help='Remove duplicate lines')
+    parser.add_argument('--merge-lines', action='store_true', default=True,
+                       help='Merge collinear lines (dashed lines → solid lines) (default: True)')
+    parser.add_argument('--no-merge-lines', dest='merge_lines', action='store_false',
+                       help='Disable line merging')
+    parser.add_argument('--merge-gap', type=int, default=20,
+                       help='Maximum gap for merging dashed lines (default: 20px)')
     parser.add_argument('--visualize', action='store_true',
                        help='Create visualization image')
 
@@ -322,15 +560,28 @@ def main():
     # Detect lines
     print(f"\n2. Detecting lines (min_length={args.min_length}px)")
     lines = detect_lines(image, args.min_length, args.lsd_scale, args.lsd_sigma)
-    print(f"   Detected: {len(lines)} lines")
+    print(f"   Detected: {len(lines)} raw line segments")
+
+    step_num = 3
+
+    # Merge collinear lines (dashed → solid)
+    if args.merge_lines:
+        print(f"\n{step_num}. Merging collinear lines (dashed → solid, gap≤{args.merge_gap}px)")
+        before = len(lines)
+        lines = merge_collinear_lines(lines, gap_threshold=args.merge_gap)
+        print(f"   Before: {before} segments")
+        print(f"   After:  {len(lines)} merged lines")
+        print(f"   Merged: {before - len(lines)} segments into continuous lines")
+        step_num += 1
 
     # Filter duplicates if requested
     if args.filter_duplicates:
-        print(f"\n3. Filtering duplicate lines")
+        print(f"\n{step_num}. Filtering duplicate lines")
         before = len(lines)
         lines = filter_duplicate_lines(lines)
         print(f"   Removed {before - len(lines)} duplicates")
         print(f"   Remaining: {len(lines)} unique lines")
+        step_num += 1
 
     # Count by orientation
     orientation_counts = {
@@ -367,6 +618,8 @@ def main():
         'lsd_scale': args.lsd_scale,
         'lsd_sigma_scale': args.lsd_sigma,
         'angle_tolerance': args.angle_tolerance,
+        'merge_lines': args.merge_lines,
+        'merge_gap': args.merge_gap if args.merge_lines else None,
         'total_lines': len(lines),
         'orientation_counts': orientation_counts,
         'lines': lines_data
@@ -379,7 +632,7 @@ def main():
 
     # Visualize
     if args.visualize:
-        print(f"\n4. Creating visualization")
+        print(f"\n{step_num}. Creating visualization")
         vis_path = str(output_path).replace('.json', '_visualization.png')
         visualize_lines(args.image, lines, vis_path)
 
