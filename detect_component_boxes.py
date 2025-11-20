@@ -106,22 +106,35 @@ def filter_components_by_boundary(components: List[Component],
                                   boundary: Tuple[int, int, int, int]) -> List[Component]:
     """
     Filter components to only those within the schematic boundary
+    and adjust their coordinates relative to the cropped area
 
     Args:
         components: List of all components
         boundary: (x, y, width, height) of schematic area
 
     Returns:
-        Filtered list of components within boundary
+        Filtered list of components with adjusted coordinates
     """
-    x, y, w, h = boundary
+    boundary_x, boundary_y, boundary_w, boundary_h = boundary
     filtered = []
 
     for component in components:
         # Check if component label center is within boundary
-        if (x <= component.label_center_x <= x + w and
-            y <= component.label_center_y <= y + h):
-            filtered.append(component)
+        if (boundary_x <= component.label_center_x <= boundary_x + boundary_w and
+            boundary_y <= component.label_center_y <= boundary_y + boundary_h):
+
+            # Adjust coordinates relative to the cropped boundary
+            adjusted_component = Component(
+                symbol=component.symbol,
+                label_x=component.label_x - boundary_x,
+                label_y=component.label_y - boundary_y,
+                label_width=component.label_width,
+                label_height=component.label_height,
+                label_center_x=component.label_center_x - boundary_x,
+                label_center_y=component.label_center_y - boundary_y,
+                page_number=component.page_number
+            )
+            filtered.append(adjusted_component)
 
     return filtered
 
