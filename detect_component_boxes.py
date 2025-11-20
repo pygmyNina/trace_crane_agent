@@ -493,10 +493,33 @@ def visualize_component_boxes(image_path: str, components: List[Component],
     # Create overlay
     overlay = image.copy()
 
-    # Draw all lines in light gray
+    # Draw all lines in light gray with ID labels
     for line in lines:
         color = (200, 200, 200)  # Light gray
         cv2.line(overlay, (line.x1, line.y1), (line.x2, line.y2), color, 1)
+
+        # Add line ID label at midpoint
+        mid_x = (line.x1 + line.x2) // 2
+        mid_y = (line.y1 + line.y2) // 2
+
+        # Draw ID with background for readability
+        label = f"{line.index}"
+        font = cv2.FONT_HERSHEY_SIMPLEX
+        font_scale = 0.3
+        thickness = 1
+
+        # Get text size for background
+        (text_width, text_height), baseline = cv2.getTextSize(label, font, font_scale, thickness)
+
+        # Draw background rectangle
+        cv2.rectangle(overlay,
+                     (mid_x - 2, mid_y - text_height - 2),
+                     (mid_x + text_width + 2, mid_y + 2),
+                     (255, 255, 255), -1)  # White background
+
+        # Draw text
+        cv2.putText(overlay, label, (mid_x, mid_y),
+                   font, font_scale, (128, 128, 128), thickness)  # Gray text
 
     # Draw detected boxes
     for box in boxes:
