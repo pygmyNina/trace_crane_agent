@@ -254,16 +254,16 @@ def find_closest_vertical_line_to_right(component: Component, lines: List[Line],
                                         vertical_tolerance: int = 100) -> Optional[Line]:
     """
     Find the first vertical line to the RIGHT of the component label
-    No vertical distance restriction - just the closest line horizontally
+    that also vertically aligns with the component
 
     Args:
         component: Component with label position
         lines: All detected lines
         max_distance: Maximum horizontal distance to search (default: 500px)
-        vertical_tolerance: Not used, kept for API compatibility
+        vertical_tolerance: Maximum vertical distance from line to label center (default: 100px)
 
     Returns:
-        Closest vertical line to the right, or None
+        Closest vertical line to the right that aligns vertically, or None
     """
     closest_line = None
     closest_distance = float('inf')
@@ -287,7 +287,24 @@ def find_closest_vertical_line_to_right(component: Component, lines: List[Line],
         if horizontal_distance > max_distance:
             continue
 
-        # Track the closest line horizontally
+        # Check vertical alignment: label center Y must be within line's Y range
+        # (or close to it within tolerance)
+        line_y_min = min(line.y1, line.y2)
+        line_y_max = max(line.y1, line.y2)
+
+        # Calculate vertical distance from label center to line's vertical range
+        if component.label_center_y < line_y_min:
+            vertical_distance = line_y_min - component.label_center_y
+        elif component.label_center_y > line_y_max:
+            vertical_distance = component.label_center_y - line_y_max
+        else:
+            vertical_distance = 0  # Label center is within line's vertical range
+
+        # Skip lines that don't vertically align with the component
+        if vertical_distance > vertical_tolerance:
+            continue
+
+        # Track the closest line horizontally (that also aligns vertically)
         if horizontal_distance < closest_distance:
             closest_distance = horizontal_distance
             closest_line = line
