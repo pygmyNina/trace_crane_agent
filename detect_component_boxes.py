@@ -422,7 +422,8 @@ def trace_rectangle(start_line: Line, all_lines: List[Line],
                    component: Component, tolerance: int = 10,
                    use_corner_merge: bool = True,
                    corner_h_tolerance: int = 48,
-                   corner_v_tolerance: int = 56) -> Optional[ComponentBox]:
+                   corner_v_tolerance: int = 56,
+                   debug: bool = False) -> Optional[ComponentBox]:
     """
     Trace a rectangle starting from a vertical line (assumed to be left edge)
 
@@ -440,16 +441,23 @@ def trace_rectangle(start_line: Line, all_lines: List[Line],
         use_corner_merge: Enable corner merge for incomplete corners
         corner_h_tolerance: Horizontal tolerance for corner merge (default: 48px)
         corner_v_tolerance: Vertical tolerance for corner merge (default: 56px)
+        debug: Enable detailed debug output
 
     Returns:
         ComponentBox if rectangle found, None otherwise
     """
     # Start line should be vertical (left edge)
     if start_line.orientation != 'vertical':
+        if debug:
+            print(f"    ✗ Start line {start_line.index} is not vertical")
         return None
 
     left_edge = start_line
     traced_lines = [left_edge.index]
+
+    if debug:
+        print(f"    Starting with left edge: Line {left_edge.index}")
+        print(f"      Position: ({left_edge.x1}, {left_edge.y1}) to ({left_edge.x2}, {left_edge.y2})")
 
     # Find horizontal lines connected to the left edge
     horizontal_connected = find_connected_lines(left_edge, all_lines,
@@ -459,8 +467,15 @@ def trace_rectangle(start_line: Line, all_lines: List[Line],
                                                 corner_h_tolerance=corner_h_tolerance,
                                                 corner_v_tolerance=corner_v_tolerance)
 
+    if debug:
+        print(f"    Found {len(horizontal_connected)} horizontal line(s) connected to left edge")
+        for h_line, conn_pt in horizontal_connected:
+            print(f"      Line {h_line.index} at connection point ({conn_pt[0]}, {conn_pt[1]})")
+
     if len(horizontal_connected) < 2:
         # Need at least top and bottom edges
+        if debug:
+            print(f"    ✗ Need at least 2 horizontal lines (top and bottom), found {len(horizontal_connected)}")
         return None
 
     # Separate into top and bottom edges (by y position)
@@ -468,6 +483,12 @@ def trace_rectangle(start_line: Line, all_lines: List[Line],
 
     top_edge = horizontal_connected[0][0]
     bottom_edge = horizontal_connected[-1][0]
+
+    if debug:
+        print(f"    Selected top edge: Line {top_edge.index}")
+        print(f"      Position: ({top_edge.x1}, {top_edge.y1}) to ({top_edge.x2}, {top_edge.y2})")
+        print(f"    Selected bottom edge: Line {bottom_edge.index}")
+        print(f"      Position: ({bottom_edge.x1}, {bottom_edge.y1}) to ({bottom_edge.x2}, {bottom_edge.y2})")
 
     traced_lines.extend([top_edge.index, bottom_edge.index])
 
@@ -485,18 +506,36 @@ def trace_rectangle(start_line: Line, all_lines: List[Line],
                                            corner_h_tolerance=corner_h_tolerance,
                                            corner_v_tolerance=corner_v_tolerance)
 
+    if debug:
+        print(f"    Found {len(top_verticals)} vertical line(s) connected to top edge:")
+        for v_line, conn_pt in top_verticals:
+            print(f"      Line {v_line.index} at ({conn_pt[0]}, {conn_pt[1]})")
+        print(f"    Found {len(bottom_verticals)} vertical line(s) connected to bottom edge:")
+        for v_line, conn_pt in bottom_verticals:
+            print(f"      Line {v_line.index} at ({conn_pt[0]}, {conn_pt[1]})")
+
     # Find common vertical line (right edge)
     right_edge = None
     for top_v, _ in top_verticals:
         for bottom_v, _ in bottom_verticals:
             if top_v.index == bottom_v.index and top_v.index != left_edge.index:
                 right_edge = top_v
+                if debug:
+                    print(f"    ✓ Found right edge: Line {right_edge.index}")
                 break
         if right_edge:
             break
 
     if not right_edge:
         # No complete rectangle found
+        if debug:
+            print(f"    ✗ No common vertical line found for right edge")
+            if top_verticals and bottom_verticals:
+                top_indices = [v[0].index for v in top_verticals]
+                bottom_indices = [v[0].index for v in bottom_verticals]
+                print(f"      Top edge connects to vertical lines: {top_indices}")
+                print(f"      Bottom edge connects to vertical lines: {bottom_indices}")
+                print(f"      No line appears in both lists")
         return None
 
     traced_lines.append(right_edge.index)
@@ -535,7 +574,8 @@ def detect_component_boxes(components: List[Component], lines: List[Line],
                           vertical_search_tolerance: int = 100,
                           use_corner_merge: bool = True,
                           corner_h_tolerance: int = 48,
-                          corner_v_tolerance: int = 56) -> List[ComponentBox]:
+                          corner_v_tolerance: int = 56,
+                          debug_component: str = None) -> List[ComponentBox]:
     """
     Detect component bounding boxes using label-anchored rectangle tracing
 
@@ -548,6 +588,7 @@ def detect_component_boxes(components: List[Component], lines: List[Line],
         use_corner_merge: Enable corner merge for incomplete corners
         corner_h_tolerance: Horizontal tolerance for corner merge (default: 48px)
         corner_v_tolerance: Vertical tolerance for corner merge (default: 56px)
+        debug_component: Enable debug output for specific component (e.g., "-FDS1")
 
     Returns:
         List of detected component boxes
@@ -555,6 +596,13 @@ def detect_component_boxes(components: List[Component], lines: List[Line],
     detected_boxes = []
 
     for component in components:
+        debug = (debug_component and component.symbol == debug_component)
+
+        if debug:
+            print(f"\n  {component.symbol}: DEBUG MODE")
+            print(f"    Label: ({component.label_x}, {component.label_y}) size {component.label_width}x{component.label_height}")
+            print(f"    Label center: ({component.label_center_x}, {component.label_center_y})")
+
         # Find closest vertical line to the right
         closest_vertical = find_closest_vertical_line_to_right(component, lines,
                                                                max_search_distance,
@@ -564,9 +612,12 @@ def detect_component_boxes(components: List[Component], lines: List[Line],
             print(f"  {component.symbol}: No vertical line found to right")
             continue
 
+        if debug:
+            print(f"    Found starting vertical line: Line {closest_vertical.index}")
+
         # Try to trace a rectangle from this vertical line
         box = trace_rectangle(closest_vertical, lines, component, tolerance,
-                             use_corner_merge, corner_h_tolerance, corner_v_tolerance)
+                             use_corner_merge, corner_h_tolerance, corner_v_tolerance, debug)
 
         if box:
             detected_boxes.append(box)
@@ -665,6 +716,7 @@ def main():
                        help='Horizontal tolerance for corner merge (default: 48px)')
     parser.add_argument('--corner-v-tolerance', type=int, default=56,
                        help='Vertical tolerance for corner merge (default: 56px)')
+    parser.add_argument('--debug-component', help='Enable detailed debug output for specific component (e.g., -FDS1)')
     parser.add_argument('--visualize', action='store_true', help='Create visualization image')
     parser.add_argument('--image', help='Original schematic image (required for visualization)')
 
@@ -696,9 +748,12 @@ def main():
     print(f"   Search window: {args.max_search_distance}px (H) x {args.vertical_search_tolerance}px (V)")
     if args.corner_merge:
         print(f"   Corner merge tolerances: {args.corner_h_tolerance}px (H) x {args.corner_v_tolerance}px (V)")
+    if args.debug_component:
+        print(f"   Debug mode enabled for: {args.debug_component}")
     boxes = detect_component_boxes(components, lines, args.tolerance, args.max_search_distance,
                                    args.vertical_search_tolerance,
-                                   args.corner_merge, args.corner_h_tolerance, args.corner_v_tolerance)
+                                   args.corner_merge, args.corner_h_tolerance, args.corner_v_tolerance,
+                                   args.debug_component)
 
     print(f"\n✓ Detected {len(boxes)} / {len(components)} component boxes")
 
