@@ -569,15 +569,131 @@ def trace_rectangle(start_line: Line, all_lines: List[Line],
     return box
 
 
+def is_symbol_based_component(symbol: str) -> bool:
+    """
+    Check if component is symbol-based (not rectangle-traced)
+
+    Symbol-based components include:
+    - PB: Push buttons
+    - CT: Current transformers
+    - CB: Circuit breakers
+
+    Args:
+        symbol: Component symbol (e.g., "-PB1", "-CT2")
+
+    Returns:
+        True if symbol-based, False if rectangle-traced
+    """
+    if not symbol or len(symbol) < 3:
+        return False
+
+    # Extract prefix (e.g., "-PB" from "-PB1")
+    # Remove leading dash and any trailing numbers
+    prefix = symbol.lstrip('-').rstrip('0123456789')
+
+    symbol_based_prefixes = ['PB', 'CT', 'CB']
+
+    return prefix in symbol_based_prefixes
+
+
+def detect_symbol_box(component: Component, lines: List[Line],
+                      search_radius: int = 150,
+                      debug: bool = False) -> Optional[ComponentBox]:
+    """
+    Detect bounding box for symbol-based components (PB, CT, CB)
+
+    These components don't have rectangular borders - they're represented
+    by symbols. We find all lines near the label and create a bounding box.
+
+    Algorithm:
+    1. Find all lines within search_radius of the label center
+    2. Create bounding box from those lines
+    3. Add some padding around the box
+
+    Args:
+        component: Component with label position
+        lines: All detected lines
+        search_radius: Radius to search for symbol lines (default: 150px)
+        debug: Enable detailed debug output
+
+    Returns:
+        ComponentBox if symbol lines found, None otherwise
+    """
+    if debug:
+        print(f"    Searching for symbol lines within {search_radius}px of label center")
+        print(f"    Label center: ({component.label_center_x}, {component.label_center_y})")
+
+    # Find all lines within radius of label center
+    nearby_lines = []
+
+    for line in lines:
+        # Calculate distance from label center to line
+        dist = distance_point_to_line_segment(component.label_center_x,
+                                              component.label_center_y,
+                                              line)
+
+        if dist <= search_radius:
+            nearby_lines.append((line, dist))
+
+    if debug:
+        print(f"    Found {len(nearby_lines)} lines within {search_radius}px")
+        for line, dist in sorted(nearby_lines, key=lambda x: x[1])[:10]:
+            print(f"      Line {line.index}: distance={dist:.1f}px, orientation={line.orientation}")
+
+    if len(nearby_lines) == 0:
+        if debug:
+            print(f"    ✗ No lines found near label")
+        return None
+
+    # Get line indices and coordinates
+    line_indices = [line.index for line, _ in nearby_lines]
+
+    all_x = []
+    all_y = []
+    for line, _ in nearby_lines:
+        all_x.extend([line.x1, line.x2])
+        all_y.extend([line.y1, line.y2])
+
+    # Create bounding box with some padding
+    padding = 20
+    box_x1 = max(0, min(all_x) - padding)
+    box_y1 = max(0, min(all_y) - padding)
+    box_x2 = max(all_x) + padding
+    box_y2 = max(all_y) + padding
+
+    if debug:
+        print(f"    ✓ Created bounding box: ({box_x1}, {box_y1}) to ({box_x2}, {box_y2})")
+        print(f"      Size: {box_x2 - box_x1}x{box_y2 - box_y1}px")
+        print(f"      Using {len(line_indices)} lines: {line_indices[:10]}{'...' if len(line_indices) > 10 else ''}")
+
+    box = ComponentBox(
+        symbol=component.symbol,
+        label_center_x=component.label_center_x,
+        label_center_y=component.label_center_y,
+        box_x1=box_x1,
+        box_y1=box_y1,
+        box_x2=box_x2,
+        box_y2=box_y2,
+        box_width=box_x2 - box_x1,
+        box_height=box_y2 - box_y1,
+        traced_lines=line_indices,
+        confidence='medium',
+        detection_method='symbol-based proximity search'
+    )
+
+    return box
+
+
 def detect_component_boxes(components: List[Component], lines: List[Line],
                           tolerance: int = 10, max_search_distance: int = 500,
                           vertical_search_tolerance: int = 100,
                           use_corner_merge: bool = True,
                           corner_h_tolerance: int = 48,
                           corner_v_tolerance: int = 56,
+                          symbol_search_radius: int = 150,
                           debug_component: str = None) -> List[ComponentBox]:
     """
-    Detect component bounding boxes using label-anchored rectangle tracing
+    Detect component bounding boxes using label-anchored rectangle tracing or symbol search
 
     Args:
         components: List of components with label positions
@@ -588,6 +704,7 @@ def detect_component_boxes(components: List[Component], lines: List[Line],
         use_corner_merge: Enable corner merge for incomplete corners
         corner_h_tolerance: Horizontal tolerance for corner merge (default: 48px)
         corner_v_tolerance: Vertical tolerance for corner merge (default: 56px)
+        symbol_search_radius: Search radius for symbol-based components (default: 150px)
         debug_component: Enable debug output for specific component (e.g., "-FDS1")
 
     Returns:
@@ -603,27 +720,46 @@ def detect_component_boxes(components: List[Component], lines: List[Line],
             print(f"    Label: ({component.label_x}, {component.label_y}) size {component.label_width}x{component.label_height}")
             print(f"    Label center: ({component.label_center_x}, {component.label_center_y})")
 
-        # Find closest vertical line to the right
-        closest_vertical = find_closest_vertical_line_to_right(component, lines,
-                                                               max_search_distance,
-                                                               vertical_search_tolerance)
+        # Check if this is a symbol-based component (PB, CT, CB)
+        if is_symbol_based_component(component.symbol):
+            if debug:
+                print(f"    Component type: Symbol-based (using proximity search)")
 
-        if not closest_vertical:
-            print(f"  {component.symbol}: No vertical line found to right")
-            continue
+            # Use symbol-based detection
+            box = detect_symbol_box(component, lines, search_radius=symbol_search_radius, debug=debug)
 
-        if debug:
-            print(f"    Found starting vertical line: Line {closest_vertical.index}")
+            if box:
+                detected_boxes.append(box)
+                print(f"  {component.symbol}: ✓ Symbol box detected {box.box_width}x{box.box_height} at ({box.box_x1}, {box.box_y1}) using {len(box.traced_lines)} lines")
+            else:
+                print(f"  {component.symbol}: ✗ No symbol lines found")
 
-        # Try to trace a rectangle from this vertical line
-        box = trace_rectangle(closest_vertical, lines, component, tolerance,
-                             use_corner_merge, corner_h_tolerance, corner_v_tolerance, debug)
-
-        if box:
-            detected_boxes.append(box)
-            print(f"  {component.symbol}: ✓ Box detected {box.box_width}x{box.box_height} at ({box.box_x1}, {box.box_y1})")
         else:
-            print(f"  {component.symbol}: ✗ Could not trace complete rectangle")
+            # Use rectangle tracing for boxed components
+            if debug:
+                print(f"    Component type: Rectangle-based (using line tracing)")
+
+            # Find closest vertical line to the right
+            closest_vertical = find_closest_vertical_line_to_right(component, lines,
+                                                                   max_search_distance,
+                                                                   vertical_search_tolerance)
+
+            if not closest_vertical:
+                print(f"  {component.symbol}: No vertical line found to right")
+                continue
+
+            if debug:
+                print(f"    Found starting vertical line: Line {closest_vertical.index}")
+
+            # Try to trace a rectangle from this vertical line
+            box = trace_rectangle(closest_vertical, lines, component, tolerance,
+                                 use_corner_merge, corner_h_tolerance, corner_v_tolerance, debug)
+
+            if box:
+                detected_boxes.append(box)
+                print(f"  {component.symbol}: ✓ Box detected {box.box_width}x{box.box_height} at ({box.box_x1}, {box.box_y1})")
+            else:
+                print(f"  {component.symbol}: ✗ Could not trace complete rectangle")
 
     return detected_boxes
 
@@ -716,6 +852,8 @@ def main():
                        help='Horizontal tolerance for corner merge (default: 48px)')
     parser.add_argument('--corner-v-tolerance', type=int, default=56,
                        help='Vertical tolerance for corner merge (default: 56px)')
+    parser.add_argument('--symbol-search-radius', type=int, default=150,
+                       help='Search radius for symbol-based components like PB, CT, CB (default: 150px)')
     parser.add_argument('--debug-component', help='Enable detailed debug output for specific component (e.g., -FDS1)')
     parser.add_argument('--visualize', action='store_true', help='Create visualization image')
     parser.add_argument('--image', help='Original schematic image (required for visualization)')
@@ -745,7 +883,8 @@ def main():
     # Detect boxes
     corner_status = "enabled" if args.corner_merge else "disabled"
     print(f"\n{step_num}. Detecting component boxes (tolerance={args.tolerance}px, corner_merge={corner_status})")
-    print(f"   Search window: {args.max_search_distance}px (H) x {args.vertical_search_tolerance}px (V)")
+    print(f"   Rectangle search window: {args.max_search_distance}px (H) x {args.vertical_search_tolerance}px (V)")
+    print(f"   Symbol search radius: {args.symbol_search_radius}px (for PB, CT, CB components)")
     if args.corner_merge:
         print(f"   Corner merge tolerances: {args.corner_h_tolerance}px (H) x {args.corner_v_tolerance}px (V)")
     if args.debug_component:
@@ -753,7 +892,7 @@ def main():
     boxes = detect_component_boxes(components, lines, args.tolerance, args.max_search_distance,
                                    args.vertical_search_tolerance,
                                    args.corner_merge, args.corner_h_tolerance, args.corner_v_tolerance,
-                                   args.debug_component)
+                                   args.symbol_search_radius, args.debug_component)
 
     print(f"\n✓ Detected {len(boxes)} / {len(components)} component boxes")
 
