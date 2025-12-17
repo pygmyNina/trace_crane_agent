@@ -313,7 +313,10 @@ def detect_cb_components(labels: List[CBLabel],
 def visualize_cb_detection(image_path: str,
                            components: List[CBComponent],
                            output_path: str,
-                           boundary: Tuple[int, int, int, int] = None):
+                           boundary: Tuple[int, int, int, int] = None,
+                           search_width: int = 80,
+                           search_up: int = 50,
+                           search_height: int = 140):
     """
     Create visualization of detected CB components
     """
@@ -330,7 +333,17 @@ def visualize_cb_detection(image_path: str,
     overlay = image.copy()
 
     for comp in components:
-        # Draw bounding box
+        # Draw search region (cyan dashed - where we looked for circles)
+        search_x1 = comp.label_x + comp.label_width
+        search_y1 = max(0, comp.label_y - search_up)
+        search_x2 = search_x1 + search_width
+        search_y2 = search_y1 + search_height
+        cv2.rectangle(overlay,
+                     (search_x1, search_y1),
+                     (search_x2, search_y2),
+                     (255, 255, 0), 1)  # Cyan - search region
+
+        # Draw bounding box (green - final component box)
         cv2.rectangle(overlay,
                      (comp.box_x1, comp.box_y1),
                      (comp.box_x2, comp.box_y2),
@@ -441,7 +454,10 @@ def main():
     if args.visualize:
         print(f"\n4. Creating visualization")
         vis_path = str(output_path).replace('.json', '_visualization.png')
-        visualize_cb_detection(args.image, components, vis_path, boundary)
+        visualize_cb_detection(args.image, components, vis_path, boundary,
+                              search_width=args.search_width,
+                              search_up=args.search_up,
+                              search_height=args.search_height)
 
 
 if __name__ == '__main__':
