@@ -138,7 +138,7 @@ def load_cb_labels(csv_path: str, page_number: int = None,
 
 def detect_circles_for_cb(image: np.ndarray,
                           label: CBLabel,
-                          search_width: int = 250,
+                          search_width: int = 80,
                           search_up: int = 50,
                           search_height: int = 140,
                           min_radius: int = 3,
@@ -150,7 +150,7 @@ def detect_circles_for_cb(image: np.ndarray,
     Args:
         image: Input image (BGR or grayscale)
         label: CB label with position
-        search_width: How far right to search from label (default: 250px)
+        search_width: How far right to search from label (default: 80px)
         search_up: How far above label to search (default: 50px)
         search_height: Total height of search region (default: 140px)
         min_radius: Minimum circle radius (default: 3px)
@@ -221,7 +221,7 @@ def detect_circles_for_cb(image: np.ndarray,
 
 def detect_cb_components(labels: List[CBLabel],
                          image: np.ndarray,
-                         search_width: int = 250,
+                         search_width: int = 80,
                          search_up: int = 50,
                          search_height: int = 140,
                          debug: bool = False) -> List[CBComponent]:
@@ -231,7 +231,7 @@ def detect_cb_components(labels: List[CBLabel],
     Args:
         labels: List of CB labels
         image: Schematic image
-        search_width: How far right to search (default: 250px)
+        search_width: How far right to search (default: 80px)
         search_up: How far above label to search (default: 50px)
         search_height: Total height of search region (default: 140px)
         debug: Print debug info
@@ -360,8 +360,8 @@ def main():
     parser.add_argument('--output', required=True, help='Output JSON path')
     parser.add_argument('--page-number', type=int, help='Page number to process')
     parser.add_argument('--boundary', help='Path to boundary_dimensions.json')
-    parser.add_argument('--search-width', type=int, default=250,
-                       help='How far right to search for circles (default: 250px)')
+    parser.add_argument('--search-width', type=int, default=80,
+                       help='How far right to search for circles (default: 80px)')
     parser.add_argument('--search-up', type=int, default=50,
                        help='How far above label to search (default: 50px)')
     parser.add_argument('--search-height', type=int, default=140,
