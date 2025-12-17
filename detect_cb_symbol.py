@@ -139,7 +139,8 @@ def load_cb_labels(csv_path: str, page_number: int = None,
 def detect_circles_for_cb(image: np.ndarray,
                           label: CBLabel,
                           search_width: int = 250,
-                          search_height: int = 150,
+                          search_up: int = 50,
+                          search_down: int = 250,
                           min_radius: int = 3,
                           max_radius: int = 20,
                           debug: bool = False) -> List[Tuple[int, int, int]]:
@@ -150,7 +151,8 @@ def detect_circles_for_cb(image: np.ndarray,
         image: Input image (BGR or grayscale)
         label: CB label with position
         search_width: How far right to search from label (default: 250px)
-        search_height: Height of search region centered on label (default: 150px)
+        search_up: How far above label to search (default: 50px)
+        search_down: How far below label to search (default: 250px)
         min_radius: Minimum circle radius (default: 3px)
         max_radius: Maximum circle radius (default: 20px)
         debug: Print debug info
@@ -167,11 +169,11 @@ def detect_circles_for_cb(image: np.ndarray,
     h, w = gray.shape[:2]
 
     # Define search region to the RIGHT of the label
-    # Start from right edge of label, extend search_width pixels right
+    # Extend more downward than upward (CB symbols typically extend below)
     roi_x1 = label.x + label.width
-    roi_y1 = max(0, label.center_y - search_height // 2)
+    roi_y1 = max(0, label.y - search_up)
     roi_x2 = min(w, roi_x1 + search_width)
-    roi_y2 = min(h, roi_y1 + search_height)
+    roi_y2 = min(h, label.y + label.height + search_down)
 
     if debug:
         print(f"    Search region: ({roi_x1}, {roi_y1}) to ({roi_x2}, {roi_y2})")
@@ -220,7 +222,8 @@ def detect_circles_for_cb(image: np.ndarray,
 def detect_cb_components(labels: List[CBLabel],
                          image: np.ndarray,
                          search_width: int = 250,
-                         search_height: int = 150,
+                         search_up: int = 50,
+                         search_down: int = 250,
                          debug: bool = False) -> List[CBComponent]:
     """
     Detect CB components by finding circles near labels
@@ -229,7 +232,8 @@ def detect_cb_components(labels: List[CBLabel],
         labels: List of CB labels
         image: Schematic image
         search_width: How far right to search (default: 250px)
-        search_height: Height of search region (default: 150px)
+        search_up: How far above label to search (default: 50px)
+        search_down: How far below label to search (default: 250px)
         debug: Print debug info
 
     Returns:
@@ -246,7 +250,8 @@ def detect_cb_components(labels: List[CBLabel],
         circles = detect_circles_for_cb(
             image, label,
             search_width=search_width,
-            search_height=search_height,
+            search_up=search_up,
+            search_down=search_down,
             debug=debug
         )
 
@@ -357,8 +362,10 @@ def main():
     parser.add_argument('--boundary', help='Path to boundary_dimensions.json')
     parser.add_argument('--search-width', type=int, default=250,
                        help='How far right to search for circles (default: 250px)')
-    parser.add_argument('--search-height', type=int, default=150,
-                       help='Height of search region (default: 150px)')
+    parser.add_argument('--search-up', type=int, default=50,
+                       help='How far above label to search (default: 50px)')
+    parser.add_argument('--search-down', type=int, default=250,
+                       help='How far below label to search (default: 250px)')
     parser.add_argument('--debug', action='store_true', help='Print debug info')
     parser.add_argument('--visualize', action='store_true', help='Create visualization')
 
@@ -397,11 +404,12 @@ def main():
         print(f"   Cropped to boundary: {image.shape[1]}x{image.shape[0]}")
 
     # Detect CB components
-    print(f"\n3. Detecting CB symbols (search: {args.search_width}x{args.search_height}px)")
+    print(f"\n3. Detecting CB symbols (search: {args.search_width}px right, {args.search_up}px up, {args.search_down}px down)")
     components = detect_cb_components(
         labels, image,
         search_width=args.search_width,
-        search_height=args.search_height,
+        search_up=args.search_up,
+        search_down=args.search_down,
         debug=args.debug
     )
 
@@ -417,7 +425,8 @@ def main():
         'page_number': args.page_number,
         'boundary': args.boundary,
         'search_width': args.search_width,
-        'search_height': args.search_height,
+        'search_up': args.search_up,
+        'search_down': args.search_down,
         'total_labels': len(labels),
         'detected_components': len(components),
         'components': [asdict(c) for c in components]
