@@ -1,15 +1,15 @@
 #!/usr/bin/env python3
 """
-Extract Symbol-Based Components from Text Detection CSV
+Extract Push Button (PB) Components from Text Detection CSV
 
-Symbol-based components (PB, CT, CB) don't have rectangular borders -
-they're identified directly from text detection. This script extracts
-them from the text CSV for later compilation with rectangle-traced components.
+PB components don't have rectangular borders - they're identified directly
+from text detection. This script extracts them from the text CSV for later
+compilation with rectangle-traced components.
 
 Usage:
   python3 extract_symbol_components.py \
     --text-csv "extraction_results/system_10/visual_3_final/detections_with_visual_ids.csv" \
-    --output "extraction_results/system_10/components/symbol_components.json" \
+    --output "extraction_results/system_10/components/pb_components.json" \
     --page-number 1 \
     --boundary "extraction_results/system_10/boundary_dimensions.json"
 """
@@ -37,8 +37,8 @@ class SymbolComponent:
     source: str           # Always "text_detection" for these
 
 
-# Symbol-based component prefixes
-SYMBOL_COMPONENT_PREFIXES = ['PB', 'CT', 'CB']
+# Symbol-based component prefixes (PB only for now)
+SYMBOL_COMPONENT_PREFIXES = ['PB']
 
 
 def get_component_type(text: str) -> str:
@@ -143,7 +143,7 @@ def extract_symbol_components(csv_path: str,
 
 def main():
     parser = argparse.ArgumentParser(
-        description='Extract symbol-based components (PB, CT, CB) from text detection CSV'
+        description='Extract Push Button (PB) components from text detection CSV'
     )
     parser.add_argument('--text-csv', required=True, help='Path to text detection CSV')
     parser.add_argument('--output', required=True, help='Output JSON path')
