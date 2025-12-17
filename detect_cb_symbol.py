@@ -140,7 +140,7 @@ def detect_circles_for_cb(image: np.ndarray,
                           label: CBLabel,
                           search_width: int = 250,
                           search_up: int = 50,
-                          search_down: int = 250,
+                          search_down: int = 25,
                           min_radius: int = 3,
                           max_radius: int = 20,
                           debug: bool = False) -> List[Tuple[int, int, int]]:
@@ -152,7 +152,7 @@ def detect_circles_for_cb(image: np.ndarray,
         label: CB label with position
         search_width: How far right to search from label (default: 250px)
         search_up: How far above label to search (default: 50px)
-        search_down: How far below label to search (default: 250px)
+        search_down: How far below label to search (default: 25px)
         min_radius: Minimum circle radius (default: 3px)
         max_radius: Maximum circle radius (default: 20px)
         debug: Print debug info
@@ -223,7 +223,7 @@ def detect_cb_components(labels: List[CBLabel],
                          image: np.ndarray,
                          search_width: int = 250,
                          search_up: int = 50,
-                         search_down: int = 250,
+                         search_down: int = 25,
                          debug: bool = False) -> List[CBComponent]:
     """
     Detect CB components by finding circles near labels
@@ -233,7 +233,7 @@ def detect_cb_components(labels: List[CBLabel],
         image: Schematic image
         search_width: How far right to search (default: 250px)
         search_up: How far above label to search (default: 50px)
-        search_down: How far below label to search (default: 250px)
+        search_down: How far below label to search (default: 25px)
         debug: Print debug info
 
     Returns:
@@ -364,8 +364,8 @@ def main():
                        help='How far right to search for circles (default: 250px)')
     parser.add_argument('--search-up', type=int, default=50,
                        help='How far above label to search (default: 50px)')
-    parser.add_argument('--search-down', type=int, default=250,
-                       help='How far below label to search (default: 250px)')
+    parser.add_argument('--search-down', type=int, default=25,
+                       help='How far below label to search (default: 25px)')
     parser.add_argument('--debug', action='store_true', help='Print debug info')
     parser.add_argument('--visualize', action='store_true', help='Create visualization')
 
