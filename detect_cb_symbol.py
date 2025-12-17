@@ -138,9 +138,9 @@ def load_cb_labels(csv_path: str, page_number: int = None,
 
 def detect_circles_for_cb(image: np.ndarray,
                           label: CBLabel,
-                          search_width: int = 50,
-                          search_up: int = 10,
-                          search_height: int = 90,
+                          search_width: int = 203,
+                          search_up: int = 0,
+                          search_height: int = 93,
                           min_radius: int = 3,
                           max_radius: int = 20,
                           debug: bool = False) -> List[Tuple[int, int, int]]:
@@ -150,9 +150,9 @@ def detect_circles_for_cb(image: np.ndarray,
     Args:
         image: Input image (BGR or grayscale)
         label: CB label with position
-        search_width: How far right to search from label (default: 50px)
-        search_up: How far above label to search (default: 10px)
-        search_height: Total height of search region (default: 90px)
+        search_width: How far right to search from label (default: 203px)
+        search_up: How far above label to search (default: 0px)
+        search_height: Total height of search region (default: 93px)
         min_radius: Minimum circle radius (default: 3px)
         max_radius: Maximum circle radius (default: 20px)
         debug: Print debug info
@@ -221,9 +221,9 @@ def detect_circles_for_cb(image: np.ndarray,
 
 def detect_cb_components(labels: List[CBLabel],
                          image: np.ndarray,
-                         search_width: int = 50,
-                         search_up: int = 10,
-                         search_height: int = 90,
+                         search_width: int = 203,
+                         search_up: int = 0,
+                         search_height: int = 93,
                          debug: bool = False) -> List[CBComponent]:
     """
     Detect CB components by finding circles near labels
@@ -231,9 +231,9 @@ def detect_cb_components(labels: List[CBLabel],
     Args:
         labels: List of CB labels
         image: Schematic image
-        search_width: How far right to search (default: 50px)
-        search_up: How far above label to search (default: 10px)
-        search_height: Total height of search region (default: 90px)
+        search_width: How far right to search (default: 203px)
+        search_up: How far above label to search (default: 0px)
+        search_height: Total height of search region (default: 93px)
         debug: Print debug info
 
     Returns:
@@ -314,9 +314,9 @@ def visualize_cb_detection(image_path: str,
                            components: List[CBComponent],
                            output_path: str,
                            boundary: Tuple[int, int, int, int] = None,
-                           search_width: int = 50,
-                           search_up: int = 10,
-                           search_height: int = 90):
+                           search_width: int = 203,
+                           search_up: int = 0,
+                           search_height: int = 93):
     """
     Create visualization of detected CB components
     """
@@ -373,12 +373,12 @@ def main():
     parser.add_argument('--output', required=True, help='Output JSON path')
     parser.add_argument('--page-number', type=int, help='Page number to process')
     parser.add_argument('--boundary', help='Path to boundary_dimensions.json')
-    parser.add_argument('--search-width', type=int, default=50,
-                       help='How far right to search for circles (default: 50px)')
-    parser.add_argument('--search-up', type=int, default=10,
-                       help='How far above label to search (default: 10px)')
-    parser.add_argument('--search-height', type=int, default=90,
-                       help='Total height of search region (default: 90px)')
+    parser.add_argument('--search-width', type=int, default=203,
+                       help='How far right to search for circles (default: 203px)')
+    parser.add_argument('--search-up', type=int, default=0,
+                       help='How far above label to search (default: 0px)')
+    parser.add_argument('--search-height', type=int, default=93,
+                       help='Total height of search region (default: 93px)')
     parser.add_argument('--debug', action='store_true', help='Print debug info')
     parser.add_argument('--visualize', action='store_true', help='Create visualization')
 
