@@ -1,0 +1,443 @@
+"""
+Vision API Integration for TRACE
+Uses Claude Vision API to analyze crane schematic images
+"""
+
+import os
+import json
+from typing import Dict, List, Any, Optional
+import base64
+
+try:
+    from anthropic import Anthropic
+    ANTHROPIC_AVAILABLE = True
+except ImportError:
+    ANTHROPIC_AVAILABLE = False
+
+try:
+    from dotenv import load_dotenv
+    DOTENV_AVAILABLE = True
+except ImportError:
+    DOTENV_AVAILABLE = False
+
+
+class VisionAnalyzer:
+    """Analyzes schematic images using Claude Vision API"""
+
+    def __init__(self, api_key: str = None):
+        """
+        Initialize Vision Analyzer
+
+        Args:
+            api_key: Anthropic API key (or set ANTHROPIC_API_KEY env var)
+        """
+        # Load .env file if available
+        if DOTENV_AVAILABLE:
+            load_dotenv()
+
+        if not ANTHROPIC_AVAILABLE:
+            print("⚠ anthropic library not installed. Run: pip install anthropic")
+            self.client = None
+            return
+
+        # Get API key from parameter or environment
+        self.api_key = api_key or os.getenv('ANTHROPIC_API_KEY')
+
+        if not self.api_key:
+            print("⚠ No API key found. Set ANTHROPIC_API_KEY environment variable")
+            self.client = None
+        else:
+            self.client = Anthropic(api_key=self.api_key)
+
+    def _encode_image(self, image_path: str) -> Optional[str]:
+        """Encode image to base64"""
+        try:
+            with open(image_path, 'rb') as img_file:
+                return base64.standard_b64encode(img_file.read()).decode('utf-8')
+        except Exception as e:
+            print(f"✗ Error encoding image: {e}")
+            return None
+
+    def _get_image_media_type(self, image_path: str) -> str:
+        """Determine media type from file extension"""
+        ext = os.path.splitext(image_path)[1].lower()
+        media_types = {
+            '.png': 'image/png',
+            '.jpg': 'image/jpeg',
+            '.jpeg': 'image/jpeg',
+            '.gif': 'image/gif',
+            '.webp': 'image/webp'
+        }
+        return media_types.get(ext, 'image/png')
+
+    def index_page(self, image_path: str, page_num: int) -> Optional[Dict[str, Any]]:
+        """
+        Index a schematic page by extracting structured data
+
+        Args:
+            image_path: Path to page image
+            page_num: Page number
+
+        Returns:
+            Dictionary with extracted data or None on error
+        """
+        if not self.client:
+            return None
+
+        # Encode image
+        image_data = self._encode_image(image_path)
+        if not image_data:
+            return None
+
+        # Create indexing prompt
+        prompt = """Analyze this crane electrical schematic page and extract structured information.
+
+IMPORTANT: First, look at the BOTTOM RIGHT CORNER of the schematic for metadata:
+- SHEET NUMBER: Look for "sheet XXX" or just a number (e.g., "102", "sheet 105")
+- SYSTEM GROUP: Look for =XX format (e.g., "=10", "=61")
+- LOCATION: Look for +XXX format (e.g., "+E3", "+OPC", "+SPR")
+
+Then extract ALL of the following from the main schematic:
+
+1. SHEET METADATA (from bottom right corner):
+   - sheet_number: The sheet number (just the number, e.g., "102")
+   - system_group: The system code in =XX format (e.g., "=10")
+   - location: The location code in +XXX format (e.g., "+E3")
+
+2. REFERENCES: All schematic references in format =XX/YY.Y.Z (e.g., =10/102.0.3, =22/1.1.1)
+3. COMPONENTS: Component names and IDs (e.g., "Slave 22", "Breaker B1", "Motor M1", "Transformer T1")
+4. CABINETS: Cabinet identifiers (e.g., "E11", "E12", "Cabinet E15")
+5. TERMINALS: Terminal IDs (e.g., "1U", "2V", "3W", "X1", "A1")
+6. WIRE_NUMBERS: Wire identification numbers if visible
+7. CONNECTIONS: Key connections you can identify (e.g., "HVC3 breaker to =61/4.1.3")
+8. SUMMARY: Brief description of what this page shows (1-2 sentences)
+
+Return ONLY a JSON object with these fields:
+{
+  "sheet_number": "102",
+  "system_group": "=10",
+  "location": "+E3",
+  "references": ["=10/1.1.1", "=10/1.1.2", ...],
+  "components": ["Breaker B1", "Breaker B2", ...],
+  "cabinets": ["E11"],
+  "terminals": ["1U", "2V", "3W"],
+  "wire_numbers": ["W1", "W2", ...],
+  "connections": ["Component A to =XX/YY.Y.Z", ...],
+  "summary": "Brief description of page content"
+}
+
+If a field has no data, return an empty array or empty string. For sheet metadata, return empty string if not found.
+"""
+
+        try:
+            # Call Vision API
+            message = self.client.messages.create(
+                model="claude-3-5-sonnet-20241022",
+                max_tokens=2048,
+                messages=[
+                    {
+                        "role": "user",
+                        "content": [
+                            {
+                                "type": "image",
+                                "source": {
+                                    "type": "base64",
+                                    "media_type": self._get_image_media_type(image_path),
+                                    "data": image_data,
+                                },
+                            },
+                            {
+                                "type": "text",
+                                "text": prompt
+                            }
+                        ],
+                    }
+                ],
+            )
+
+            # Parse response
+            response_text = message.content[0].text
+
+            # Extract JSON from response (might have markdown code blocks)
+            if "```json" in response_text:
+                json_start = response_text.find("```json") + 7
+                json_end = response_text.find("```", json_start)
+                response_text = response_text[json_start:json_end].strip()
+            elif "```" in response_text:
+                json_start = response_text.find("```") + 3
+                json_end = response_text.find("```", json_start)
+                response_text = response_text[json_start:json_end].strip()
+
+            # Parse JSON
+            extracted_data = json.loads(response_text)
+
+            # Add metadata
+            extracted_data['page_number'] = page_num
+            extracted_data['indexed_with'] = 'claude-vision'
+
+            return extracted_data
+
+        except json.JSONDecodeError as e:
+            print(f"⚠ Failed to parse Vision API response as JSON: {e}")
+            print(f"Response: {response_text[:200]}...")
+            return None
+        except Exception as e:
+            print(f"✗ Error calling Vision API: {e}")
+            return None
+
+    def extract_parts_list(self, image_path: str, page_num: int, section_code: str = None) -> Optional[Dict[str, Any]]:
+        """
+        Extract parts list table from a parts list page
+
+        Args:
+            image_path: Path to parts list page image
+            page_num: Page number
+            section_code: Section code (e.g., "11" for section 11) to help with OCR context
+
+        Returns:
+            Dictionary with extracted parts data or None on error
+        """
+        if not self.client:
+            return None
+
+        # Encode image
+        image_data = self._encode_image(image_path)
+        if not image_data:
+            return None
+
+        # Build section context for prompt
+        section_context = ""
+        if section_code:
+            section_context = f"\n\nIMPORTANT: This is section {section_code}. All sheet references should start with ={section_code}/ (e.g., ={section_code}/101.2, ={section_code}/16.3).\nBe careful with OCR - the number '{section_code}' might look like other characters. Always use ={section_code}/ for sheet references."
+
+        # Create parts list extraction prompt
+        prompt = f"""Analyze this parts list table and extract ALL component entries.
+
+This is a bilingual table (English/German) with 7 columns:
+1. Quantity (Stückzahl)
+2. Description and function (Benennung und Verwendung)
+3. Identification data - manufacturer/part numbers (Fabrikatsbezeichnung)
+4. Identifying symbol - component ID (Kennzeichen)
+5. Circuit diagram sheet No., section No. (Stromlaufplan, Planabschnitt)
+6. Location (Einbauort)
+7. General remarks (Allgemeine Bemerkungen){section_context}
+
+IMPORTANT PATTERNS:
+- Identifying symbols use format: -XXXX (e.g., -CBTP, -STB1, -TR1, -PB1)
+- Sheet/section references use format: =XX/YYY.Z (e.g., =10/102.2, =11/101.7)
+- Locations use format: +XXXX (e.g., +HVC1, +HVC2, +GDW, +ERI, +MHI)
+
+Extract EVERY row from the table. Return ONLY a JSON object:
+
+{{
+  "parts": [
+    {{
+      "quantity": "1",
+      "description": "main circuit breaker 480V 3-phase",
+      "identification": "Industrial Power Sys D01-47172.17",
+      "symbol": "-CBTP",
+      "sheet_section": "=10/102.2",
+      "location": "+HVC1",
+      "remarks": ""
+    }},
+    {{
+      "quantity": "1",
+      "description": "dry type transformer 4160/3x480V 1600KVA",
+      "identification": "Magnetic Technologies 341600K07HA01",
+      "symbol": "-TR1",
+      "sheet_section": "=10/102.1",
+      "location": "+MHI",
+      "remarks": ""
+    }}
+  ]
+}}
+
+Extract ALL rows visible on this page. If a field is empty, use empty string "".
+Be accurate with the identifying symbols, sheet references, and locations - these are critical for cross-referencing with schematics.
+"""
+
+        try:
+            # Call Vision API
+            message = self.client.messages.create(
+                model="claude-3-5-sonnet-20241022",
+                max_tokens=4096,  # Parts lists can be long
+                messages=[
+                    {
+                        "role": "user",
+                        "content": [
+                            {
+                                "type": "image",
+                                "source": {
+                                    "type": "base64",
+                                    "media_type": self._get_image_media_type(image_path),
+                                    "data": image_data,
+                                },
+                            },
+                            {
+                                "type": "text",
+                                "text": prompt
+                            }
+                        ],
+                    }
+                ],
+            )
+
+            # Parse response
+            response_text = message.content[0].text
+
+            # Extract JSON from response (might have markdown code blocks)
+            if "```json" in response_text:
+                json_start = response_text.find("```json") + 7
+                json_end = response_text.find("```", json_start)
+                response_text = response_text[json_start:json_end].strip()
+            elif "```" in response_text:
+                json_start = response_text.find("```") + 3
+                json_end = response_text.find("```", json_start)
+                response_text = response_text[json_start:json_end].strip()
+
+            # Parse JSON
+            extracted_data = json.loads(response_text)
+
+            # Add metadata
+            extracted_data['page_number'] = page_num
+            extracted_data['indexed_with'] = 'claude-vision'
+
+            return extracted_data
+
+        except json.JSONDecodeError as e:
+            print(f"⚠ Failed to parse Vision API response as JSON: {e}")
+            print(f"Response: {response_text[:200]}...")
+            return None
+        except Exception as e:
+            print(f"✗ Error calling Vision API: {e}")
+            return None
+
+    def ask_question(self, image_paths: List[str], question: str) -> Optional[str]:
+        """
+        Ask a question about schematic page(s)
+
+        Args:
+            image_paths: List of image paths to analyze
+            question: Question to ask
+
+        Returns:
+            Answer string or None on error
+        """
+        if not self.client:
+            return None
+
+        # Build content with images and question
+        content = []
+
+        for image_path in image_paths:
+            image_data = self._encode_image(image_path)
+            if image_data:
+                content.append({
+                    "type": "image",
+                    "source": {
+                        "type": "base64",
+                        "media_type": self._get_image_media_type(image_path),
+                        "data": image_data,
+                    },
+                })
+
+        # Add question
+        content.append({
+            "type": "text",
+            "text": f"""You are analyzing crane electrical schematic diagrams.
+Please answer this question based on the schematic page(s) provided:
+
+{question}
+
+Provide a detailed answer with:
+1. Direct answer to the question
+2. Specific references (=XX/YY.Y.Z format) where relevant
+3. Component names and locations
+4. Any relevant connections or signal paths
+
+Be precise and reference specific elements visible in the schematic."""
+        })
+
+        try:
+            # Call Vision API
+            message = self.client.messages.create(
+                model="claude-3-5-sonnet-20241022",
+                max_tokens=2048,
+                messages=[
+                    {
+                        "role": "user",
+                        "content": content,
+                    }
+                ],
+            )
+
+            return message.content[0].text
+
+        except Exception as e:
+            print(f"✗ Error calling Vision API: {e}")
+            return None
+
+    def analyze_connection(self, image_paths: List[str], from_component: str,
+                          to_component: str = None) -> Optional[str]:
+        """
+        Trace a connection between components
+
+        Args:
+            image_paths: List of image paths to analyze
+            from_component: Starting component
+            to_component: Ending component (optional)
+
+        Returns:
+            Connection description or None on error
+        """
+        if to_component:
+            question = f"Trace the connection from {from_component} to {to_component}. " \
+                      f"Show the complete signal path including all intermediate components, " \
+                      f"wire numbers, terminals, and references."
+        else:
+            question = f"Show all connections from {from_component}. " \
+                      f"List what it connects to, including wire numbers, terminals, and references."
+
+        return self.ask_question(image_paths, question)
+
+    def extract_component_details(self, image_path: str, component_name: str) -> Optional[str]:
+        """
+        Extract detailed information about a specific component
+
+        Args:
+            image_path: Path to schematic image
+            component_name: Name of component to analyze
+
+        Returns:
+            Component details or None on error
+        """
+        question = f"Provide detailed information about {component_name} shown in this schematic. " \
+                  f"Include: location/cabinet, all terminals, connections, ratings, " \
+                  f"and any other specifications visible."
+
+        return self.ask_question([image_path], question)
+
+    def check_api_available(self) -> bool:
+        """Check if Vision API is available and configured"""
+        return self.client is not None
+
+    def get_usage_estimate(self, num_pages: int) -> Dict[str, Any]:
+        """
+        Estimate API usage cost for indexing pages
+
+        Args:
+            num_pages: Number of pages to index
+
+        Returns:
+            Dictionary with cost estimates
+        """
+        # Rough estimates based on Claude Vision pricing
+        cost_per_page = 0.02  # Approximate
+        total_cost = num_pages * cost_per_page
+
+        return {
+            "pages": num_pages,
+            "estimated_cost_per_page": cost_per_page,
+            "estimated_total_cost": total_cost,
+            "note": "Actual costs may vary based on image size and API pricing"
+        }

@@ -1,75 +1,26 @@
-# Python
 __pycache__/
 *.py[cod]
 *$py.class
 *.so
 .Python
-build/
-develop-eggs/
-dist/
-downloads/
-eggs/
-.eggs/
-lib/
-lib64/
-parts/
-sdist/
-var/
-wheels/
-*.egg-info/
-.installed.cfg
-*.egg
-
-# Virtual environments
-venv/
 env/
+venv/
 ENV/
 .venv
-
-# Environment variables
-.env
-.env.local
-
-# Training data (local only)
-data/training_sessions/
-data/corrections/
-data/training_data/
-data/test_storage/
-data/test_kb/
-data/training.db
-data/training.db-journal
-
-# PDFs - ignore actual PDF files but allow directory structure
-data/pdfs/**/*.pdf
-# Allow catalog, readme, and .gitkeep files
-!data/pdfs/catalog.json
-!data/pdfs/README.md
-!data/pdfs/**/.gitkeep
-
-# Knowledge base can be committed, but backups should not
-data/knowledge_base/*.backup
-
-# IDE
-.vscode/
-.idea/
-*.swp
-*.swo
-*~
+*.db
+*.sqlite
 .DS_Store
-
-# Jupyter
-.ipynb_checkpoints/
-
-# Logs
 *.log
-logs/
 
-# Testing
-.pytest_cache/
-.coverage
-htmlcov/
+# API Keys - NEVER commit
+.env
 
-# Temporary files
-*.tmp
-temp/
-tmp/
+# PDF Cache - Regenerate on each computer
+.trace_cache/
+
+# Note: PDFs in schematics/ are tracked by Git LFS (see .gitattributes)
+# They will be stored in LFS, not regular git
+
+# Keep these for syncing:
+# trace_knowledge.json - Manual training
+# schematic_registry.json - PDF indexes

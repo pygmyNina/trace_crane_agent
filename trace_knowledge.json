@@ -1,0 +1,726 @@
+{
+  "schema_rules": {
+    "index_format": "=XX/YY.Y.Z",
+    "wire_rules": {
+      "dots": "connections - dots indicate connected wires",
+      "perpendicular_crossings": "no connection - perpendicular crossings without dots are not connected"
+    }
+  },
+  "components": {
+    "slaves": {
+      "22": {
+        "id": 22,
+        "modules": [
+          "IM151",
+          "PM",
+          "DI",
+          "DI",
+          "DI",
+          "DI",
+          "DI",
+          "DI",
+          "DI",
+          "DI",
+          "DI",
+          "DI",
+          "DI",
+          "DI",
+          "DI",
+          "DI",
+          "DI",
+          "DI",
+          "DI",
+          "DI",
+          "DI",
+          "DI",
+          "DI",
+          "DI",
+          "DI",
+          "DI",
+          "DI",
+          "DI",
+          "DI",
+          "DI",
+          "DI",
+          "DI",
+          "DI",
+          "DI",
+          "DI",
+          "DI",
+          "DI",
+          "DI",
+          "DI",
+          "DI",
+          "DI",
+          "DI",
+          "RTD",
+          "RTD",
+          "RTD"
+        ],
+        "module_count": 45,
+        "cabinet": "E11",
+        "added": "2025-10-24T07:28:39.515519"
+      },
+      "23": {
+        "id": 23,
+        "modules": [],
+        "module_count": 30,
+        "cabinet": "E12",
+        "added": "2025-10-24T14:00:19.987201"
+      }
+    },
+    "modules": {},
+    "cabinets": {},
+    "breakers": {},
+    "transformers": {
+      "main": {
+        "name": "Main transformer",
+        "reference": "=10/102.0.3",
+        "terminal": "1U",
+        "type": "main_transformer"
+      }
+    }
+  },
+  "connections": [
+    {
+      "from": "HVC3 breaker signal",
+      "to": "=61/4.1.3",
+      "signal_type": "breaker_signal",
+      "notes": "HVC3 breaker status signal routing",
+      "added": "2025-10-24T13:59:53.796324"
+    },
+    {
+      "from": "HVC3 breaker signal",
+      "to": "=61/4.1.3",
+      "signal_type": "breaker_signal",
+      "notes": "HVC3 breaker status signal routing",
+      "added": "2025-10-24T07:28:39.515710"
+    }
+  ],
+  "sequences": {
+    "slave": {
+      "sequence": [
+        22,
+        23,
+        60,
+        24,
+        61,
+        20
+      ],
+      "description": "Discovered slave sequence order",
+      "added": "2025-10-24T07:28:39.515332"
+    }
+  },
+  "learnings": [
+    {
+      "topic": "index_format",
+      "content": "Index format: =XX/YY.Y.Z - This is the standard reference format used throughout crane schematics",
+      "source": "oct23_training",
+      "timestamp": "2025-10-24T13:59:53.795207"
+    },
+    {
+      "topic": "wire_rules",
+      "content": "Wire rule: dots indicate connections - When wires cross with a dot, they are electrically connected",
+      "source": "oct23_training",
+      "timestamp": "2025-10-24T13:59:53.795494"
+    },
+    {
+      "topic": "wire_rules",
+      "content": "Wire rule: perpendicular crossings without dots indicate no connection - When wires cross perpendicularly without a dot, they are NOT electrically connected",
+      "source": "oct23_training",
+      "timestamp": "2025-10-24T13:59:53.795706"
+    },
+    {
+      "topic": "index_format",
+      "content": "Index format: =XX/YY.Y.Z - This is the standard reference format used throughout crane schematics",
+      "source": "oct23_training",
+      "timestamp": "2025-10-24T07:28:39.514844"
+    },
+    {
+      "topic": "wire_rules",
+      "content": "Wire rule: dots indicate connections - When wires cross with a dot, they are electrically connected",
+      "source": "oct23_training",
+      "timestamp": "2025-10-24T07:28:39.515006"
+    },
+    {
+      "topic": "wire_rules",
+      "content": "Wire rule: perpendicular crossings without dots indicate no connection - When wires cross perpendicularly without a dot, they are NOT electrically connected",
+      "source": "oct23_training",
+      "timestamp": "2025-10-24T07:28:39.515136"
+    }
+  ],
+  "training_sessions": [
+    {
+      "source": "import_script",
+      "date": "2024-10-23",
+      "description": "Initial training data from October 23, 2024",
+      "items": [
+        "Index format rule",
+        "Wire connection rules",
+        "Slave sequence: 22,23,60,24,61,20",
+        "Slave 22 configuration",
+        "HVC3 breaker connection",
+        "Main transformer location"
+      ],
+      "timestamp": "2025-10-24T13:59:53.796695"
+    },
+    {
+      "source": "import_script",
+      "date": "2024-10-23",
+      "description": "Initial training data from October 23, 2024",
+      "items": [
+        "Index format rule",
+        "Wire connection rules",
+        "Slave sequence: 22,23,60,24,61,20",
+        "Slave 22 configuration",
+        "HVC3 breaker connection",
+        "Main transformer location"
+      ],
+      "timestamp": "2025-10-24T07:28:39.516076"
+    },
+    {
+      "log": [
+        {
+          "input": "i want to see if you retained the system groupds and corrispoding number codes?",
+          "type": "training"
+        }
+      ],
+      "items_count": 1,
+      "timestamp": "2025-10-24T12:28:46.770050"
+    }
+  ],
+  "system_groups": {
+    "=10": {
+      "code": "=10",
+      "definition": "MV-Supply",
+      "source": "glossary/electrical_sections.docx",
+      "added": "2025-10-24T15:26:25.705992"
+    },
+    "=11": {
+      "code": "=11",
+      "definition": "Feeding",
+      "source": "glossary/electrical_sections.docx",
+      "added": "2025-10-24T15:26:25.706032"
+    },
+    "=12": {
+      "code": "=12",
+      "definition": "Lighting and aux. device",
+      "source": "glossary/electrical_sections.docx",
+      "added": "2025-10-24T15:26:25.706063"
+    },
+    "=13": {
+      "code": "=13",
+      "definition": "Spreader",
+      "source": "glossary/electrical_sections.docx",
+      "added": "2025-10-24T15:26:25.706094"
+    },
+    "=14": {
+      "code": "=14",
+      "definition": "Spreader cable drum",
+      "source": "glossary/electrical_sections.docx",
+      "added": "2025-10-24T15:26:25.706124"
+    },
+    "=17": {
+      "code": "=17",
+      "definition": "Trim/List/Skew adjustment",
+      "source": "glossary/electrical_sections.docx",
+      "added": "2025-10-24T15:26:25.706154"
+    },
+    "=18": {
+      "code": "=18",
+      "definition": "Rectifier/regenerative unit",
+      "source": "glossary/electrical_sections.docx",
+      "added": "2025-10-24T15:26:25.706184"
+    },
+    "=19": {
+      "code": "=19",
+      "definition": "fire extinguishing system",
+      "source": "glossary/electrical_sections.docx",
+      "added": "2025-10-24T15:26:25.706213"
+    },
+    "=20": {
+      "code": "=20",
+      "definition": "hoist unit 1+2",
+      "source": "glossary/electrical_sections.docx",
+      "added": "2025-10-24T15:26:25.706242"
+    },
+    "=21": {
+      "code": "=21",
+      "definition": "Hoist unit 1",
+      "source": "glossary/electrical_sections.docx",
+      "added": "2025-10-24T15:26:25.706273"
+    },
+    "=22": {
+      "code": "=22",
+      "definition": "Hoist unit 2",
+      "source": "glossary/electrical_sections.docx",
+      "added": "2025-10-24T15:26:25.706304"
+    },
+    "=23": {
+      "code": "=23",
+      "definition": "Boom Hoist",
+      "source": "glossary/electrical_sections.docx",
+      "added": "2025-10-24T15:26:25.706334"
+    },
+    "=31": {
+      "code": "=31",
+      "definition": "Trolley Travel",
+      "source": "glossary/electrical_sections.docx",
+      "added": "2025-10-24T15:26:25.706363"
+    },
+    "=35": {
+      "code": "=35",
+      "definition": "festoon",
+      "source": "glossary/electrical_sections.docx",
+      "added": "2025-10-24T15:26:25.706392"
+    },
+    "=41": {
+      "code": "=41",
+      "definition": "Gantry Travel",
+      "source": "glossary/electrical_sections.docx",
+      "added": "2025-10-24T15:26:25.706421"
+    },
+    "=61": {
+      "code": "=61",
+      "definition": "PLC/CMS",
+      "source": "glossary/electrical_sections.docx",
+      "added": "2025-10-24T15:26:25.706450"
+    },
+    "=62": {
+      "code": "=62",
+      "definition": "Anti-Sway-System",
+      "source": "glossary/electrical_sections.docx",
+      "added": "2025-10-24T15:26:25.706478"
+    },
+    "=63": {
+      "code": "=63",
+      "definition": "Wireless network",
+      "source": "glossary/electrical_sections.docx",
+      "added": "2025-10-24T15:26:25.706507"
+    },
+    "=71": {
+      "code": "=71",
+      "definition": "Control Panels",
+      "source": "glossary/electrical_sections.docx",
+      "added": "2025-10-24T15:26:25.706536"
+    },
+    "=75": {
+      "code": "=75",
+      "definition": "camera system, truck positioning",
+      "source": "glossary/electrical_sections.docx",
+      "added": "2025-10-24T15:26:25.706564"
+    },
+    "=81": {
+      "code": "=81",
+      "definition": "Telephone system",
+      "source": "glossary/electrical_sections.docx",
+      "added": "2025-10-24T15:26:25.706592"
+    }
+  },
+  "terminals": {
+    "-X10": {
+      "code": "-X10",
+      "terminal_type": "Power terminal",
+      "source": "glossary/electrical_sections.docx",
+      "added": "2025-10-24T15:26:25.706895"
+    },
+    "-X11": {
+      "code": "-X11",
+      "terminal_type": "Control terminal 230V",
+      "source": "glossary/electrical_sections.docx",
+      "added": "2025-10-24T15:26:25.706927"
+    },
+    "-X12": {
+      "code": "-X12",
+      "terminal_type": "Control terminal 24VDC",
+      "source": "glossary/electrical_sections.docx",
+      "added": "2025-10-24T15:26:25.706958"
+    },
+    "-X14A": {
+      "code": "-X14A",
+      "terminal_type": "Analog signal terminal",
+      "source": "glossary/electrical_sections.docx",
+      "added": "2025-10-24T15:26:25.706988"
+    },
+    "-X15D": {
+      "code": "-X15D",
+      "terminal_type": "Digital signal terminal",
+      "source": "glossary/electrical_sections.docx",
+      "added": "2025-10-24T15:26:25.707019"
+    },
+    "-X16": {
+      "code": "-X16",
+      "terminal_type": "Fiber optic-Connection",
+      "source": "glossary/electrical_sections.docx",
+      "added": "2025-10-24T15:26:25.707049"
+    }
+  },
+  "locations": {
+    "shorthand expression for crane locations in circuit diagrams": {
+      "abbreviation": "shorthand expression for crane locations in circuit diagrams",
+      "description": "location",
+      "source": "electrical_locations.csv",
+      "added": "2025-10-24T18:30:24.432677"
+    },
+    "+BDA": {
+      "abbreviation": "+BDA",
+      "description": "Boom Hoist Drive Auxiliary Box",
+      "source": "electrical_locations.csv",
+      "added": "2025-10-24T18:30:24.432694"
+    },
+    "+BFC": {
+      "abbreviation": "+BFC",
+      "description": "Bridge Girder Festoon Terminal Box Control",
+      "source": "electrical_locations.csv",
+      "added": "2025-10-24T18:30:24.432699"
+    },
+    "+BFP": {
+      "abbreviation": "+BFP",
+      "description": "Bridge Girder Festoon Terminal Box Power",
+      "source": "electrical_locations.csv",
+      "added": "2025-10-24T18:30:24.432703"
+    },
+    "+BGH": {
+      "abbreviation": "+BGH",
+      "description": "Bridge Girder Hinge Terminal Box",
+      "source": "electrical_locations.csv",
+      "added": "2025-10-24T18:30:24.432706"
+    },
+    "+BGI": {
+      "abbreviation": "+BGI",
+      "description": "Bridge Girder Inside",
+      "source": "electrical_locations.csv",
+      "added": "2025-10-24T18:30:24.432709"
+    },
+    "+BGR": {
+      "abbreviation": "+BGR",
+      "description": "Bridge Girder",
+      "source": "electrical_locations.csv",
+      "added": "2025-10-24T18:30:24.432713"
+    },
+    "+BCS": {
+      "abbreviation": "+BCS",
+      "description": "BoomHoistControlStation",
+      "source": "electrical_locations.csv",
+      "added": "2025-10-24T18:30:24.432716"
+    },
+    "+BOH": {
+      "abbreviation": "+BOH",
+      "description": "Boom Hinge Terminal Box",
+      "source": "electrical_locations.csv",
+      "added": "2025-10-24T18:30:24.432720"
+    },
+    "+BOI": {
+      "abbreviation": "+BOI",
+      "description": "Boom Inside",
+      "source": "electrical_locations.csv",
+      "added": "2025-10-24T18:30:24.432723"
+    },
+    "+BOM": {
+      "abbreviation": "+BOM",
+      "description": "Boom",
+      "source": "electrical_locations.csv",
+      "added": "2025-10-24T18:30:24.432727"
+    },
+    "+CHC": {
+      "abbreviation": "+CHC",
+      "description": "Checker\u00b4s Cabin",
+      "source": "electrical_locations.csv",
+      "added": "2025-10-24T18:30:24.432731"
+    },
+    "+CLI": {
+      "abbreviation": "+CLI",
+      "description": "Cross Beam Landside Inside",
+      "source": "electrical_locations.csv",
+      "added": "2025-10-24T18:30:24.432735"
+    },
+    "+CLO": {
+      "abbreviation": "+CLO",
+      "description": "Cross Beam Landside Outside",
+      "source": "electrical_locations.csv",
+      "added": "2025-10-24T18:30:24.432738"
+    },
+    "+CWI": {
+      "abbreviation": "+CWI",
+      "description": "Cross Beam Waterside Inside",
+      "source": "electrical_locations.csv",
+      "added": "2025-10-24T18:30:24.432741"
+    },
+    "+CWO": {
+      "abbreviation": "+CWO",
+      "description": "Cross Beam Waterside Outside",
+      "source": "electrical_locations.csv",
+      "added": "2025-10-24T18:30:24.432744"
+    },
+    "+DSL": {
+      "abbreviation": "+DSL",
+      "description": "DriverSeatLeft",
+      "source": "electrical_locations.csv",
+      "added": "2025-10-24T18:30:24.432748"
+    },
+    "+DSR": {
+      "abbreviation": "+DSR",
+      "description": "DriverSeatRight",
+      "source": "electrical_locations.csv",
+      "added": "2025-10-24T18:30:24.432751"
+    },
+    "+E../.": {
+      "abbreviation": "+E../.",
+      "description": "Mounting Plate, Electrical equipment",
+      "source": "electrical_locations.csv",
+      "added": "2025-10-24T18:30:24.432754"
+    },
+    "+ERI": {
+      "abbreviation": "+ERI",
+      "description": "Electrical Room Inside",
+      "source": "electrical_locations.csv",
+      "added": "2025-10-24T18:30:24.432758"
+    },
+    "+GCS": {
+      "abbreviation": "+GCS",
+      "description": "Ground Control Station",
+      "source": "electrical_locations.csv",
+      "added": "2025-10-24T18:30:24.432761"
+    },
+    "+GDL": {
+      "abbreviation": "+GDL",
+      "description": "Gantry Drive Landside",
+      "source": "electrical_locations.csv",
+      "added": "2025-10-24T18:30:24.432764"
+    },
+    "+GDW": {
+      "abbreviation": "+GDW",
+      "description": "Gantry Drive Waterside",
+      "source": "electrical_locations.csv",
+      "added": "2025-10-24T18:30:24.432768"
+    },
+    "+HDA": {
+      "abbreviation": "+HDA",
+      "description": "Hoist Drive Auxiliary Box",
+      "source": "electrical_locations.csv",
+      "added": "2025-10-24T18:30:24.432771"
+    },
+    "+HFR": {
+      "abbreviation": "+HFR",
+      "description": "Headframe",
+      "source": "electrical_locations.csv",
+      "added": "2025-10-24T18:30:24.432774"
+    },
+    "+HFT": {
+      "abbreviation": "+HFT",
+      "description": "Headframe Terminal Box",
+      "source": "electrical_locations.csv",
+      "added": "2025-10-24T18:30:24.432778"
+    },
+    "+HVC": {
+      "abbreviation": "+HVC",
+      "description": "High Voltage Switch Control Box",
+      "source": "electrical_locations.csv",
+      "added": "2025-10-24T18:30:24.432781"
+    },
+    "+HVC1": {
+      "abbreviation": "+HVC1",
+      "description": "High Voltage Switch Control Box #1",
+      "source": "section_10_parts_list",
+      "added": "2025-10-27T00:00:00.000000"
+    },
+    "+HVC2": {
+      "abbreviation": "+HVC2",
+      "description": "High Voltage Switch Control Box #2",
+      "source": "section_10_parts_list",
+      "added": "2025-10-27T00:00:00.000000"
+    },
+    "+HVC3": {
+      "abbreviation": "+HVC3",
+      "description": "High Voltage Switch Control Box #3",
+      "source": "section_10_parts_list",
+      "added": "2025-10-27T00:00:00.000000"
+    },
+    "+LLL": {
+      "abbreviation": "+LLL",
+      "description": "Leg Landside Left",
+      "source": "electrical_locations.csv",
+      "added": "2025-10-24T18:30:24.432784"
+    },
+    "+LLR": {
+      "abbreviation": "+LLR",
+      "description": "Leg Landside Right",
+      "source": "electrical_locations.csv",
+      "added": "2025-10-24T18:30:24.432787"
+    },
+    "+LLT": {
+      "abbreviation": "+LLT",
+      "description": "Leg LandsideTermial box",
+      "source": "electrical_locations.csv",
+      "added": "2025-10-24T18:30:24.432790"
+    },
+    "+LWT": {
+      "abbreviation": "+LWT",
+      "description": "Leg WandsideTermial box",
+      "source": "electrical_locations.csv",
+      "added": "2025-10-24T18:30:24.432794"
+    },
+    "+LWL": {
+      "abbreviation": "+LWL",
+      "description": "Leg Waterside Left",
+      "source": "electrical_locations.csv",
+      "added": "2025-10-24T18:30:24.432797"
+    },
+    "+LWR": {
+      "abbreviation": "+LWR",
+      "description": "Leg Waterside Right",
+      "source": "electrical_locations.csv",
+      "added": "2025-10-24T18:30:24.432800"
+    },
+    "+MHI": {
+      "abbreviation": "+MHI",
+      "description": "Machinery House Inside",
+      "source": "electrical_locations.csv",
+      "added": "2025-10-24T18:30:24.432803"
+    },
+    "+MHO": {
+      "abbreviation": "+MHO",
+      "description": "Machinery  House Outside",
+      "source": "electrical_locations.csv",
+      "added": "2025-10-24T18:30:24.432806"
+    },
+    "+MLR": {
+      "abbreviation": "+MLR",
+      "description": "Machinery H. Local Station Rope changing Boom",
+      "source": "electrical_locations.csv",
+      "added": "2025-10-24T18:30:24.432810"
+    },
+    "+OCE": {
+      "abbreviation": "+OCE",
+      "description": "Operators Cabin Electrical equipment plate",
+      "source": "electrical_locations.csv",
+      "added": "2025-10-24T18:30:24.432881"
+    },
+    "+OFC": {
+      "abbreviation": "+OFC",
+      "description": "Operators Cabin Front Console",
+      "source": "electrical_locations.csv",
+      "added": "2025-10-24T18:30:24.432885"
+    },
+    "+OPC": {
+      "abbreviation": "+OPC",
+      "description": "Operators Cabin",
+      "source": "electrical_locations.csv",
+      "added": "2025-10-24T18:30:24.432888"
+    },
+    "+OPS": {
+      "abbreviation": "+OPS",
+      "description": "Operator`s Seat",
+      "source": "electrical_locations.csv",
+      "added": "2025-10-24T18:30:24.432892"
+    },
+    "+OSC": {
+      "abbreviation": "+OSC",
+      "description": "Operator Cabin Side Console",
+      "source": "electrical_locations.csv",
+      "added": "2025-10-24T18:30:24.432895"
+    },
+    "+PBL": {
+      "abbreviation": "+PBL",
+      "description": "Portal Beam Left",
+      "source": "electrical_locations.csv",
+      "added": "2025-10-24T18:30:24.432898"
+    },
+    "+PBR": {
+      "abbreviation": "+PBR",
+      "description": "Portal Beam Right",
+      "source": "electrical_locations.csv",
+      "added": "2025-10-24T18:30:24.432902"
+    },
+    "+PYT": {
+      "abbreviation": "+PYT",
+      "description": "Pylon Terminal Box",
+      "source": "electrical_locations.csv",
+      "added": "2025-10-24T18:30:24.432906"
+    },
+    "+PYW": {
+      "abbreviation": "+PYW",
+      "description": "Pylon Waterside",
+      "source": "electrical_locations.csv",
+      "added": "2025-10-24T18:30:24.432909"
+    },
+    "+SLI": {
+      "abbreviation": "+SLI",
+      "description": "Sillbeam Landside Inside",
+      "source": "electrical_locations.csv",
+      "added": "2025-10-24T18:30:24.432912"
+    },
+    "+SLT": {
+      "abbreviation": "+SLT",
+      "description": "Sillbeam Landside Terminal Box",
+      "source": "electrical_locations.csv",
+      "added": "2025-10-24T18:30:24.432915"
+    },
+    "+SPR": {
+      "abbreviation": "+SPR",
+      "description": "Spreader",
+      "source": "electrical_locations.csv",
+      "added": "2025-10-24T18:30:24.432918"
+    },
+    "+SWI": {
+      "abbreviation": "+SWI",
+      "description": "Sillbeam Waterside Inside",
+      "source": "electrical_locations.csv",
+      "added": "2025-10-24T18:30:24.432922"
+    },
+    "+SWT": {
+      "abbreviation": "+SWT",
+      "description": "Sillbeam Waterside Terminal Box",
+      "source": "electrical_locations.csv",
+      "added": "2025-10-24T18:30:24.432925"
+    },
+    "+TEC": {
+      "abbreviation": "+TEC",
+      "description": "Trolley Electrical Cubicle",
+      "source": "electrical_locations.csv",
+      "added": "2025-10-24T18:30:24.432928"
+    },
+    "+TFP": {
+      "abbreviation": "+TFP",
+      "description": "Trolley Festoon Terminal  Box Power",
+      "source": "electrical_locations.csv",
+      "added": "2025-10-24T18:30:24.432931"
+    },
+    "+TDA": {
+      "abbreviation": "+TDA",
+      "description": "Trolley DriveAuxiliary",
+      "source": "electrical_locations.csv",
+      "added": "2025-10-24T18:30:24.432935"
+    },
+    "+TLM": {
+      "abbreviation": "+TLM",
+      "description": "Trolley Local Station for Maintenance Trolley",
+      "source": "electrical_locations.csv",
+      "added": "2025-10-24T18:30:24.432938"
+    },
+    "+TLR": {
+      "abbreviation": "+TLR",
+      "description": "Trolley Local Station for Rope changing  hoist",
+      "source": "electrical_locations.csv",
+      "added": "2025-10-24T18:30:24.432941"
+    },
+    "+TMH": {
+      "abbreviation": "+TMH",
+      "description": "Trolley Machinery House",
+      "source": "electrical_locations.csv",
+      "added": "2025-10-24T18:30:24.432944"
+    },
+    "+TRO": {
+      "abbreviation": "+TRO",
+      "description": "Trolley",
+      "source": "electrical_locations.csv",
+      "added": "2025-10-24T18:30:24.432947"
+    },
+    "+TSD": {
+      "abbreviation": "+TSD",
+      "description": "Spreader Drum on Trolley",
+      "source": "electrical_locations.csv",
+      "added": "2025-10-24T18:30:24.432951"
+    }
+  }
+}

@@ -1,5 +1,23 @@
-PyMuPDF>=1.23.0
+# TRACE Requirements
+# Core dependencies for CLI and API
+
+# AI & Vision
 anthropic>=0.25.0
+opencv-python>=4.8.0
+numpy>=1.24.0
+
+# PDF Processing
+pypdf>=3.0.0
+pdf2image>=1.16.0
+# Note: Requires poppler-utils system package
+
+# Configuration
 python-dotenv>=1.0.0
-pillow>=10.0.0
-rich>=13.0.0
+
+# API Framework
+fastapi>=0.104.0
+uvicorn[standard]>=0.24.0
+python-multipart>=0.0.6
+
+# Optional but recommended
+requests>=2.31.0

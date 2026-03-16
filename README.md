@@ -1,564 +1,253 @@
-# TRACE Training System for Crane Schematics
+# TRACE - Crane Schematic Assistant & Copilot
 
-An intelligent, AI-powered dual training system for crane electrical schematics.
+**T**raining **R**etention and **A**ssistance for **C**rane **E**lectrical systems
 
-## 🎯 Two Training Systems
-
-This repository contains **TWO different training systems**:
-
-### 1. **Human Training** (YOU learn from Claude)
-The original TRACE system where YOU learn to read crane schematics:
-- Claude quizzes you on schematic reading
-- You answer questions
-- System tracks your progress
-- **Use**: `python3 main.py`
-
-### 2. **Agent Training** (Claude learns from YOU) 🆕
-NEW system where CLAUDE learns to read YOUR schematics:
-
-**Two Training Modes:**
-
-**A) Ground Truth Labeling** ⭐ (Recommended)
-- YOU label everything comprehensively first
-- Claude analyzes same schematic
-- Compare Claude vs your labels
-- **Use**: `python3 scripts/train_agent_with_ground_truth.py --section 61`
-- **Guide**: [GROUND_TRUTH_TRAINING.md](GROUND_TRUTH_TRAINING.md)
-
-**B) Correction-Based**
-- Claude analyzes first
-- You correct Claude's mistakes
-- **Use**: `python3 scripts/train_agent.py --section 61`
-- **Guide**: [AGENT_TRAINING_GUIDE.md](AGENT_TRAINING_GUIDE.md)
-
-**Most users will want the Agent Training system** to teach Claude about their specific crane schematics.
-
----
-
-## 🤖 Crane Mechanic AI Copilot System (6 Phases)
-
-The ultimate goal is a **complete AI copilot for crane mechanics**. Here's the roadmap:
-
-### Phase 1: Agent Training ✅ COMPLETE
-Train Claude to read YOUR crane schematics
-- Ground truth labeling system
-- Training data builder
-- Fine-tuning dataset generation
-- **Status**: Operational
-
-### Phase 2: Database Builder ✅ COMPLETE
-Build searchable component database
-- Extract training data into searchable database
-- Component registry with locations
-- Connection graph (wire connections)
-- **Status**: Operational
-- **Use**: `python3 scripts/build_database.py`
-- **Guide**: [DATABASE_BUILDER_GUIDE.md](DATABASE_BUILDER_GUIDE.md)
-
-### Phase 3: Wire Path Tracer ⏳ NEXT
-Follow electrical paths through schematics
-- Power path tracing
-- Signal path tracing
-- Multi-hop connection following
-- Visual path diagrams
-- **Status**: Planned
-
-### Phase 4: Search & Query Interface ⏳
-Natural language component search
-- "Find the slave in cabinet E11"
-- "Show me all HVC components"
-- "What connects to Slave 23?"
-- **Status**: Planned
-
-### Phase 5: Troubleshooting Copilot AI ⏳
-AI-powered troubleshooting assistant
-- Symptom analysis
-- Diagnostic suggestions
-- Component health checking
-- Repair recommendations
-- **Status**: Planned
-
-### Phase 6: Interactive Chat Interface ⏳
-Conversational copilot for mechanics
-- Natural language chat
-- "Why isn't HVC3 getting power?"
-- "Trace the signal from sensor X to module Y"
-- **Status**: Planned
-
-**Current Status**: Phase 2 complete. Database ready for wire tracing and search capabilities.
-
----
+TRACE is an intelligent assistant designed to help crane mechanics understand, document, and navigate complex crane electrical schematics. It learns from your training and builds a searchable knowledge base of crane components, connections, and schematic conventions.
 
 ## Features
 
-### 1. **PDF Processing System**
-- Import and analyze crane schematic PDFs
-- Extract text and component references
-- Identify index references (=XX/YY.Y.Z format)
-- Find components and their locations
-- Support for page-by-page analysis
+- **Knowledge Base**: Persistent storage of crane schematic information
+  - Slave configurations and module details
+  - Electrical connections and signal routing
+  - Component sequences
+  - Schematic notation rules
 
-### 2. **Conversational Training Interface**
-- Interactive AI trainer powered by Claude
-- Natural language Q&A
-- Immediate feedback and explanations
-- Context-aware question generation
-- Multiple training modes:
-  - Interactive training
-  - Quiz mode
-  - Category-specific practice
+- **Conversational Training**: Teach TRACE through natural language
+  - "Slave 22 has 45 modules in Cabinet E11"
+  - "HVC3 breaker signal goes to =61/4.1.3"
+  - "Slave sequence: 22,23,60,24,61,20"
 
-### 3. **Correction Logging System**
-- Tracks all mistakes and corrections
-- Categorizes errors by topic
-- Identifies problem areas
-- Generates improvement recommendations
-- Exports correction reports
+- **PDF Schematic Loader**: Import and extract data from schematic PDFs
 
-### 4. **Local Storage**
-- SQLite database for structured data
-- JSON files for detailed session logs
-- Training history tracking
-- Performance analytics
-- Category-based statistics
+- **Search & Query**: Quickly find information about slaves, connections, and components
 
-### 5. **Foundation Knowledge Base**
-Built on October 23 training foundations:
-- **Index Format**: `=XX/YY.Y.Z` where XX=section, YY.Y=sheet, Z=column
-- **Shorthand Notation**: `=61/102.8` means `=61/102.0.8`
-- **Wire Tracing**: Dots indicate connections; perpendicular crossings without dots aren't connected
-- **Slave Sequence**: Non-chronological order (22, 23, 60, 24, 61, 20)
-- **Component Examples**: Detailed module configurations and locations
+- **Corrections & Learning**: TRACE remembers your corrections and improves over time
 
 ## Installation
 
-### Prerequisites
-- Python 3.8 or higher
-- Anthropic API key (for Claude AI)
-
-### Setup
-
-1. **Clone the repository**
+1. Clone this repository:
 ```bash
 git clone <repository-url>
-cd trace_crane_agent
+cd trace_crane_agent2
 ```
 
-2. **Install dependencies**
+2. Install dependencies:
 ```bash
 pip install -r requirements.txt
 ```
 
-3. **Configure API Key**
-
-Create a `.env` file in the project root:
+3. Import the initial training data (October 23):
 ```bash
-cp .env.example .env
+python import_oct23_training.py
 ```
 
-Edit `.env` and add your Anthropic API key:
-```
-ANTHROPIC_API_KEY=your_api_key_here
-```
+## Quick Start
 
-Alternatively, set the environment variable:
+Launch TRACE:
 ```bash
-export ANTHROPIC_API_KEY=your_api_key_here
+python trace_cli.py
 ```
 
-## PDF Library Setup (Optional)
-
-The system includes a PDF library for organizing and training with crane schematic PDFs.
-
-### Quick Setup
-
-1. **Add your PDFs** to the appropriate section directory:
-```bash
-cp /path/to/your/*.pdf data/pdfs/section_61/
+You'll see the TRACE prompt:
+```
+TRACE>
 ```
 
-2. **Catalog the PDFs** to index them:
-```bash
-python scripts/catalog_pdfs.py --scan
-```
-
-3. **Train with a section**:
-```bash
-python scripts/train_with_section.py --section 61
-```
-
-**For detailed instructions**, see [PDF_SETUP_GUIDE.md](PDF_SETUP_GUIDE.md)
-
-### PDF Library Features
-
-- 📁 **Organized by section** - Keep PDFs organized (section_61/, section_10/, etc.)
-- 📊 **Automatic cataloging** - Extract metadata, index references, components
-- 🎯 **Section training** - Train with entire sections or specific sheets
-- 📋 **Smart indexing** - Automatically detect index references and components
-- 🔍 **Easy navigation** - List and browse available PDFs
-
-### PDF Library Commands
+### Basic Commands
 
 ```bash
-# Catalog all PDFs
-python scripts/catalog_pdfs.py --scan
+# Get help
+TRACE> help
 
-# View catalog
-python scripts/catalog_pdfs.py --show
+# View knowledge summary
+TRACE> summary
 
-# List available sections
-python scripts/train_with_section.py --list
+# Show all known slaves
+TRACE> show slaves
 
-# Train with section 61
-python scripts/train_with_section.py --section 61
+# Show specific slave details
+TRACE> show slave 22
 
-# Train with specific sheets
-python scripts/train_with_section.py --section 61 --sheets 1,2,3
+# Search the knowledge base
+TRACE> query cabinet E11
+TRACE> query breaker
+
+# Enter training mode
+TRACE> train
 ```
 
-## Usage
+## Training TRACE
 
-### Interactive Menu Mode
-
-Start the application with the interactive menu:
+Enter training mode to teach TRACE about your crane schematics:
 
 ```bash
-python main.py
+TRACE> train
+Training> Slave 23 has 30 modules in Cabinet E12
+  ✓ Slave 23: 30 modules in E12
+✓ Learned about Slave 23
+
+Training> The main contactor goes to =15/200.5.1
+  ✓ Connection: main contactor → =15/200.5.1
+✓ Learned connection from main contactor to =15/200.5.1
+
+Training> done
+✓ Training session saved
 ```
 
-This will show a menu with options:
-1. Start Training Session (Interactive)
-2. Quiz Mode
-3. Practice Specific Category
-4. Review Past Sessions
-5. View Foundation Knowledge
-6. Load PDF Schematic
-7. Statistics
-8. Exit
+### Training Input Examples
 
-### Command Line Options
-
-**Start training with a PDF:**
-```bash
-python main.py --pdf path/to/schematic.pdf
+**Slave Configuration:**
+```
+Slave 60 has 20 modules (2 IM151, 1 PM, 15 DI, 2 DO) in Cabinet E15
 ```
 
-**Quiz mode:**
-```bash
-python main.py --mode quiz
+**Connections:**
+```
+Emergency stop button goes to =20/50.1.2
+Motor M1 connects to =10/102.0.5
 ```
 
-**Practice specific category:**
-```bash
-python main.py --mode practice --category index_format
+**Sequences:**
+```
+Hoist sequence: 10,11,12,13
+Drive slave sequence: 20,21,22
 ```
 
-### Training Categories
-
-The system covers these categories:
-
-- `index_format` - Index format interpretation (=XX/YY.Y.Z)
-- `wire_tracing` - Wire tracing and connections
-- `component_identification` - Component identification
-- `slave_sequence` - Slave sequence understanding
-- `module_counting` - Module counting and configuration
-- `schematic_reading` - General schematic reading
-- `notation` - Notation and shorthand
-- `location` - Component location finding
-
-## Project Structure
-
+**Rules and Notation:**
 ```
-trace_crane_agent/
-├── main.py                          # Main entry point (Human Training)
-├── requirements.txt                 # Python dependencies
-├── .env.example                     # Example environment config
-├── README.md                        # This file
-├── COPILOT_ARCHITECTURE.md          # Complete copilot system design
-├── GROUND_TRUTH_TRAINING.md         # Phase 1 guide
-├── DATABASE_BUILDER_GUIDE.md        # Phase 2 guide
-│
-├── src/                             # Core system modules
-│   ├── knowledge_base.py            # Foundation knowledge management
-│   ├── storage.py                   # Local storage system
-│   ├── pdf_processor.py             # PDF processing utilities
-│   ├── correction_logger.py         # Correction tracking
-│   ├── training_interface.py        # AI training interface (human)
-│   │
-│   ├── schematic_analyzer.py        # Claude Vision schematic analysis
-│   ├── correction_interface.py      # Interactive correction UI
-│   ├── ground_truth_labeler.py      # Ground truth labeling system
-│   ├── training_data_builder.py     # Training dataset builder
-│   ├── database_schema.py           # Component database schema (Phase 2)
-│   └── database_builder.py          # Database population (Phase 2)
-│
-├── scripts/                         # Executable scripts
-│   ├── train_agent.py               # Correction-based agent training
-│   ├── train_agent_with_ground_truth.py  # Ground truth training (recommended)
-│   ├── catalog_pdfs.py              # PDF library cataloging
-│   ├── train_with_section.py        # Section-based training
-│   └── build_database.py            # Build searchable database (Phase 2)
-│
-├── data/
-│   ├── training_sessions/           # Human training session data
-│   ├── corrections/                 # Correction logs
-│   ├── knowledge_base/              # Foundation knowledge
-│   ├── pdfs/                        # Crane schematic PDFs
-│   │   ├── section_61/              # Section 61 PDFs
-│   │   ├── section_10/              # Section 10 PDFs
-│   │   └── catalog.json             # PDF metadata catalog
-│   ├── ground_truth/                # Ground truth labels (Phase 1)
-│   ├── training_data/               # Training datasets for Claude
-│   │   ├── training_examples.jsonl  # Training examples
-│   │   ├── learned_knowledge.json   # Learned patterns
-│   │   └── finetuning_dataset.jsonl # Fine-tuning data
-│   ├── copilot/                     # Copilot system data (Phase 2+)
-│   │   └── schematic_knowledge.db   # Searchable component database
-│   └── training.db                  # Human training SQLite database
-│
-└── tests/                           # Test files
+Wire rule: red wires indicate 24V DC power
+Index format: first number is drawing sheet, second is zone
 ```
 
-## How It Works
-
-### 1. Foundation Knowledge
-
-The system is pre-loaded with foundation knowledge from the October 23 training:
-
-- Index format rules and examples
-- Wire tracing principles
-- Slave sequence patterns
-- Component configurations
-- Real-world examples (HVC3, Main Transformer, Slave 22, etc.)
-
-### 2. Training Flow
-
-1. **Start Session**: Creates a new training session in the database
-2. **Load PDF** (optional): Import crane schematic for reference
-3. **Interactive Training**: AI asks questions, user answers
-4. **Correction Tracking**: System logs mistakes and provides feedback
-5. **Review & Analytics**: View progress and identify improvement areas
-
-### 3. AI Trainer
-
-The AI trainer (Claude):
-- Understands crane schematic notation
-- Generates contextual questions
-- Provides detailed explanations
-- Adapts to user's skill level
-- Tracks progress across categories
-
-### 4. Data Storage
-
-All training data is stored locally:
-- **SQLite Database**: Structured queries and statistics
-- **JSON Files**: Detailed session logs
-- **JSONL Files**: Correction history
-- No data leaves your machine (except API calls to Claude)
-
-## Example Training Session
-
+**Corrections:**
 ```
-╔══════════════════════════════════════════════════════════════╗
-║                                                              ║
-║   TRACE Training System for Crane Schematics                ║
-║                                                              ║
-╚══════════════════════════════════════════════════════════════╝
-
-[AI Trainer]: Hello! I'm your TRACE training assistant. Let's start with
-a fundamental question about index notation.
-
-Question: What does the shorthand notation =61/102.8 expand to in full format?
-
-Your answer: =61/102.8.0
-
-[AI Trainer]: Not quite! The shorthand =61/102.8 actually expands to =61/102.0.8
-
-Explanation: In shorthand notation, when the sheet minor digit (.Y) is 0,
-it can be omitted. So =61/102.8 means section 61, sheet 102.0, column 8.
-
-The format is =XX/YY.Y.Z where:
-- XX = Section (61)
-- YY.Y = Sheet (102.0)
-- Z = Column (8)
-
-Let's try another question...
+Actually, Slave 22 is in Cabinet E10, not E11
+Correction: the breaker signal goes to =61/4.1.4
 ```
 
-## API Usage
+## Loading PDF Schematics
 
-You can also use the components programmatically:
-
-```python
-from dotenv import load_dotenv
-from src.training_interface import TrainingInterface
-
-load_dotenv()
-
-# Create trainer
-trainer = TrainingInterface()
-
-# Start session
-trainer.start_session(pdf_file="schematics/crane_01.pdf")
-
-# Interactive training
-trainer.interactive_training()
-
-# Or send specific messages
-response = trainer.chat("What is the index format?")
-print(response)
-
-# End session
-trainer.end_session()
-```
-
-## Knowledge Base API
-
-```python
-from src.knowledge_base import KnowledgeBase
-
-kb = KnowledgeBase()
-
-# Get formatted knowledge
-print(kb.format_for_training())
-
-# Get specific information
-print(kb.get_index_format_help())
-print(kb.get_slave_sequence())
-print(kb.get_wire_tracing_rules())
-```
-
-## PDF Processing API
-
-```python
-from src.pdf_processor import SchematicPDFProcessor
-
-with SchematicPDFProcessor("schematic.pdf") as processor:
-    # Extract text
-    text = processor.extract_page_text(0)
-
-    # Find index references
-    refs = processor.find_index_references()
-
-    # Find components
-    components = processor.find_components()
-
-    # Get page info
-    info = processor.get_page_info(0)
-
-    # Create training context
-    context = processor.create_training_context(0)
-```
-
-## Statistics and Analytics
-
-View your training statistics:
+Place PDF files in the `schematics/` directory or load from any path:
 
 ```bash
-python main.py
-# Select option 7 (Statistics)
+TRACE> load schematics/crane_electrical.pdf
+Loading PDF: schematics/crane_electrical.pdf
+✓ Loaded 15 pages from crane_electrical.pdf
+
+Extracted:
+  Slaves: 22, 23, 60
+  Cabinets: E11, E12, E15
+  References: 47 found
 ```
 
-This shows:
-- Performance by category
-- Overall accuracy
-- Total questions answered
-- Problem areas
-- Improvement trends
+## October 23 Training Data
 
-## Reviewing Sessions
+The system comes pre-loaded with training data from October 23:
 
-Review past training sessions:
+- **Index Format**: =XX/YY.Y.Z
+- **Slave Sequence**: 22, 23, 60, 24, 61, 20
+- **Slave 22**: 45 modules (1 IM151, 1 PM, 40 DI, 3 RTD) in Cabinet E11
+- **HVC3 Connection**: Breaker signal → =61/4.1.3
+- **Main Transformer**: Located at =10/102.0.3, terminal 1U
+- **Wire Rules**:
+  - Dots = connections
+  - Perpendicular crossings without dots = no connection
 
+## Knowledge Base Structure
+
+TRACE stores knowledge in `trace_knowledge.json` with these categories:
+
+- **schema_rules**: Notation formats and wire connection rules
+- **components**: Slaves, modules, cabinets, breakers, transformers
+- **connections**: Signal paths and electrical connections
+- **sequences**: Ordered component sequences
+- **learnings**: Training notes and corrections
+- **training_sessions**: History of training activities
+
+## Command Reference
+
+| Command | Description |
+|---------|-------------|
+| `help` | Show available commands |
+| `train` | Enter training mode |
+| `query <text>` | Search knowledge base |
+| `load <pdf>` | Load PDF schematic |
+| `list` | List available schematics |
+| `show slaves` | Display all slaves |
+| `show slave <N>` | Show slave N details |
+| `show connections` | Display all connections |
+| `summary` | Knowledge base summary |
+| `export [file]` | Export knowledge to file |
+| `quit` | Exit TRACE |
+
+## Use Cases
+
+### Finding Component Information
 ```bash
-python main.py
-# Select option 4 (Review Past Sessions)
+TRACE> query slave 22
+[Slave 22]
+  Cabinet: E11
+  Modules: 45
+  Types: IM151, PM, DI, DI, DI...
 ```
 
-Shows:
-- Session history
-- Questions and answers
-- Corrections made
-- Session statistics
-
-## Troubleshooting
-
-### API Key Issues
-
-If you see "ANTHROPIC_API_KEY not found":
-1. Make sure you created a `.env` file
-2. Check that it contains `ANTHROPIC_API_KEY=your_key`
-3. Or export the variable: `export ANTHROPIC_API_KEY=your_key`
-
-### PDF Loading Issues
-
-If PDFs don't load:
-1. Ensure PyMuPDF is installed: `pip install PyMuPDF`
-2. Check file path is correct
-3. Verify PDF is not password-protected
-
-### Database Issues
-
-If database errors occur:
-- Delete `data/training.db` to reset
-- Session history will be lost but foundation knowledge preserved
-
-## Development
-
-### Running Tests
-
+### Tracing Signal Paths
 ```bash
-# Test individual components
-python src/knowledge_base.py
-python src/storage.py
-python src/pdf_processor.py path/to/test.pdf
+TRACE> query HVC3
+[Connection]
+  From: HVC3 breaker signal
+  To: =61/4.1.3
+  Type: breaker_signal
 ```
 
-### Adding New Categories
-
-Edit `src/correction_logger.py` and add to the `CATEGORIES` dictionary:
-
-```python
-CATEGORIES = {
-    "your_category": "Description of your category",
-    # ... existing categories
-}
+### Understanding Notation
+```bash
+TRACE> query index format
+[Learning: index_format]
+  Index format: =XX/YY.Y.Z - This is the standard reference format...
 ```
 
-### Extending Knowledge Base
+## Architecture
 
-```python
-from src.knowledge_base import KnowledgeBase
+TRACE consists of four main components:
 
-kb = KnowledgeBase()
-kb.add_rule("custom_category", {
-    "rule": "Your rule",
-    "description": "Detailed description"
-})
-kb.save()
-```
+1. **KnowledgeBase** (`trace/knowledge_base.py`)
+   - JSON-based persistent storage
+   - CRUD operations for components
+   - Search and retrieval
 
-## License
+2. **PDFSchematicLoader** (`trace/pdf_loader.py`)
+   - PDF text extraction
+   - Reference pattern matching
+   - Component detection
 
-[Specify your license here]
+3. **TrainingInterface** (`trace/training_interface.py`)
+   - Natural language parsing
+   - Knowledge extraction
+   - Session management
+
+4. **TRACECLI** (`trace_cli.py`)
+   - Command-line interface
+   - Interactive training mode
+   - Query and display functions
+
+## Future Enhancements
+
+- AI-powered natural language understanding (Claude integration)
+- Visual schematic annotation and markup
+- Multi-crane project support
+- Export to documentation formats
+- Mobile companion app
+- Real-time collaboration features
 
 ## Contributing
 
-[Specify contribution guidelines here]
+This project is designed for crane mechanics. Suggestions and improvements are welcome!
 
-## Support
+## License
 
-For issues and questions:
-- Check the troubleshooting section
-- Review the foundation knowledge (option 5 in menu)
-- Examine the example sessions above
+Copyright 2024 - TRACE Crane Assistant Project
 
-## Acknowledgments
+---
 
-Foundation knowledge based on October 23, 2025 crane schematic training session.
-
-Built with:
-- [Claude AI](https://www.anthropic.com/claude) - Conversational training
-- [PyMuPDF](https://pymupdf.readthedocs.io/) - PDF processing
-- [Rich](https://rich.readthedocs.io/) - Terminal UI
-- [SQLite](https://www.sqlite.org/) - Local storage
+**Built for crane mechanics, by crane mechanics.**
